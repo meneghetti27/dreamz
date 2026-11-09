@@ -38,9 +38,15 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   26 filmadora VHS (REC, data, tracking, fitas com etiqueta) · 27 luneta que procura os sonhos como planetas · 28 cabine de fotos 3x4 que solta tirinhas.
   Ideias só propostas (não feitas): 24 álbum de figurinhas, 29 mapa do metrô, 30 globo de neve, 31 projetor de estrelas no teto, 32 stories.
   O dono escolheu 7, 9, 20 e 21 → foram para o site (acima).
-- **04:40 Antes × depois**: perfil do Instagram antes/depois (Anjos Colchões e Cacá Games, `assets/antes-depois/`) num celular com linha arrastável.
+- Antes × depois (celular com linha arrastável) foi feito e **removido** ("muito feio").
 - **05:30 Perguntas de insônia** (FAQ em abre-e-fecha, horários 05:31…05:52). Respostas escritas pelo Claude sem prometer preço/prazo/número de ajustes —
   **o dono precisa conferir** (principalmente "atendem fora da cidade?" e "o que recebo no final?").
+- **06:00 Orçamento (refeito)**: "Acordou? Me conta." + **conversa de bom dia** estilo chat (dreamz "digitando…"): pergunta marca → nome →
+  o que precisa (chips) → prazo (chips) → o sonho em 1 frase (pode pular) → botão "Enviar pelo WhatsApp" com a mensagem montada. E-mail/Instagram/WhatsApp ao lado.
+  Reprovado: formulário com campos e prévia da mensagem ("não curti").
+- **Sons da madrugada, sem botão** (pedido do dono): chuva fina + grilos à noite, passarinhos no amanhecer, gerados com Web Audio; começam no 1º clique/toque/tecla
+  (o navegador não deixa tocar antes) e pausam quando a aba sai de foco.
+- **Easter egg**: 3 cliques rápidos no menino (logo da entrada, símbolo do topo ou da seção "quem sonha") → ele pula, toca um "plim" e as estrelas saem voando + "ele acordou! ✦".
 - Detalhes: cursor de estrela + rastro de estrelinhas (só mouse) e contador "há mm:ss perdendo o sono com a gente" (canto, desktop) e no rodapé.
 - WhatsApp: **+55 17 99108-9367** (constante `WHATSAPP = "5517991089367"` no script).
 - Imagens do acervo: `assets/obras/<projeto>/NN.webp` (01 = capa, 02 = aparece no hover). Originais no Drive "PROJETOS DREAMZ 2026".
