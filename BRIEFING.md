@@ -48,3 +48,10 @@ Combinações aprovadas nas peças: creme × marinho, periwinkle × preto, azul-
 ### Moodboard
 Anos 2000 / old money / streetwear de luxo: conversível, iate no mar, senhor fumando ao sol, Beckham de jeans largo, A$AP de gorro, tênis e óculos Chanel,
 pessoa sentada à beira de um prédio sobre as nuvens (sonho). Foto analógica, luz de sol, granulado.
+
+## Instagram e contato
+- Instagram: **@dreamzgalllery** (com 3 L) — https://instagram.com/dreamzgalllery · print em `referencias/instagram-dreamzgalllery.webp`
+- Bio: "Galeria de arte · by @maldonaenz" · frase: **"Lo$ing $leep for your Dreamz i$ better than dreaming about them ✨"**
+- E-mail: **dre3amzgallery@gmail.com**
+- Criador: @maldonaenz
+- Posts atuais: manual de ID visual da BMC, case de fone JBL com "DREAMZ", camiseta creme com logo azul, "DREAMZ" em fundo preto.
