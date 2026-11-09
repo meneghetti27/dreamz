@@ -111,37 +111,59 @@ em{font-style:italic}
 .manifesto .texto p{margin:0;font-size:16.5px;max-width:44ch}
 .manifesto .texto p:first-of-type::first-letter{font-family:var(--f-display);font-size:3.4em;float:left;line-height:.8;padding:6px 10px 0 0;color:var(--accent)}
 
-/* 01:00 */
-.tecnicas{padding-block:30px clamp(90px,12vw,150px)}
-.placas{margin-top:34px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:22px}
-.placa{border:1px solid var(--line);padding:30px 28px 32px;display:grid;gap:14px;align-content:start;position:relative}
-.placa .n{font-family:var(--f-display);font-style:italic;font-size:20px;color:var(--muted)}
-.placa h3{margin:0;font-size:clamp(34px,3.6vw,46px);line-height:1}
-.placa p{margin:0;color:var(--muted);max-width:40ch}
-.placa ul{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
-.placa li{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:6px 12px}
-.estrela5{display:block;background:currentColor;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
-.placa .estrela5{position:absolute;top:24px;right:24px;width:18px;height:18px;color:var(--accent)}
+/* 01:00 — técnicas: o que a dreamz faz, mostrado com trabalho real */
+.tecnicas{padding-block:clamp(70px,10vw,140px)}
+.tecnicas .cab-t{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px 40px;margin-bottom:clamp(40px,6vw,80px)}
+.tecnicas .cab-t h2{margin:16px 0 0;font-size:clamp(48px,7.5vw,108px);line-height:.9;letter-spacing:-.01em}
+.tecnicas .cab-t h2 em{color:var(--accent)}
+.tecnicas .cab-t p{margin:0;max-width:36ch;color:var(--muted)}
+.tec-bloco{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,5vw,70px);align-items:center}
+.tec-bloco + .tec-bloco{margin-top:clamp(70px,10vw,130px)}
+.tec-bloco.inv{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+.tec-bloco.inv .tec-txt{order:2}
+.tec-txt .tec-n{font-family:var(--f-display);font-style:italic;font-weight:700;font-size:22px;color:var(--muted)}
+.tec-txt h3{margin:6px 0 0;font-size:clamp(46px,6vw,84px);line-height:.92}
+.tec-txt h3 em{color:var(--accent)}
+.tec-txt p{margin:18px 0 0;max-width:38ch;font-size:17px}
+.passos{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:0;max-width:340px;counter-reset:p}
+.passos li{counter-increment:p;display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-top:1px solid var(--line);font-family:var(--f-display);font-weight:800;font-size:22px}
+.passos li::after{content:"0" counter(p);font-family:var(--f-mono);font-weight:400;font-size:12px;color:var(--muted)}
+.passos li:last-child{border-bottom:1px solid var(--line)}
+.exemplo{margin:14px 0 0;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.pilha{position:relative;aspect-ratio:16/11;width:100%}
+.lamina{all:unset;cursor:zoom-in;position:absolute;left:14%;top:14%;width:68%;aspect-ratio:16/9;transform:translate(calc(var(--i) * 18px),calc(var(--i) * -16px)) rotate(calc(var(--i) * 2.5deg - 4deg));
+  transition:left .8s cubic-bezier(.3,1.2,.4,1),top .8s cubic-bezier(.3,1.2,.4,1),width .8s cubic-bezier(.3,1.2,.4,1),transform .8s cubic-bezier(.3,1.2,.4,1);transition-delay:calc(var(--i) * 70ms);z-index:calc(10 - var(--i))}
+.lamina img{width:100%;height:100%;object-fit:cover;border-radius:6px;box-shadow:0 24px 50px -16px rgba(0,0,0,.7)}
+.lamina .tag{position:absolute;left:10px;top:10px;padding:5px 10px;border-radius:99px;background:rgba(254,250,226,.92);color:#141a30;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.pilha.aberta .lamina{width:49%;transform:none}
+.pilha.aberta .lamina:nth-child(1){left:0;top:0}
+.pilha.aberta .lamina:nth-child(2){left:51%;top:0}
+.pilha.aberta .lamina:nth-child(3){left:0;top:52%}
+.pilha.aberta .lamina:nth-child(4){left:51%;top:52%}
+.pilha.aberta .lamina:hover{transform:scale(1.03);z-index:20}
+.lamina:focus-visible img{outline:2px solid var(--accent);outline-offset:3px}
+.fone{width:min(300px,100%);margin:0 auto;aspect-ratio:9/18.5;border-radius:46px;padding:11px;background:#0d0f16;box-shadow:inset 0 0 0 2px #2b2f3b,0 40px 80px -30px rgba(0,0,0,.9)}
+.fone-tela{position:relative;height:100%;border-radius:36px;overflow:hidden;background:#fbfaf6;color:#141a30;display:grid;grid-template-rows:auto auto 1fr}
+.fone-tela::before{content:"";position:absolute;left:50%;top:9px;width:90px;height:24px;border-radius:14px;background:#000;transform:translateX(-50%);z-index:3}
+.fone-perfil{display:flex;align-items:center;gap:10px;padding:44px 14px 10px}
+.fone-perfil .avatar{width:44px;height:44px;border-radius:50%;background:#141a30;color:#FEFAE2;display:grid;place-items:center;box-shadow:0 0 0 2px #fbfaf6,0 0 0 4px #7690D4}
+.fone-perfil .avatar .simbolo{width:28px;height:25px}
+.fone-perfil b{display:block;font-size:13px}
+.fone-perfil small{font-size:11px;color:#6b7390}
+.fone-abas{display:flex;justify-content:space-around;padding:6px 0;border-top:1px solid #e3e1da;font-size:14px;color:#6b7390}
+.feed{overflow:hidden;position:relative}
+.rolo{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;animation:rolaFeed 38s linear infinite}
+.feed:hover .rolo{animation-play-state:paused}
+@keyframes rolaFeed{to{transform:translateY(-50%)}}
+.rolo button{all:unset;cursor:zoom-in;display:block;aspect-ratio:4/5;background:#ddd center/cover}
+.rolo button:focus-visible{outline:2px solid #3b6fd1;outline-offset:-2px}
 
-/* 02:00–04:30 — acervo em 4 atos: índice, partidas, tarô e faixas */
+/* 02:00–04:30 — acervo em 3 atos: partidas, tarô e faixas */
 .secao-obra{padding-block:clamp(60px,9vw,120px)}
 .secao-obra .cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px 40px;margin-bottom:44px}
 .secao-obra h2{margin:16px 0 0;font-size:clamp(48px,7.5vw,108px);line-height:.9;letter-spacing:-.01em}
 .secao-obra h2 em{color:var(--accent)}
 .secao-obra .cab p{margin:0;max-width:38ch;color:var(--muted)}
-
-/* índice gigante */
-.linha-i{all:unset;cursor:pointer;display:grid;grid-template-columns:60px minmax(0,1fr) auto;align-items:baseline;gap:20px;width:100%;padding:10px 0 6px;border-top:1px solid var(--line);transition:opacity .25s}
-.indice:hover .linha-i{opacity:.28}
-.indice .linha-i:hover,.indice .linha-i:focus-visible{opacity:1}
-.linha-i .n{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
-.linha-i .nome{font-family:var(--f-display);font-weight:900;font-variation-settings:"SOFT" 100,"opsz" 144;font-size:clamp(40px,8.4vw,124px);line-height:.95;letter-spacing:-.03em;transition:transform .35s cubic-bezier(.2,.8,.2,1),color .25s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.linha-i:hover .nome,.linha-i:focus-visible .nome{font-style:italic;color:var(--accent);transform:translateX(22px)}
-.linha-i .meta{font-family:var(--f-mono);font-size:12px;color:var(--muted);text-align:right;line-height:1.5}
-.linha-i .mini{display:none}
-.flutua{position:fixed;left:0;top:0;width:min(300px,26vw);pointer-events:none;z-index:40;opacity:0;transform:translate(-50%,-50%) scale(.8) rotate(-4deg);transition:opacity .25s,transform .35s cubic-bezier(.2,.8,.2,1)}
-.flutua.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4deg)}
-.flutua img{width:100%;height:auto;box-shadow:0 30px 60px rgba(0,0,0,.6)}
 
 /* partidas */
 .aeroporto{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:30px;align-items:start}
@@ -259,15 +281,13 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 .visor-pe .frase{font-family:var(--f-display);font-style:italic;text-transform:none;letter-spacing:0;font-size:20px;font-weight:400;max-width:60ch}
 
 @media (max-width:900px){
+  .tec-bloco,.tec-bloco.inv{grid-template-columns:1fr}
+  .tec-bloco.inv .tec-txt{order:0}
   .aeroporto{grid-template-columns:1fr}
   .embarque{position:static}
   .quem .grade,.caixa{grid-template-columns:1fr}
 }
 @media (max-width:640px){
-  .linha-i{grid-template-columns:34px minmax(0,1fr) 54px}
-  .linha-i .meta{display:none}
-  .linha-i .mini{display:block;width:54px;aspect-ratio:4/5;object-fit:cover;align-self:center}
-  .flutua{display:none}
 }
 @media (max-width:560px){
   .idioma .longo{display:none}
@@ -325,41 +345,54 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 
   <section class="faixa tecnicas" id="tecnicas" data-cena-pt="sono leve" data-cena-en="light sleep">
     <div class="miolo">
-      <div class="rotulo">01:00 · <span lang="pt">técnicas</span><span lang="en">techniques</span></div>
-      <div class="placas">
-        <article class="placa">
-          <span class="estrela5" aria-hidden="true"></span>
-          <div class="n">i.</div>
-          <h3><span lang="pt">Identidade <em>visual</em></span><span lang="en">Visual <em>identity</em></span></h3>
-          <p lang="pt">Do nome à camiseta. A marca ganha um conceito e tudo o que sai dele: logo, cores, letras e as peças onde ela vai viver.</p>
-          <p lang="en">From the name to the t-shirt. The brand gets a concept and everything that comes out of it: logo, colours, type and the pieces it will live on.</p>
-          <ul><li>logo</li><li lang="pt">paleta</li><li lang="en">palette</li><li lang="pt">tipografia</li><li lang="en">typography</li><li lang="pt">aplicações</li><li lang="en">applications</li><li lang="pt">mosaico do Instagram</li><li lang="en">Instagram grid</li></ul>
-        </article>
-        <article class="placa">
-          <span class="estrela5" aria-hidden="true"></span>
-          <div class="n">ii.</div>
-          <h3>Social <em>media</em></h3>
-          <p lang="pt">Posts e carrosséis com direção de arte, pra marca falar todo mês com a mesma cara e a mesma voz.</p>
-          <p lang="en">Art-directed posts and carousels, so the brand speaks every month with the same face and the same voice.</p>
-          <ul><li>posts</li><li lang="pt">carrosséis</li><li lang="en">carousels</li><li lang="pt">destaques</li><li lang="en">highlights</li><li lang="pt">campanhas</li><li lang="en">campaigns</li></ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="faixa secao-obra" id="acervo" data-cena-pt="sono profundo" data-cena-en="deep sleep">
-    <div class="miolo">
-      <div class="cab">
+      <div class="cab-t">
         <div>
-          <div class="rotulo">02:00 · <span lang="pt">acervo</span><span lang="en">collection</span></div>
-          <h2><span lang="pt">13 <em>sonhos</em></span><span lang="en">13 <em>dreams</em></span></h2>
+          <div class="rotulo">01:00 · <span lang="pt">técnicas</span><span lang="en">techniques</span></div>
+          <h2><span lang="pt">Duas coisas, <em>bem feitas.</em></span><span lang="en">Two things, <em>done right.</em></span></h2>
         </div>
-        <p lang="pt">Os nomes dos sonhos que a gente já tirou da cabeça de alguém. Passe o mouse num nome pra ver a peça, e clique pra abrir.</p>
-        <p lang="en">The names of the dreams we've already pulled out of someone's head. Hover a name to see the piece, and click to open it.</p>
+        <p lang="pt">A dreamz não faz de tudo. Faz a marca nascer e depois faz ela falar, todo mês, do mesmo jeito.</p>
+        <p lang="en">dreamz doesn't do everything. We bring the brand to life, then make it speak every month in the same voice.</p>
       </div>
-      <div class="indice" id="indice"></div>
+
+      <article class="tec-bloco">
+        <div class="tec-txt">
+          <span class="tec-n">i.</span>
+          <h3><span lang="pt">Identidade <em>visual</em></span><span lang="en">Visual <em>identity</em></span></h3>
+          <p lang="pt">O sonho ganha forma. Primeiro o conceito, depois cada camada da marca, até ela caber num boné.</p>
+          <p lang="en">The dream takes shape. Concept first, then every layer of the brand, until it fits on a cap.</p>
+          <ol class="passos">
+            <li>logo</li><li><span lang="pt">paleta</span><span lang="en">palette</span></li><li><span lang="pt">tipografia</span><span lang="en">typography</span></li><li><span lang="pt">aplicações</span><span lang="en">applications</span></li>
+          </ol>
+          <p class="exemplo"><span lang="pt">exemplo real · Bross Motors</span><span lang="en">real example · Bross Motors</span></p>
+        </div>
+        <div class="pilha" id="pilha">
+          <button type="button" class="lamina" style="--i:0" aria-label="Logo da Bross Motors"><img src="assets/tecnicas/1-logo.webp" alt="" loading="lazy"><span class="tag">01 · logo</span></button>
+          <button type="button" class="lamina" style="--i:1" aria-label="Paleta da Bross Motors"><img src="assets/tecnicas/2-paleta.webp" alt="" loading="lazy"><span class="tag"><span lang="pt">02 · paleta</span><span lang="en">02 · palette</span></span></button>
+          <button type="button" class="lamina" style="--i:2" aria-label="Tipografia da Bross Motors"><img src="assets/tecnicas/3-tipografia.webp" alt="" loading="lazy"><span class="tag"><span lang="pt">03 · tipografia</span><span lang="en">03 · type</span></span></button>
+          <button type="button" class="lamina" style="--i:3" aria-label="Aplicação da marca Bross Motors"><img src="assets/tecnicas/4-aplicacao.webp" alt="" loading="lazy"><span class="tag"><span lang="pt">04 · aplicação</span><span lang="en">04 · application</span></span></button>
+        </div>
+      </article>
+
+      <article class="tec-bloco inv">
+        <div class="tec-txt">
+          <span class="tec-n">ii.</span>
+          <h3>Social <em>media</em></h3>
+          <p lang="pt">Depois de nascer, a marca precisa aparecer. Posts e carrosséis com direção de arte, cada cliente com a sua cara.</p>
+          <p lang="en">Once it's born, the brand has to show up. Art-directed posts and carousels, each client with its own face.</p>
+          <ol class="passos">
+            <li>posts</li><li><span lang="pt">carrosséis</span><span lang="en">carousels</span></li><li><span lang="pt">destaques</span><span lang="en">highlights</span></li><li><span lang="pt">campanhas</span><span lang="en">campaigns</span></li>
+          </ol>
+          <p class="exemplo"><span lang="pt">feeds reais de 9 clientes</span><span lang="en">real feeds from 9 clients</span></p>
+        </div>
+        <div class="fone">
+          <div class="fone-tela">
+            <div class="fone-perfil"><span class="avatar"><span class="simbolo"></span></span><div><b>dreamzgalllery</b><small><span lang="pt">feeds dos clientes</span><span lang="en">client feeds</span></small></div></div>
+            <div class="fone-abas" aria-hidden="true"><span>▦</span><span>▷</span><span>◫</span></div>
+            <div class="feed"><div class="rolo" id="rolo"></div></div>
+          </div>
+        </div>
+      </article>
     </div>
-    <div class="flutua" id="flutua" aria-hidden="true"><img id="flutua-img" alt=""></div>
   </section>
 
   <section class="faixa secao-obra" id="partidas" data-cena-pt="partidas" data-cena-en="departures">
@@ -551,17 +584,19 @@ function mostraHora(hh,mm){
 }
 setInterval(()=>{ const g=document.getElementById("dois-pontos"); if(g&&!calmo) g.style.opacity=g.style.opacity==="0"?"1":"0"; },600);
 
-/* ---------- acervo 1: índice gigante ---------- */
-const indice=document.getElementById("indice"), flutua=document.getElementById("flutua"), fImg=document.getElementById("flutua-img");
-indice.innerHTML=OBRAS.map((o,k)=>`<button type="button" class="linha-i" data-k="${k}"><span class="n">${String(k+1).padStart(2,"0")}</span><span class="nome">${o.t}</span><span class="meta"><span lang="pt">${TIPO[o.tipo].pt}</span><span lang="en">${TIPO[o.tipo].en}</span><br>${o.h}</span><img class="mini" src="${img(o,1)}" alt="" loading="lazy"></button>`).join("");
-let fx=0,fy=0,tx=0,ty=0;
-indice.addEventListener("pointermove",e=>{ tx=e.clientX; ty=e.clientY; });
-indice.addEventListener("pointerover",e=>{ const b=e.target.closest(".linha-i"); if(!b) return; fImg.src=img(OBRAS[+b.dataset.k],1); flutua.classList.add("on"); });
-indice.addEventListener("pointerleave",()=>flutua.classList.remove("on"));
-indice.addEventListener("click",e=>{ const b=e.target.closest(".linha-i"); if(b) abrirObra(+b.dataset.k); });
-(function segue(){ fx+=(tx-fx)*0.14; fy+=(ty-fy)*0.14; flutua.style.left=fx+"px"; flutua.style.top=fy+"px"; requestAnimationFrame(segue); })();
+/* ---------- técnicas ---------- */
+const pilha=document.getElementById("pilha");
+pilha.addEventListener("click",e=>{ if(!pilha.classList.contains("aberta")){ pilha.classList.add("aberta"); return; } if(e.target.closest(".lamina")) abrirObra(0); });
+pilha.addEventListener("pointerenter",()=>pilha.classList.add("aberta"));
+if("IntersectionObserver" in window){ const ip=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ setTimeout(()=>pilha.classList.add("aberta"),calmo?0:500); ip.disconnect(); } },{threshold:.5}); ip.observe(pilha); } else pilha.classList.add("aberta");
+const rolo=document.getElementById("rolo");
+const posts=[];
+OBRAS.forEach((o,k)=>{ if(o.tipo==="social") for(let i=1;i<=Math.min(3,o.n);i++) posts.push([k,i]); });
+posts.sort((a,b)=>((a[0]*7+a[1]*3)%11)-((b[0]*7+b[1]*3)%11));
+rolo.innerHTML=posts.concat(posts).map(([k,i])=>`<button type="button" data-k="${k}" aria-label="${OBRAS[k].t}" style="background-image:url(${img(OBRAS[k],i)})"></button>`).join("");
+rolo.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) abrirObra(+b.dataset.k); });
 
-/* ---------- acervo 2: partidas ---------- */
+/* ---------- acervo 1: partidas ---------- */
 const ST={pt:["EMBARCANDO","NO HORÁRIO","SONHANDO","ÚLTIMA CHAMADA"],en:["BOARDING","ON TIME","DREAMING","FINAL CALL"]};
 const tb=document.getElementById("voos"), emb=document.getElementById("embarque"); let vooSel=2;
 const celulas=(txt,n)=>{ const t=txt.toUpperCase().padEnd(n," ").slice(0,n); return `<span class="flap" data-alvo="${t}">${[...t].map(c=>`<i>${c===" "?"&nbsp;":c}</i>`).join("")}</span>`; };
