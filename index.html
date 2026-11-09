@@ -1,0 +1,646 @@
+<meta charset="utf-8">
+<title>dreamz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="dreamz — galeria de design conceitual. Identidade visual e social media.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: uma noite em rolagem — 23:47 (entrada) até 06:00 (orçamento). O fundo vai do preto ao creme do amanhecer.
+   Visual único e deliberado (não segue tema claro/escuro do sistema): a cor é dada pela hora, não pelo tema. */
+:root{
+  color-scheme: dark;
+  --noite:#000000; --marinho:#283456; --lavanda:#7690D4; --ceu:#8AC4FE; --bebe:#A6D8FF;
+  --creme:#FEFAE2; --marrom:#704838; --nevoa:#A3AEC4; --tinta:#141a30;
+  /* valores vivos (o script atualiza conforme a hora) */
+  --bg:#000000; --fg:#FEFAE2; --muted:rgba(254,250,226,.62); --line:rgba(254,250,226,.18); --accent:#8AC4FE; --stars:1;
+  --f-display:"Marcellus","Copperplate","Trajan Pro",Georgia,serif;
+  --f-dream:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --f-body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gutter:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background-color .25s linear,color .25s linear}
+a{color:inherit}
+::selection{background:var(--accent);color:var(--tinta)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+img{display:block}
+
+/* idioma */
+html[data-lang="pt"] [lang="en"], html[data-lang="en"] [lang="pt"]{display:none!important}
+body.trocando main, body.trocando .topo{filter:blur(6px);opacity:.5}
+main,.topo{transition:filter .35s ease,opacity .35s ease}
+
+/* céu, grão e pálpebras */
+#ceu{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:var(--stars)}
+.grao{position:fixed;inset:-50%;width:200%;height:200%;z-index:60;pointer-events:none;opacity:.11;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 -.2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grao 1s steps(6) infinite}
+@keyframes grao{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:translate(-4%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+.palpebra{position:fixed;left:0;right:0;height:51vh;background:#000;z-index:80;pointer-events:none;
+  animation:abrir 1.5s cubic-bezier(.7,0,.2,1) .35s forwards}
+.palpebra.cima{top:0;transform-origin:top;border-radius:0 0 50% 50%/0 0 14vh 14vh}
+.palpebra.baixo{bottom:0;transform-origin:bottom;border-radius:50% 50% 0 0/14vh 14vh 0 0;animation-name:abrirB}
+@keyframes abrir{to{transform:translateY(-102%)}}
+@keyframes abrirB{to{transform:translateY(102%)}}
+
+/* topo */
+.topo{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding-top:calc(14px + env(safe-area-inset-top, 0px));padding-bottom:14px;padding-left:var(--gutter);padding-right:var(--gutter-r);
+  mix-blend-mode:difference;color:#FEFAE2}
+.marca-mini{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marca-mini .simbolo{width:30px;height:27px}
+.marca-mini b{font-family:var(--f-display);font-weight:400;letter-spacing:.32em;font-size:15px}
+.idioma{display:flex;gap:2px;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid currentColor;border-radius:99px;padding:3px}
+.idioma button{all:unset;cursor:pointer;padding:5px 10px;border-radius:99px;white-space:nowrap}
+.idioma button[aria-pressed="true"]{background:#FEFAE2;color:#000}
+
+/* relógio */
+.relogio{position:fixed;z-index:50;left:var(--gutter);bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+  font-family:var(--f-mono);pointer-events:none;mix-blend-mode:difference;color:#FEFAE2}
+.relogio .hora{font-size:clamp(28px,4.2vw,46px);line-height:1;font-weight:400;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.relogio .hora i{font-style:normal;animation:pisca 1s steps(1) infinite}
+@keyframes pisca{50%{opacity:0}}
+.relogio .cena{font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-top:6px;opacity:.75}
+.noite{position:fixed;z-index:50;right:var(--gutter-r);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;
+  list-style:none;margin:0;padding:0;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;mix-blend-mode:difference;color:#FEFAE2}
+.noite a{display:flex;align-items:center;justify-content:flex-end;gap:10px;text-decoration:none;opacity:.45;transition:opacity .2s}
+.noite a::after{content:"";width:14px;height:1px;background:currentColor;transition:width .3s}
+.noite a.ativo,.noite a:hover{opacity:1}
+.noite a.ativo::after{width:34px}
+.noite span{font-variant-numeric:tabular-nums}
+
+/* estrutura */
+main{position:relative;z-index:2}
+.faixa{padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.miolo{max-width:1100px;margin:0 auto}
+.rotulo{font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;gap:14px;align-items:center}
+.rotulo::before{content:"";width:26px;height:1px;background:currentColor}
+.sonho{font-family:var(--f-dream);font-style:italic}
+
+/* simbolo como máscara: recolore com currentColor */
+.simbolo{display:block;background:currentColor;-webkit-mask:url(assets/marca/simbolo.png) center/contain no-repeat;mask:url(assets/marca/simbolo.png) center/contain no-repeat}
+.logo{display:block;background:currentColor;-webkit-mask:url(assets/marca/logo.png) center/contain no-repeat;mask:url(assets/marca/logo.png) center/contain no-repeat}
+
+/* 23:47 entrada */
+.entrada{min-height:min(92svh,900px);display:grid;place-items:center;text-align:center;padding-block:120px 90px}
+.entrada .cena-logo{position:relative;width:min(520px,78vw);aspect-ratio:1209/654;color:var(--creme)}
+.entrada .cena-logo .logo{position:absolute;inset:0;animation:esfrega 4.5s ease-in-out infinite;transform-origin:50% 60%}
+.brilho{position:absolute;left:51%;top:30%;width:34%;aspect-ratio:2.2;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(closest-side,var(--ceu),rgba(138,196,254,.0));filter:blur(18px);opacity:.9;animation:brilho 3.2s ease-in-out infinite}
+@keyframes brilho{0%,100%{opacity:.35;transform:translate(-50%,-50%) scale(.85)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}}
+@keyframes esfrega{0%,100%{transform:rotate(0)}48%{transform:rotate(0)}52%{transform:rotate(-.8deg) translateY(1px)}56%{transform:rotate(.8deg)}60%{transform:rotate(0)}}
+.entrada h1{margin:34px 0 0;font-family:var(--f-dream);font-weight:400;font-style:italic;font-size:clamp(24px,3.2vw,38px);line-height:1.15;text-wrap:balance;max-width:22ch}
+.entrada .sub{margin-top:14px;font-family:var(--f-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.dormir{margin-top:46px;display:inline-flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+.dormir span.z{font-family:var(--f-display);font-size:22px;letter-spacing:.1em;color:var(--fg);animation:zz 2.4s ease-in-out infinite}
+@keyframes zz{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(6px);opacity:1}}
+
+/* 00:00 manifesto */
+.manifesto{padding-block:clamp(90px,14vw,180px)}
+.manifesto blockquote{margin:28px 0 0;font-family:var(--f-display);font-size:clamp(34px,6.4vw,92px);line-height:1.02;letter-spacing:.01em;text-transform:uppercase;text-wrap:balance}
+.manifesto blockquote em{font-style:normal;color:var(--accent)}
+.manifesto .traducao{margin-top:26px;font-size:clamp(20px,2.3vw,28px);color:var(--muted);max-width:34ch;line-height:1.25}
+.manifesto .texto{margin-top:64px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:28px 64px;max-width:900px;margin-left:auto}
+.manifesto .texto p{margin:0;font-size:17px;max-width:44ch}
+.manifesto .texto p:first-child::first-letter{font-family:var(--f-display);font-size:3.2em;float:left;line-height:.85;padding:6px 10px 0 0;color:var(--accent)}
+
+/* 01:00 técnicas */
+.tecnicas{padding-block:40px clamp(90px,12vw,150px)}
+.placas{margin-top:34px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:22px}
+.placa{border:1px solid var(--line);padding:28px 26px 30px;display:grid;gap:14px;align-content:start;position:relative}
+.placa .n{font-family:var(--f-mono);font-size:12px;color:var(--muted);letter-spacing:.1em}
+.placa h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(28px,3vw,38px);line-height:1.05;text-transform:uppercase;letter-spacing:.04em}
+.placa p{margin:0;color:var(--muted);max-width:40ch}
+.placa ul{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.placa li{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:5px 11px}
+.simbolo-estrela{background:currentColor;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.placa .estrela{position:absolute;top:22px;right:22px;width:18px;height:18px;color:var(--accent)}
+
+/* 02:00 acervo */
+.acervo{padding-block:30px clamp(80px,10vw,130px)}
+.acervo-topo{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px 40px}
+.acervo h2{margin:18px 0 0;font-family:var(--f-display);font-weight:400;font-size:clamp(44px,8vw,120px);line-height:.95;text-transform:uppercase;letter-spacing:.02em}
+.acervo-topo p{margin:0;max-width:36ch;color:var(--muted)}
+.filtro{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+.filtro button{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:7px 13px;color:var(--muted)}
+.filtro button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.filtro button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.obras{margin-top:44px;display:grid;grid-template-columns:repeat(12,1fr);gap:56px 28px}
+.obra{grid-column:span 4;min-width:0}
+.obra.larga{grid-column:span 8}
+.obra:nth-child(6n+4){margin-top:60px}
+.obra:nth-child(6n+2){margin-top:110px}
+.obra button.abrir{all:unset;cursor:zoom-in;display:block;width:100%}
+.obra button.abrir:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+.moldura{position:relative;overflow:hidden;background:rgba(0,0,0,.25)}
+.moldura img{width:100%;height:100%;object-fit:cover;transition:opacity .5s ease,transform .9s cubic-bezier(.2,.7,.1,1)}
+.moldura img + img{position:absolute;inset:0;opacity:0}
+.obra:hover .moldura img + img,.obra button:focus-visible .moldura img + img{opacity:1}
+.obra:hover .moldura img{transform:scale(1.03)}
+.etiqueta{margin-top:16px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:baseline}
+.etiqueta .num{font-family:var(--f-mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;grid-row:span 2}
+.etiqueta h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(20px,1.9vw,26px);line-height:1.1;letter-spacing:.04em;text-transform:uppercase}
+.etiqueta .ficha{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.etiqueta .frase{grid-column:2;margin:6px 0 0;font-family:var(--f-dream);font-style:italic;font-size:19px;line-height:1.3;max-width:38ch}
+
+/* 05:00 quem sonha */
+.quem{padding-block:clamp(80px,12vw,160px)}
+.quem .grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:40px 70px;align-items:center;margin-top:30px}
+.quem .simbolo{width:min(100%,380px);aspect-ratio:728/647;color:var(--fg);margin-inline:auto}
+.quem h2{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(34px,5vw,64px);line-height:1.02;text-transform:uppercase;text-wrap:balance}
+.quem p{font-size:18px;max-width:46ch;margin:22px 0 0}
+.quem .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.pilula{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-decoration:none;border:1px solid var(--fg);border-radius:99px;padding:10px 16px}
+.pilula:hover{background:var(--fg);color:var(--bg)}
+
+/* 06:00 amanhecer / orçamento */
+.amanhecer{padding-block:clamp(70px,10vw,130px) 60px}
+.amanhecer h2{margin:20px 0 0;font-family:var(--f-display);font-weight:400;font-size:clamp(48px,9vw,128px);line-height:.92;text-transform:uppercase;letter-spacing:.01em}
+.amanhecer .intro{font-size:clamp(20px,2.2vw,26px);max-width:36ch;margin:22px 0 0;line-height:1.3}
+.caixa{margin-top:46px;border:1.5px solid var(--fg);padding:clamp(22px,4vw,44px);display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:34px 48px}
+.campos{display:grid;gap:22px;min-width:0}
+.campo{display:grid;gap:8px;min-width:0}
+.campo > label,.campo > legend{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+.opcoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.opcoes label{position:relative;cursor:pointer}
+.opcoes input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opcoes span{display:inline-block;border:1px solid var(--fg);border-radius:99px;padding:8px 14px;font-size:14px}
+.opcoes input:checked + span{background:var(--fg);color:var(--bg)}
+.opcoes input:focus-visible + span{outline:2px solid var(--marrom);outline-offset:2px}
+.campo input[type=text],.campo textarea,.campo select{width:100%;font:inherit;font-size:17px;color:var(--fg);background:transparent;border:0;border-bottom:1.5px solid var(--fg);padding:8px 0;border-radius:0}
+.campo textarea{resize:vertical;min-height:84px;font-family:var(--f-dream);font-size:21px;font-style:italic}
+.campo select{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 12px) 55%,calc(100% - 6px) 55%;background-size:6px 6px;background-repeat:no-repeat}
+.campo select option{color:#141a30;background:#FEFAE2}
+.campo input::placeholder,.campo textarea::placeholder{color:var(--muted);opacity:1}
+.envio{display:flex;flex-direction:column;justify-content:space-between;gap:26px;min-width:0}
+.previa{font-family:var(--f-mono);font-size:12.5px;line-height:1.6;white-space:pre-wrap;border-left:2px solid var(--fg);padding:4px 0 4px 16px;color:var(--muted);overflow-wrap:anywhere}
+.previa b{color:var(--fg);font-weight:500}
+.zap{display:flex;align-items:center;justify-content:center;gap:12px;text-decoration:none;background:var(--tinta);color:var(--creme);padding:18px 22px;font-family:var(--f-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s ease}
+.zap:hover{transform:translateY(-2px)}
+.zap svg{width:20px;height:20px;flex:none}
+.contatos{display:grid;gap:10px;font-size:14px}
+.contatos .linha{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.contatos code{font-family:var(--f-mono);font-size:13px;user-select:all}
+.copiar{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid currentColor}
+.copiar:focus-visible{outline:2px solid var(--marrom);outline-offset:2px}
+
+footer{padding-block:60px calc(110px + env(safe-area-inset-bottom, 0px));text-align:center}
+footer .logo{width:min(300px,60vw);aspect-ratio:1209/654;margin:0 auto;color:var(--fg)}
+footer p{margin:22px 0 0;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+footer .acordou{font-family:var(--f-dream);font-style:italic;font-size:22px;letter-spacing:0;text-transform:none;color:var(--fg)}
+
+/* visor de obra */
+dialog.visor{border:0;padding:0;margin:0;width:100%;max-width:100%;height:100%;max-height:100%;background:rgba(0,0,0,.94);color:#FEFAE2;overflow:hidden}
+dialog.visor::backdrop{background:rgba(0,0,0,.6)}
+.visor-in{height:100%;display:grid;grid-template-rows:auto 1fr auto;padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+.visor-topo,.visor-pe{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-left:var(--gutter);padding-right:var(--gutter-r);font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.visor-topo h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:clamp(18px,2.4vw,28px);letter-spacing:.06em}
+.visor button{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(254,250,226,.5);border-radius:99px;padding:8px 14px;white-space:nowrap}
+.visor button:focus-visible{outline:2px solid #8AC4FE;outline-offset:2px}
+.trilho{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px var(--gutter-r) 20px var(--gutter);align-items:center;min-height:0;scrollbar-width:thin}
+.trilho img{height:100%;max-height:calc(100svh - 170px);width:auto;max-width:88vw;object-fit:contain;scroll-snap-align:center;flex:none}
+.visor-pe .frase{font-family:var(--f-dream);font-style:italic;text-transform:none;letter-spacing:0;font-size:18px;max-width:60ch}
+
+@media (max-width:1320px){ .noite{display:none} }
+@media (max-width:900px){
+  .obra,.obra.larga{grid-column:span 6}
+  .obra:nth-child(n){margin-top:0}
+  .obra:nth-child(even){margin-top:50px}
+  .quem .grade,.caixa{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .obras{gap:44px 0}
+  .obra,.obra.larga{grid-column:1/-1}
+  .obra:nth-child(even){margin-top:0}
+  .idioma .longo{display:none}
+  .relogio{bottom:auto;top:calc(17px + env(safe-area-inset-top, 0px));left:50%;transform:translateX(-50%)}
+  .relogio .hora{font-size:19px}
+  .relogio .cena{display:none}
+  .visor-pe .frase{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .palpebra{display:none}
+}
+</style>
+
+<div class="palpebra cima" aria-hidden="true"></div>
+<div class="palpebra baixo" aria-hidden="true"></div>
+<canvas id="ceu" aria-hidden="true"></canvas>
+<div class="grao" aria-hidden="true"></div>
+
+<header class="topo">
+  <a class="marca-mini" href="#entrada" aria-label="dreamz, voltar ao início"><span class="simbolo" aria-hidden="true"></span><b>DREAMZ</b></a>
+  <div class="idioma" role="group" aria-label="Idioma / Language">
+    <button type="button" id="lang-pt" data-set="pt" aria-pressed="true"><span class="longo">acordado · </span>PT</button>
+    <button type="button" id="lang-en" data-set="en" aria-pressed="false"><span class="longo">dreaming · </span>EN</button>
+  </div>
+</header>
+
+<div class="relogio" aria-hidden="true">
+  <div class="hora" id="hora">23<i>:</i>47</div>
+  <div class="cena" id="cena"><span lang="pt">fechando os olhos</span><span lang="en">closing your eyes</span></div>
+</div>
+
+<nav aria-label="Noite">
+  <ul class="noite" id="noite">
+    <li><a href="#entrada"><span>23:47</span></a></li>
+    <li><a href="#manifesto"><span>00:00</span></a></li>
+    <li><a href="#tecnicas"><span>01:00</span></a></li>
+    <li><a href="#acervo"><span>02:00</span></a></li>
+    <li><a href="#quem"><span>05:00</span></a></li>
+    <li><a href="#sonho"><span>06:00</span></a></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- 23:47 -->
+  <section class="faixa entrada" id="entrada" data-cena-pt="fechando os olhos" data-cena-en="closing your eyes">
+    <div>
+      <div class="cena-logo" role="img" aria-label="Logo da dreamz: uma criança esfregando os olhos, com três estrelas no lugar deles">
+        <span class="brilho" aria-hidden="true"></span>
+        <span class="logo" aria-hidden="true"></span>
+      </div>
+      <h1><span lang="pt">Toda marca começa como um sonho de alguém.</span><span lang="en">Every brand starts as someone's dream.</span></h1>
+      <div class="sub"><span lang="pt">galeria de design conceitual · 2026</span><span lang="en">conceptual design gallery · 2026</span></div>
+      <a class="dormir" href="#manifesto"><span class="z">Z z</span><span lang="pt">role pra dormir</span><span lang="en">scroll to fall asleep</span></a>
+    </div>
+  </section>
+
+  <!-- 00:00 -->
+  <section class="faixa manifesto" id="manifesto" data-cena-pt="meia-noite" data-cena-en="midnight">
+    <div class="miolo">
+      <div class="rotulo">00:00 · <span lang="pt">manifesto</span><span lang="en">manifesto</span></div>
+      <blockquote>Lo<em>$</em>ing <em>$</em>leep for your Dreamz i<em>$</em> better than dreaming about them.</blockquote>
+      <p class="traducao sonho" lang="pt">Perder o sono pelos seus sonhos é melhor do que só sonhar com eles.</p>
+      <p class="traducao sonho" lang="en">Our motto, in our own words: the work happens while everyone else is asleep.</p>
+      <div class="texto">
+        <p lang="pt">A dreamz é uma galeria de design conceitual. Cada projeto entra aqui como um sonho: a ideia que o dono de uma marca tem na cabeça e ainda não conseguiu mostrar pra ninguém.</p>
+        <p lang="en">dreamz is a conceptual design gallery. Every project comes in as a dream: the idea a brand owner carries around and still can't show anyone.</p>
+        <p lang="pt">A gente perde o sono transformando esse sonho em conceito, e o conceito em identidade, imagem e presença. Primeiro a ideia, depois a forma.</p>
+        <p lang="en">We lose sleep turning that dream into a concept, and the concept into identity, imagery and presence. Idea first, form second.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01:00 -->
+  <section class="faixa tecnicas" id="tecnicas" data-cena-pt="sono leve" data-cena-en="light sleep">
+    <div class="miolo">
+      <div class="rotulo">01:00 · <span lang="pt">técnicas</span><span lang="en">techniques</span></div>
+      <div class="placas">
+        <article class="placa">
+          <span class="estrela simbolo-estrela" aria-hidden="true"></span>
+          <div class="n">I.</div>
+          <h3><span lang="pt">Identidade visual</span><span lang="en">Visual identity</span></h3>
+          <p lang="pt">Do nome à camiseta. A marca ganha um conceito e tudo o que sai dele: logo, cores, letras e as peças onde ela vai viver.</p>
+          <p lang="en">From the name to the t-shirt. The brand gets a concept and everything that comes out of it: logo, colours, type and the pieces it will live on.</p>
+          <ul><li>logo</li><li lang="pt">paleta</li><li lang="en">palette</li><li lang="pt">tipografia</li><li lang="en">typography</li><li lang="pt">aplicações</li><li lang="en">applications</li><li lang="pt">mosaico do Instagram</li><li lang="en">Instagram grid</li></ul>
+        </article>
+        <article class="placa">
+          <span class="estrela simbolo-estrela" aria-hidden="true"></span>
+          <div class="n">II.</div>
+          <h3>Social media</h3>
+          <p lang="pt">Posts e carrosséis com direção de arte, pra marca falar todo mês com a mesma cara e a mesma voz.</p>
+          <p lang="en">Art-directed posts and carousels, so the brand speaks every month with the same face and the same voice.</p>
+          <ul><li>posts</li><li lang="pt">carrosséis</li><li lang="en">carousels</li><li lang="pt">destaques</li><li lang="en">highlights</li><li lang="pt">campanhas</li><li lang="en">campaigns</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02:00 – 04:30 -->
+  <section class="faixa acervo" id="acervo" data-cena-pt="sono profundo" data-cena-en="deep sleep">
+    <div class="miolo">
+      <div class="acervo-topo">
+        <div>
+          <div class="rotulo">02:00 · <span lang="pt">acervo</span><span lang="en">collection</span></div>
+          <h2><span lang="pt">13 sonhos</span><span lang="en">13 dreams</span></h2>
+        </div>
+        <p lang="pt">Cada obra é o sonho de alguém, registrado com hora, técnica e número de peças. Toque numa obra pra ver de perto.</p>
+        <p lang="en">Each piece is someone's dream, logged with time, technique and number of pieces. Tap a piece to see it up close.</p>
+      </div>
+      <div class="filtro" role="group" aria-label="Filtrar acervo">
+        <button type="button" id="f-todos" data-f="todos" aria-pressed="true"><span lang="pt">todos</span><span lang="en">all</span></button>
+        <button type="button" id="f-id" data-f="id" aria-pressed="false"><span lang="pt">identidade visual</span><span lang="en">visual identity</span></button>
+        <button type="button" id="f-social" data-f="social" aria-pressed="false">social media</button>
+      </div>
+      <div class="obras" id="obras"></div>
+    </div>
+  </section>
+
+  <!-- 05:00 -->
+  <section class="faixa quem" id="quem" data-cena-pt="sonho lúcido" data-cena-en="lucid dream">
+    <div class="miolo">
+      <div class="rotulo">05:00 · <span lang="pt">quem sonha</span><span lang="en">the dreamer</span></div>
+      <div class="grade">
+        <span class="simbolo" role="img" aria-label="Símbolo da dreamz"></span>
+        <div>
+          <h2><span lang="pt">Quem esfrega os olhos às 5 da manhã.</span><span lang="en">The one rubbing their eyes at 5 a.m.</span></h2>
+          <p lang="pt">Por trás da dreamz está <b>@maldonaenz</b>. Cada marca é tratada como obra de galeria: primeiro o conceito, depois a forma, e só termina quando o dono olha e reconhece o próprio sonho.</p>
+          <p lang="en">Behind dreamz is <b>@maldonaenz</b>. Every brand is treated as a gallery piece: concept first, then form, and it's only done when the owner looks at it and recognises their own dream.</p>
+          <div class="links">
+            <a class="pilula" href="https://instagram.com/dreamzgalllery" target="_blank" rel="noopener">@dreamzgalllery ↗</a>
+            <a class="pilula" href="https://instagram.com/maldonaenz" target="_blank" rel="noopener">@maldonaenz ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06:00 -->
+  <section class="faixa amanhecer" id="sonho" data-cena-pt="amanhecendo" data-cena-en="sunrise">
+    <div class="miolo">
+      <div class="rotulo">06:00 · <span lang="pt">orçamento</span><span lang="en">quote</span></div>
+      <h2><span lang="pt">Conte seu sonho.</span><span lang="en">Tell us your dream.</span></h2>
+      <p class="intro sonho"><span lang="pt">Antes que você esqueça. Sonho que não é anotado some de manhã.</span><span lang="en">Before you forget it. Dreams you don't write down are gone by morning.</span></p>
+
+      <form class="caixa" id="form" novalidate>
+        <div class="campos">
+          <fieldset class="campo">
+            <legend><span lang="pt">O que você precisa</span><span lang="en">What you need</span></legend>
+            <div class="opcoes">
+              <label><input type="radio" name="tipo" id="t-id" value="id" checked><span><span lang="pt">Identidade visual</span><span lang="en">Visual identity</span></span></label>
+              <label><input type="radio" name="tipo" id="t-social" value="social"><span>Social media</span></label>
+              <label><input type="radio" name="tipo" id="t-ambos" value="ambos"><span><span lang="pt">Os dois</span><span lang="en">Both</span></span></label>
+              <label><input type="radio" name="tipo" id="t-outro" value="outro"><span><span lang="pt">Outra ideia</span><span lang="en">Something else</span></span></label>
+            </div>
+          </fieldset>
+          <div class="campo">
+            <label for="nome"><span lang="pt">Seu nome</span><span lang="en">Your name</span></label>
+            <input type="text" id="nome" autocomplete="name" value="">
+          </div>
+          <div class="campo">
+            <label for="marca"><span lang="pt">Nome da marca</span><span lang="en">Brand name</span></label>
+            <input type="text" id="marca" autocomplete="organization" value="">
+          </div>
+          <div class="campo">
+            <label for="prazo"><span lang="pt">Pra quando</span><span lang="en">When</span></label>
+            <select id="prazo">
+              <option value="calma" data-pt="Sem pressa" data-en="No rush">Sem pressa</option>
+              <option value="mes" data-pt="Este mês" data-en="This month">Este mês</option>
+              <option value="ontem" data-pt="Pra ontem" data-en="Yesterday">Pra ontem</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="ideia"><span lang="pt">O sonho, em uma frase</span><span lang="en">The dream, in one sentence</span></label>
+            <textarea id="ideia" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="envio">
+          <div>
+            <div class="campo"><label><span lang="pt">Sua mensagem</span><span lang="en">Your message</span></label></div>
+            <div class="previa" id="previa" aria-live="polite"></div>
+          </div>
+          <div class="contatos">
+            <a class="zap" id="zap" href="https://wa.me/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+              <span lang="pt">Enviar pelo WhatsApp</span><span lang="en">Send on WhatsApp</span>
+            </a>
+            <div class="linha"><span lang="pt">ou escreva pra</span><span lang="en">or write to</span> <code id="email">dre3amzgallery@gmail.com</code> <button type="button" class="copiar" id="copiar"><span lang="pt">copiar</span><span lang="en">copy</span></button></div>
+            <div class="linha"><span lang="pt">ou chame no</span><span lang="en">or DM</span> <a href="https://instagram.com/dreamzgalllery" target="_blank" rel="noopener">@dreamzgalllery ↗</a></div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="faixa">
+    <span class="logo" role="img" aria-label="dreamz"></span>
+    <p class="acordou"><span lang="pt">Bom dia. Você acordou.</span><span lang="en">Good morning. You're awake.</span></p>
+    <p>dreamz © 2026 · <span lang="pt">galeria de design conceitual</span><span lang="en">conceptual design gallery</span></p>
+  </footer>
+</main>
+
+<dialog class="visor" id="visor" aria-labelledby="visor-titulo">
+  <div class="visor-in">
+    <div class="visor-topo">
+      <span id="visor-num"></span>
+      <h3 id="visor-titulo"></h3>
+      <button type="button" id="fechar"><span lang="pt">acordar ✕</span><span lang="en">wake up ✕</span></button>
+    </div>
+    <div class="trilho" id="trilho" tabindex="0" aria-label="Peças da obra"></div>
+    <div class="visor-pe">
+      <span class="frase" id="visor-frase"></span>
+      <span style="display:flex;gap:8px"><button type="button" id="ant" aria-label="Anterior">←</button><button type="button" id="prox" aria-label="Próxima">→</button></span>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* número do WhatsApp da dreamz (só dígitos, com 55 + DDD). Vazio = abre o WhatsApp para a pessoa escolher o contato. */
+const WHATSAPP = "";
+
+const OBRAS = [
+  {s:"bmc", t:"Bross Motors", tipo:"id", h:"02:03", pecas:20, n:8, w:1400, hgt:788, larga:true,
+   pt:"Uma loja de carros que sonhava andar tão rápido quanto os carros que vende.",
+   en:"A car dealer that dreamed of moving as fast as the cars it sells."},
+  {s:"anjos", t:"Anjos Colchões", tipo:"id", h:"02:19", pecas:18, n:5, w:880, hgt:1173,
+   pt:"Uma loja de colchões que, no fundo, vende uma boa noite de sono.",
+   en:"A mattress shop that, deep down, sells a good night's sleep."},
+  {s:"linhas-amarelas", t:"Linhas Amarelas", tipo:"id", h:"02:41", pecas:31, n:6, w:880, hgt:1100,
+   pt:"Uma empresa de ônibus que queria ser reconhecida de longe, só pela cor.",
+   en:"A bus company that wanted to be recognised from afar by its colour alone."},
+  {s:"caca-games", t:"Cacá Games", tipo:"id", h:"02:58", pecas:24, n:6, w:880, hgt:1100,
+   pt:"Um clube de carteado que queria a energia de uma mesa cheia, mesmo online.",
+   en:"A card club that wanted the energy of a full table, even online."},
+  {s:"maestralle", t:"Maestralle", tipo:"social", h:"03:12", pecas:12, n:6, w:880, hgt:1100,
+   pt:"Uma marcenaria que desenha a casa a partir de quem vive nela.",
+   en:"A joinery that designs the house around the people who live in it."},
+  {s:"dom-fernando", t:"Dom Fernando", tipo:"social", h:"03:26", pecas:21, n:6, w:880, hgt:1100,
+   pt:"Uma pizzaria que queria deixar o sábado mais gostoso.",
+   en:"A pizzeria that wanted to make Saturdays taste better."},
+  {s:"vincitori", t:"Espaço Vincitori", tipo:"social", h:"03:37", pecas:17, n:6, w:880, hgt:1100,
+   pt:"Um salão de festas que guarda as noites mais importantes de cada um.",
+   en:"An event hall that keeps everyone's most important nights."},
+  {s:"ccm", t:"CCM Engenharia", tipo:"social", h:"03:49", pecas:28, n:6, w:880, hgt:1100,
+   pt:"Uma engenharia elétrica que queria mostrar o que ninguém vê dentro do painel.",
+   en:"An electrical engineering firm that wanted to show what no one sees inside the panel."},
+  {s:"aluggo", t:"Aluggo", tipo:"social", h:"04:02", pecas:16, n:5, w:880, hgt:1100,
+   pt:"Motos pra quem quer chegar antes no amanhã.",
+   en:"Motorbikes for people who want to get to tomorrow first."},
+  {s:"boi-delivery", t:"Boi Delivery", tipo:"social", h:"04:11", pecas:6, n:4, w:880, hgt:1100,
+   pt:"Um delivery de carne com um mascote que chega antes da fome.",
+   en:"A meat delivery with a mascot that arrives before you're hungry."},
+  {s:"spada-abdalla", t:"Spada e Abdalla", tipo:"social", h:"04:19", pecas:18, n:5, w:880, hgt:1100,
+   pt:"Uma clínica que ensina a prestar atenção nos sinais do corpo.",
+   en:"A clinic that teaches people to pay attention to their body's signals."},
+  {s:"marchiori", t:"Marchiori", tipo:"social", h:"04:24", pecas:12, n:5, w:880, hgt:1100,
+   pt:"Um escritório que explica a lei antes que ela vire problema.",
+   en:"A law firm that explains the law before it turns into a problem."},
+  {s:"pmx", t:"PMX Ativos Judiciais", tipo:"social", h:"04:30", pecas:17, n:5, w:880, hgt:1100,
+   pt:"Uma empresa que transforma a espera de um processo em dinheiro hoje.",
+   en:"A company that turns waiting on a lawsuit into money today."},
+];
+const TIPO = {id:{pt:"Identidade visual",en:"Visual identity"}, social:{pt:"Social media",en:"Social media"}};
+
+const root = document.documentElement;
+let lang = "pt";
+try { const l = localStorage.getItem("dreamz-lang"); if (l === "en" || l === "pt") lang = l; } catch(e){}
+root.dataset.lang = lang;
+
+/* ---------- acervo ---------- */
+const obrasEl = document.getElementById("obras");
+function img(o,i){ return `assets/obras/${o.s}/${String(i).padStart(2,"0")}.webp`; }
+function renderObras(){
+  obrasEl.innerHTML = OBRAS.map((o,k)=>`
+    <article class="obra${o.larga?" larga":""}" data-tipo="${o.tipo}">
+      <button class="abrir" type="button" data-k="${k}" aria-label="${o.t}">
+        <div class="moldura" style="aspect-ratio:${o.w}/${o.hgt}">
+          <img src="${img(o,1)}" alt="${o.t}" width="${o.w}" height="${o.hgt}" loading="${k<3?"eager":"lazy"}">
+          <img src="${img(o,2)}" alt="" width="${o.w}" height="${o.hgt}" loading="lazy" aria-hidden="true">
+        </div>
+      </button>
+      <div class="etiqueta">
+        <span class="num">Nº ${String(k+1).padStart(2,"0")}</span>
+        <h3>${o.t}</h3>
+        <span class="ficha"><span lang="pt">${TIPO[o.tipo].pt} · sonhado às ${o.h} · ${o.pecas} peças</span><span lang="en">${TIPO[o.tipo].en} · dreamt at ${o.h} · ${o.pecas} pieces</span></span>
+        <p class="frase"><span lang="pt">${o.pt}</span><span lang="en">${o.en}</span></p>
+      </div>
+    </article>`).join("");
+}
+renderObras();
+
+document.querySelectorAll(".filtro button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".filtro button").forEach(x=>x.setAttribute("aria-pressed", x===b));
+  const f=b.dataset.f;
+  obrasEl.querySelectorAll(".obra").forEach(el=>{ el.hidden = !(f==="todos"||el.dataset.tipo===f); });
+  medir();
+}));
+
+/* ---------- visor ---------- */
+const visor=document.getElementById("visor"), trilho=document.getElementById("trilho");
+obrasEl.addEventListener("click",e=>{
+  const b=e.target.closest("button.abrir"); if(!b) return;
+  const k=+b.dataset.k, o=OBRAS[k];
+  document.getElementById("visor-num").textContent=`Nº ${String(k+1).padStart(2,"0")} · ${o.h}`;
+  document.getElementById("visor-titulo").textContent=o.t;
+  document.getElementById("visor-frase").innerHTML=`<span lang="pt">${o.pt}</span><span lang="en">${o.en}</span>`;
+  trilho.innerHTML=Array.from({length:o.n},(_,i)=>`<img src="${img(o,i+1)}" alt="${o.t}, peça ${i+1} de ${o.n}" loading="lazy">`).join("");
+  trilho.scrollLeft=0;
+  if(visor.showModal) visor.showModal(); else visor.setAttribute("open","");
+  document.getElementById("fechar").focus();
+});
+function fechar(){ visor.close ? visor.close() : visor.removeAttribute("open"); }
+document.getElementById("fechar").addEventListener("click",fechar);
+visor.addEventListener("click",e=>{ if(e.target===visor) fechar(); });
+function passo(d){ trilho.scrollBy({left:d*trilho.clientWidth*0.8,behavior:"smooth"}); }
+document.getElementById("ant").addEventListener("click",()=>passo(-1));
+document.getElementById("prox").addEventListener("click",()=>passo(1));
+visor.addEventListener("keydown",e=>{ if(e.key==="ArrowRight")passo(1); if(e.key==="ArrowLeft")passo(-1); });
+
+/* ---------- idioma ---------- */
+function aplicaLang(l, animar){
+  const go=()=>{
+    lang=l; root.dataset.lang=l; root.lang = l==="pt"?"pt-BR":"en";
+    document.querySelectorAll(".idioma button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.set===l));
+    document.querySelectorAll("#prazo option").forEach(o=>o.textContent=o.dataset[l]);
+    try{ localStorage.setItem("dreamz-lang",l); }catch(e){}
+    atualizaMensagem(); tick();
+  };
+  if(!animar || matchMedia("(prefers-reduced-motion: reduce)").matches){ go(); return; }
+  document.body.classList.add("trocando");
+  setTimeout(()=>{ go(); document.body.classList.remove("trocando"); },320);
+}
+document.querySelectorAll(".idioma button").forEach(b=>b.addEventListener("click",()=>{ if(b.dataset.set!==lang) aplicaLang(b.dataset.set,true); }));
+
+/* ---------- orçamento ---------- */
+const form=document.getElementById("form"), previa=document.getElementById("previa"), zap=document.getElementById("zap");
+function val(id){ return document.getElementById(id).value.trim(); }
+function atualizaMensagem(){
+  const tipo=form.querySelector("input[name=tipo]:checked").value;
+  const T={id:{pt:"identidade visual",en:"a visual identity"},social:{pt:"social media",en:"social media"},ambos:{pt:"identidade visual e social media",en:"a visual identity and social media"},outro:{pt:"uma outra ideia",en:"something else"}}[tipo][lang];
+  const prazo=document.getElementById("prazo").selectedOptions[0].dataset[lang].toLowerCase();
+  const nome=val("nome"), marca=val("marca"), ideia=val("ideia");
+  let txt;
+  if(lang==="pt"){
+    txt=`Oi, dreamz! ${nome?`Meu nome é ${nome}`:"Tudo bem?"}${marca?`, sou da ${marca}`:""}.\nPreciso de ${T} — prazo: ${prazo}.`+(ideia?`\nO sonho: "${ideia}"`:"")+`\n\n(vim pelo site)`;
+  } else {
+    txt=`Hi, dreamz! ${nome?`I'm ${nome}`:"Hello!"}${marca?`, from ${marca}`:""}.\nI need ${T} — timing: ${prazo}.`+(ideia?`\nThe dream: "${ideia}"`:"")+`\n\n(found you through the website)`;
+  }
+  previa.textContent=txt;
+  const base = WHATSAPP ? `https://wa.me/${WHATSAPP}` : "https://wa.me/";
+  zap.href=`${base}?text=${encodeURIComponent(txt)}`;
+}
+form.addEventListener("input",atualizaMensagem);
+form.addEventListener("change",atualizaMensagem);
+form.addEventListener("submit",e=>{ e.preventDefault(); zap.click(); });
+document.getElementById("copiar").addEventListener("click",e=>{
+  const btn=e.currentTarget, email=document.getElementById("email");
+  const ok=()=>{ btn.innerHTML=lang==="pt"?"copiado":"copied"; setTimeout(()=>btn.innerHTML='<span lang="pt">copiar</span><span lang="en">copy</span>',1600); };
+  try{ navigator.clipboard.writeText(email.textContent).then(ok,()=>selec(email)); }catch(err){ selec(email); }
+});
+function selec(el){ const r=document.createRange(); r.selectNodeContents(el); const s=getSelection(); s.removeAllRanges(); s.addRange(r); }
+
+/* ---------- a noite: cor, relógio, céu ---------- */
+const CEU=[ // posição na rolagem (0–1) → cor do fundo
+  [0.00,[0,0,0]],[0.18,[6,9,20]],[0.40,[24,31,58]],[0.62,[40,52,86]],
+  [0.76,[70,88,150]],[0.84,[118,144,212]],[0.91,[138,196,254]],[0.96,[214,232,246]],[1.00,[254,250,226]]
+];
+function cor(p){
+  for(let i=1;i<CEU.length;i++){ if(p<=CEU[i][0]){ const [a,ca]=CEU[i-1],[b,cb]=CEU[i], t=(p-a)/(b-a||1);
+    return ca.map((v,j)=>Math.round(v+(cb[j]-v)*t)); } }
+  return CEU[CEU.length-1][1];
+}
+function lum([r,g,b]){ return (0.2126*r+0.7152*g+0.0722*b)/255; }
+const horaEl=document.getElementById("hora"), cenaEl=document.getElementById("cena");
+const secoes=[...document.querySelectorAll("main section[id]")], links=[...document.querySelectorAll("#noite a")];
+let maxScroll=1;
+function medir(){ maxScroll=Math.max(1,document.documentElement.scrollHeight-innerHeight); tick(); }
+function tick(){
+  const p=Math.min(1,Math.max(0,scrollY/maxScroll));
+  const c=cor(p), claro=lum(c)>0.5;
+  root.style.setProperty("--bg",`rgb(${c})`);
+  root.style.setProperty("--fg", claro?"#141a30":"#FEFAE2");
+  root.style.setProperty("--muted", claro?"rgba(20,26,48,.68)":"rgba(254,250,226,.62)");
+  root.style.setProperty("--line", claro?"rgba(20,26,48,.22)":"rgba(254,250,226,.18)");
+  root.style.setProperty("--accent", claro?"#704838":"#8AC4FE");
+  root.style.setProperty("--stars", Math.max(0,1-Math.max(0,p-0.72)/0.2).toFixed(3));
+  // 23:47 → 06:00 = 373 minutos
+  const m=(23*60+47+Math.round(p*373))%(24*60), hh=String(Math.floor(m/60)).padStart(2,"0"), mm=String(m%60).padStart(2,"0");
+  horaEl.innerHTML=`${hh}<i>:</i>${mm}`;
+  let atual=secoes[0];
+  for(const s of secoes){ if(s.getBoundingClientRect().top < innerHeight*0.5) atual=s; }
+  const novo=`<span lang="pt">${atual.dataset.cenaPt}</span><span lang="en">${atual.dataset.cenaEn}</span>`;
+  if(cenaEl.dataset.id!==atual.id){ cenaEl.innerHTML=novo; cenaEl.dataset.id=atual.id; }
+  links.forEach(a=>a.classList.toggle("ativo", a.getAttribute("href")==="#"+atual.id));
+}
+let pend=false;
+addEventListener("scroll",()=>{ if(!pend){ pend=true; requestAnimationFrame(()=>{ pend=false; tick(); }); } },{passive:true});
+addEventListener("resize",medir);
+addEventListener("load",medir);
+
+/* estrelas */
+const cv=document.getElementById("ceu"), cx=cv.getContext("2d");
+let estrelas=[], W=0, H=0;
+const calmo=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function estrela5(x,y,r){ cx.beginPath(); for(let i=0;i<10;i++){ const a=-Math.PI/2+i*Math.PI/5, rr=i%2?r*0.42:r; cx.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr);} cx.closePath(); cx.fill(); }
+function semear(){
+  const d=devicePixelRatio||1; W=innerWidth; H=innerHeight; cv.width=W*d; cv.height=H*d; cx.setTransform(d,0,0,d,0,0);
+  const n=Math.round(W*H/7000);
+  estrelas=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.1+0.2,f:Math.random()*6.28,v:0.5+Math.random()*1.5,
+    g:Math.random()<0.035, c:Math.random()<0.5?"254,250,226":"166,216,255"}));
+}
+function desenha(t){
+  cx.clearRect(0,0,W,H);
+  const par=(scrollY*0.04)%H;
+  for(const s of estrelas){
+    const a=calmo?0.7:0.35+0.65*Math.abs(Math.sin(s.f+t/1000*s.v));
+    cx.fillStyle=`rgba(${s.c},${a})`;
+    const y=(s.y-par+H)%H;
+    if(s.g){ estrela5(s.x,y,3.2+s.r*2); } else { cx.beginPath(); cx.arc(s.x,y,s.r,0,6.283); cx.fill(); }
+  }
+  if(!calmo) requestAnimationFrame(desenha);
+}
+semear(); addEventListener("resize",semear); requestAnimationFrame(desenha);
+
+aplicaLang(lang,false);
+atualizaMensagem();
+medir();
+</script>
