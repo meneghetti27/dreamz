@@ -16,7 +16,7 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   e pisca às 06:00. Reprovados: despertador analógico de sinos, despertador Y2K grande no canto (verde-limão e depois verde escuro: "feio").
 - Céu: via láctea, estrelas de vários tamanhos piscando, **sem lua** (o dono pediu para tirar; as luas desenhadas e a foto foram reprovadas), **estrelas cadentes e cometas**.
   Amanhecer (refeito, o 1º com sol de raios desenhados foi reprovado): céu pêssego/rosa, sol com brilho difuso, fiapos de nuvem, **mar de nuvens** embaixo e **passarinhos**.
-- **01:00 Técnicas (refeita)**: título "Duas coisas, bem feitas." + dois blocos alternados com trabalho real:
+- **01:00 Técnicas (refeita)**: título "O que a gente faz enquanto você dorme." (o 1º, "Duas coisas, bem feitas.", foi reprovado) + dois blocos alternados com trabalho real:
   i. Identidade visual = lista logo/paleta/tipografia/aplicações + pilha de 4 pranchas da Bross Motors (`assets/tecnicas/`) que se abre em grade;
   ii. Social media = celular com feed rolando sozinho com posts reais dos 9 clientes de social. Reprovado: placas com borda e pílulas ("ruim").
 - **Acervo no site (aprovado)**: 3 atos, PT/EN, todos abrem o visor com as peças:
