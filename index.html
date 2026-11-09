@@ -65,27 +65,15 @@ main,.topo{transition:filter .35s ease,opacity .35s ease}
 .idioma button[aria-pressed="true"]{background:#FEFAE2;color:#000}
 .idioma button:focus-visible{outline:2px solid #8AC4FE}
 
-/* ---------- despertador Y2K (plástico verde-limão + visor LCD) ---------- */
-.despertador{position:fixed;z-index:50;left:var(--gutter);bottom:calc(16px + env(safe-area-inset-bottom, 0px));display:flex;align-items:flex-end;gap:14px;pointer-events:none}
-.corpo{position:relative;width:132px;height:66px;border-radius:24px 24px 20px 20px;padding:8px 10px 10px;transform-origin:50% 100%;
-  background:radial-gradient(120% 100% at 30% 10%,#6FA83E 0%,#3F7A22 45%,#2A5716 78%,#1B3B0D 100%);
-  box-shadow:inset 0 3px 5px rgba(220,255,180,.45),inset 0 -6px 12px rgba(0,20,0,.55),inset 6px 0 10px rgba(255,255,255,.2),0 14px 28px -6px rgba(0,0,0,.55)}
-.corpo::before{content:"";position:absolute;top:-7px;left:50%;width:46px;height:10px;transform:translateX(-50%);border-radius:8px 8px 3px 3px;
-  background:linear-gradient(#5E9636,#2E5E18);box-shadow:inset 0 2px 2px rgba(220,255,180,.45),0 1px 0 rgba(0,0,0,.2)}
-.corpo::after{content:"";position:absolute;inset:5px 14px auto;height:10px;border-radius:20px;background:linear-gradient(rgba(230,255,200,.35),rgba(255,255,255,0));pointer-events:none}
-.tela{height:100%;border-radius:10px;padding:3px 8px 3px;display:grid;grid-template-rows:auto 1fr;color:#17240c;
-  background:linear-gradient(170deg,#D9E8BE,#B6CC93 60%,#A3BA80);box-shadow:inset 0 3px 6px rgba(0,0,0,.35),inset 0 -1px 0 rgba(255,255,255,.4);
-  font:700 6.5px/1 var(--f-body);letter-spacing:.08em;transition:background .2s}
-.tela .info{display:flex;justify-content:space-between;opacity:.75}
-.tela svg{width:100%;height:100%;overflow:visible}
-.tela .seg{fill:#17240c}
-.tela .apagado{fill:rgba(23,36,12,.08)}
-.despertador.tocando .corpo{animation:toca .08s linear infinite alternate}
-.despertador.tocando .tela{animation:luz .5s steps(1) infinite}
-@keyframes toca{from{transform:rotate(-6deg) translateY(-2px)}to{transform:rotate(6deg)}}
-@keyframes luz{50%{background:linear-gradient(170deg,#F4FFB8,#D9FF7A)}}
-.despertador .leitura{padding-bottom:4px;mix-blend-mode:difference;color:#FEFAE2}
-.despertador .cena{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;opacity:.8;max-width:16ch;line-height:1.5}
+/* ---------- mini despertador: visor LCD ao lado do logo ---------- */
+.esq-topo{display:flex;align-items:center;gap:14px}
+.despertador{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 9px 0 8px;border:1px solid currentColor;border-radius:99px;pointer-events:none}
+.despertador svg{height:13px;width:auto;overflow:visible}
+.despertador .seg{fill:currentColor}
+.despertador .apagado{fill:currentColor;opacity:.13}
+.despertador .al{font:700 7px/1 var(--f-body);letter-spacing:.12em;opacity:.7}
+.despertador.tocando{animation:pisca .5s steps(1) infinite}
+@keyframes pisca{50%{opacity:.25}}
 
 /* ---------- estrutura ---------- */
 main{position:relative;z-index:2}
@@ -303,10 +291,6 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
   .pagina.esq::before{left:28px}
   .polaroides{min-height:360px}
   .idioma .longo{display:none}
-  .despertador{left:auto;right:var(--gutter-r);bottom:calc(14px + env(safe-area-inset-bottom, 0px))}
-  .corpo{transform:scale(.62);transform-origin:100% 100%;margin:-25px 0 0 -50px}
-  .despertador.tocando .corpo{animation:none}
-  .despertador .leitura{display:none}
   .visor-pe .frase{display:none}
 }
 @media (prefers-reduced-motion:reduce){
@@ -321,24 +305,15 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 <div class="grao" aria-hidden="true"></div>
 
 <header class="topo">
-  <a class="marca-mini" href="#entrada" aria-label="dreamz, voltar ao início"><span class="simbolo" aria-hidden="true"></span><b>DREAMZ</b></a>
+  <div class="esq-topo">
+    <a class="marca-mini" href="#entrada" aria-label="dreamz, voltar ao início"><span class="simbolo" aria-hidden="true"></span><b>DREAMZ</b></a>
+    <div class="despertador" id="despertador" aria-hidden="true"><svg id="lcd" viewBox="0 0 112 40"></svg><span class="al">AL</span><span id="cena" hidden></span></div>
+  </div>
   <div class="idioma" role="group" aria-label="Idioma / Language">
     <button type="button" id="lang-pt" data-set="pt" aria-pressed="true"><span class="longo">acordado · </span>PT</button>
     <button type="button" id="lang-en" data-set="en" aria-pressed="false"><span class="longo">dreaming · </span>EN</button>
   </div>
 </header>
-
-<div class="despertador" id="despertador" aria-hidden="true">
-  <div class="corpo">
-    <div class="tela">
-      <div class="info"><span>ALM 6:00</span><span id="dia">SAT</span></div>
-      <svg id="lcd" viewBox="0 0 112 40"></svg>
-    </div>
-  </div>
-  <div class="leitura">
-    <div class="cena" id="cena"><span lang="pt">acordando no sonho</span><span lang="en">waking inside the dream</span></div>
-  </div>
-</div>
 
 <main>
   <section class="faixa entrada" id="entrada" data-cena-pt="acordando no sonho" data-cena-en="waking inside the dream">
@@ -726,7 +701,6 @@ function tick(){
   root.style.setProperty("--accent",claro?"#704838":"#8AC4FE");
   const min=23*60+47+p*373, m=Math.round(min)%(1440);
   mostraHora(String(Math.floor(m/60)).padStart(2,"0"),String(m%60).padStart(2,"0"));
-  document.getElementById("dia").textContent=m>=1380? (lang==="pt"?"SEX":"FRI") : (lang==="pt"?"SÁB":"SAT");
   desp.classList.toggle("tocando",p>0.985&&!calmo);
   let atual=secoes[0]; for(const s of secoes){ if(s.getBoundingClientRect().top<innerHeight*0.5) atual=s; }
   if(cenaEl.dataset.id!==atual.id){ cenaEl.innerHTML=`<span lang="pt">${atual.dataset.cenaPt}</span><span lang="en">${atual.dataset.cenaEn}</span>`; cenaEl.dataset.id=atual.id; }
@@ -811,7 +785,6 @@ function desenha(t){
       cx.fillStyle=`rgba(${s.c},${a})`; cx.beginPath(); cx.arc(s.x,y,s.r,0,6.283); cx.fill();
       if(s.brilho) brilho4(s.x,y,s.r,a);
     }
-    lua(noite);
     if(!calmo){
       proxCad-=dt*1000; if(proxCad<=0){ cadentes.push(cadente()); proxCad=1200+Math.random()*3200; }
       proxCom-=dt*1000; if(proxCom<=0&&cometas.length<1){ cometas.push(cometa()); proxCom=14000+Math.random()*10000; }
