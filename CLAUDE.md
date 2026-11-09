@@ -25,9 +25,12 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   1 sonho que desembaça (tela cheia, blur↔foco na rolagem) · 2 cartela de remédio dreamz® + bula · 3 lambe-lambe na parede com flash ·
   4 quarto escuro (varal, fotos revelam no hover) · 5 bolhas de sabão iridescentes que estouram · 6 máquina de cápsulas (gashapon).
   Rodada 1 (versões 1–6) foi reprovada ("não gostei"); está no histórico do git (commit fee21bf).
-  **Rodada 2 (no ar)**: 7 índice gigante de nomes com a peça flutuando no cursor · 8 nuvens de pensamento saindo do menino da logo dormindo ·
+  Rodada 2 (sem resposta clara, dono pediu "outras 10"; git 80e64f8): 7 índice gigante de nomes com a peça flutuando no cursor · 8 nuvens de pensamento saindo do menino da logo dormindo ·
   9 painel de aeroporto split-flap "Partidas para o sonho" + cartão de embarque · 10 elevador pro céu (13 andares, portas abrem) ·
   11 dreamz zine nº 01 (revista que folheia) · 12 drops em fundo de estúdio, estilo marca de roupa (destaques redondos + carrossel).
+  **Rodada 3 (no ar)**: 13 constelações · 14 persiana que abre · 15 roda-gigante · 16 dreamz OS (desktop Y2K com pastas e janelas) ·
+  17 tela de bloqueio às 3h12 com notificações · 18 vidro embaçado que se limpa com o dedo · 19 iPod com click wheel · 20 tarô dos sonhos ·
+  21 faixas infinitas (nomes vazados + fotos correndo) · 22 fotos espalhadas no lençol para arrastar.
   A escolhida vai para o site no lugar da TV/diário e ganha versão EN.
 - WhatsApp: **+55 17 99108-9367** (constante `WHATSAPP = "5517991089367"` no script).
 - Imagens do acervo: `assets/obras/<projeto>/NN.webp` (01 = capa, 02 = aparece no hover). Originais no Drive "PROJETOS DREAMZ 2026".
