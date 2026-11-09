@@ -1,0 +1,117 @@
+<meta charset="utf-8">
+<title>Cursores dreamz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..900,0..100&family=Manrope:wght@400;600;700;800&family=Space+Mono:wght@700&display=swap">
+<style>
+/* Mostruário: 10 cursores para o site da dreamz, cada um vivo dentro do seu quadro (passe o mouse; parado, ele se mexe sozinho). Visual único (noite). */
+:root{
+  color-scheme:dark;
+  --noite:#05060c; --marinho:#283456; --lavanda:#7690D4; --ceu:#8AC4FE; --creme:#FEFAE2; --muted:rgba(254,250,226,.62); --line:rgba(254,250,226,.16);
+  --f-display:"Fraunces","Cooper Black",Georgia,serif; --f-body:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --gutter:max(16px, env(safe-area-inset-left, 0px)); --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+}
+*{box-sizing:border-box}
+body{background:var(--noite);color:var(--creme);font-family:var(--f-body);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.pagina{max-width:1200px;margin:0 auto;padding-block:56px 90px;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px 40px;margin-bottom:40px}
+.cab .ro{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.cab h1{margin:10px 0 0;font-family:var(--f-display);font-weight:900;font-variation-settings:"SOFT" 100,"opsz" 144;font-size:clamp(46px,7vw,96px);line-height:.92;letter-spacing:-.02em}
+.cab h1 em{color:var(--ceu)}
+.cab p{margin:0;max-width:40ch;color:var(--muted)}
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:22px}
+.op{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#0a0d1c}
+.palco{position:relative;height:230px;cursor:none;touch-action:none;background:radial-gradient(80% 90% at 30% 20%,#162146,#0a0d1c 70%)}
+.palco canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.palco .peca{position:absolute;right:18px;top:50%;width:92px;aspect-ratio:4/5;transform:translateY(-50%) rotate(3deg);border-radius:6px;background:center/cover;box-shadow:0 14px 26px rgba(0,0,0,.5)}
+.palco .titulo-f{position:absolute;left:18px;top:20px;font-family:var(--f-display);font-weight:900;font-size:30px;line-height:.95;color:rgba(254,250,226,.9)}
+.palco .titulo-f em{color:var(--ceu)}
+.palco .dica{position:absolute;left:18px;bottom:14px;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(254,250,226,.4)}
+.info{padding:16px 18px 18px;display:grid;gap:4px}
+.info b{font-family:var(--f-display);font-weight:900;font-size:22px;line-height:1.1}
+.info b span{font-family:var(--f-body);font-size:12px;font-weight:800;color:var(--ceu);margin-right:8px;letter-spacing:.06em}
+.info p{margin:0;font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+
+<main class="pagina">
+  <div class="cab">
+    <div><div class="ro">dreamz · cursores</div><h1>Qual <em>cursor</em>?</h1></div>
+    <p>Dez cursores pensados pro site. Passe o mouse dentro de cada quadro pra testar; parado, ele se mexe sozinho. O quadrinho da direita simula uma peça clicável, pra você ver o que o cursor faz em cima de um projeto.</p>
+  </div>
+  <div class="grade" id="grade"></div>
+</main>
+
+<script>
+const OPCOES=[
+  {t:"Três estrelas",d:"As estrelas dos olhos do menino viram o cursor, girando devagar. Em cima de um projeto, elas brilham."},
+  {t:"Mini menino",d:"O símbolo da dreamz em miniatura segue o mouse e pisca de vez em quando. Em cima de um projeto, ele esfrega os olhos."},
+  {t:"Halo de luz",d:"Uma luz azul suave em volta do ponteiro, como abajur no quarto escuro. Cresce em cima de um projeto."},
+  {t:"Z z z",d:"Um ponto com zzz saindo de leve enquanto você mexe, como quem está quase dormindo. Para de soltar z quando o cursor fica parado."},
+  {t:"Seta LCD",d:"Uma setinha pixelada no verde do visor do despertador, com a hora do site do lado."},
+  {t:"Cometa",d:"Um ponto brilhante com cauda que estica quanto mais rápido você move, igual aos cometas do céu do site."},
+  {t:"Vaga-lume",d:"Um pontinho amarelo que acende e apaga e voa meio solto, com rastro de luz."},
+  {t:"Lente \"ver\"",d:"Um círculo fino e elegante. Em cima de um projeto, cresce, fica creme e escreve \"ver\"."},
+  {t:"Nuvenzinha",d:"Uma nuvem fofa que segue o mouse com atraso, flutuando. Clicar faz ela apertar."},
+  {t:"Caneta de sonho",d:"Uma pena que deixa um traço de tinta azul que some em seguida, como anotar o sonho antes de esquecer."},
+];
+const CAPAS=["bmc","anjos","linhas-amarelas","caca-games","maestralle","dom-fernando","vincitori","ccm","aluggo","spada-abdalla"];
+const grade=document.getElementById("grade");
+grade.innerHTML=OPCOES.map((o,i)=>`<article class="op"><div class="palco" data-i="${i}"><canvas></canvas><span class="titulo-f">sonhe<br><em>alto.</em></span>
+  <span class="peca" style="background-image:url(assets/obras/${CAPAS[i]}/01.webp)"></span><span class="dica">passe o mouse aqui</span></div>
+  <div class="info"><b><span>${String(i+1).padStart(2,"0")}</span>${o.t}</b><p>${o.d}</p></div></article>`).join("");
+const calmo=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const simbolo=new Image(); simbolo.src="assets/marca/simbolo.png";
+let simboloCreme=null; simbolo.onload=()=>{ const c=document.createElement("canvas"); c.width=simbolo.width; c.height=simbolo.height; const x=c.getContext("2d"); x.drawImage(simbolo,0,0); x.globalCompositeOperation="source-in"; x.fillStyle="#FEFAE2"; x.fillRect(0,0,c.width,c.height); simboloCreme=c; };
+function estrela(c,x,y,r,rot){ c.beginPath(); for(let i=0;i<10;i++){ const a=rot-Math.PI/2+i*Math.PI/5, rr=i%2?r*.42:r; c.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr); } c.closePath(); c.fill(); }
+const palcos=[...document.querySelectorAll(".palco")].map(el=>{ const cv=el.querySelector("canvas"), peca=el.querySelector(".peca");
+  const s={el,cv,cx:cv.getContext("2d"),peca,i:+el.dataset.i,x:80,y:120,sx:80,sy:120,px:80,py:120,vx:0,vy:0,dentro:false,down:false,t:Math.random()*10,rastro:[],zs:[],ult:0,dim:[0,0]};
+  el.addEventListener("pointerenter",()=>s.dentro=true); el.addEventListener("pointerleave",()=>{ s.dentro=false; s.down=false; });
+  el.addEventListener("pointermove",e=>{ const r=el.getBoundingClientRect(); s.px=e.clientX-r.left; s.py=e.clientY-r.top; s.dentro=true; });
+  el.addEventListener("pointerdown",e=>{ s.down=true; const r=el.getBoundingClientRect(); s.px=e.clientX-r.left; s.py=e.clientY-r.top; s.dentro=true; });
+  el.addEventListener("pointerup",()=>s.down=false); return s; });
+function redimensiona(){ const d=Math.min(2,devicePixelRatio||1); palcos.forEach(s=>{ const w=s.el.clientWidth,h=s.el.clientHeight; s.cv.width=w*d; s.cv.height=h*d; s.cx.setTransform(d,0,0,d,0,0); s.dim=[w,h]; }); }
+redimensiona(); addEventListener("resize",redimensiona);
+function sobrePeca(s){ const pr=s.peca.getBoundingClientRect(), r=s.el.getBoundingClientRect(); const x=s.x+r.left, y=s.y+r.top; return x>pr.left&&x<pr.right&&y>pr.top&&y<pr.bottom; }
+let ultimo=0;
+function quadro(t){ const dt=Math.min(.05,(t-ultimo)/1000||0); ultimo=t;
+  for(const s of palcos){ const [W,H]=s.dim, c=s.cx; s.t+=dt;
+    if(!s.dentro){ const a=s.t*0.7+s.i; s.px=W*0.42+Math.sin(a*1.3)*W*0.32+Math.sin(a*3.1)*14; s.py=H*0.5+Math.sin(a*1.9)*H*0.3; s.down=Math.sin(s.t*0.9+s.i)>0.97; }
+    const ox=s.x, oy=s.y;
+    if(s.i===8){ s.x+=(s.px-s.x)*Math.min(1,dt*4); s.y+=(s.py-s.y)*Math.min(1,dt*4); } else if(s.i===6){ s.x+=(s.px+Math.sin(s.t*5)*10-s.x)*Math.min(1,dt*7); s.y+=(s.py+Math.cos(s.t*4)*8-s.y)*Math.min(1,dt*7); } else { s.x+=(s.px-s.x)*Math.min(1,dt*(s.dentro?30:9)); s.y+=(s.py-s.y)*Math.min(1,dt*(s.dentro?30:9)); }
+    s.vx=(s.x-ox)/(dt||1); s.vy=(s.y-oy)/(dt||1); const vel=Math.hypot(s.vx,s.vy), sobre=sobrePeca(s);
+    c.clearRect(0,0,W,H); const x=s.x, y=s.y;
+    switch(s.i){
+      case 0:{ const g=sobre?1.35:1, rot=s.t*0.8; c.fillStyle="#FEFAE2"; if(sobre){ c.shadowColor="#8AC4FE"; c.shadowBlur=16; }
+        estrela(c,x-11*g,y+4*g,5*g,rot); estrela(c,x,y-2*g,8*g,rot*.7); estrela(c,x+12*g,y+2*g,6*g,-rot); c.shadowBlur=0; break; }
+      case 1:{ if(!simboloCreme) break; const pisca=(s.t%3.2)<0.12, esf=sobre?Math.sin(s.t*14)*2:0, w=34, h=w*simbolo.height/simbolo.width;
+        c.save(); c.translate(x,y); c.scale(1,pisca?0.85:1); c.rotate(esf*0.03); c.drawImage(simboloCreme,-w/2+esf,-h/2,w,h); c.restore(); break; }
+      case 2:{ const R=sobre?70:44, g=c.createRadialGradient(x,y,0,x,y,R); g.addColorStop(0,"rgba(166,216,255,.55)"); g.addColorStop(.45,"rgba(118,144,212,.2)"); g.addColorStop(1,"rgba(118,144,212,0)");
+        c.fillStyle=g; c.beginPath(); c.arc(x,y,R,0,6.283); c.fill(); c.fillStyle="#FEFAE2"; c.beginPath(); c.arc(x,y,3,0,6.283); c.fill(); break; }
+      case 3:{ if(vel>40&&t-s.ult>260&&!calmo){ s.ult=t; s.zs.push({x:x+8,y:y-8,v:0,tam:11+Math.random()*7}); }
+        s.zs=s.zs.filter(z=>{ z.v+=dt; z.y-=22*dt; z.x+=10*dt; const a=Math.max(0,1-z.v/1.6); c.fillStyle=`rgba(254,250,226,${a})`; c.font=`italic 900 ${z.tam}px Fraunces, Georgia, serif`; c.fillText("z",z.x,z.y); return a>0; });
+        c.fillStyle="#FEFAE2"; c.beginPath(); c.arc(x,y,5,0,6.283); c.fill(); c.strokeStyle="rgba(254,250,226,.5)"; c.lineWidth=1.5; c.beginPath(); c.arc(x,y,10,0,6.283); c.stroke(); break; }
+      case 4:{ const px=2, mapa=["1","11","121","1221","12221","122221","1222221","12222221","122222221","1222211111","12212","1211221","11 1221","1   122","     11"];
+        mapa.forEach((l,yy)=>[...l].forEach((ch,xx)=>{ if(ch===" ") return; c.fillStyle=ch==="1"?"#17240c":"#b9cc96"; c.fillRect(x+xx*px,y+yy*px,px,px); }));
+        c.fillStyle="rgba(23,36,12,.92)"; c.fillRect(x+22,y+18,48,18); c.fillStyle="#b9cc96"; c.font="700 12px 'Space Mono', monospace"; c.fillText("03:12",x+27,y+31); break; }
+      case 5:{ const L=Math.min(120,vel*0.12), ang=Math.atan2(s.vy,s.vx);
+        if(L>2){ const tx=x-Math.cos(ang)*L, ty=y-Math.sin(ang)*L, g=c.createLinearGradient(x,y,tx,ty); g.addColorStop(0,"rgba(166,216,255,.9)"); g.addColorStop(1,"rgba(118,144,212,0)"); c.strokeStyle=g; c.lineWidth=4; c.lineCap="round"; c.beginPath(); c.moveTo(x,y); c.lineTo(tx,ty); c.stroke(); }
+        const h=c.createRadialGradient(x,y,0,x,y,12); h.addColorStop(0,"#fff"); h.addColorStop(.35,"rgba(166,216,255,.8)"); h.addColorStop(1,"rgba(166,216,255,0)"); c.fillStyle=h; c.beginPath(); c.arc(x,y,12,0,6.283); c.fill(); break; }
+      case 6:{ s.rastro.push([x,y]); if(s.rastro.length>26) s.rastro.shift(); s.rastro.forEach(([rx,ry],k)=>{ c.fillStyle=`rgba(255,224,120,${k/s.rastro.length*0.25})`; c.beginPath(); c.arc(rx,ry,2,0,6.283); c.fill(); });
+        const brilho=0.45+0.55*Math.abs(Math.sin(s.t*2.4)), g=c.createRadialGradient(x,y,0,x,y,22); g.addColorStop(0,`rgba(255,236,150,${brilho})`); g.addColorStop(.3,`rgba(255,210,90,${brilho*.5})`); g.addColorStop(1,"rgba(255,210,90,0)");
+        c.fillStyle=g; c.beginPath(); c.arc(x,y,22,0,6.283); c.fill(); c.fillStyle="#fff6c8"; c.beginPath(); c.arc(x,y,2.6,0,6.283); c.fill(); break; }
+      case 7:{ s.lente=(s.lente||16)+(((sobre?44:16))-(s.lente||16))*Math.min(1,dt*10); const R=s.lente;
+        if(R>24){ c.fillStyle=`rgba(254,250,226,${(R-24)/20})`; c.beginPath(); c.arc(x,y,R,0,6.283); c.fill(); c.fillStyle=`rgba(20,26,48,${(R-24)/20})`; c.font="italic 900 18px Fraunces, Georgia, serif"; c.textAlign="center"; c.textBaseline="middle"; c.fillText("ver",x,y+1); c.textAlign="start"; c.textBaseline="alphabetic"; }
+        c.strokeStyle="#FEFAE2"; c.lineWidth=1.5; c.beginPath(); c.arc(x,y,R,0,6.283); c.stroke(); c.fillStyle="#FEFAE2"; c.beginPath(); c.arc(s.px,s.py,2,0,6.283); c.fill(); break; }
+      case 8:{ const aperta=s.down?0.8:1, bob=Math.sin(s.t*2)*2; c.save(); c.translate(x,y+bob); c.scale(1/aperta*0.95,aperta);
+        c.fillStyle="#FEFAE2"; c.shadowColor="rgba(138,196,254,.6)"; c.shadowBlur=12; [[-12,4,9],[0,-3,12],[12,3,9],[-5,7,8],[6,7,8]].forEach(([a,b,r])=>{ c.beginPath(); c.arc(a,b,r,0,6.283); c.fill(); }); c.restore(); c.shadowBlur=0;
+        c.fillStyle="#8AC4FE"; c.beginPath(); c.arc(s.px,s.py,2,0,6.283); c.fill(); break; }
+      case 9:{ s.rastro.push({x,y,t}); s.rastro=s.rastro.filter(p=>t-p.t<900);
+        for(let k=1;k<s.rastro.length;k++){ const a=s.rastro[k-1], b=s.rastro[k], vida=1-(t-b.t)/900; c.strokeStyle=`rgba(118,144,212,${vida})`; c.lineWidth=1+vida*3; c.lineCap="round"; c.beginPath(); c.moveTo(a.x,a.y); c.lineTo(b.x,b.y); c.stroke(); }
+        c.save(); c.translate(x,y); c.rotate(-0.6); c.fillStyle="#FEFAE2"; c.beginPath(); c.moveTo(0,0); c.quadraticCurveTo(6,-14,3,-30); c.quadraticCurveTo(-5,-16,0,0); c.fill(); c.strokeStyle="#283456"; c.lineWidth=1; c.beginPath(); c.moveTo(0,0); c.lineTo(2.5,-26); c.stroke(); c.restore(); break; }
+    }
+  }
+  requestAnimationFrame(quadro); }
+requestAnimationFrame(quadro);
+</script>
