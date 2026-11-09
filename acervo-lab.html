@@ -1,0 +1,452 @@
+<meta charset="utf-8">
+<title>Laboratório do acervo dreamz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..900,0..100&family=Manrope:wght@400;500;600;700;800&family=Permanent+Marker&family=Caveat:wght@500;700&display=swap">
+<style>
+/* Laboratório: 6 maneiras de mostrar o acervo, uma por aba, para o dono comparar. Visual único (noite), não segue o tema do sistema. */
+:root{
+  color-scheme:dark;
+  --noite:#05060c; --marinho:#283456; --lavanda:#7690D4; --ceu:#8AC4FE; --creme:#FEFAE2; --marrom:#704838; --tinta:#141a30;
+  --fg:#FEFAE2; --muted:rgba(254,250,226,.62); --line:rgba(254,250,226,.18);
+  --f-display:"Fraunces","Cooper Black",Georgia,serif;
+  --f-body:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --gutter:max(16px, env(safe-area-inset-left, 0px)); --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+}
+*{box-sizing:border-box}
+body{background:var(--noite);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block}
+:focus-visible{outline:2px solid var(--ceu);outline-offset:3px}
+h1,h2,h3{font-family:var(--f-display);font-weight:900;font-variation-settings:"SOFT" 100,"opsz" 144;letter-spacing:-.02em;text-wrap:balance;margin:0}
+em{font-style:italic}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:70;background:rgba(5,6,12,.9)}
+
+/* abas */
+.abas{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;display:flex;align-items:center;gap:16px;padding-block:12px;padding-left:var(--gutter);padding-right:var(--gutter-r);
+  background:rgba(5,6,12,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.abas .marca{display:flex;align-items:center;gap:9px;font-family:var(--f-display);font-weight:800;letter-spacing:.3em;font-size:14px;flex:none}
+.simbolo{display:block;background:currentColor;-webkit-mask:url(assets/marca/simbolo.png) center/contain no-repeat;mask:url(assets/marca/simbolo.png) center/contain no-repeat}
+.abas .marca .simbolo{width:26px;height:23px}
+.lista-abas{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.lista-abas::-webkit-scrollbar{display:none}
+.lista-abas button{all:unset;cursor:pointer;white-space:nowrap;font-size:12px;font-weight:700;letter-spacing:.06em;padding:8px 13px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.lista-abas button b{font-family:var(--f-display);font-weight:900;margin-right:6px;color:var(--ceu)}
+.lista-abas button[aria-pressed="true"]{background:var(--creme);color:var(--tinta);border-color:var(--creme)}
+.lista-abas button[aria-pressed="true"] b{color:var(--marrom)}
+.lista-abas button:focus-visible{outline:2px solid var(--ceu)}
+
+.versao{position:relative}
+.intro{padding-block:56px 30px;padding-left:var(--gutter);padding-right:var(--gutter-r);max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px 40px}
+.intro .num{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.intro h2{font-size:clamp(46px,7vw,96px);line-height:.92;margin-top:10px}
+.intro h2 em{color:var(--ceu)}
+.intro p{margin:0;max-width:40ch;color:var(--muted)}
+
+/* ===== 1 · sonho que desembaça ===== */
+.desembaca{position:relative}
+.palco-d{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#000}
+.camada{all:unset;position:absolute;inset:0;cursor:zoom-in;will-change:opacity,filter,transform}
+.camada .bg{position:absolute;inset:-8%;background-size:cover;background-position:center;filter:blur(40px) saturate(1.3) brightness(.55)}
+.camada img{position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);max-height:74%;max-width:86%;width:auto;height:auto;box-shadow:0 40px 80px rgba(0,0,0,.55)}
+.camada .txt{position:absolute;left:var(--gutter);right:var(--gutter-r);bottom:calc(28px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;align-items:end;gap:20px;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.camada h3{font-size:clamp(48px,9vw,150px);line-height:.85}
+.camada .lado{text-align:right;max-width:30ch}
+.camada .lado .n{font-family:var(--f-display);font-style:italic;font-weight:700;font-size:22px}
+.camada .lado p{margin:6px 0 0;font-family:var(--f-display);font-style:italic;font-weight:500;font-size:clamp(17px,1.6vw,22px);line-height:1.25}
+.grao{position:absolute;inset:0;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.5 -.2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+/* ===== 2 · cartela ===== */
+.farmacia{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:start;max-width:1180px;margin:0 auto;padding-block:10px 90px;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.cartela{position:relative;border-radius:28px;padding:30px 26px 26px;color:#2b3350;
+  background:linear-gradient(125deg,#f4f6f9 0%,#c4cad3 18%,#eef1f5 34%,#a9b0bb 52%,#e9ecf1 70%,#b9c0ca 86%,#f2f4f7 100%);
+  box-shadow:inset 0 2px 2px rgba(255,255,255,.9),inset 0 -3px 6px rgba(0,0,0,.18),0 40px 70px -25px rgba(0,0,0,.8);transform:rotate(-2deg)}
+.cartela::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:repeating-linear-gradient(115deg,rgba(255,255,255,.0) 0 18px,rgba(255,255,255,.18) 18px 19px)}
+.cartela .rotulo-c{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px}
+.cartela .rotulo-c strong{font-family:var(--f-display);font-weight:900;font-size:26px;letter-spacing:-.01em;text-transform:none;color:#283456}
+.cavidades{display:grid;grid-template-columns:repeat(5,1fr);gap:16px 12px}
+.bolha{all:unset;cursor:pointer;display:grid;justify-items:center;gap:6px;position:relative;z-index:1}
+.domo{position:relative;width:100%;aspect-ratio:1/1.7;border-radius:999px;display:grid;place-items:center;
+  background:radial-gradient(60% 40% at 35% 22%,rgba(255,255,255,.85),rgba(255,255,255,0) 70%),rgba(255,255,255,.22);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7),inset 0 -6px 10px rgba(0,0,0,.12),0 6px 10px -4px rgba(0,0,0,.35);transition:transform .2s}
+.bolha:hover .domo{transform:translateY(-3px)}
+.capsula{position:relative;width:62%;height:84%;border-radius:999px;overflow:hidden;display:grid;grid-template-rows:1fr 1fr;box-shadow:0 3px 6px rgba(0,0,0,.3);transition:transform .5s cubic-bezier(.5,-0.4,.6,1),opacity .5s}
+.capsula .topo-c{background:var(--c)}
+.capsula .base-c{background-size:cover;background-position:center}
+.capsula::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,rgba(255,255,255,.0) 10%,rgba(255,255,255,.55) 28%,rgba(255,255,255,0) 42%),linear-gradient(transparent 49%,rgba(0,0,0,.25) 50%,transparent 51%)}
+.bolha .imp{font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;text-align:center;line-height:1.2;color:#3a4566;max-width:9ch}
+.bolha.tomada .capsula{transform:translateY(-60px) rotate(40deg) scale(.5);opacity:0}
+.bolha.tomada .domo{background:radial-gradient(closest-side,#1b1f2a 55%,#6f7682 75%,transparent 80%),rgba(0,0,0,.05);box-shadow:inset 0 0 0 1.5px rgba(80,85,95,.6);clip-path:polygon(5% 12%,22% 2%,48% 6%,74% 0,96% 14%,92% 40%,100% 62%,90% 88%,66% 100%,40% 94%,14% 100%,2% 80%,8% 55%,0 32%)}
+.bolha:focus-visible .domo{outline:2px solid #283456;outline-offset:3px}
+.bula{background:#fbfaf6;color:#20263d;padding:30px 28px;font-size:13.5px;line-height:1.55;box-shadow:0 30px 60px -25px rgba(0,0,0,.8);transform:rotate(1.5deg);
+  background-image:linear-gradient(90deg,transparent 49.6%,rgba(0,0,0,.06) 50%,transparent 50.4%),linear-gradient(transparent 33%,rgba(0,0,0,.05) 33.3%,transparent 33.6%,transparent 66.4%,rgba(0,0,0,.05) 66.6%,transparent 67%)}
+.bula h3{font-size:30px;color:#283456}
+.bula .reg{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6b7390;margin:4px 0 16px}
+.bula h4{margin:16px 0 4px;font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#283456}
+.bula p{margin:0}
+.bula ol{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
+.bula .repor{all:unset;cursor:pointer;margin-top:18px;display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border-bottom:1.5px solid currentColor}
+
+/* ===== 3 · lambe-lambe ===== */
+.muro{position:relative;overflow:hidden;padding-block:60px 120px;padding-left:var(--gutter);padding-right:var(--gutter-r);
+  background:radial-gradient(70% 50% at 50% 0%,rgba(255,240,210,.08),transparent 70%),radial-gradient(circle at 20% 70%,#26262b,transparent 60%),#17171b}
+.muro::before{content:"";position:absolute;inset:0;opacity:.5;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='5'/><feColorMatrix values='0 0 0 0 .6 0 0 0 0 .6 0 0 0 0 .6 0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23c)'/></svg>")}
+.pichacao{position:absolute;left:-2%;top:42%;font-family:"Permanent Marker",cursive;font-size:clamp(90px,18vw,260px);color:rgba(138,196,254,.09);transform:rotate(-8deg);white-space:nowrap;pointer-events:none}
+.cartazes{position:relative;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0 10px}
+.cartaz{all:unset;cursor:pointer;position:relative;display:block;margin:-18px -12px;transition:filter .25s,transform .3s}
+.cartaz img{width:100%;height:auto;filter:brightness(.42) saturate(.75) contrast(1.05);transition:filter .12s}
+.cartaz::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.55;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.03 .4' numOctaves='3'/><feColorMatrix values='0 0 0 0 .95 0 0 0 0 .93 0 0 0 0 .9 0 0 0 .55 .45'/></filter><rect width='100%' height='100%' filter='url(%23p)'/></svg>")}
+.cartaz:hover,.cartaz:focus-visible{z-index:20;transform:scale(1.03) rotate(0deg)!important}
+.cartaz:hover img,.cartaz:focus-visible img{filter:brightness(1.08) saturate(1.05)}
+.cartaz .etq{position:absolute;left:8%;bottom:10%;font-family:"Permanent Marker",cursive;font-size:clamp(18px,1.8vw,26px);color:#FEFAE2;text-shadow:0 2px 0 rgba(0,0,0,.6);opacity:0;transform:rotate(-4deg);transition:opacity .2s}
+.cartaz:hover .etq,.cartaz:focus-visible .etq{opacity:1}
+.cartaz.arranca{transition:transform .5s ease-in,opacity .5s;transform:perspective(800px) rotateX(-70deg) translateY(-80px)!important;opacity:0}
+.flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:55}
+.flash.on{animation:flash .35s ease-out}
+@keyframes flash{0%{opacity:.75}100%{opacity:0}}
+.adesivo{position:absolute;width:56px;height:56px;border-radius:50%;background:#FEFAE2;display:grid;place-items:center;color:#141a30;box-shadow:0 3px 8px rgba(0,0,0,.5);z-index:25;pointer-events:none}
+.adesivo .simbolo{width:34px;height:30px}
+
+/* ===== 4 · quarto escuro ===== */
+.quarto{position:relative;overflow:hidden;padding-block:40px 80px;
+  background:radial-gradient(60% 45% at 50% 0%,rgba(255,40,30,.55),rgba(120,0,0,.25) 50%,transparent 75%),linear-gradient(#2a0303,#120101 60%,#070000)}
+.lampada{position:absolute;top:0;left:50%;width:70px;height:34px;transform:translateX(-50%);border-radius:0 0 40px 40px;background:radial-gradient(circle at 50% 20%,#ff8a7a,#e01b10 55%,#7a0000);box-shadow:0 0 60px 25px rgba(255,30,20,.45)}
+.varal-scroll{overflow-x:auto;scrollbar-width:thin}
+.varal{position:relative;min-width:1100px;height:380px}
+.varal svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.foto{all:unset;cursor:pointer;position:absolute;width:150px;transform-origin:50% -10px;animation:balanca 5s ease-in-out infinite}
+@keyframes balanca{0%,100%{transform:rotate(var(--r,0deg))}50%{transform:rotate(calc(var(--r,0deg) * -1))}}
+.foto .papel{display:block;background:#f3eee6;padding:7px 7px 22px;box-shadow:0 12px 20px rgba(0,0,0,.55)}
+.foto img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(1) brightness(2.1) contrast(.18) sepia(.2);transition:filter 3.2s ease-out}
+.foto.revelada img{filter:none}
+.foto .papel{position:relative}
+.foto .papel::after{content:"";position:absolute;inset:0;background:rgba(255,30,20,.35);mix-blend-mode:multiply;transition:opacity 3.2s}
+.foto.revelada .papel::after{opacity:.35}
+.foto .prendedor{display:block;position:absolute;top:-16px;left:50%;width:14px;height:30px;transform:translateX(-50%);border-radius:3px;background:linear-gradient(90deg,#8a5a34,#c48b55,#8a5a34);box-shadow:0 2px 3px rgba(0,0,0,.5);z-index:2}
+.foto .leg{position:absolute;left:0;right:0;bottom:4px;text-align:center;font-family:"Caveat",cursive;font-size:16px;color:#5a2020}
+.foto:focus-visible .papel{outline:2px solid #ff8a7a;outline-offset:3px}
+.dica-q{text-align:center;color:rgba(255,170,160,.7);font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin:18px 0 0}
+
+/* ===== 5 · bolhas ===== */
+.aquario{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:radial-gradient(80% 60% at 50% 100%,#7690D4 0%,#283456 55%,#0b0f22 100%)}
+.bolha-s{all:unset;cursor:pointer;position:absolute;left:0;top:0;border-radius:50%;will-change:transform}
+.bolha-s .vidro{position:absolute;inset:0;border-radius:50%;overflow:hidden;box-shadow:inset 0 0 18px rgba(255,255,255,.35),0 10px 40px rgba(0,0,0,.25)}
+.bolha-s img{position:absolute;inset:-12%;width:124%;height:124%;object-fit:cover;opacity:.85;
+  -webkit-mask:radial-gradient(circle,#000 45%,rgba(0,0,0,.35) 70%,transparent 72%);mask:radial-gradient(circle,#000 45%,rgba(0,0,0,.35) 70%,transparent 72%)}
+.bolha-s .iris{position:absolute;inset:0;border-radius:50%;mix-blend-mode:screen;opacity:.7;
+  background:conic-gradient(from 0deg,#ff9bd2,#9be7ff,#b9ffb0,#fff59b,#ffb38a,#d7a2ff,#ff9bd2);
+  -webkit-mask:radial-gradient(circle,transparent 58%,#000 72%);mask:radial-gradient(circle,transparent 58%,#000 72%);animation:gira 9s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.bolha-s .brilho-s{position:absolute;left:18%;top:12%;width:30%;height:18%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,255,255,0));transform:rotate(-30deg)}
+.bolha-s .nome-s{position:absolute;left:50%;top:100%;transform:translate(-50%,8px);white-space:nowrap;font-family:var(--f-display);font-weight:800;font-size:15px;opacity:0;transition:opacity .2s;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.bolha-s:hover .nome-s,.bolha-s:focus-visible .nome-s{opacity:1}
+.bolha-s.estoura .vidro{animation:estoura .28s ease-out forwards}
+@keyframes estoura{to{transform:scale(1.35);opacity:0}}
+.gota{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(220,240,255,.9);pointer-events:none;animation:gota .5s ease-out forwards}
+@keyframes gota{to{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+.aviso-b{position:absolute;left:0;right:0;bottom:calc(24px + env(safe-area-inset-bottom,0px));text-align:center;font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);pointer-events:none}
+
+/* ===== 6 · gashapon ===== */
+.loja{display:grid;grid-template-columns:auto minmax(0,1fr);gap:50px;align-items:center;max-width:1100px;margin:0 auto;padding-block:20px 90px;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.maquina{position:relative;width:300px;max-width:100%;margin:0 auto}
+.globo{position:relative;width:300px;max-width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;
+  background:radial-gradient(circle at 32% 26%,rgba(255,255,255,.55),rgba(255,255,255,.06) 30%,rgba(166,216,255,.08) 60%,rgba(255,255,255,.18) 100%);
+  box-shadow:inset 0 0 0 8px rgba(255,255,255,.22),inset 0 -20px 40px rgba(118,144,212,.3),0 20px 50px rgba(0,0,0,.4)}
+.globo.chacoalha .bola{animation:chacoalha .12s linear 6 alternate}
+@keyframes chacoalha{from{translate:-4px 2px}to{translate:4px -3px}}
+.bola{position:absolute;width:56px;height:56px;border-radius:50%;overflow:hidden;display:grid;grid-template-rows:1fr 1fr;box-shadow:inset -4px -6px 10px rgba(0,0,0,.25),0 2px 4px rgba(0,0,0,.3);transition:opacity .3s}
+.bola .t{background:var(--c)} .bola .b{background:rgba(255,255,255,.75)}
+.bola::after{content:"";position:absolute;left:18%;top:12%;width:30%;height:22%;border-radius:50%;background:rgba(255,255,255,.75)}
+.bola.saiu{opacity:0}
+.base-m{position:relative;margin:-14px auto 0;width:260px;max-width:90%;height:200px;border-radius:26px 26px 18px 18px;
+  background:linear-gradient(160deg,#9db1ea,#7690D4 45%,#4f66ad);box-shadow:inset 0 3px 4px rgba(255,255,255,.5),inset 0 -10px 18px rgba(0,0,0,.25),0 30px 50px -20px rgba(0,0,0,.7)}
+.base-m .placa-m{position:absolute;top:18px;left:18px;right:18px;display:flex;align-items:center;gap:8px;color:#141a30;font-family:var(--f-display);font-weight:900;font-size:17px}
+.base-m .placa-m .simbolo{width:28px;height:25px}
+.base-m .placa-m small{margin-left:auto;font-family:var(--f-body);font-size:9px;font-weight:800;letter-spacing:.14em}
+.manivela{all:unset;cursor:pointer;position:absolute;left:28px;top:70px;width:76px;height:76px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff,#d9dee6 40%,#9aa2ae);box-shadow:0 4px 8px rgba(0,0,0,.4),inset 0 -3px 5px rgba(0,0,0,.2)}
+.manivela::before{content:"";position:absolute;left:50%;top:50%;width:62px;height:16px;transform:translate(-50%,-50%);border-radius:8px;background:linear-gradient(#4f66ad,#283456);box-shadow:inset 0 2px 2px rgba(255,255,255,.3)}
+.manivela.gira{animation:manivela .9s cubic-bezier(.5,0,.3,1)}
+@keyframes manivela{to{transform:rotate(360deg)}}
+.manivela:focus-visible{outline:3px solid var(--creme);outline-offset:4px}
+.base-m .moeda{position:absolute;right:30px;top:80px;width:12px;height:44px;border-radius:6px;background:#1b2340;box-shadow:inset 0 2px 3px rgba(0,0,0,.6)}
+.base-m .saida{position:absolute;right:22px;bottom:16px;width:96px;height:66px;border-radius:14px 14px 30px 30px;background:#141a30;box-shadow:inset 0 8px 14px rgba(0,0,0,.7)}
+.base-m .dica-m{position:absolute;left:24px;bottom:22px;font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#141a30;max-width:11ch;line-height:1.3}
+.premio{min-height:420px;display:grid;place-items:center;text-align:center}
+.premio .vazio{color:var(--muted);font-family:var(--f-display);font-style:italic;font-weight:600;font-size:clamp(22px,2.4vw,30px);max-width:18ch}
+.bola-grande{position:relative;width:120px;height:120px;margin:0 auto 18px}
+.bola-grande .meia{position:absolute;left:0;width:120px;height:60px;overflow:hidden;transition:transform .6s cubic-bezier(.3,1.4,.5,1),opacity .4s .5s}
+.bola-grande.abre .meia{opacity:0}
+.bola-grande.abre{height:0;margin:0;transition:height .3s .8s}
+.bola-grande .meia.cima{top:0;border-radius:60px 60px 0 0;background:var(--c)}
+.bola-grande .meia.baixo{bottom:0;border-radius:0 0 60px 60px;background:rgba(255,255,255,.85)}
+.bola-grande.abre .meia.cima{transform:translate(-40px,-40px) rotate(-35deg)}
+.bola-grande.abre .meia.baixo{transform:translate(40px,30px) rotate(25deg)}
+.bola-grande.cai{animation:cai .7s cubic-bezier(.4,1.6,.6,1)}
+@keyframes cai{from{transform:translateY(-160px) rotate(-200deg);opacity:0}to{transform:none;opacity:1}}
+.cartao-p{all:unset;cursor:zoom-in;display:block;width:min(340px,100%);margin:0 auto;opacity:0;transform:scale(.85);transition:opacity .4s .25s,transform .5s .25s cubic-bezier(.3,1.4,.5,1)}
+.cartao-p.mostra{opacity:1;transform:none}
+.cartao-p img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;box-shadow:0 30px 50px -20px rgba(0,0,0,.8)}
+.cartao-p h3{margin-top:16px;font-size:clamp(30px,3vw,40px)}
+.cartao-p p{margin:6px 0 0;font-family:var(--f-display);font-style:italic;font-weight:500;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:1100px;margin:0 auto;padding-bottom:70px;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.chips button{all:unset;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:.06em;padding:7px 12px;border-radius:99px;border:1px solid var(--line);color:var(--muted);display:inline-flex;align-items:center;gap:7px}
+.chips button i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.chips button:focus-visible{outline:2px solid var(--ceu)}
+
+/* visor */
+dialog.visor{border:0;padding:0;margin:0;width:100%;max-width:100%;height:100%;max-height:100%;background:rgba(0,0,0,.95);color:#FEFAE2;overflow:hidden}
+.visor-in{height:100%;display:grid;grid-template-rows:auto 1fr;padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+.visor-topo{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.visor-topo h3{font-size:clamp(24px,3vw,38px)}
+.visor button{all:unset;cursor:pointer;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(254,250,226,.5);border-radius:99px;padding:8px 14px}
+.trilho{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px var(--gutter-r) 10px var(--gutter);align-items:center;min-height:0}
+.trilho img{height:100%;max-height:calc(100svh - 120px);width:auto;max-width:88vw;object-fit:contain;scroll-snap-align:center;flex:none}
+
+@media (max-width:900px){
+  .farmacia,.loja{grid-template-columns:1fr}
+  .cartela{transform:none}
+  .cartazes{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:560px){
+  .cavidades{grid-template-columns:repeat(4,1fr)}
+  .camada .txt{flex-direction:column;align-items:start}
+  .camada .lado{text-align:left}
+  .bula ol{columns:1}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+<nav class="abas" aria-label="Versões do acervo">
+  <span class="marca"><span class="simbolo" aria-hidden="true"></span>DREAMZ</span>
+  <div class="lista-abas" id="abas">
+    <button type="button" id="aba-v1" data-v="v1" aria-pressed="true"><b>1</b>Sonho que desembaça</button>
+    <button type="button" id="aba-v2" data-v="v2" aria-pressed="false"><b>2</b>Cartela</button>
+    <button type="button" id="aba-v3" data-v="v3" aria-pressed="false"><b>3</b>Lambe-lambe</button>
+    <button type="button" id="aba-v4" data-v="v4" aria-pressed="false"><b>4</b>Quarto escuro</button>
+    <button type="button" id="aba-v5" data-v="v5" aria-pressed="false"><b>5</b>Bolhas</button>
+    <button type="button" id="aba-v6" data-v="v6" aria-pressed="false"><b>6</b>Gashapon</button>
+  </div>
+</nav>
+
+<main>
+  <section class="versao" id="v1">
+    <div class="intro"><div><div class="num">Versão 1 de 6</div><h2>Sonho que <em>desembaça</em></h2></div>
+      <p>Role devagar. Cada sonho chega borrado, como lembrança, ganha foco no meio da tela e volta a borrar quando o próximo aparece. Toque pra ver as peças.</p></div>
+    <div class="desembaca" id="desembaca"><div class="palco-d" id="palco-d"><div class="grao"></div></div></div>
+  </section>
+
+  <section class="versao" id="v2" hidden>
+    <div class="intro"><div><div class="num">Versão 2 de 6</div><h2>Tome um <em>sonho</em></h2></div>
+      <p>Uma cartela com 13 cápsulas, uma por projeto. Aperte uma cápsula pra tirar ela da cartela e abrir o sonho.</p></div>
+    <div class="farmacia">
+      <div class="cartela">
+        <div class="rotulo-c"><strong>dreamz®</strong><span>13 sonhos · uso noturno</span></div>
+        <div class="cavidades" id="cavidades"></div>
+      </div>
+      <aside class="bula">
+        <h3>dreamz®</h3>
+        <div class="reg">sonho concentrado · 13 cápsulas · lote 2026</div>
+        <h4>Indicações</h4><p>Marcas que não saem da cabeça do dono e ainda não ganharam forma.</p>
+        <h4>Posologia</h4><p>Tomar 1 sonho antes de dormir. Em caso de ideia fixa, repetir.</p>
+        <h4>Efeitos colaterais</h4><p>Insônia criativa, vontade de mudar o logo, clientes perguntando quem fez.</p>
+        <h4>Composição</h4><ol id="composicao"></ol>
+        <button type="button" class="repor" id="repor">abrir nova cartela</button>
+      </aside>
+    </div>
+  </section>
+
+  <section class="versao" id="v3" hidden>
+    <div class="intro"><div><div class="num">Versão 3 de 6</div><h2>Colado na rua às <em>3h</em></h2></div>
+      <p>Uma parede de madrugada coberta de lambe-lambes. Passe o mouse pra disparar o flash e clique pra arrancar o cartaz.</p></div>
+    <div class="muro" id="muro"><div class="pichacao" aria-hidden="true">dreamz dreamz</div><div class="cartazes" id="cartazes"></div></div>
+  </section>
+
+  <section class="versao" id="v4" hidden>
+    <div class="intro"><div><div class="num">Versão 4 de 6</div><h2>Quarto <em>escuro</em></h2></div>
+      <p>As fotos ainda estão secando no varal. Passe o mouse (ou toque) em cada uma pra ela revelar aos poucos. Clique pra ver as peças.</p></div>
+    <div class="quarto"><div class="lampada" aria-hidden="true"></div>
+      <div class="varal-scroll"><div class="varal" id="varal1"></div></div>
+      <div class="varal-scroll"><div class="varal" id="varal2"></div></div>
+      <p class="dica-q">← arraste o varal no celular →</p>
+    </div>
+  </section>
+
+  <section class="versao" id="v5" hidden>
+    <div class="intro"><div><div class="num">Versão 5 de 6</div><h2>Sonhos de <em>sabão</em></h2></div>
+      <p>Os sonhos sobem como bolhas. Passe o mouse pra ver o nome e estoure uma pra abrir o projeto.</p></div>
+    <div class="aquario" id="aquario"><div class="aviso-b">estoure um sonho</div></div>
+  </section>
+
+  <section class="versao" id="v6" hidden>
+    <div class="intro"><div><div class="num">Versão 6 de 6</div><h2>Gire e ganhe um <em>sonho</em></h2></div>
+      <p>Uma máquina de cápsulas com os 13 projetos. Gire a manivela e veja qual sonho sai. Os chips embaixo abrem qualquer um direto.</p></div>
+    <div class="loja">
+      <div class="maquina">
+        <div class="globo" id="globo"></div>
+        <div class="base-m">
+          <div class="placa-m"><span class="simbolo" aria-hidden="true"></span>dreamz<small>1 SONHO</small></div>
+          <button type="button" class="manivela" id="manivela" aria-label="Girar a manivela"></button>
+          <span class="moeda" aria-hidden="true"></span>
+          <span class="dica-m">gire a manivela</span>
+          <span class="saida" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="premio" id="premio"><p class="vazio">Gire a manivela pra ver qual sonho vai sair.</p></div>
+    </div>
+    <div class="chips" id="chips"></div>
+  </section>
+</main>
+<div class="flash" id="flash" aria-hidden="true"></div>
+
+<dialog class="visor" id="visor" aria-labelledby="visor-titulo">
+  <div class="visor-in">
+    <div class="visor-topo"><h3 id="visor-titulo"></h3><button type="button" id="fechar">acordar ✕</button></div>
+    <div class="trilho" id="trilho" tabindex="0"></div>
+  </div>
+</dialog>
+
+<script>
+const OBRAS=[
+  {s:"bmc",t:"Bross Motors",h:"02:03",n:8,w:1400,hgt:788,c:"#F28C28",tipo:"Identidade visual",pt:"Uma loja de carros que sonhava andar tão rápido quanto os carros que vende."},
+  {s:"anjos",t:"Anjos Colchões",h:"02:19",n:5,w:880,hgt:1173,c:"#1F5C7A",tipo:"Identidade visual",pt:"Uma loja de colchões que, no fundo, vende uma boa noite de sono."},
+  {s:"linhas-amarelas",t:"Linhas Amarelas",h:"02:41",n:6,w:880,hgt:1100,c:"#F5C400",tipo:"Identidade visual",pt:"Uma empresa de ônibus que queria ser reconhecida de longe, só pela cor."},
+  {s:"caca-games",t:"Cacá Games",h:"02:58",n:6,w:880,hgt:1100,c:"#D62828",tipo:"Identidade visual",pt:"Um clube de carteado que queria a energia de uma mesa cheia, mesmo online."},
+  {s:"maestralle",t:"Maestralle",h:"03:12",n:6,w:880,hgt:1100,c:"#8A8466",tipo:"Social media",pt:"Uma marcenaria que desenha a casa a partir de quem vive nela."},
+  {s:"dom-fernando",t:"Dom Fernando",h:"03:26",n:6,w:880,hgt:1100,c:"#C8102E",tipo:"Social media",pt:"Uma pizzaria que queria deixar o sábado mais gostoso."},
+  {s:"vincitori",t:"Espaço Vincitori",h:"03:37",n:6,w:880,hgt:1100,c:"#B8963E",tipo:"Social media",pt:"Um salão de festas que guarda as noites mais importantes de cada um."},
+  {s:"ccm",t:"CCM Engenharia",h:"03:49",n:6,w:880,hgt:1100,c:"#1E3A8A",tipo:"Social media",pt:"Uma engenharia elétrica que queria mostrar o que ninguém vê dentro do painel."},
+  {s:"aluggo",t:"Aluggo",h:"04:02",n:5,w:880,hgt:1100,c:"#F26A1B",tipo:"Social media",pt:"Motos pra quem quer chegar antes no amanhã."},
+  {s:"boi-delivery",t:"Boi Delivery",h:"04:11",n:4,w:880,hgt:1100,c:"#E63946",tipo:"Social media",pt:"Um delivery de carne com um mascote que chega antes da fome."},
+  {s:"spada-abdalla",t:"Spada e Abdalla",h:"04:19",n:5,w:880,hgt:1100,c:"#1FA5A0",tipo:"Social media",pt:"Uma clínica que ensina a prestar atenção nos sinais do corpo."},
+  {s:"marchiori",t:"Marchiori",h:"04:24",n:5,w:880,hgt:1100,c:"#1E5E3A",tipo:"Social media",pt:"Um escritório que explica a lei antes que ela vire problema."},
+  {s:"pmx",t:"PMX Ativos Judiciais",h:"04:30",n:5,w:880,hgt:1100,c:"#E8601C",tipo:"Social media",pt:"Uma empresa que transforma a espera de um processo em dinheiro hoje."},
+];
+const N=OBRAS.length, calmo=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const img=(o,i)=>`assets/obras/${o.s}/${String(i).padStart(2,"0")}.webp`;
+const nn=k=>String(k+1).padStart(2,"0");
+
+/* visor */
+const visor=document.getElementById("visor"), trilho=document.getElementById("trilho");
+function abrirObra(k,depois){ const o=OBRAS[k];
+  document.getElementById("visor-titulo").textContent=`Nº ${nn(k)} · ${o.t}`;
+  trilho.innerHTML=Array.from({length:o.n},(_,i)=>`<img src="${img(o,i+1)}" alt="${o.t}, peça ${i+1} de ${o.n}" loading="lazy">`).join("");
+  trilho.scrollLeft=0; visor.showModal?visor.showModal():visor.setAttribute("open",""); visor._depois=depois; document.getElementById("fechar").focus(); }
+function fechar(){ visor.close?visor.close():visor.removeAttribute("open"); }
+visor.addEventListener("close",()=>{ if(visor._depois){ visor._depois(); visor._depois=null; } });
+document.getElementById("fechar").addEventListener("click",fechar);
+visor.addEventListener("click",e=>{ if(e.target===visor) fechar(); });
+
+/* abas */
+const abas=[...document.querySelectorAll("#abas button")];
+function mostra(v){ if(!/^v[1-6]$/.test(v)) v="v1";
+  abas.forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v));
+  document.querySelectorAll(".versao").forEach(s=>s.hidden=s.id!==v);
+  ativa=v; scrollTo(0,0); if(v==="v1") frameD(); if(v==="v4") montaVarais(); if(v==="v5") montaBolhas(); }
+let ativa="v1";
+abas.forEach(b=>b.addEventListener("click",()=>{ if(location.hash!=="#"+b.dataset.v) location.hash=b.dataset.v; else mostra(b.dataset.v); }));
+addEventListener("hashchange",()=>mostra(location.hash.slice(1)));
+
+/* ===== 1 · desembaça ===== */
+const desemb=document.getElementById("desembaca"), palcoD=document.getElementById("palco-d");
+desemb.style.height=`calc(${N} * 85vh + 100vh)`;
+palcoD.insertAdjacentHTML("afterbegin",OBRAS.map((o,k)=>`<button class="camada" type="button" data-k="${k}" aria-label="${o.t}">
+  <span class="bg" style="background-image:url(${img(o,1)})"></span>
+  <img src="${img(o,1)}" alt="${o.t}" width="${o.w}" height="${o.hgt}" loading="${k<3?"eager":"lazy"}">
+  <span class="txt"><h3>${o.t}</h3><span class="lado"><span class="n">Nº ${nn(k)} · ${o.h}</span><p>${o.pt}</p></span></span></button>`).join(""));
+const camadas=[...palcoD.querySelectorAll(".camada")];
+function frameD(){ if(ativa!=="v1") return;
+  const r=desemb.getBoundingClientRect(), tot=desemb.offsetHeight-innerHeight, p=Math.min(1,Math.max(0,-r.top/Math.max(1,tot)));
+  const raw=p*(N-1), b=Math.floor(raw), f=raw-b, k2=Math.min(1,Math.max(0,(f-0.3)/0.4)), t=Math.min(N-1,b+k2*k2*(3-2*k2));
+  camadas.forEach((el,i)=>{ const d=Math.abs(i-t), op=Math.max(0,1-d*1.4);
+    el.style.opacity=op.toFixed(3); el.style.visibility=op>0?"visible":"hidden";
+    el.style.filter=d>0.02?`blur(${Math.min(36,d*42).toFixed(1)}px)`:"none";
+    el.style.transform=`scale(${(1+d*0.08).toFixed(3)})`; el.style.pointerEvents=d<0.3?"auto":"none"; el.tabIndex=d<0.3?0:-1; }); }
+palcoD.addEventListener("click",e=>{ const b=e.target.closest(".camada"); if(b) abrirObra(+b.dataset.k); });
+addEventListener("scroll",()=>requestAnimationFrame(frameD),{passive:true}); addEventListener("resize",frameD);
+
+/* ===== 2 · cartela ===== */
+const cav=document.getElementById("cavidades");
+function montaCartela(){ cav.innerHTML=OBRAS.map((o,k)=>`<button type="button" class="bolha" data-k="${k}" aria-label="Tomar o sonho ${o.t}">
+  <span class="domo"><span class="capsula" style="--c:${o.c}"><span class="topo-c"></span><span class="base-c" style="background-image:url(${img(o,1)})"></span></span></span>
+  <span class="imp">${o.h}<br>${o.t.split(" ")[0]}</span></button>`).join(""); }
+montaCartela();
+document.getElementById("composicao").innerHTML=OBRAS.map(o=>`<li>${o.t}</li>`).join("");
+cav.addEventListener("click",e=>{ const b=e.target.closest(".bolha"); if(!b) return; const k=+b.dataset.k;
+  if(b.classList.contains("tomada")){ abrirObra(k); return; }
+  b.classList.add("tomada"); setTimeout(()=>abrirObra(k),calmo?0:520); });
+document.getElementById("repor").addEventListener("click",montaCartela);
+
+/* ===== 3 · lambe-lambe ===== */
+const cartazes=document.getElementById("cartazes"), flash=document.getElementById("flash");
+function rasgado(){ const pts=[]; const lado=(a,b,fix,eixo)=>{ for(let i=0;i<=10;i++){ const v=a+(b-a)*i/10, j=fix+(Math.random()*2.6-1.3); pts.push(eixo==="x"?`${v}% ${j}%`:`${j}% ${v}%`); } };
+  lado(1,99,1.5,"x"); lado(1,99,98.5,"y"); lado(99,1,98.5,"x"); lado(99,1,1.5,"y"); return `polygon(${pts.join(",")})`; }
+cartazes.innerHTML=OBRAS.map((o,k)=>{ const rot=(Math.random()*6-3).toFixed(1), dy=Math.round(Math.random()*40-20);
+  return `<button type="button" class="cartaz" data-k="${k}" aria-label="${o.t}" style="transform:rotate(${rot}deg) translateY(${dy}px);clip-path:${rasgado()};grid-column:span ${o.w>o.hgt?2:1};z-index:${1+Math.floor(Math.random()*10)}">
+  <img src="${img(o,1)}" alt="" loading="lazy" width="${o.w}" height="${o.hgt}"><span class="etq">${o.t}</span></button>`; }).join("");
+[[12,8],[78,30],[40,64],[88,82]].forEach(([x,y])=>document.getElementById("muro").insertAdjacentHTML("beforeend",`<span class="adesivo" style="left:${x}%;top:${y}%;transform:rotate(${Math.random()*30-15}deg)"><span class="simbolo"></span></span>`));
+let ultimoFlash=0;
+cartazes.addEventListener("pointerover",e=>{ const b=e.target.closest(".cartaz"); if(!b||calmo) return; const t=performance.now(); if(t-ultimoFlash<400) return; ultimoFlash=t;
+  flash.classList.remove("on"); void flash.offsetWidth; flash.classList.add("on"); });
+cartazes.addEventListener("click",e=>{ const b=e.target.closest(".cartaz"); if(!b) return; const k=+b.dataset.k, tr=b.style.transform;
+  b.classList.add("arranca"); setTimeout(()=>abrirObra(k,()=>{ b.classList.remove("arranca"); b.style.transform=tr; }),calmo?0:450); });
+
+/* ===== 4 · quarto escuro ===== */
+let varaisProntos=false;
+function montaVarais(){ if(varaisProntos) return; varaisProntos=true;
+  [[0,7,"varal1"],[7,13,"varal2"]].forEach(([a,b,id])=>{ const el=document.getElementById(id), W=el.offsetWidth, n=b-a, sag=70;
+    let h=`<svg viewBox="0 0 ${W} 380" preserveAspectRatio="none"><path d="M0 30 Q ${W/2} ${30+sag*2} ${W} 30" stroke="#d9c6b0" stroke-width="1.5" fill="none" opacity=".7"/></svg>`;
+    for(let i=0;i<n;i++){ const k=a+i, o=OBRAS[k], u=(i+0.5)/n, x=u*W-75, y=30+sag*4*u*(1-u)*1.0+10;
+      h+=`<button type="button" class="foto" data-k="${k}" aria-label="${o.t}" style="left:${x}px;top:${y}px;--r:${(Math.random()*4-2).toFixed(1)}deg;animation-delay:${-Math.random()*5}s">
+        <span class="prendedor"></span><span class="papel"><img src="${img(o,1)}" alt="" loading="lazy"><span class="leg">${o.t}</span></span></button>`; }
+    el.innerHTML=h; }); }
+document.querySelector(".quarto").addEventListener("pointerover",e=>{ const f=e.target.closest(".foto"); if(f) f.classList.add("revelada"); });
+document.querySelector(".quarto").addEventListener("focusin",e=>{ const f=e.target.closest(".foto"); if(f) f.classList.add("revelada"); });
+document.querySelector(".quarto").addEventListener("click",e=>{ const f=e.target.closest(".foto"); if(!f) return;
+  if(!f.classList.contains("revelada")){ f.classList.add("revelada"); return; } abrirObra(+f.dataset.k); });
+
+/* ===== 5 · bolhas ===== */
+const aq=document.getElementById("aquario"); let bolhas=[], ultimoB=0;
+function novaBolha(k,inicio){ const W=aq.clientWidth, H=aq.clientHeight, pequeno=W<700, r=(pequeno?44:62)+Math.random()*(pequeno?26:46);
+  return {k,r,x:r+Math.random()*(W-2*r),y:inicio?Math.random()*H:H+r+Math.random()*200,vy:(pequeno?22:28)+Math.random()*26,f:Math.random()*6.28,amp:10+Math.random()*24,lento:false}; }
+function montaBolhas(){ aq.querySelectorAll(".bolha-s").forEach(e=>e.remove());
+  bolhas=OBRAS.map((o,k)=>{ const b=novaBolha(k,true); const el=document.createElement("button"); el.type="button"; el.className="bolha-s"; el.setAttribute("aria-label",o.t);
+    el.innerHTML=`<span class="vidro"><img src="${img(o,1)}" alt="" loading="lazy"><span class="iris"></span><span class="brilho-s"></span></span><span class="nome-s">${o.t}</span>`;
+    el.style.width=el.style.height=b.r*2+"px"; el.addEventListener("pointerenter",()=>b.lento=true); el.addEventListener("pointerleave",()=>b.lento=false);
+    el.addEventListener("click",()=>estoura(b,el)); aq.appendChild(el); b.el=el; return b; }); }
+function estoura(b,el){ const cx=b.x, cy=b.y;
+  for(let i=0;i<10;i++){ const g=document.createElement("span"); g.className="gota"; const a=i/10*6.283, d=b.r*(0.9+Math.random()*0.6);
+    g.style.left=cx+"px"; g.style.top=cy+"px"; g.style.setProperty("--dx",Math.cos(a)*d+"px"); g.style.setProperty("--dy",Math.sin(a)*d+"px"); aq.appendChild(g); setTimeout(()=>g.remove(),520); }
+  el.classList.add("estoura");
+  setTimeout(()=>abrirObra(b.k,()=>{ Object.assign(b,novaBolha(b.k,false)); el.classList.remove("estoura"); }),calmo?0:260); }
+function animaBolhas(t){ const dt=Math.min(0.05,(t-ultimoB)/1000||0); ultimoB=t;
+  if(ativa==="v5"){ const H=aq.clientHeight;
+    for(const b of bolhas){ if(!calmo){ b.y-=b.vy*dt*(b.lento?0.15:1); b.f+=dt*(b.lento?0.3:1.2); }
+      if(b.y<-b.r*2){ Object.assign(b,novaBolha(b.k,false)); }
+      const x=b.x+Math.sin(b.f)*b.amp; b.el.style.transform=`translate(${x-b.r}px,${b.y-b.r}px)`; } }
+  requestAnimationFrame(animaBolhas); }
+montaBolhas(); requestAnimationFrame(animaBolhas);
+
+/* ===== 6 · gashapon ===== */
+const globo=document.getElementById("globo"), premio=document.getElementById("premio"), manivela=document.getElementById("manivela");
+const POS=[[28,62],[44,70],[60,64],[74,52],[16,46],[36,50],[52,48],[68,36],[24,30],[46,32],[62,22],[34,16],[80,72]];
+globo.innerHTML=OBRAS.map((o,k)=>`<span class="bola" data-k="${k}" style="--c:${o.c};left:${POS[k][0]}%;top:${POS[k][1]}%;transform:rotate(${Math.random()*360}deg)"><span class="t"></span><span class="b"></span></span>`).join("");
+let restantes=OBRAS.map((_,k)=>k), girando=false;
+function entrega(k){ const o=OBRAS[k];
+  premio.innerHTML=`<div><div class="bola-grande cai" id="bola-g" style="--c:${o.c}"><span class="meia cima"></span><span class="meia baixo"></span></div>
+    <button type="button" class="cartao-p" id="cartao-p" data-k="${k}"><img src="${img(o,1)}" alt="${o.t}"><h3>${o.t}</h3><p>${o.pt}</p></button></div>`;
+  const bg=document.getElementById("bola-g"), cp=document.getElementById("cartao-p");
+  setTimeout(()=>{ bg.classList.add("abre"); cp.classList.add("mostra"); },calmo?0:700);
+  cp.addEventListener("click",()=>abrirObra(k)); }
+manivela.addEventListener("click",()=>{ if(girando) return; girando=true;
+  if(!restantes.length){ restantes=OBRAS.map((_,k)=>k); globo.querySelectorAll(".bola").forEach(b=>b.classList.remove("saiu")); }
+  const k=restantes.splice(Math.floor(Math.random()*restantes.length),1)[0];
+  manivela.classList.remove("gira"); void manivela.offsetWidth; manivela.classList.add("gira"); globo.classList.add("chacoalha");
+  setTimeout(()=>{ globo.classList.remove("chacoalha"); globo.querySelector(`.bola[data-k="${k}"]`).classList.add("saiu"); entrega(k); girando=false; },calmo?0:900); });
+document.getElementById("chips").innerHTML=OBRAS.map((o,k)=>`<button type="button" data-k="${k}" style="--c:${o.c}"><i></i>${o.t}</button>`).join("");
+document.getElementById("chips").addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) abrirObra(+b.dataset.k); });
+
+mostra(location.hash.slice(1)||"v1");
+</script>

@@ -21,6 +21,10 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
     controle remoto (1–9, CH▲▼, botão vermelho = canal aleatório) e "programação da madrugada" clicável.
   - **B · Diário de sonhos (03:30)**: caderno espiral pautado; página esquerda manuscrita (Caveat) com o relato do sonho, direita com 3 polaroids com fita; páginas viram.
   - Diário: "curti, mas não muito". Ideias rejeitadas sem fazer: lanterna na galeria, janelas acesas, estante de CDs, carneirinhos. Reprovados: grade de cards ("horrível") e túnel de sonhos ("não gostei", reserva).
+- **Laboratório do acervo**: https://claude.ai/artifact/FxTWhcN8vGXG2nhasKxgr8 (`acervo-lab.html`, só PT, para comparar): 6 versões em abas —
+  1 sonho que desembaça (tela cheia, blur↔foco na rolagem) · 2 cartela de remédio dreamz® + bula · 3 lambe-lambe na parede com flash ·
+  4 quarto escuro (varal, fotos revelam no hover) · 5 bolhas de sabão iridescentes que estouram · 6 máquina de cápsulas (gashapon).
+  A escolhida vai para o site no lugar da TV/diário e ganha versão EN.
 - WhatsApp: **+55 17 99108-9367** (constante `WHATSAPP = "5517991089367"` no script).
 - Imagens do acervo: `assets/obras/<projeto>/NN.webp` (01 = capa, 02 = aparece no hover). Originais no Drive "PROJETOS DREAMZ 2026".
 - Ideias guardadas para a v2: cursor de estrela, contador "noites sem dormir", mesa de luz com peças arrastáveis.
