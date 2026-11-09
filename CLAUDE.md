@@ -53,7 +53,10 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
 - **Relâmpago distante**: a cada 25–60 s (só à noite) um clarão duplo no céu + trovão grave baixinho se o som estiver ligado.
 - **Modo sonho lúcido** (easter egg): tecla **L** ou **5 toques no relógio LCD** → 9 s de cores girando, véu furta-cor, página ondulando e um som subindo.
 - Adesivos soltos arrastáveis: feitos e **removidos** a pedido do dono.
-- Detalhes: cursor de estrela + rastro de estrelinhas (só mouse) e contador "há mm:ss perdendo o sono com a gente" (canto, desktop) e no rodapé.
+- **Cursor = nuvenzinha** (escolhida no mostruário https://claude.ai/artifact/8GC9PGW52ACU9YXTLtibX1, `cursores.html`): nuvem fofa que segue o mouse com atraso,
+  flutua, cresce em cima de coisas clicáveis e aperta no clique; cor acompanha a hora (creme à noite, marinho no amanhecer) + pontinho exato. Só com mouse.
+  Substituiu o cursor de estrela com rastro.
+- Detalhes: contador "há mm:ss perdendo o sono com a gente" (canto, desktop) e no rodapé.
 - WhatsApp: **+55 17 99108-9367** (constante `WHATSAPP = "5517991089367"` no script).
 - Imagens do acervo: `assets/obras/<projeto>/NN.webp` (01 = capa, 02 = aparece no hover). Originais no Drive "PROJETOS DREAMZ 2026".
-- Ideias guardadas: mesa de luz com peças arrastáveis (cursor de estrela e contador já estão no site).
+- Ideias guardadas: mesa de luz com peças arrastáveis.

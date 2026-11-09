@@ -240,11 +240,22 @@ tr.voo.sel .flap i{color:#f5d36b}
 .perguntas summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .perguntas .r{margin:0 0 24px 84px;max-width:58ch;font-size:17px;color:var(--muted)}
 
-/* rastro de estrelas e contador */
-@media (pointer:fine){ body{cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'><path d='M11 1l2.6 6.6 7.1.4-5.5 4.5 1.9 6.9L11 15.5 4.9 19.4l1.9-6.9L1.3 8l7.1-.4z' fill='%23FEFAE2' stroke='%23141a30' stroke-width='1.2'/></svg>") 11 11,auto} }
-.faisca{position:fixed;left:0;top:0;width:var(--t);height:var(--t);pointer-events:none;z-index:85;background:var(--cf);
-  clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);animation:faisca .9s ease-out forwards}
-@keyframes faisca{to{transform:translate(var(--dx),var(--dy)) rotate(140deg) scale(.2);opacity:0}}
+/* cursor: nuvenzinha que segue o mouse com atraso (só em mouse) */
+@media (pointer:fine){ html.cursor-nuvem,html.cursor-nuvem *{cursor:none!important} html.cursor-nuvem input,html.cursor-nuvem textarea{cursor:text!important} html.cursor-nuvem dialog,html.cursor-nuvem dialog *{cursor:auto!important} }
+.nuvem-c{position:fixed;left:0;top:0;width:46px;height:30px;margin:-15px 0 0 -23px;z-index:99;pointer-events:none;opacity:0;transition:opacity .25s}
+.nuvem-c.on{opacity:1}
+.nuvem-c .corpo-n{position:absolute;inset:0;transition:transform .25s cubic-bezier(.3,1.6,.5,1);filter:drop-shadow(0 0 8px color-mix(in srgb,var(--accent) 55%,transparent))}
+.nuvem-c i{position:absolute;border-radius:50%;background:var(--fg);transition:background .4s}
+.nuvem-c i:nth-child(1){left:2px;top:12px;width:18px;height:18px}
+.nuvem-c i:nth-child(2){left:12px;top:2px;width:24px;height:24px}
+.nuvem-c i:nth-child(3){left:26px;top:10px;width:18px;height:18px}
+.nuvem-c i:nth-child(4){left:9px;top:16px;width:16px;height:14px}
+.nuvem-c i:nth-child(5){left:22px;top:17px;width:14px;height:13px}
+.nuvem-c.sobre .corpo-n{transform:scale(1.35)}
+.nuvem-c.aperta .corpo-n{transform:scale(1.15,.75)}
+.nuvem-c.sobre.aperta .corpo-n{transform:scale(1.45,1)}
+.ponto-c{position:fixed;left:0;top:0;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:var(--accent);z-index:99;pointer-events:none;opacity:0;transition:opacity .25s}
+.ponto-c.on{opacity:1}
 .insone{position:fixed;left:var(--gutter);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;font-size:11px;font-weight:600;letter-spacing:.08em;mix-blend-mode:difference;color:#FEFAE2;pointer-events:none}
 .insone b{font-family:var(--f-mono);font-weight:700}
 footer .insone-f b{font-family:var(--f-mono)}
@@ -725,12 +736,24 @@ const linhaNomes=(l,cls,d)=>`<div class="esteira nomes ${cls}" style="--dur:${d}
 fxs.innerHTML=linhaNomes(idx,"",70)+linhaFotos(idx.slice().reverse(),"volta",55)+linhaNomes(idx.slice(6).concat(idx.slice(0,6)),"volta",80)+linhaFotos(idx.slice(4).concat(idx.slice(0,4)),"",65);
 fxs.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) abrirObra(+b.dataset.k); });
 
-/* ---------- rastro de estrelas ---------- */
-if(matchMedia("(pointer:fine)").matches&&!calmo){ let ult=0; const cores=["#FEFAE2","#8AC4FE","#A6D8FF","#7690D4"];
-  addEventListener("pointermove",e=>{ const t=performance.now(); if(t-ult<38) return; ult=t;
-    const f=document.createElement("span"); f.className="faisca"; const sz=5+Math.random()*7;
-    f.style.cssText=`left:${e.clientX-sz/2}px;top:${e.clientY-sz/2}px;--t:${sz}px;--cf:${cores[Math.floor(Math.random()*4)]};--dx:${(Math.random()*40-20).toFixed(0)}px;--dy:${(10+Math.random()*30).toFixed(0)}px`;
-    document.body.appendChild(f); setTimeout(()=>f.remove(),950); },{passive:true}); }
+/* ---------- cursor: nuvenzinha ---------- */
+if(matchMedia("(pointer:fine)").matches){
+  root.classList.add("cursor-nuvem");
+  const nuv=document.createElement("div"); nuv.className="nuvem-c"; nuv.setAttribute("aria-hidden","true"); nuv.innerHTML='<div class="corpo-n"><i></i><i></i><i></i><i></i><i></i></div>';
+  const pto=document.createElement("div"); pto.className="ponto-c"; pto.setAttribute("aria-hidden","true");
+  document.body.append(nuv,pto);
+  let mx=-100,my=-100,nx=-100,ny=-100,ativo=false,ultN=0;
+  addEventListener("pointermove",e=>{ if(e.pointerType!=="mouse") return; mx=e.clientX; my=e.clientY; if(!ativo){ nx=mx; ny=my; ativo=true; nuv.classList.add("on"); pto.classList.add("on"); }
+    nuv.classList.toggle("sobre",!!e.target.closest("a,button,summary,[role=button],[role=slider],.carta,.lamina,.rolo button,tr.voo,.esteira button,input,select,textarea,.cena-logo"));
+    pto.style.transform=`translate(${mx}px,${my}px)`; },{passive:true});
+  document.addEventListener("pointerleave",()=>{ ativo=false; nuv.classList.remove("on"); pto.classList.remove("on"); });
+  addEventListener("blur",()=>{ ativo=false; nuv.classList.remove("on"); pto.classList.remove("on"); });
+  addEventListener("pointerdown",e=>{ if(e.pointerType==="mouse") nuv.classList.add("aperta"); });
+  addEventListener("pointerup",()=>nuv.classList.remove("aperta"));
+  (function segueNuvem(t){ const dt=Math.min(.05,(t-ultN)/1000||0); ultN=t; const k=calmo?1:Math.min(1,dt*5);
+    nx+=(mx-nx)*k; ny+=(my-ny)*k; const bob=calmo?0:Math.sin(t/500)*2;
+    nuv.style.transform=`translate(${nx}px,${ny+bob}px)`; requestAnimationFrame(segueNuvem); })(0);
+}
 
 /* ---------- contador de sono perdido ---------- */
 const t0=Date.now(), insone=document.getElementById("insone"), insoneF=document.getElementById("insone-f");
