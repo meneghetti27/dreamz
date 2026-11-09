@@ -46,7 +46,10 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   Reprovado: formulário com campos e prévia da mensagem ("não curti").
 - **Sons da madrugada, sem botão** (pedido do dono): chuva fina + grilos à noite, passarinhos no amanhecer, gerados com Web Audio; começam no 1º clique/toque/tecla
   (o navegador não deixa tocar antes) e pausam quando a aba sai de foco.
-- **Easter egg**: 3 cliques rápidos no menino (logo da entrada, símbolo do topo ou da seção "quem sonha") → ele pula, toca um "plim" e as estrelas saem voando + "ele acordou! ✦".
+- **Easter egg**: 3 cliques rápidos no menino (logo da entrada, símbolo do topo ou da seção "quem sonha") → ele pula, toca um "plim" e as estrelas saem voando (o aviso "ele acordou!" foi removido a pedido do dono).
+- **Bocejo**: 20 s sem mexer → tela escurece, pálpebras pesam e piscam devagar, "z z z" e "mexa pra acordar"; qualquer movimento desfaz.
+- **Adesivos soltos** (7): símbolo, estrelas, "dreamz®", "03:12 AL", "lo$ing $leep", "sonhe alto ✦", espalhados nas margens das seções;
+  dá pra arrastar (posição fica salva no navegador do visitante) e tocar faz o adesivo balançar.
 - Detalhes: cursor de estrela + rastro de estrelinhas (só mouse) e contador "há mm:ss perdendo o sono com a gente" (canto, desktop) e no rodapé.
 - WhatsApp: **+55 17 99108-9367** (constante `WHATSAPP = "5517991089367"` no script).
 - Imagens do acervo: `assets/obras/<projeto>/NN.webp` (01 = capa, 02 = aparece no hover). Originais no Drive "PROJETOS DREAMZ 2026".
