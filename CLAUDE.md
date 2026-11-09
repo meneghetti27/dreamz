@@ -4,6 +4,8 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
 
 ## Site
 - Publicado em: https://claude.ai/artifact/FEP3y2ytdLKQCJHgE3oEir — código em `index.html` + `assets/`. Para editar, republique nesse mesmo link.
+- **Vercel**: `index.html` está no formato artifact (sem doctype/head/body). Depois de qualquer mudança rode `python3 tools/build.py`,
+  que gera `dist/` (página completa + assets) e faça commit do `dist/` junto. `vercel.json` publica a pasta `dist/` sem build.
 - Conceito aprovado: **"perdendo o sono"**. O site é uma noite: relógio vai de **23:47 → 06:00** conforme a rolagem e o fundo vai do preto
   ao marinho, lavanda, azul-céu e creme do amanhecer. Seções: 23:47 entrada (pálpebras abrindo, logo com brilho nas estrelas) ·
   00:00 manifesto ("Lo$ing $leep…") · 01:00 técnicas · 02:00 acervo (13 "sonhos" com etiqueta de museu e visor) · 05:00 quem sonha ·
