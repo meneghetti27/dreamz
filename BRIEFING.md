@@ -25,3 +25,26 @@ Dois tipos de entrega: **identidade visual** (logo, paleta, tipografia, aplicaç
 | Maestralle | posts | móveis planejados/arquitetura, oliva, editorial minimalista |
 | Espaço Vincitori | posts | eventos, preto + dourado, serifada clássica |
 | Aluggo, Boi Delivery, Spada e Abdalla, PMX Ativos Judiciais, Marchiori | posts | — |
+
+## Marca dreamz (`marca/`)
+- **Símbolo**: criança esfregando os olhos (sono / sonho) com **3 estrelas** no lugar dos olhos. Traço de ilustração antiga, chapado, 1 cor.
+- **Logotipo**: "DREAMZ" em serifada larga, maiúsculas e espaçada; o símbolo fica em cima e as mangas/pernas descem por trás das letras.
+- Versões: logo completo, só o símbolo, só o nome. Sempre **1 cor sobre fundo chapado**.
+- PNGs transparentes gerados: `logo-preto.png`, `logo-branco.png`, `simbolo-preto.png`, `simbolo-branco.png` (dá pra recolorir em CSS/código).
+
+### Paleta (tirada das estrelas; hex aproximados, confirmar com o dono)
+| Cor | Hex aprox. |
+|---|---|
+| Azul-marinho | `#283456` |
+| Marrom | `#704838` |
+| Cinza-azulado | `#A3AEC4` |
+| Creme | `#FEFAE2` |
+| Azul-céu | `#8AC4FE` |
+| Azul-bebê | `#A6D8FF` |
+| Lavanda/periwinkle | `#7690D4` |
+| Preto e branco | `#000` / `#FFF` |
+Combinações aprovadas nas peças: creme × marinho, periwinkle × preto, azul-céu × marrom.
+
+### Moodboard
+Anos 2000 / old money / streetwear de luxo: conversível, iate no mar, senhor fumando ao sol, Beckham de jeans largo, A$AP de gorro, tênis e óculos Chanel,
+pessoa sentada à beira de um prédio sobre as nuvens (sonho). Foto analógica, luz de sol, granulado.
