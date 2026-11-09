@@ -53,5 +53,6 @@ pessoa sentada à beira de um prédio sobre as nuvens (sonho). Foto analógica, 
 - Instagram: **@dreamzgalllery** (com 3 L) — https://instagram.com/dreamzgalllery · print em `referencias/instagram-dreamzgalllery.webp`
 - Bio: "Galeria de arte · by @maldonaenz" · frase: **"Lo$ing $leep for your Dreamz i$ better than dreaming about them ✨"**
 - E-mail: **dre3amzgallery@gmail.com**
+- WhatsApp: **+55 17 99108-9367**
 - Criador: @maldonaenz
 - Posts atuais: manual de ID visual da BMC, case de fone JBL com "DREAMZ", camiseta creme com logo azul, "DREAMZ" em fundo preto.

@@ -4,7 +4,7 @@
 <meta name="description" content="dreamz — galeria de design conceitual. Identidade visual e social media.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Caveat:wght@400;600;700&family=VT323&display=swap">
 <style>
 /* Layout: uma noite em rolagem — 23:47 (acordando dentro do sonho) até 06:00 (o despertador toca no orçamento).
    O fundo vai do preto ao creme do amanhecer. Visual único e deliberado: a cor é dada pela hora, não pelo tema do sistema. */
@@ -67,15 +67,15 @@ main,.topo{transition:filter .35s ease,opacity .35s ease}
 
 /* ---------- despertador Y2K (plástico verde-limão + visor LCD) ---------- */
 .despertador{position:fixed;z-index:50;left:var(--gutter);bottom:calc(16px + env(safe-area-inset-bottom, 0px));display:flex;align-items:flex-end;gap:14px;pointer-events:none}
-.corpo{position:relative;width:138px;height:88px;border-radius:30px 30px 26px 26px;padding:11px 12px 14px;transform-origin:50% 100%;
-  background:radial-gradient(120% 90% at 30% 15%,#E4FF96 0%,#B5EE3C 38%,#86CF14 70%,#5C9E0B 100%);
-  box-shadow:inset 0 4px 6px rgba(255,255,255,.75),inset 0 -8px 14px rgba(40,80,0,.45),inset 6px 0 10px rgba(255,255,255,.2),0 14px 28px -6px rgba(0,0,0,.55)}
+.corpo{position:relative;width:132px;height:66px;border-radius:24px 24px 20px 20px;padding:8px 10px 10px;transform-origin:50% 100%;
+  background:radial-gradient(120% 100% at 30% 10%,#6FA83E 0%,#3F7A22 45%,#2A5716 78%,#1B3B0D 100%);
+  box-shadow:inset 0 3px 5px rgba(220,255,180,.45),inset 0 -6px 12px rgba(0,20,0,.55),inset 6px 0 10px rgba(255,255,255,.2),0 14px 28px -6px rgba(0,0,0,.55)}
 .corpo::before{content:"";position:absolute;top:-7px;left:50%;width:46px;height:10px;transform:translateX(-50%);border-radius:8px 8px 3px 3px;
-  background:linear-gradient(#D7FF7E,#8BD21A);box-shadow:inset 0 2px 2px rgba(255,255,255,.7),0 1px 0 rgba(0,0,0,.2)}
-.corpo::after{content:"";position:absolute;inset:7px 14px auto;height:16px;border-radius:20px;background:linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,0));pointer-events:none}
-.tela{height:100%;border-radius:12px;padding:5px 8px 4px;display:grid;grid-template-rows:auto 1fr;color:#17240c;
+  background:linear-gradient(#5E9636,#2E5E18);box-shadow:inset 0 2px 2px rgba(220,255,180,.45),0 1px 0 rgba(0,0,0,.2)}
+.corpo::after{content:"";position:absolute;inset:5px 14px auto;height:10px;border-radius:20px;background:linear-gradient(rgba(230,255,200,.35),rgba(255,255,255,0));pointer-events:none}
+.tela{height:100%;border-radius:10px;padding:3px 8px 3px;display:grid;grid-template-rows:auto 1fr;color:#17240c;
   background:linear-gradient(170deg,#D9E8BE,#B6CC93 60%,#A3BA80);box-shadow:inset 0 3px 6px rgba(0,0,0,.35),inset 0 -1px 0 rgba(255,255,255,.4);
-  font:700 7.5px/1 var(--f-body);letter-spacing:.08em;transition:background .2s}
+  font:700 6.5px/1 var(--f-body);letter-spacing:.08em;transition:background .2s}
 .tela .info{display:flex;justify-content:space-between;opacity:.75}
 .tela svg{width:100%;height:100%;overflow:visible}
 .tela .seg{fill:#17240c}
@@ -133,34 +133,96 @@ em{font-style:italic}
 .estrela5{display:block;background:currentColor;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
 .placa .estrela5{position:absolute;top:24px;right:24px;width:18px;height:18px;color:var(--accent)}
 
-/* 02:00 — túnel de sonhos */
-.acervo-intro{padding-block:20px 10px}
-.acervo-intro .topo-a{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px 40px}
-.acervo-intro h2{margin:16px 0 0;font-size:clamp(56px,9vw,132px);line-height:.9;letter-spacing:-.01em}
-.acervo-intro h2 em{color:var(--accent)}
-.acervo-intro p{margin:0;max-width:34ch;color:var(--muted)}
-.tunel{position:relative}
-.palco{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
-.sonho-item{all:unset;position:absolute;left:50%;top:46%;cursor:zoom-in;will-change:transform,filter,opacity;
-  box-shadow:0 40px 90px -20px rgba(0,0,0,.65),0 0 0 1px rgba(254,250,226,.08)}
-.sonho-item img{width:100%;height:100%;object-fit:cover}
-.sonho-item:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
-.sonho-item::after{content:"";position:absolute;inset:-14%;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgba(138,196,254,.28),transparent);filter:blur(20px)}
-.legenda{position:absolute;left:var(--gutter);right:var(--gutter-r);bottom:calc(30px + env(safe-area-inset-bottom,0px));display:grid;justify-items:end;text-align:right;gap:4px;pointer-events:none;z-index:200}
-.legenda .num{font-family:var(--f-display);font-style:italic;font-size:22px;color:var(--muted)}
-.legenda h3{margin:0;font-size:clamp(34px,4.6vw,64px);line-height:.95}
-.legenda .ficha{font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:6px}
-.legenda .frase{margin:8px 0 0;font-family:var(--f-display);font-style:italic;font-size:clamp(19px,1.8vw,24px);line-height:1.25;max-width:30ch}
-.legenda > *{transition:opacity .35s ease,transform .35s ease}
-.legenda.troca > *{opacity:0;transform:translateY(8px)}
-.constelacao{position:absolute;top:50%;right:var(--gutter-r);transform:translateY(-50%);display:flex;flex-direction:column;gap:9px;list-style:none;margin:0;padding:0;z-index:200}
-.constelacao button{all:unset;cursor:pointer;display:block;width:12px;height:12px;opacity:.35;transition:opacity .2s,transform .2s}
-.constelacao button .estrela5{width:100%;height:100%;color:var(--fg)}
-.constelacao button[aria-current="true"]{opacity:1;transform:scale(1.5)}
-.constelacao button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.dica{position:absolute;top:calc(70px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);z-index:200;white-space:nowrap}
+/* 02:00 — canal da madrugada (TV Y2K) */
+.secao-obra{padding-block:clamp(60px,9vw,120px)}
+.secao-obra .cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px 40px;margin-bottom:44px}
+.secao-obra h2{margin:16px 0 0;font-size:clamp(48px,7.5vw,108px);line-height:.9;letter-spacing:-.01em}
+.secao-obra h2 em{color:var(--accent)}
+.secao-obra .cab p{margin:0;max-width:36ch;color:var(--muted)}
+.tv-cena{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:34px;align-items:end;max-width:960px;margin:0 auto}
+.tv{position:relative;border-radius:38px 38px 30px 30px;padding:24px 24px 62px;
+  background:linear-gradient(160deg,#EEF1F5 0%,#C3C9D2 35%,#9AA2AE 70%,#7D8591 100%);
+  box-shadow:inset 0 3px 4px rgba(255,255,255,.9),inset 0 -10px 18px rgba(0,0,0,.25),0 40px 70px -25px rgba(0,0,0,.7)}
+.tv::after{content:"";position:absolute;left:18%;right:18%;bottom:-16px;height:16px;border-radius:0 0 18px 18px;background:linear-gradient(#8E96A2,#5E6570);z-index:-1}
+.tela-tv{position:relative;aspect-ratio:4/3;border-radius:30px/36px;overflow:hidden;background:#05070a;cursor:zoom-in;
+  box-shadow:inset 0 0 0 10px #1b1f26,inset 0 0 40px 18px rgba(0,0,0,.9),0 0 0 3px #5d646e}
+.tela-tv:focus-visible{outline:3px solid var(--accent);outline-offset:6px}
+.tela-tv .fundo{position:absolute;inset:-10%;background-size:cover;background-position:center;filter:blur(26px) brightness(.55) saturate(1.2)}
+.tela-tv img.prog{position:absolute;inset:7% 0;margin:auto;height:86%;width:auto;max-width:92%;object-fit:contain;transition:opacity .45s ease;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.tela-tv .linhas{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.28) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}
+.tela-tv .vidro{position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(0,0,0,.65) 100%),linear-gradient(125deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 32%)}
+.tela-tv canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none}
+.tela-tv.zapeando canvas{opacity:1}
+.osd{position:absolute;font-family:"VT323",ui-monospace,monospace;color:#7CFF7C;text-shadow:0 0 6px rgba(124,255,124,.8);pointer-events:none;letter-spacing:.04em}
+.osd.ch{top:6%;right:7%;font-size:clamp(26px,3.6vw,44px)}
+.osd.rodape{left:6%;right:6%;bottom:5%;font-size:clamp(15px,1.9vw,22px);line-height:1.15;background:rgba(0,0,0,.55);padding:6px 10px;border-left:3px solid #7CFF7C}
+.osd.rodape b{font-weight:400;color:#fff;text-shadow:0 0 6px rgba(255,255,255,.6)}
+.painel-tv{position:absolute;left:28px;right:28px;bottom:16px;display:flex;align-items:center;gap:14px}
+.painel-tv .marca-tv{font-family:var(--f-display);font-weight:600;letter-spacing:.4em;font-size:13px;color:#4b525c;text-shadow:0 1px 0 rgba(255,255,255,.7)}
+.painel-tv .grade-som{flex:1;height:18px;background:repeating-linear-gradient(90deg,#6f7782 0 2px,transparent 2px 6px);border-radius:4px;opacity:.6}
+.painel-tv .botao{width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f4f6f9,#8c939d);box-shadow:0 2px 3px rgba(0,0,0,.35)}
+.painel-tv .led{width:8px;height:8px;border-radius:50%;background:#55ff6a;box-shadow:0 0 8px #55ff6a}
+.controle{justify-self:center;width:118px;border-radius:40px 40px 34px 34px;padding:22px 16px 26px;display:grid;gap:12px;justify-items:center;
+  background:linear-gradient(170deg,#3a3f48,#1c1f25);box-shadow:inset 0 2px 3px rgba(255,255,255,.18),0 26px 40px -18px rgba(0,0,0,.8);transform:rotate(6deg)}
+.controle button{all:unset;cursor:pointer;display:grid;place-items:center;color:#e9edf2;font:600 11px/1 var(--f-body);letter-spacing:.06em;
+  background:linear-gradient(#5a616c,#363b44);box-shadow:0 2px 0 #111,inset 0 1px 0 rgba(255,255,255,.2);transition:transform .08s}
+.controle button:active{transform:translateY(2px);box-shadow:0 0 0 #111}
+.controle button:focus-visible{outline:2px solid #7CFF7C;outline-offset:2px}
+.controle .liga{width:26px;height:26px;border-radius:50%;background:linear-gradient(#ff6b6b,#b82020)}
+.controle .nums{display:grid;grid-template-columns:repeat(3,24px);gap:7px}
+.controle .nums button{width:24px;height:20px;border-radius:7px}
+.controle .ch{display:grid;gap:6px;width:100%}
+.controle .ch button{height:34px;border-radius:12px;font-size:12px}
+.controle .ir{font:700 9px/1 var(--f-body);letter-spacing:.2em;color:#8a919c}
+.guia{margin:56px auto 0;max-width:960px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:2px 26px;
+  font-family:"VT323",ui-monospace,monospace;font-size:21px;line-height:1.2}
+.guia button{all:unset;cursor:pointer;display:grid;grid-template-columns:52px 52px 1fr;gap:8px;padding:8px 10px;border-bottom:1px dashed var(--line);color:var(--muted)}
+.guia button:hover,.guia button[aria-current="true"]{color:#7CFF7C;background:rgba(0,0,0,.35)}
+.guia button:focus-visible{outline:2px solid var(--accent)}
+.guia-titulo{max-width:960px;margin:56px auto -40px;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
 
-/* 05:00 */
+/* 03:30 — diário de sonhos */
+.diario-wrap{max-width:1040px;margin:0 auto;perspective:2400px}
+.diario{position:relative;display:grid;grid-template-columns:1fr 1fr;transform:rotate(-1.2deg);filter:drop-shadow(0 40px 50px rgba(0,0,0,.55))}
+.pagina{position:relative;min-height:560px;padding:44px 46px 40px 58px;color:#1d2440;overflow:hidden;transform-style:preserve-3d;backface-visibility:hidden;
+  background:repeating-linear-gradient(to bottom,transparent 0 33px,rgba(86,116,180,.28) 33px 34px) 0 62px/100% calc(100% - 62px) no-repeat,#FBF6E8}
+.pagina.esq{border-radius:10px 2px 2px 10px;box-shadow:inset -34px 0 40px -30px rgba(70,50,20,.45);transform-origin:right center}
+.pagina.esq::before{content:"";position:absolute;top:0;bottom:0;left:44px;width:2px;background:rgba(214,92,92,.45)}
+.pagina.dir{border-radius:2px 10px 10px 2px;box-shadow:inset 34px 0 40px -30px rgba(70,50,20,.45);transform-origin:left center;padding-left:46px}
+.espiral{position:absolute;top:22px;bottom:22px;left:50%;width:30px;transform:translateX(-50%);z-index:5;pointer-events:none;
+  background:radial-gradient(circle at 50% 50%,transparent 5px,#9aa1ad 5.5px,#e9edf2 7px,#7d8591 8.5px,transparent 9px) 0 0/30px 26px repeat-y}
+.manus{font-family:"Caveat","Bradley Hand","Segoe Print",cursive}
+.pagina .data{font-family:"Caveat",cursive;font-size:22px;color:#5b6a9a;margin:0 0 6px}
+.pagina .nsonho{font-family:"Caveat",cursive;font-size:24px;color:#a2534f;margin:0}
+.pagina h3{margin:2px 0 10px;font-family:"Caveat",cursive;font-weight:700;font-size:clamp(46px,5vw,64px);line-height:.95;color:#1d2440}
+.pagina .relato{font-family:"Caveat",cursive;font-size:clamp(25px,2.4vw,30px);line-height:34px;margin:0 0 20px;max-width:24ch}
+.pagina .ficha-m{font-family:"Caveat",cursive;font-size:23px;line-height:34px;margin:0;color:#3b4672}
+.pagina .ficha-m s{color:#a2534f}
+.rabisco{position:absolute;right:34px;bottom:34px;width:70px;height:70px;color:#5b6a9a;opacity:.8}
+.ver-pecas{all:unset;cursor:pointer;margin-top:14px;font-family:"Caveat",cursive;font-size:26px;color:#1d2440;border-bottom:2px solid #a2534f;line-height:1.1}
+.ver-pecas:focus-visible{outline:2px solid #5b6a9a;outline-offset:3px}
+.polaroides{position:relative;height:100%;min-height:480px}
+.polaroid{all:unset;cursor:zoom-in;position:absolute;background:#fff;padding:10px 10px 38px;box-shadow:0 12px 24px -8px rgba(0,0,0,.45),0 1px 2px rgba(0,0,0,.2);transition:transform .25s ease}
+.polaroid img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.polaroid .leg{position:absolute;left:12px;right:12px;bottom:8px;font-family:"Caveat",cursive;font-size:20px;color:#3b4672;text-align:center}
+.polaroid::before{content:"";position:absolute;top:-12px;left:50%;width:82px;height:24px;transform:translateX(-50%) rotate(-4deg);background:rgba(232,220,180,.7);box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.polaroid:hover{z-index:9;transform:rotate(0) scale(1.04)!important}
+.polaroid:focus-visible{outline:3px solid #5b6a9a;outline-offset:4px}
+.polaroid.p1{width:52%;left:2%;top:4%;transform:rotate(-6deg)}
+.polaroid.p2{width:46%;right:0;top:20%;transform:rotate(5deg)}
+.polaroid.p3{width:42%;left:20%;bottom:0;transform:rotate(-2deg)}
+.virar{display:flex;justify-content:center;align-items:center;gap:22px;margin-top:40px}
+.virar button{all:unset;cursor:pointer;font-family:"Caveat",cursive;font-size:28px;color:var(--fg);border-bottom:1.5px solid currentColor;line-height:1}
+.virar button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.virar .pag{font-family:"Caveat",cursive;font-size:26px;color:var(--muted)}
+.pagina.vira-sai{transition:transform .38s ease-in;transform:rotateY(-90deg)}
+.pagina.esq.vira-sai{transform:rotateY(90deg)}
+.pagina.vira-entra{transition:none;transform:rotateY(90deg)}
+.pagina.dir.vira-entra{transform:rotateY(-90deg)}
+.pagina.vira-fim{transition:transform .38s ease-out;transform:rotateY(0)}
+
+/* 05:00 *//* 05:00 */
 .quem{padding-block:clamp(90px,12vw,160px)}
 .quem .grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:40px 70px;align-items:center;margin-top:30px}
 .quem .simbolo{width:min(100%,360px);aspect-ratio:728/647;color:var(--fg);margin-inline:auto}
@@ -176,7 +238,7 @@ em{font-style:italic}
 .amanhecer h2{margin:18px 0 0;font-size:clamp(60px,10vw,150px);line-height:.88;letter-spacing:-.015em}
 .amanhecer h2 em{color:var(--marrom)}
 .amanhecer .intro{font-family:var(--f-display);font-style:italic;font-size:clamp(22px,2.4vw,30px);max-width:32ch;margin:22px 0 0;line-height:1.2}
-.caixa{margin-top:46px;border:1.5px solid var(--fg);padding:clamp(22px,4vw,44px);display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:34px 48px}
+.caixa{margin-top:46px;border:1.5px solid var(--fg);background:rgba(254,250,236,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);padding:clamp(22px,4vw,44px);display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:34px 48px}
 .campos{display:grid;gap:22px;min-width:0}
 .campo{display:grid;gap:8px;min-width:0}
 .campo > label,.campo > legend,.campo .lab{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
@@ -219,18 +281,32 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 .visor-pe .frase{font-family:var(--f-display);font-style:italic;text-transform:none;letter-spacing:0;font-size:20px;font-weight:400;max-width:60ch}
 
 @media (max-width:900px){
+  .tv-cena{grid-template-columns:1fr}
+  .controle{transform:none;width:auto;grid-template-columns:auto auto auto;align-items:center;border-radius:28px;padding:14px 18px}
+  .controle .nums{grid-template-columns:repeat(9,24px)}
+  .controle .ch{grid-template-columns:1fr 1fr;width:110px}
+  .controle .ir{display:none}
+  .diario{grid-template-columns:1fr;transform:none}
+  .espiral{display:none}
+  .pagina{min-height:0}
+  .pagina.esq,.pagina.dir{border-radius:10px;box-shadow:none}
+  .pagina.dir{border-top:1px dashed rgba(29,36,64,.25)}
+  .polaroides{min-height:420px}
   .quem .grade,.caixa{grid-template-columns:1fr}
-  .legenda{justify-items:start;text-align:left;bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 }
 @media (max-width:560px){
+  .tv{padding:14px 14px 48px;border-radius:26px}
+  .painel-tv{left:18px;right:18px;bottom:12px}
+  .controle{grid-template-columns:1fr;justify-items:center}
+  .controle .nums{grid-template-columns:repeat(5,24px)}
+  .pagina{padding:30px 22px 30px 40px}
+  .pagina.esq::before{left:28px}
+  .polaroides{min-height:360px}
   .idioma .longo{display:none}
   .despertador{left:auto;right:var(--gutter-r);bottom:calc(14px + env(safe-area-inset-bottom, 0px))}
-  .corpo{transform:scale(.62);transform-origin:100% 100%;margin:-33px 0 0 -52px}
+  .corpo{transform:scale(.62);transform-origin:100% 100%;margin:-25px 0 0 -50px}
   .despertador.tocando .corpo{animation:none}
   .despertador .leitura{display:none}
-  .constelacao{gap:7px}
-  .constelacao button{width:9px;height:9px}
-  .legenda{bottom:calc(28px + env(safe-area-inset-bottom,0px))}
   .visor-pe .frase{display:none}
 }
 @media (prefers-reduced-motion:reduce){
@@ -316,26 +392,61 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
     </div>
   </section>
 
-  <section class="acervo" id="acervo" data-cena-pt="sono profundo" data-cena-en="deep sleep">
-    <div class="faixa"><div class="miolo acervo-intro">
-      <div class="topo-a">
+  <section class="faixa secao-obra" id="acervo" data-cena-pt="canal da madrugada" data-cena-en="late-night TV">
+    <div class="miolo">
+      <div class="cab">
         <div>
-          <div class="rotulo">02:00 · <span lang="pt">acervo</span><span lang="en">collection</span></div>
-          <h2><span lang="pt">13 <em>sonhos</em></span><span lang="en">13 <em>dreams</em></span></h2>
+          <div class="rotulo">02:00 · <span lang="pt">acervo, versão A</span><span lang="en">collection, version A</span></div>
+          <h2><span lang="pt">Canal da <em>madrugada</em></span><span lang="en">Late-night <em>channel</em></span></h2>
         </div>
-        <p lang="pt">No sono profundo os sonhos passam um por um. Continue rolando pra atravessar o acervo, e toque num sonho pra ver de perto.</p>
-        <p lang="en">In deep sleep, dreams drift by one at a time. Keep scrolling to travel through the collection, and tap a dream to see it up close.</p>
+        <p lang="pt">Insônia, controle na mão. Cada canal passa o sonho de uma marca. Troque de canal no controle ou na programação, e toque na tela pra ver de perto.</p>
+        <p lang="en">Can't sleep, remote in hand. Every channel shows a brand's dream. Change channels on the remote or in the guide, and tap the screen to see it up close.</p>
       </div>
-    </div></div>
-    <div class="tunel" id="tunel">
-      <div class="palco" id="palco">
-        <div id="sonhos"></div>
-        <ol class="constelacao" id="constelacao" aria-label="Sonhos do acervo"></ol>
-        <div class="legenda" id="legenda" aria-live="polite">
-          <span class="num" id="l-num"></span>
-          <h3 id="l-titulo"></h3>
-          <span class="ficha" id="l-ficha"></span>
-          <p class="frase" id="l-frase"></p>
+      <div class="tv-cena">
+        <div class="tv">
+          <div class="tela-tv" id="tela-tv" role="button" tabindex="0" aria-label="Ver as peças deste canal">
+            <div class="fundo" id="tv-fundo"></div>
+            <img class="prog" id="tv-img" alt="" src="assets/obras/bmc/01.webp">
+            <div class="linhas"></div>
+            <canvas id="chiado" width="160" height="120"></canvas>
+            <div class="osd ch" id="tv-ch">CH 01</div>
+            <div class="osd rodape" id="tv-rodape"></div>
+            <div class="vidro"></div>
+          </div>
+          <div class="painel-tv" aria-hidden="true"><span class="marca-tv">DREAMZ</span><span class="grade-som"></span><span class="botao"></span><span class="botao"></span><span class="led"></span></div>
+        </div>
+        <div class="controle" role="group" aria-label="Controle remoto">
+          <button type="button" class="liga" id="tv-liga" aria-label="Canal aleatório"></button>
+          <div class="nums" id="tv-nums"></div>
+          <div class="ch"><button type="button" id="ch-mais" aria-label="Próximo canal">CH ▲</button><button type="button" id="ch-menos" aria-label="Canal anterior">CH ▼</button></div>
+          <span class="ir">DREAMZ</span>
+        </div>
+      </div>
+      <p class="guia-titulo"><span lang="pt">programação da madrugada</span><span lang="en">tonight's guide</span></p>
+      <div class="guia" id="guia"></div>
+    </div>
+  </section>
+
+  <section class="faixa secao-obra" id="diario" data-cena-pt="diário de sonhos" data-cena-en="dream journal">
+    <div class="miolo">
+      <div class="cab">
+        <div>
+          <div class="rotulo">03:30 · <span lang="pt">acervo, versão B</span><span lang="en">collection, version B</span></div>
+          <h2><span lang="pt">Diário de <em>sonhos</em></span><span lang="en">Dream <em>journal</em></span></h2>
+        </div>
+        <p lang="pt">Sonho que não é anotado some de manhã. Por isso cada projeto ganhou uma página, com as peças coladas ao lado. Vire as páginas.</p>
+        <p lang="en">Dreams you don't write down are gone by morning, so every project got a page, with its pieces taped next to it. Turn the pages.</p>
+      </div>
+      <div class="diario-wrap">
+        <div class="diario" id="diario-livro">
+          <div class="pagina esq" id="pag-esq"></div>
+          <div class="espiral" aria-hidden="true"></div>
+          <div class="pagina dir" id="pag-dir"></div>
+        </div>
+        <div class="virar">
+          <button type="button" id="pag-ant"><span lang="pt">← página anterior</span><span lang="en">← previous page</span></button>
+          <span class="pag" id="pag-num">1 / 13</span>
+          <button type="button" id="pag-prox"><span lang="pt">próxima página →</span><span lang="en">next page →</span></button>
         </div>
       </div>
     </div>
@@ -428,7 +539,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 
 <script>
 /* número do WhatsApp da dreamz (só dígitos, 55 + DDD + número). Vazio = abre o WhatsApp para a pessoa escolher o contato. */
-const WHATSAPP = "";
+const WHATSAPP = "5517991089367";
 
 const OBRAS = [
   {s:"bmc", t:"Bross Motors", tipo:"id", h:"02:03", pecas:20, n:8, w:1400, hgt:788,
@@ -481,64 +592,71 @@ function mostraHora(hh,mm){
 }
 setInterval(()=>{ const g=document.getElementById("dois-pontos"); if(g&&!calmo) g.style.opacity=g.style.opacity==="0"?"1":"0"; },600);
 
-/* ---------- túnel de sonhos ---------- */
-const sonhosEl=document.getElementById("sonhos"), tunel=document.getElementById("tunel"), constel=document.getElementById("constelacao");
-const LADO=[-1,.85,-.55,1,-.9,.45,-1,.75,-.4,.95,-.8,.55,0];
-const ALTO=[-3,4,-5,2,-2,5,-4,1,3,-3,4,-1,0];
-sonhosEl.innerHTML=OBRAS.map((o,k)=>`<button class="sonho-item" type="button" data-k="${k}" aria-label="${o.t}" style="aspect-ratio:${o.w}/${o.hgt}">
-  <img src="${img(o,1)}" alt="${o.t}" width="${o.w}" height="${o.hgt}" loading="${k<4?"eager":"lazy"}"></button>`).join("");
-constel.innerHTML=OBRAS.map((o,k)=>`<li><button type="button" data-k="${k}" aria-label="${o.t}"><span class="estrela5"></span></button></li>`).join("");
-const itens=[...sonhosEl.children], pontos=[...constel.querySelectorAll("button")];
-tunel.style.height=`calc(${N} * 70vh + 100vh)`;
-let focoAtual=-1;
-function legenda(k){
-  if(k===focoAtual) return; const prim=focoAtual<0; focoAtual=k; const o=OBRAS[k], L=document.getElementById("legenda");
-  const set=()=>{
-    document.getElementById("l-num").textContent=`Nº ${String(k+1).padStart(2,"0")} / ${N}`;
-    document.getElementById("l-titulo").textContent=o.t;
-    document.getElementById("l-ficha").innerHTML=`<span lang="pt">${TIPO[o.tipo].pt} · sonhado às ${o.h} · ${o.pecas} peças</span><span lang="en">${TIPO[o.tipo].en} · dreamt at ${o.h} · ${o.pecas} pieces</span>`;
-    document.getElementById("l-frase").innerHTML=`<span lang="pt">${o.pt}</span><span lang="en">${o.en}</span>`;
-    L.classList.remove("troca");
-  };
-  pontos.forEach((p,i)=>p.setAttribute("aria-current", i===k));
-  if(prim||calmo){ set(); } else { L.classList.add("troca"); setTimeout(set,220); }
+/* ---------- versão A: TV da madrugada ---------- */
+const tvImg=document.getElementById("tv-img"), tvFundo=document.getElementById("tv-fundo"), telaTv=document.getElementById("tela-tv");
+const chiado=document.getElementById("chiado"), cz=chiado.getContext("2d"), guia=document.getElementById("guia");
+let canal=0, peca=1, zapTimer=0, pecaTimer=0;
+document.getElementById("tv-nums").innerHTML=Array.from({length:9},(_,i)=>`<button type="button" data-ch="${i}">${i+1}</button>`).join("");
+guia.innerHTML=OBRAS.map((o,k)=>`<button type="button" data-ch="${k}"><span>CH ${String(k+1).padStart(2,"0")}</span><span>${o.h}</span><span>${o.t.toUpperCase()}</span></button>`).join("");
+function pintaChiado(){ const d=cz.createImageData(160,120); for(let i=0;i<d.data.length;i+=4){ const v=Math.random()*255; d.data[i]=d.data[i+1]=d.data[i+2]=v; d.data[i+3]=255; } cz.putImageData(d,0,0); }
+function mostraPeca(){ const o=OBRAS[canal], src=img(o,peca); tvImg.style.opacity=0; setTimeout(()=>{ tvImg.src=src; tvImg.alt=`${o.t}, peça ${peca}`; tvFundo.style.backgroundImage=`url(${src})`; tvImg.style.opacity=1; },calmo?0:220); }
+function rodapeTv(){ const o=OBRAS[canal];
+  document.getElementById("tv-ch").textContent=`CH ${String(canal+1).padStart(2,"0")}`;
+  document.getElementById("tv-rodape").innerHTML=`${o.h} · <b>${o.t.toUpperCase()}</b><br><span lang="pt">${TIPO[o.tipo].pt.toLowerCase()} · ${o.pecas} peças</span><span lang="en">${TIPO[o.tipo].en.toLowerCase()} · ${o.pecas} pieces</span>`;
+  guia.querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-current",i===canal)); }
+function sintoniza(k){
+  canal=(k+N)%N; peca=1;
+  if(!calmo){ telaTv.classList.add("zapeando"); let n=0; clearInterval(zapTimer); zapTimer=setInterval(()=>{ pintaChiado(); if(++n>9){ clearInterval(zapTimer); telaTv.classList.remove("zapeando"); } },40); }
+  rodapeTv(); const o=OBRAS[canal]; tvImg.src=img(o,1); tvImg.alt=o.t; tvFundo.style.backgroundImage=`url(${img(o,1)})`;
+  clearInterval(pecaTimer); if(!calmo) pecaTimer=setInterval(()=>{ peca=peca%OBRAS[canal].n+1; mostraPeca(); },2800);
 }
-function tunelFrame(){
-  const r=tunel.getBoundingClientRect(), total=tunel.offsetHeight-innerHeight;
-  const prog=Math.min(1,Math.max(0,-r.top/Math.max(1,total)));
-  const raw=prog*(N-1), base0=Math.floor(raw), fr=raw-base0, k2=Math.min(1,Math.max(0,(fr-0.3)/0.4));
-  const t=Math.min(N-1,base0+k2*k2*(3-2*k2)), estreito=innerWidth<700; // cada sonho fica parado em foco por um tempo
-  const base=estreito?Math.min(innerWidth*0.66,360):Math.min(innerWidth*0.3,400);
-  const sx=estreito?innerWidth*0.12:innerWidth*0.21;
-  itens.forEach((el,i)=>{
-    const o=OBRAS[i], d=i-t;
-    if(d<-1||d>5.5){ el.style.visibility="hidden"; return; }
-    el.style.visibility="visible";
-    const larg=o.w>o.hgt? base*1.55 : base;
-    let s,blur,op;
-    if(d>=0){ s=1/(1+d*0.62); blur=Math.min(14,d*3.4); op=Math.max(0,Math.min(1,1-(d-3.4)/2)); }
-    else { s=1+(-d)*1.9; blur=-d*16; op=Math.max(0,1+d*1.15); }
-    const x=LADO[i]*sx*(d>=0?s:1+(-d)*1.2), y=ALTO[i]*(innerHeight/100)*s;
-    el.style.width=larg+"px";
-    el.style.transform=`translate(-50%,-50%) translate(${x}px,${y}px) scale(${s})`;
-    el.style.filter=blur>0.3?`blur(${blur.toFixed(1)}px)`:"none";
-    el.style.opacity=op.toFixed(3);
-    el.style.zIndex=String(100-Math.round(d*10));
-    el.style.pointerEvents=op>0.5&&Math.abs(d)<1.6?"auto":"none";
-    el.tabIndex=Math.abs(d)<0.5?0:-1;
-  });
-  legenda(Math.min(N-1,Math.max(0,Math.round(t))));
+document.getElementById("ch-mais").addEventListener("click",()=>sintoniza(canal+1));
+document.getElementById("ch-menos").addEventListener("click",()=>sintoniza(canal-1));
+document.getElementById("tv-liga").addEventListener("click",()=>sintoniza(Math.floor(Math.random()*N)));
+document.getElementById("tv-nums").addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) sintoniza(+b.dataset.ch); });
+guia.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b){ sintoniza(+b.dataset.ch); telaTv.scrollIntoView({behavior:calmo?"auto":"smooth",block:"center"}); } });
+telaTv.addEventListener("click",()=>abrirObra(canal));
+telaTv.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); abrirObra(canal); } if(e.key==="ArrowRight"||e.key==="ArrowUp") sintoniza(canal+1); if(e.key==="ArrowLeft"||e.key==="ArrowDown") sintoniza(canal-1); });
+sintoniza(0);
+
+/* ---------- versão B: diário de sonhos ---------- */
+const pagEsq=document.getElementById("pag-esq"), pagDir=document.getElementById("pag-dir");
+let folha=0, virando=false;
+const RABISCO=`<svg class="rabisco" viewBox="0 0 70 70" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M35 8 L41 27 L61 27 L45 39 L51 58 L35 46 L19 58 L25 39 L9 27 L29 27 Z"/><path d="M12 64 q10 -6 20 0 t20 0" opacity=".6"/></svg>`;
+function escrevePaginas(k){
+  const o=OBRAS[k];
+  pagEsq.innerHTML=`<p class="data"><span lang="pt">noite de 8 pra 9 · ${o.h}</span><span lang="en">night of the 8th · ${o.h}</span></p>
+    <p class="nsonho"><span lang="pt">sonho nº ${k+1}</span><span lang="en">dream no. ${k+1}</span></p>
+    <h3>${o.t}</h3>
+    <p class="relato"><span lang="pt">${o.pt}</span><span lang="en">${o.en}</span></p>
+    <p class="ficha-m"><span lang="pt">técnica: ${TIPO[o.tipo].pt.toLowerCase()}</span><span lang="en">technique: ${TIPO[o.tipo].en.toLowerCase()}</span><br>
+    <span lang="pt">${o.pecas} peças</span><span lang="en">${o.pecas} pieces</span> · <s><span lang="pt">esquecer</span><span lang="en">forget</span></s> <span lang="pt">anotar tudo</span><span lang="en">write it all down</span></p>
+    <button type="button" class="ver-pecas" data-k="${k}"><span lang="pt">ver todas as peças →</span><span lang="en">see every piece →</span></button>${RABISCO}`;
+  const ps=[1,2,3].filter(i=>i<=o.n);
+  pagDir.innerHTML=`<div class="polaroides">${ps.map((i,j)=>`<button type="button" class="polaroid p${j+1}" data-k="${k}" aria-label="${o.t}, peça ${i}"><img src="${img(o,i)}" alt="" loading="lazy"><span class="leg">${o.t.split(" ")[0].toLowerCase()} · ${i}</span></button>`).join("")}</div>`;
+  document.getElementById("pag-num").textContent=`${k+1} / ${N}`;
 }
-pontos.forEach(p=>p.addEventListener("click",()=>{
-  const k=+p.dataset.k, total=tunel.offsetHeight-innerHeight;
-  scrollTo({top:tunel.offsetTop+total*(k/(N-1))+1,behavior:calmo?"auto":"smooth"});
-}));
+function vira(dir){
+  if(virando) return; const novo=(folha+dir+N)%N;
+  if(calmo||innerWidth<900){ folha=novo; escrevePaginas(folha); return; }
+  virando=true; const sai=dir>0?pagDir:pagEsq, entra=dir>0?pagEsq:pagDir;
+  sai.classList.add("vira-sai");
+  setTimeout(()=>{ folha=novo; escrevePaginas(folha); sai.classList.remove("vira-sai");
+    entra.classList.add("vira-entra"); void entra.offsetWidth; entra.classList.add("vira-fim");
+    setTimeout(()=>{ entra.classList.remove("vira-entra","vira-fim"); virando=false; },400); },380);
+}
+document.getElementById("pag-prox").addEventListener("click",()=>vira(1));
+document.getElementById("pag-ant").addEventListener("click",()=>vira(-1));
+document.getElementById("diario-livro").addEventListener("click",e=>{ const b=e.target.closest(".polaroid,.ver-pecas"); if(b) abrirObra(+b.dataset.k); });
+let toqueX=null;
+document.getElementById("diario-livro").addEventListener("touchstart",e=>{ toqueX=e.touches[0].clientX; },{passive:true});
+document.getElementById("diario-livro").addEventListener("touchend",e=>{ if(toqueX===null) return; const dx=e.changedTouches[0].clientX-toqueX; if(Math.abs(dx)>50) vira(dx<0?1:-1); toqueX=null; });
+escrevePaginas(0);
 
 /* ---------- visor ---------- */
 const visor=document.getElementById("visor"), trilho=document.getElementById("trilho");
-sonhosEl.addEventListener("click",e=>{
-  const b=e.target.closest(".sonho-item"); if(!b) return;
-  const k=+b.dataset.k, o=OBRAS[k];
+function abrirObra(k){
+  const o=OBRAS[k];
   document.getElementById("visor-num").textContent=`Nº ${String(k+1).padStart(2,"0")} · ${o.h}`;
   document.getElementById("visor-titulo").textContent=o.t;
   document.getElementById("visor-frase").innerHTML=`<span lang="pt">${o.pt}</span><span lang="en">${o.en}</span>`;
@@ -546,7 +664,7 @@ sonhosEl.addEventListener("click",e=>{
   trilho.scrollLeft=0;
   visor.showModal?visor.showModal():visor.setAttribute("open","");
   document.getElementById("fechar").focus();
-});
+}
 function fechar(){ visor.close?visor.close():visor.removeAttribute("open"); }
 document.getElementById("fechar").addEventListener("click",fechar);
 visor.addEventListener("click",e=>{ if(e.target===visor) fechar(); });
@@ -612,7 +730,6 @@ function tick(){
   desp.classList.toggle("tocando",p>0.985&&!calmo);
   let atual=secoes[0]; for(const s of secoes){ if(s.getBoundingClientRect().top<innerHeight*0.5) atual=s; }
   if(cenaEl.dataset.id!==atual.id){ cenaEl.innerHTML=`<span lang="pt">${atual.dataset.cenaPt}</span><span lang="en">${atual.dataset.cenaEn}</span>`; cenaEl.dataset.id=atual.id; }
-  tunelFrame();
 }
 let pend=false;
 addEventListener("scroll",()=>{ if(!pend){ pend=true; requestAnimationFrame(()=>{ pend=false; tick(); }); } },{passive:true});
@@ -634,43 +751,48 @@ function semear(){
     g.addColorStop(0,`rgba(${cc},${0.05+Math.random()*0.05})`); g.addColorStop(1,`rgba(${cc},0)`); v.fillStyle=g; v.beginPath(); v.arc(gx,gy,gr,0,6.283); v.fill(); }
   for(let i=0;i<Math.round(W*2.2);i++){ const gx=(Math.random()-.5)*W*1.8, gy=(Math.random()+Math.random()+Math.random()-1.5)*H*0.12;
     v.fillStyle=`rgba(254,250,226,${Math.random()*0.55})`; v.fillRect(gx,gy,Math.random()<.9?0.8:1.4,Math.random()<.9?0.8:1.4); }
-  fazLua();
+  fazLua(); preparaAmanhecer();
   nuvens=Array.from({length:7},(_,i)=>({x:Math.random()*W,y:H*(0.15+Math.random()*0.7),w:W*(0.35+Math.random()*0.4),h:60+Math.random()*90,v:6+Math.random()*12}));
 }
 function cadente(){ const dir=Math.random()<.5?1:-1; return {x:Math.random()*W,y:Math.random()*H*0.5,vx:dir*(700+Math.random()*700),vy:280+Math.random()*320,vida:0,dur:0.7+Math.random()*0.6,len:120+Math.random()*180}; }
 function cometa(){ const dir=Math.random()<.5?1:-1; return {x:dir>0?-150:W+150,y:H*(0.1+Math.random()*0.45),vx:dir*(70+Math.random()*60),vy:12+Math.random()*25,vida:0,dur:(W+300)/90,len:260+Math.random()*200}; }
 function brilho4(x,y,r,a){ cx.strokeStyle=`rgba(254,250,226,${a*0.7})`; cx.lineWidth=0.8; cx.beginPath(); cx.moveTo(x-r*4,y); cx.lineTo(x+r*4,y); cx.moveTo(x,y-r*4); cx.lineTo(x,y+r*4); cx.stroke(); }
-let luaImg=null, luaR=0;
-function fazLua(){
-  luaR=Math.round(Math.min(W,H)*0.05+16); const r=luaR, S=r*4, c=document.createElement("canvas"); c.width=c.height=S; const x=c.getContext("2d"), m=S/2;
-  x.fillStyle="rgba(150,170,220,.13)"; x.beginPath(); x.arc(m,m,r,0,6.283); x.fill();
-  const t=document.createElement("canvas"); t.width=t.height=S; const y=t.getContext("2d");
-  const g=y.createRadialGradient(m-r*.35,m-r*.35,r*.1,m,m,r*1.1); g.addColorStop(0,"#FFFEF4"); g.addColorStop(.7,"#F1EBCF"); g.addColorStop(1,"#D8D0B0");
-  y.fillStyle=g; y.beginPath(); y.arc(m,m,r,0,6.283); y.fill();
-  y.save(); y.beginPath(); y.arc(m,m,r,0,6.283); y.clip(); y.filter=`blur(${Math.max(1,r*.04)}px)`;
-  [[-.45,-.2,.22],[-.15,.35,.16],[-.55,.3,.1],[.1,-.45,.12],[-.3,.05,.08],[.25,.2,.18]].forEach(([a,b,k])=>{
-    y.fillStyle="rgba(160,150,120,.28)"; y.beginPath(); y.arc(m+a*r,m+b*r,k*r,0,6.283); y.fill(); });
-  y.restore();
-  y.globalCompositeOperation="destination-out"; y.filter=`blur(${r*.09}px)`;
-  y.beginPath(); y.arc(m+r*.62,m-r*.12,r*1.02,0,6.283); y.fill();
-  x.drawImage(t,0,0); luaImg=c;
-}
-function lua(a){ a*=Math.max(0,1-scrollY/(H*0.7)); if(a<=0||!luaImg) return;
+let luaImg=new Image(), luaR=0; luaImg.src="assets/ceu-lua.webp";
+function fazLua(){ luaR=Math.round(Math.min(W,H)*0.055+18); }
+function lua(a){ a*=Math.max(0,1-scrollY/(H*0.7)); if(a<=0||!luaImg.complete||!luaImg.naturalWidth) return;
   const x=W*0.8, y=H*0.2-scrollY*0.05, r=luaR;
-  const h=cx.createRadialGradient(x,y,r*.5,x,y,r*5); h.addColorStop(0,`rgba(230,236,255,${0.16*a})`); h.addColorStop(1,"rgba(230,236,255,0)");
-  cx.fillStyle=h; cx.beginPath(); cx.arc(x,y,r*5,0,6.283); cx.fill();
-  cx.globalAlpha=a; cx.drawImage(luaImg,x-r*2,y-r*2); cx.globalAlpha=1; }
+  const h=cx.createRadialGradient(x,y,r*.9,x,y,r*6); h.addColorStop(0,`rgba(220,230,255,${0.22*a})`); h.addColorStop(.35,`rgba(200,214,255,${0.07*a})`); h.addColorStop(1,"rgba(200,214,255,0)");
+  cx.fillStyle=h; cx.beginPath(); cx.arc(x,y,r*6,0,6.283); cx.fill();
+  cx.save(); cx.globalAlpha=a; cx.shadowColor="rgba(230,238,255,.55)"; cx.shadowBlur=r*.6; cx.drawImage(luaImg,x-r,y-r,r*2,r*2); cx.restore(); }
 let passaros=[], proxPas=800;
-function sol(d){
-  const R=Math.min(W,H)*0.26, x=W*0.5, y=H+R*0.55-d*R*1.05;
-  const glow=cx.createRadialGradient(x,y,R*.5,x,y,R*3.2); glow.addColorStop(0,`rgba(255,214,130,${0.55*d})`); glow.addColorStop(.4,`rgba(255,226,170,${0.25*d})`); glow.addColorStop(1,"rgba(255,240,210,0)");
-  cx.fillStyle=glow; cx.beginPath(); cx.arc(x,y,R*3.2,0,6.283); cx.fill();
-  cx.save(); cx.translate(x,y); cx.rotate(ultimo/9000);
-  for(let i=0;i<18;i++){ cx.rotate(Math.PI/9); const gr=cx.createLinearGradient(R*1.05,0,R*1.9,0); gr.addColorStop(0,`rgba(255,205,110,${0.35*d})`); gr.addColorStop(1,"rgba(255,205,110,0)");
-    cx.fillStyle=gr; cx.beginPath(); cx.moveTo(R*1.02,-R*.05); cx.lineTo(R*(i%2?1.6:1.95),0); cx.lineTo(R*1.02,R*.05); cx.fill(); }
-  cx.restore();
-  const disc=cx.createRadialGradient(x-R*.2,y-R*.3,R*.1,x,y,R); disc.addColorStop(0,`rgba(255,250,220,${d})`); disc.addColorStop(.6,`rgba(255,222,140,${d})`); disc.addColorStop(1,`rgba(255,190,95,${d})`);
-  cx.fillStyle=disc; cx.beginPath(); cx.arc(x,y,R,0,6.283); cx.fill();
+let mar=[], fiapos=[];
+function preparaAmanhecer(){
+  mar=[]; for(let x=-80;x<W+120;x+=34+Math.random()*30){ mar.push({x,y:H*(0.86+Math.random()*0.07),r:46+Math.random()*80,v:4+Math.random()*4}); }
+  for(let x=-60;x<W+120;x+=40+Math.random()*40){ mar.push({x,y:H*(0.94+Math.random()*0.06),r:60+Math.random()*90,v:7+Math.random()*4}); }
+  fiapos=Array.from({length:6},()=>({x:Math.random()*W,y:H*(0.1+Math.random()*0.45),w:W*(0.25+Math.random()*0.35),h:18+Math.random()*26,v:5+Math.random()*8}));
+}
+function amanhecer(d,dt){
+  const g=cx.createLinearGradient(0,0,0,H);
+  g.addColorStop(0,`rgba(146,190,240,${0.5*d})`); g.addColorStop(.45,`rgba(206,224,244,${0.55*d})`);
+  g.addColorStop(.72,`rgba(250,224,214,${0.7*d})`); g.addColorStop(.9,`rgba(255,212,178,${0.85*d})`); g.addColorStop(1,`rgba(255,226,196,${0.9*d})`);
+  cx.fillStyle=g; cx.fillRect(0,0,W,H);
+  for(const f of fiapos){ if(!calmo) f.x+=f.v*dt; if(f.x-f.w>W) f.x=-f.w;
+    cx.save(); cx.translate(f.x,f.y); cx.scale(1,f.h/f.w);
+    const c=cx.createRadialGradient(0,0,0,0,0,f.w*0.5); c.addColorStop(0,`rgba(255,246,244,${0.55*d})`); c.addColorStop(.6,`rgba(252,214,214,${0.22*d})`); c.addColorStop(1,"rgba(252,214,214,0)");
+    cx.fillStyle=c; cx.beginPath(); cx.arc(0,0,f.w*0.5,0,6.283); cx.fill(); cx.restore(); }
+  const s=Math.max(0,Math.min(1,(d-0.4)/0.55));
+  if(s>0){ const R=Math.min(W,H)*0.075+10, x=W*0.5, y=H*0.93-s*H*0.17;
+    const b=cx.createRadialGradient(x,y,0,x,y,R*10); b.addColorStop(0,`rgba(255,226,170,${0.6*s})`); b.addColorStop(.25,`rgba(255,206,160,${0.28*s})`); b.addColorStop(1,"rgba(255,206,160,0)");
+    cx.fillStyle=b; cx.fillRect(0,0,W,H);
+    cx.save(); cx.translate(x,y); cx.scale(4.5,0.5); const hz=cx.createRadialGradient(0,0,0,0,0,R*2); hz.addColorStop(0,`rgba(255,240,215,${0.5*s})`); hz.addColorStop(1,"rgba(255,240,215,0)"); cx.fillStyle=hz; cx.beginPath(); cx.arc(0,0,R*2,0,6.283); cx.fill(); cx.restore();
+    const core=cx.createRadialGradient(x,y,0,x,y,R*1.25); core.addColorStop(0,`rgba(255,255,250,${s})`); core.addColorStop(.7,`rgba(255,246,222,${s})`); core.addColorStop(.82,`rgba(255,232,190,${0.75*s})`); core.addColorStop(1,"rgba(255,226,180,0)");
+    cx.fillStyle=core; cx.beginPath(); cx.arc(x,y,R*1.25,0,6.283); cx.fill(); }
+  for(const n of mar){ if(!calmo){ n.x+=n.v*dt; if(n.x-n.r>W) n.x=-n.r; }
+    const c=cx.createRadialGradient(n.x-n.r*.15,n.y-n.r*.35,n.r*.05,n.x,n.y,n.r);
+    c.addColorStop(0,`rgba(255,252,248,${0.95*d})`); c.addColorStop(.55,`rgba(252,236,232,${0.85*d})`); c.addColorStop(.85,`rgba(240,214,214,${0.4*d})`); c.addColorStop(1,"rgba(240,214,214,0)");
+    cx.fillStyle=c; cx.beginPath(); cx.arc(n.x,n.y,n.r,0,6.283); cx.fill(); }
+  const base=cx.createLinearGradient(0,H*0.9,0,H); base.addColorStop(0,"rgba(255,248,244,0)"); base.addColorStop(1,`rgba(255,248,244,${0.9*d})`);
+  cx.fillStyle=base; cx.fillRect(0,H*0.9,W,H*0.1);
 }
 function bando(){ const dir=Math.random()<.5?1:-1, n=3+Math.floor(Math.random()*5), y0=H*(0.12+Math.random()*0.4), v=(70+Math.random()*50)*dir, sz=5+Math.random()*5;
   return Array.from({length:n},(_,i)=>({x:(dir>0?-60:W+60)-dir*(i*28+Math.random()*20),y:y0+(i%2?1:-1)*i*9+Math.random()*8,v:v*(0.95+Math.random()*0.1),s:sz*(0.8+Math.random()*0.4),f:Math.random()*6})); }
@@ -709,13 +831,9 @@ function desenha(t){
       cx.fillStyle=h; cx.beginPath(); cx.arc(c.x,c.y,18,0,6.283); cx.fill(); return true; });
   }
   if(dia>0){
-    if(dia>0.55) sol(Math.min(1,(dia-0.55)/0.42));
+    amanhecer(dia,dt);
     if(!calmo&&dia>0.2){ proxPas-=dt*1000; if(proxPas<=0){ passaros.push(...bando()); proxPas=3500+Math.random()*4000; } }
     passaros=passaros.filter(b=>{ if(!calmo){ b.x+=b.v*dt; b.f+=dt*9; b.y+=Math.sin(b.f*.3)*0.15; } passaro(b,Math.min(1,dia*1.4)); return b.x>-120&&b.x<W+120; });
-    for(const n of nuvens){ if(!calmo) n.x+=n.v*dt; if(n.x-n.w>W) n.x=-n.w*0.5;
-      for(let j=0;j<5;j++){ const bx=n.x+(j-2)*n.w*0.18, by=n.y+Math.sin(j*1.7)*n.h*0.25, br=n.h*(0.7+((j*37)%10)/14);
-        const g=cx.createRadialGradient(bx,by,0,bx,by,br); g.addColorStop(0,`rgba(255,255,255,${0.42*dia})`); g.addColorStop(1,"rgba(255,255,255,0)");
-        cx.fillStyle=g; cx.beginPath(); cx.arc(bx,by,br,0,6.283); cx.fill(); } }
   }
   requestAnimationFrame(desenha);
 }
