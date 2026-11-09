@@ -12,9 +12,11 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
 - Fontes (v2): **Cormorant Garamond** (títulos e frases em itálico) + **Manrope** (texto e rótulos em caixa alta espaçada).
   Reprovadas pelo dono ("muito feias"): Marcellus, Instrument Serif/Sans, IBM Plex Mono.
 - Abertura: pálpebras abrindo **devagar** (~6 s), com piscadas e a visão **embaçada** clareando, como alguém acordando de verdade.
-- Relógio = **despertador clássico** (2 sinos, ponteiros) no canto; os ponteiros andam com a rolagem e ele **toca** (treme) às 06:00.
-- Céu: via láctea, estrelas de vários tamanhos piscando, lua crescente, **estrelas cadentes e cometas** passando; nuvens no amanhecer.
-- Acervo = **túnel de sonhos**: os 13 projetos flutuam no céu e vêm de longe (pequenos, desfocados) até o foco, e passam pela câmera;
+- Relógio = **despertador digital Y2K** (plástico verde-limão brilhante, visor LCD com 7 segmentos; ref. `referencias/ref-despertador-y2k.webp`).
+  A hora anda com a rolagem e ele **toca** (treme e pisca) às 06:00. Reprovado: despertador analógico de sinos.
+- Céu: via láctea, estrelas de vários tamanhos piscando, lua crescente realista (sombra suave, crateras, luz da Terra), **estrelas cadentes e cometas**;
+  no amanhecer: nuvens, **sol nascendo atrás do rodapé** e **passarinhos** passando em bandos.
+- Acervo = **túnel de sonhos** (provisório: o dono não gostou, fica só se nada melhor surgir): os 13 projetos flutuam no céu e vêm de longe (pequenos, desfocados) até o foco, e passam pela câmera;
   legenda de museu no canto + constelação de 13 estrelas para pular. Reprovado: grade de cards com etiqueta ("horrível").
 - Número do WhatsApp: constante `WHATSAPP` no script (vazio = abre o WhatsApp sem contato definido).
 - Imagens do acervo: `assets/obras/<projeto>/NN.webp` (01 = capa, 02 = aparece no hover). Originais no Drive "PROJETOS DREAMZ 2026".

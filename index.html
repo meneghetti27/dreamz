@@ -65,15 +65,27 @@ main,.topo{transition:filter .35s ease,opacity .35s ease}
 .idioma button[aria-pressed="true"]{background:#FEFAE2;color:#000}
 .idioma button:focus-visible{outline:2px solid #8AC4FE}
 
-/* ---------- despertador ---------- */
-.despertador{position:fixed;z-index:50;left:var(--gutter);bottom:calc(14px + env(safe-area-inset-bottom, 0px));display:flex;align-items:flex-end;gap:12px;
-  pointer-events:none;mix-blend-mode:difference;color:#FEFAE2}
-.despertador svg{width:74px;height:auto;overflow:visible;transform-origin:50% 90%}
-.despertador.tocando svg{animation:toca .09s linear infinite alternate}
-@keyframes toca{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
-.despertador .leitura{padding-bottom:6px}
-.despertador .hora{font-family:var(--f-display);font-size:24px;line-height:1;font-weight:500;font-variant-numeric:tabular-nums lining-nums}
-.despertador .cena{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin-top:5px;opacity:.75}
+/* ---------- despertador Y2K (plástico verde-limão + visor LCD) ---------- */
+.despertador{position:fixed;z-index:50;left:var(--gutter);bottom:calc(16px + env(safe-area-inset-bottom, 0px));display:flex;align-items:flex-end;gap:14px;pointer-events:none}
+.corpo{position:relative;width:138px;height:88px;border-radius:30px 30px 26px 26px;padding:11px 12px 14px;transform-origin:50% 100%;
+  background:radial-gradient(120% 90% at 30% 15%,#E4FF96 0%,#B5EE3C 38%,#86CF14 70%,#5C9E0B 100%);
+  box-shadow:inset 0 4px 6px rgba(255,255,255,.75),inset 0 -8px 14px rgba(40,80,0,.45),inset 6px 0 10px rgba(255,255,255,.2),0 14px 28px -6px rgba(0,0,0,.55)}
+.corpo::before{content:"";position:absolute;top:-7px;left:50%;width:46px;height:10px;transform:translateX(-50%);border-radius:8px 8px 3px 3px;
+  background:linear-gradient(#D7FF7E,#8BD21A);box-shadow:inset 0 2px 2px rgba(255,255,255,.7),0 1px 0 rgba(0,0,0,.2)}
+.corpo::after{content:"";position:absolute;inset:7px 14px auto;height:16px;border-radius:20px;background:linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,0));pointer-events:none}
+.tela{height:100%;border-radius:12px;padding:5px 8px 4px;display:grid;grid-template-rows:auto 1fr;color:#17240c;
+  background:linear-gradient(170deg,#D9E8BE,#B6CC93 60%,#A3BA80);box-shadow:inset 0 3px 6px rgba(0,0,0,.35),inset 0 -1px 0 rgba(255,255,255,.4);
+  font:700 7.5px/1 var(--f-body);letter-spacing:.08em;transition:background .2s}
+.tela .info{display:flex;justify-content:space-between;opacity:.75}
+.tela svg{width:100%;height:100%;overflow:visible}
+.tela .seg{fill:#17240c}
+.tela .apagado{fill:rgba(23,36,12,.08)}
+.despertador.tocando .corpo{animation:toca .08s linear infinite alternate}
+.despertador.tocando .tela{animation:luz .5s steps(1) infinite}
+@keyframes toca{from{transform:rotate(-6deg) translateY(-2px)}to{transform:rotate(6deg)}}
+@keyframes luz{50%{background:linear-gradient(170deg,#F4FFB8,#D9FF7A)}}
+.despertador .leitura{padding-bottom:4px;mix-blend-mode:difference;color:#FEFAE2}
+.despertador .cena{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;opacity:.8;max-width:16ch;line-height:1.5}
 
 /* ---------- estrutura ---------- */
 main{position:relative;z-index:2}
@@ -212,8 +224,9 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 }
 @media (max-width:560px){
   .idioma .longo{display:none}
-  .despertador{left:50%;transform:translateX(-50%);bottom:auto;top:calc(8px + env(safe-area-inset-top,0px))}
-  .despertador svg{width:38px}
+  .despertador{left:auto;right:var(--gutter-r);bottom:calc(14px + env(safe-area-inset-bottom, 0px))}
+  .corpo{transform:scale(.62);transform-origin:100% 100%;margin:-33px 0 0 -52px}
+  .despertador.tocando .corpo{animation:none}
   .despertador .leitura{display:none}
   .constelacao{gap:7px}
   .constelacao button{width:9px;height:9px}
@@ -240,22 +253,13 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 </header>
 
 <div class="despertador" id="despertador" aria-hidden="true">
-  <svg viewBox="0 0 120 136" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M42 10 Q60 -2 78 10" stroke-width="4"/>
-    <line x1="60" y1="5" x2="60" y2="22" stroke-width="4"/>
-    <path d="M10 40 C6 18 26 4 46 14 Z" fill="currentColor" stroke-width="3" class="sino"/>
-    <path d="M110 40 C114 18 94 4 74 14 Z" fill="currentColor" stroke-width="3" class="sino"/>
-    <line x1="32" y1="114" x2="20" y2="132" stroke-width="5"/>
-    <line x1="88" y1="114" x2="100" y2="132" stroke-width="5"/>
-    <circle cx="60" cy="74" r="46" stroke-width="6"/>
-    <circle cx="60" cy="74" r="39" fill="currentColor" fill-opacity=".1" stroke="none"/>
-    <g id="marcas" stroke-width="3"></g>
-    <line id="ph" x1="60" y1="74" x2="60" y2="52" stroke-width="5.5"/>
-    <line id="pm" x1="60" y1="74" x2="60" y2="42" stroke-width="3.5"/>
-    <circle cx="60" cy="74" r="4" fill="currentColor" stroke="none"/>
-  </svg>
+  <div class="corpo">
+    <div class="tela">
+      <div class="info"><span>ALM 6:00</span><span id="dia">SAT</span></div>
+      <svg id="lcd" viewBox="0 0 112 40"></svg>
+    </div>
+  </div>
   <div class="leitura">
-    <div class="hora" id="hora">23:47</div>
     <div class="cena" id="cena"><span lang="pt">acordando no sonho</span><span lang="en">waking inside the dream</span></div>
   </div>
 </div>
@@ -464,12 +468,18 @@ root.dataset.lang=lang;
 if(!calmo){ document.body.classList.add("acordando"); setTimeout(()=>document.body.classList.remove("acordando"),7400); }
 function img(o,i){ return `assets/obras/${o.s}/${String(i).padStart(2,"0")}.webp`; }
 
-/* ---------- despertador ---------- */
-(function(){ const g=document.getElementById("marcas"); let h="";
-  for(let i=0;i<12;i++){ const a=i*Math.PI/6, r1=i%3?33:30, r2=37;
-    h+=`<line x1="${60+Math.sin(a)*r1}" y1="${74-Math.cos(a)*r1}" x2="${60+Math.sin(a)*r2}" y2="${74-Math.cos(a)*r2}"/>`; }
-  g.innerHTML=h; })();
-const ph=document.getElementById("ph"), pm=document.getElementById("pm"), desp=document.getElementById("despertador");
+/* ---------- despertador: visor de 7 segmentos ---------- */
+const desp=document.getElementById("despertador"), lcd=document.getElementById("lcd");
+const SEG={a:"3,0 19,0 16,3 6,3",b:"19.5,0.5 22,3 21,18 18,16 19,4",c:"18,22 21,20 20,35 17.5,37.5 17,34",d:"2,38 17,38 14,35 5,35",
+  e:"0.5,35 3,34 4,22 1,20 0,35",f:"1.5,18 4.5,16 5,4 3,0.5 2,3",g:"3,19 6,17 16,17 19,19 16,21 6,21"};
+const DIG={0:"abcdef",1:"bc",2:"abged",3:"abgcd",4:"fgbc",5:"afgcd",6:"afgedc",7:"abc",8:"abcdefg",9:"abcfgd"};
+function digito(x,n){ return Object.keys(SEG).map(k=>`<polygon transform="translate(${x} 1) skewX(-6)" class="${DIG[n].includes(k)?"seg":"apagado"}" points="${SEG[k]}"/>`).join(""); }
+let ultimaHora="";
+function mostraHora(hh,mm){
+  const txt=hh+mm; if(txt===ultimaHora) return; ultimaHora=txt;
+  lcd.innerHTML=digito(2,+hh[0])+digito(28,+hh[1])+`<g class="seg" id="dois-pontos"><rect x="53" y="11" width="4" height="4" rx="1"/><rect x="51.5" y="25" width="4" height="4" rx="1"/></g>`+digito(62,+mm[0])+digito(88,+mm[1]);
+}
+setInterval(()=>{ const g=document.getElementById("dois-pontos"); if(g&&!calmo) g.style.opacity=g.style.opacity==="0"?"1":"0"; },600);
 
 /* ---------- túnel de sonhos ---------- */
 const sonhosEl=document.getElementById("sonhos"), tunel=document.getElementById("tunel"), constel=document.getElementById("constelacao");
@@ -584,7 +594,7 @@ function selec(el){ const r=document.createRange(); r.selectNodeContents(el); co
 const CEU=[[0,[0,0,0]],[0.16,[4,7,18]],[0.4,[14,20,44]],[0.62,[30,40,74]],[0.75,[58,74,132]],[0.83,[118,144,212]],[0.9,[138,196,254]],[0.95,[214,232,246]],[1,[254,250,226]]];
 function cor(p){ for(let i=1;i<CEU.length;i++){ if(p<=CEU[i][0]){ const [a,ca]=CEU[i-1],[b,cb]=CEU[i],t=(p-a)/(b-a||1); return ca.map((v,j)=>Math.round(v+(cb[j]-v)*t)); } } return CEU[CEU.length-1][1]; }
 const lum=([r,g,b])=>(0.2126*r+0.7152*g+0.0722*b)/255;
-const horaEl=document.getElementById("hora"), cenaEl=document.getElementById("cena");
+const cenaEl=document.getElementById("cena");
 const secoes=[...document.querySelectorAll("main section[id]")];
 let maxScroll=1, P=0;
 function medir(){ maxScroll=Math.max(1,document.documentElement.scrollHeight-innerHeight); tick(); }
@@ -597,9 +607,8 @@ function tick(){
   root.style.setProperty("--line",claro?"rgba(20,26,48,.22)":"rgba(254,250,226,.18)");
   root.style.setProperty("--accent",claro?"#704838":"#8AC4FE");
   const min=23*60+47+p*373, m=Math.round(min)%(1440);
-  horaEl.textContent=`${String(Math.floor(m/60)).padStart(2,"0")}:${String(m%60).padStart(2,"0")}`;
-  ph.setAttribute("transform",`rotate(${(min/60%12)*30} 60 74)`);
-  pm.setAttribute("transform",`rotate(${(min%60)*6} 60 74)`);
+  mostraHora(String(Math.floor(m/60)).padStart(2,"0"),String(m%60).padStart(2,"0"));
+  document.getElementById("dia").textContent=m>=1380? (lang==="pt"?"SEX":"FRI") : (lang==="pt"?"SÁB":"SAT");
   desp.classList.toggle("tocando",p>0.985&&!calmo);
   let atual=secoes[0]; for(const s of secoes){ if(s.getBoundingClientRect().top<innerHeight*0.5) atual=s; }
   if(cenaEl.dataset.id!==atual.id){ cenaEl.innerHTML=`<span lang="pt">${atual.dataset.cenaPt}</span><span lang="en">${atual.dataset.cenaEn}</span>`; cenaEl.dataset.id=atual.id; }
@@ -625,15 +634,48 @@ function semear(){
     g.addColorStop(0,`rgba(${cc},${0.05+Math.random()*0.05})`); g.addColorStop(1,`rgba(${cc},0)`); v.fillStyle=g; v.beginPath(); v.arc(gx,gy,gr,0,6.283); v.fill(); }
   for(let i=0;i<Math.round(W*2.2);i++){ const gx=(Math.random()-.5)*W*1.8, gy=(Math.random()+Math.random()+Math.random()-1.5)*H*0.12;
     v.fillStyle=`rgba(254,250,226,${Math.random()*0.55})`; v.fillRect(gx,gy,Math.random()<.9?0.8:1.4,Math.random()<.9?0.8:1.4); }
+  fazLua();
   nuvens=Array.from({length:7},(_,i)=>({x:Math.random()*W,y:H*(0.15+Math.random()*0.7),w:W*(0.35+Math.random()*0.4),h:60+Math.random()*90,v:6+Math.random()*12}));
 }
 function cadente(){ const dir=Math.random()<.5?1:-1; return {x:Math.random()*W,y:Math.random()*H*0.5,vx:dir*(700+Math.random()*700),vy:280+Math.random()*320,vida:0,dur:0.7+Math.random()*0.6,len:120+Math.random()*180}; }
 function cometa(){ const dir=Math.random()<.5?1:-1; return {x:dir>0?-150:W+150,y:H*(0.1+Math.random()*0.45),vx:dir*(70+Math.random()*60),vy:12+Math.random()*25,vida:0,dur:(W+300)/90,len:260+Math.random()*200}; }
 function brilho4(x,y,r,a){ cx.strokeStyle=`rgba(254,250,226,${a*0.7})`; cx.lineWidth=0.8; cx.beginPath(); cx.moveTo(x-r*4,y); cx.lineTo(x+r*4,y); cx.moveTo(x,y-r*4); cx.lineTo(x,y+r*4); cx.stroke(); }
-function lua(a){ a*=Math.max(0,1-scrollY/(H*0.7)); if(a<=0) return; const x=W*0.82, y=H*0.2-scrollY*0.05, r=Math.min(W,H)*0.045+14; if(y<-r*2) return;
-  const g=cx.createRadialGradient(x,y,r*0.6,x,y,r*4); g.addColorStop(0,`rgba(254,250,226,${0.18*a})`); g.addColorStop(1,"rgba(254,250,226,0)"); cx.fillStyle=g; cx.beginPath(); cx.arc(x,y,r*4,0,6.283); cx.fill();
-  cx.save(); cx.beginPath(); cx.arc(x,y,r,0,6.283); cx.clip(); cx.fillStyle=`rgba(254,250,226,${0.95*a})`; cx.fillRect(x-r,y-r,r*2,r*2);
-  cx.globalCompositeOperation="destination-out"; cx.beginPath(); cx.arc(x+r*0.45,y-r*0.22,r*0.95,0,6.283); cx.fill(); cx.restore(); }
+let luaImg=null, luaR=0;
+function fazLua(){
+  luaR=Math.round(Math.min(W,H)*0.05+16); const r=luaR, S=r*4, c=document.createElement("canvas"); c.width=c.height=S; const x=c.getContext("2d"), m=S/2;
+  x.fillStyle="rgba(150,170,220,.13)"; x.beginPath(); x.arc(m,m,r,0,6.283); x.fill();
+  const t=document.createElement("canvas"); t.width=t.height=S; const y=t.getContext("2d");
+  const g=y.createRadialGradient(m-r*.35,m-r*.35,r*.1,m,m,r*1.1); g.addColorStop(0,"#FFFEF4"); g.addColorStop(.7,"#F1EBCF"); g.addColorStop(1,"#D8D0B0");
+  y.fillStyle=g; y.beginPath(); y.arc(m,m,r,0,6.283); y.fill();
+  y.save(); y.beginPath(); y.arc(m,m,r,0,6.283); y.clip(); y.filter=`blur(${Math.max(1,r*.04)}px)`;
+  [[-.45,-.2,.22],[-.15,.35,.16],[-.55,.3,.1],[.1,-.45,.12],[-.3,.05,.08],[.25,.2,.18]].forEach(([a,b,k])=>{
+    y.fillStyle="rgba(160,150,120,.28)"; y.beginPath(); y.arc(m+a*r,m+b*r,k*r,0,6.283); y.fill(); });
+  y.restore();
+  y.globalCompositeOperation="destination-out"; y.filter=`blur(${r*.09}px)`;
+  y.beginPath(); y.arc(m+r*.62,m-r*.12,r*1.02,0,6.283); y.fill();
+  x.drawImage(t,0,0); luaImg=c;
+}
+function lua(a){ a*=Math.max(0,1-scrollY/(H*0.7)); if(a<=0||!luaImg) return;
+  const x=W*0.8, y=H*0.2-scrollY*0.05, r=luaR;
+  const h=cx.createRadialGradient(x,y,r*.5,x,y,r*5); h.addColorStop(0,`rgba(230,236,255,${0.16*a})`); h.addColorStop(1,"rgba(230,236,255,0)");
+  cx.fillStyle=h; cx.beginPath(); cx.arc(x,y,r*5,0,6.283); cx.fill();
+  cx.globalAlpha=a; cx.drawImage(luaImg,x-r*2,y-r*2); cx.globalAlpha=1; }
+let passaros=[], proxPas=800;
+function sol(d){
+  const R=Math.min(W,H)*0.26, x=W*0.5, y=H+R*0.55-d*R*1.05;
+  const glow=cx.createRadialGradient(x,y,R*.5,x,y,R*3.2); glow.addColorStop(0,`rgba(255,214,130,${0.55*d})`); glow.addColorStop(.4,`rgba(255,226,170,${0.25*d})`); glow.addColorStop(1,"rgba(255,240,210,0)");
+  cx.fillStyle=glow; cx.beginPath(); cx.arc(x,y,R*3.2,0,6.283); cx.fill();
+  cx.save(); cx.translate(x,y); cx.rotate(ultimo/9000);
+  for(let i=0;i<18;i++){ cx.rotate(Math.PI/9); const gr=cx.createLinearGradient(R*1.05,0,R*1.9,0); gr.addColorStop(0,`rgba(255,205,110,${0.35*d})`); gr.addColorStop(1,"rgba(255,205,110,0)");
+    cx.fillStyle=gr; cx.beginPath(); cx.moveTo(R*1.02,-R*.05); cx.lineTo(R*(i%2?1.6:1.95),0); cx.lineTo(R*1.02,R*.05); cx.fill(); }
+  cx.restore();
+  const disc=cx.createRadialGradient(x-R*.2,y-R*.3,R*.1,x,y,R); disc.addColorStop(0,`rgba(255,250,220,${d})`); disc.addColorStop(.6,`rgba(255,222,140,${d})`); disc.addColorStop(1,`rgba(255,190,95,${d})`);
+  cx.fillStyle=disc; cx.beginPath(); cx.arc(x,y,R,0,6.283); cx.fill();
+}
+function bando(){ const dir=Math.random()<.5?1:-1, n=3+Math.floor(Math.random()*5), y0=H*(0.12+Math.random()*0.4), v=(70+Math.random()*50)*dir, sz=5+Math.random()*5;
+  return Array.from({length:n},(_,i)=>({x:(dir>0?-60:W+60)-dir*(i*28+Math.random()*20),y:y0+(i%2?1:-1)*i*9+Math.random()*8,v:v*(0.95+Math.random()*0.1),s:sz*(0.8+Math.random()*0.4),f:Math.random()*6})); }
+function passaro(b,a){ const bat=Math.sin(b.f)*0.9; cx.strokeStyle=`rgba(20,26,48,${0.75*a})`; cx.lineWidth=1.6; cx.lineCap="round";
+  cx.beginPath(); cx.moveTo(b.x-b.s,b.y-b.s*bat*0.6); cx.quadraticCurveTo(b.x-b.s*.45,b.y-b.s*(.2+bat*.5),b.x,b.y); cx.quadraticCurveTo(b.x+b.s*.45,b.y-b.s*(.2+bat*.5),b.x+b.s,b.y-b.s*bat*0.6); cx.stroke(); }
 let ultimo=0;
 function desenha(t){
   const dt=Math.min(0.05,(t-ultimo)/1000||0); ultimo=t;
@@ -667,6 +709,9 @@ function desenha(t){
       cx.fillStyle=h; cx.beginPath(); cx.arc(c.x,c.y,18,0,6.283); cx.fill(); return true; });
   }
   if(dia>0){
+    if(dia>0.55) sol(Math.min(1,(dia-0.55)/0.42));
+    if(!calmo&&dia>0.2){ proxPas-=dt*1000; if(proxPas<=0){ passaros.push(...bando()); proxPas=3500+Math.random()*4000; } }
+    passaros=passaros.filter(b=>{ if(!calmo){ b.x+=b.v*dt; b.f+=dt*9; b.y+=Math.sin(b.f*.3)*0.15; } passaro(b,Math.min(1,dia*1.4)); return b.x>-120&&b.x<W+120; });
     for(const n of nuvens){ if(!calmo) n.x+=n.v*dt; if(n.x-n.w>W) n.x=-n.w*0.5;
       for(let j=0;j<5;j++){ const bx=n.x+(j-2)*n.w*0.18, by=n.y+Math.sin(j*1.7)*n.h*0.25, br=n.h*(0.7+((j*37)%10)/14);
         const g=cx.createRadialGradient(bx,by,0,bx,by,br); g.addColorStop(0,`rgba(255,255,255,${0.42*dia})`); g.addColorStop(1,"rgba(255,255,255,0)");
