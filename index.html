@@ -320,17 +320,6 @@ footer .insone-f b{font-family:var(--f-mono)}
 @keyframes zzzz{0%{opacity:0;transform:translate(0,14px)}30%{opacity:1}100%{opacity:0;transform:translate(26px,-40px)}}
 .sonolento .dica-s{position:absolute;left:0;right:0;bottom:calc(14% + env(safe-area-inset-bottom,0px));text-align:center;font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:rgba(254,250,226,.75)}
 
-/* faróis no teto: luz de carro passando pela janela, de vez em quando */
-.farol{position:fixed;inset:-20% -40%;z-index:1;pointer-events:none;opacity:0;mix-blend-mode:screen;transform:translateX(-70%) skewX(-18deg)}
-.farol::before{content:"";position:absolute;top:0;bottom:0;left:40%;width:22%;
-  background:repeating-linear-gradient(90deg,rgba(255,236,200,.0) 0 6%,rgba(255,236,200,.55) 6% 30%,rgba(255,236,200,.0) 30% 34%,rgba(255,236,200,.5) 34% 62%,rgba(255,236,200,0) 62% 66%,rgba(255,236,200,.45) 66% 94%,rgba(255,236,200,0) 94% 100%);
-  -webkit-mask:linear-gradient(90deg,transparent,#000 25%,#000 75%,transparent);mask:linear-gradient(90deg,transparent,#000 25%,#000 75%,transparent);filter:blur(14px)}
-.farol.passa{animation:farol var(--dur,5s) cubic-bezier(.45,.05,.55,.95) forwards}
-.farol.volta{transform:translateX(70%) skewX(18deg)}
-.farol.volta.passa{animation-name:farolV}
-@keyframes farol{0%{opacity:0;transform:translateX(-70%) skewX(-18deg)}15%,80%{opacity:var(--int,.16)}100%{opacity:0;transform:translateX(70%) skewX(-8deg)}}
-@keyframes farolV{0%{opacity:0;transform:translateX(70%) skewX(18deg)}15%,80%{opacity:var(--int,.16)}100%{opacity:0;transform:translateX(-70%) skewX(8deg)}}
-
 /* modo sonho lúcido (tecla L ou 5 toques no relógio) */
 .lucido #ceu,.lucido main,.lucido .topo{animation:lucidoCor 9s linear}
 @keyframes lucidoCor{0%{filter:none}10%{filter:hue-rotate(60deg) saturate(1.8)}50%{filter:hue-rotate(220deg) saturate(2.2) contrast(1.1)}90%{filter:hue-rotate(340deg) saturate(1.6)}100%{filter:none}}
@@ -407,7 +396,6 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 </header>
 
 <div class="insone" id="insone" aria-hidden="true"></div>
-<div class="farol" id="farol" aria-hidden="true"></div>
 <div class="iris-lucida" aria-hidden="true"></div>
 <div class="sonolento" id="sonolento" aria-hidden="true"><div class="vela"></div><div class="pp cima"></div><div class="pp baixo"></div><span class="zzz"><i>z</i> <i>z</i> <i>z</i></span><span class="dica-s" id="dica-s"></span></div>
 <main>
@@ -751,16 +739,6 @@ function acorda(){ paradoDesde=Date.now(); if(sonolento.classList.contains("on")
 ["pointermove","pointerdown","keydown","wheel","touchstart","scroll"].forEach(ev=>addEventListener(ev,acorda,{passive:true}));
 setInterval(()=>{ if(calmo||document.hidden||document.querySelector("dialog[open]")) { paradoDesde=Math.max(paradoDesde,Date.now()-15000); return; }
   if(Date.now()-paradoDesde>20000&&!sonolento.classList.contains("on")){ document.getElementById("dica-s").textContent=lang==="pt"?"mexa pra acordar":"move to wake up"; sonolento.classList.add("on"); } },1000);
-
-/* ---------- faróis no teto ---------- */
-const farol=document.getElementById("farol");
-function passaFarol(){ setTimeout(passaFarol,14000+Math.random()*20000);
-  if(calmo||document.hidden||P>0.82) return;
-  farol.classList.remove("passa","volta"); void farol.offsetWidth;
-  if(Math.random()<0.5) farol.classList.add("volta");
-  farol.style.setProperty("--dur",(3.8+Math.random()*2.6).toFixed(1)+"s"); farol.style.setProperty("--int",(0.1+Math.random()*0.1).toFixed(2));
-  farol.classList.add("passa"); }
-setTimeout(passaFarol,9000);
 
 /* ---------- modo sonho lúcido ---------- */
 let lucidoT=0, toquesRel=[];

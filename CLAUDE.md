@@ -48,7 +48,7 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   (o navegador não deixa tocar antes) e pausam quando a aba sai de foco.
 - **Easter egg**: 3 cliques rápidos no menino (logo da entrada, símbolo do topo ou da seção "quem sonha") → ele pula, toca um "plim" e as estrelas saem voando (o aviso "ele acordou!" foi removido a pedido do dono).
 - **Bocejo**: 20 s sem mexer → tela escurece, pálpebras pesam e piscam devagar, "z z z" e "mexa pra acordar"; qualquer movimento desfaz.
-- **Faróis no teto**: a cada 14–34 s (só à noite) uma faixa de luz quente com sombra de janela atravessa a tela na diagonal, como farol de carro.
+- Faróis passando no teto: feitos e **removidos** ("não curti").
 - **Modo sonho lúcido** (easter egg): tecla **L** ou **5 toques no relógio LCD** → 9 s de cores girando, véu furta-cor, página ondulando e um som subindo.
 - Adesivos soltos arrastáveis: feitos e **removidos** a pedido do dono.
 - Detalhes: cursor de estrela + rastro de estrelinhas (só mouse) e contador "há mm:ss perdendo o sono com a gente" (canto, desktop) e no rodapé.
