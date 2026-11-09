@@ -9,8 +9,8 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   00:00 manifesto ("Lo$ing $leep…") · 01:00 técnicas · 02:00 acervo (13 "sonhos" com etiqueta de museu e visor) · 05:00 quem sonha ·
   06:00 "Conte seu sonho." (orçamento → WhatsApp).
 - Idiomas: PT principal + EN (botão "acordado · PT / dreaming · EN"). Todo texto novo precisa das duas versões (`<span lang="pt">` / `<span lang="en">`).
-- Fontes (v2): **Cormorant Garamond** (títulos e frases em itálico) + **Manrope** (texto e rótulos em caixa alta espaçada).
-  Reprovadas pelo dono ("muito feias"): Marcellus, Instrument Serif/Sans, IBM Plex Mono.
+- Fontes: o dono quer **fonte gorda** nos títulos → **Fraunces 900** (SOFT 100, opsz 144; itálico nas palavras de destaque) + **Manrope** no texto/rótulos.
+  Reprovadas: Marcellus, Instrument Serif/Sans, IBM Plex Mono ("muito feias"), Cormorant Garamond (fina demais).
 - Abertura: pálpebras abrindo **devagar** (~6 s), com piscadas e a visão **embaçada** clareando, como alguém acordando de verdade.
 - Relógio = **mini visor LCD** (7 segmentos, contorno fino em cápsula, "AL") **ao lado do logo DREAMZ no topo**; a hora anda com a rolagem
   e pisca às 06:00. Reprovados: despertador analógico de sinos, despertador Y2K grande no canto (verde-limão e depois verde escuro: "feio").
@@ -20,7 +20,7 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   - **A · Canal da madrugada (02:00)**: TV de tubo prateada Y2K; cada projeto é um canal (OSD verde VT323, chiado ao trocar, peças passando sozinhas),
     controle remoto (1–9, CH▲▼, botão vermelho = canal aleatório) e "programação da madrugada" clicável.
   - **B · Diário de sonhos (03:30)**: caderno espiral pautado; página esquerda manuscrita (Caveat) com o relato do sonho, direita com 3 polaroids com fita; páginas viram.
-  - Diário: "curti, mas não muito". Reprovados: grade de cards ("horrível") e túnel de sonhos ("não gostei", reserva).
+  - Diário: "curti, mas não muito". Ideias rejeitadas sem fazer: lanterna na galeria, janelas acesas, estante de CDs, carneirinhos. Reprovados: grade de cards ("horrível") e túnel de sonhos ("não gostei", reserva).
 - WhatsApp: **+55 17 99108-9367** (constante `WHATSAPP = "5517991089367"` no script).
 - Imagens do acervo: `assets/obras/<projeto>/NN.webp` (01 = capa, 02 = aparece no hover). Originais no Drive "PROJETOS DREAMZ 2026".
 - Ideias guardadas para a v2: cursor de estrela, contador "noites sem dormir", mesa de luz com peças arrastáveis.
