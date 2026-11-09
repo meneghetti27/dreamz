@@ -38,6 +38,10 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   26 filmadora VHS (REC, data, tracking, fitas com etiqueta) · 27 luneta que procura os sonhos como planetas · 28 cabine de fotos 3x4 que solta tirinhas.
   Ideias só propostas (não feitas): 24 álbum de figurinhas, 29 mapa do metrô, 30 globo de neve, 31 projetor de estrelas no teto, 32 stories.
   O dono escolheu 7, 9, 20 e 21 → foram para o site (acima).
+- **04:40 Antes × depois**: perfil do Instagram antes/depois (Anjos Colchões e Cacá Games, `assets/antes-depois/`) num celular com linha arrastável.
+- **05:30 Perguntas de insônia** (FAQ em abre-e-fecha, horários 05:31…05:52). Respostas escritas pelo Claude sem prometer preço/prazo/número de ajustes —
+  **o dono precisa conferir** (principalmente "atendem fora da cidade?" e "o que recebo no final?").
+- Detalhes: cursor de estrela + rastro de estrelinhas (só mouse) e contador "há mm:ss perdendo o sono com a gente" (canto, desktop) e no rodapé.
 - WhatsApp: **+55 17 99108-9367** (constante `WHATSAPP = "5517991089367"` no script).
 - Imagens do acervo: `assets/obras/<projeto>/NN.webp` (01 = capa, 02 = aparece no hover). Originais no Drive "PROJETOS DREAMZ 2026".
-- Ideias guardadas para a v2: cursor de estrela, contador "noites sem dormir", mesa de luz com peças arrastáveis.
+- Ideias guardadas: mesa de luz com peças arrastáveis (cursor de estrela e contador já estão no site).

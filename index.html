@@ -222,6 +222,56 @@ tr.voo.sel .flap i{color:#f5d36b}
 .esteira.nomes button:hover,.esteira.nomes button:focus-visible{color:var(--accent);-webkit-text-stroke-color:var(--accent)}
 .esteira.nomes button::after{content:"✦";font-size:.4em;vertical-align:middle;margin-left:28px;color:var(--accent);-webkit-text-stroke:0}
 
+/* 04:40 — antes × depois */
+.antes-depois{padding-block:clamp(70px,10vw,130px)}
+.ad-grade{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(30px,6vw,90px);align-items:center}
+.ad-texto h2{margin:16px 0 0;font-size:clamp(46px,7vw,100px);line-height:.9}
+.ad-texto h2 em{color:var(--accent)}
+.ad-texto p{margin:18px 0 0;max-width:36ch;color:var(--muted)}
+.ad-abas{display:flex;gap:8px;margin-top:26px}
+.ad-abas button{all:unset;cursor:pointer;font-size:12px;font-weight:700;letter-spacing:.06em;padding:9px 15px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.ad-abas button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.ad-abas button:focus-visible{outline:2px solid var(--accent)}
+.ad-legenda{display:flex;justify-content:space-between;margin-top:22px;max-width:340px;font-family:var(--f-display);font-style:italic;font-weight:700;font-size:20px}
+.ad-legenda span:first-child{color:var(--muted)}
+.ad-legenda span:last-child{color:var(--accent)}
+.ad-fone{position:relative;width:min(340px,82vw);aspect-ratio:540/1170;border-radius:40px;padding:10px;background:#0d0f16;box-shadow:inset 0 0 0 2px #2b2f3b,0 40px 80px -30px rgba(0,0,0,.9)}
+.ad-tela{position:relative;height:100%;border-radius:31px;overflow:hidden;cursor:ew-resize;touch-action:pan-y;--corte:50%}
+.ad-tela img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ad-tela .depois{clip-path:inset(0 0 0 var(--corte))}
+.ad-tela .divisor{position:absolute;top:0;bottom:0;left:var(--corte);width:2px;background:#FEFAE2;transform:translateX(-1px);box-shadow:0 0 12px rgba(0,0,0,.5)}
+.ad-tela .divisor span{position:absolute;top:50%;left:50%;width:44px;height:44px;transform:translate(-50%,-50%);border-radius:50%;background:#FEFAE2;color:#141a30;display:grid;place-items:center;font-size:15px;font-weight:800;box-shadow:0 6px 16px rgba(0,0,0,.4)}
+.ad-tela .rot-ad{position:absolute;top:56px;padding:5px 10px;border-radius:99px;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;background:rgba(20,26,48,.85);color:#FEFAE2;pointer-events:none}
+.ad-tela .rot-ad.a{left:12px}
+.ad-tela .rot-ad.d{right:12px;background:#8AC4FE;color:#141a30}
+.ad-tela:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+
+/* 05:30 — perguntas de insônia */
+.insonia{padding-block:clamp(60px,9vw,120px)}
+.insonia .cab-f{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px 40px;margin-bottom:40px}
+.insonia h2{margin:16px 0 0;font-size:clamp(46px,7vw,100px);line-height:.9}
+.insonia h2 em{color:var(--accent)}
+.insonia .cab-f p{margin:0;max-width:34ch;color:var(--muted)}
+.perguntas{border-top:1px solid var(--line)}
+.perguntas details{border-bottom:1px solid var(--line)}
+.perguntas summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:70px minmax(0,1fr) 30px;align-items:baseline;gap:14px;padding:20px 0}
+.perguntas summary::-webkit-details-marker{display:none}
+.perguntas summary .hr{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.perguntas summary .q{font-family:var(--f-display);font-weight:800;font-size:clamp(22px,2.6vw,34px);line-height:1.1}
+.perguntas summary .mais{font-family:var(--f-display);font-size:28px;line-height:1;transition:transform .3s;text-align:right}
+.perguntas details[open] summary .mais{transform:rotate(45deg)}
+.perguntas summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.perguntas .r{margin:0 0 24px 84px;max-width:58ch;font-size:17px;color:var(--muted)}
+
+/* rastro de estrelas e contador */
+@media (pointer:fine){ body{cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'><path d='M11 1l2.6 6.6 7.1.4-5.5 4.5 1.9 6.9L11 15.5 4.9 19.4l1.9-6.9L1.3 8l7.1-.4z' fill='%23FEFAE2' stroke='%23141a30' stroke-width='1.2'/></svg>") 11 11,auto} }
+.faisca{position:fixed;left:0;top:0;width:var(--t);height:var(--t);pointer-events:none;z-index:85;background:var(--cf);
+  clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);animation:faisca .9s ease-out forwards}
+@keyframes faisca{to{transform:translate(var(--dx),var(--dy)) rotate(140deg) scale(.2);opacity:0}}
+.insone{position:fixed;left:var(--gutter);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;font-size:11px;font-weight:600;letter-spacing:.08em;mix-blend-mode:difference;color:#FEFAE2;pointer-events:none}
+.insone b{font-family:var(--f-mono);font-weight:700}
+footer .insone-f b{font-family:var(--f-mono)}
+
 /* 05:00 *//* 05:00 */
 .quem{padding-block:clamp(90px,12vw,160px)}
 .quem .grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:40px 70px;align-items:center;margin-top:30px}
@@ -281,6 +331,9 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 .visor-pe .frase{font-family:var(--f-display);font-style:italic;text-transform:none;letter-spacing:0;font-size:20px;font-weight:400;max-width:60ch}
 
 @media (max-width:900px){
+  .ad-grade{grid-template-columns:1fr}
+  .ad-fone{margin:0 auto}
+  .insone{display:none}
   .tec-bloco,.tec-bloco.inv{grid-template-columns:1fr}
   .tec-bloco.inv .tec-txt{order:0}
   .aeroporto{grid-template-columns:1fr}
@@ -290,6 +343,8 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 @media (max-width:640px){
 }
 @media (max-width:560px){
+  .perguntas summary{grid-template-columns:52px minmax(0,1fr) 24px}
+  .perguntas .r{margin-left:0}
   .idioma .longo{display:none}
   .visor-pe .frase{display:none}
 }
@@ -315,6 +370,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
   </div>
 </header>
 
+<div class="insone" id="insone" aria-hidden="true"></div>
 <main>
   <section class="faixa entrada" id="entrada" data-cena-pt="acordando no sonho" data-cena-en="waking inside the dream">
     <div>
@@ -444,6 +500,27 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
     <div class="faixas" id="faixas"></div>
   </section>
 
+  <section class="faixa antes-depois" id="antes-depois" data-cena-pt="antes de acordar" data-cena-en="before waking">
+    <div class="miolo ad-grade">
+      <div class="ad-texto">
+        <div class="rotulo">04:40 · <span lang="pt">antes × depois</span><span lang="en">before × after</span></div>
+        <h2><span lang="pt">Antes de dormir, <em>depois do sonho.</em></span><span lang="en">Before sleep, <em>after the dream.</em></span></h2>
+        <p lang="pt">O mesmo perfil, antes e depois da dreamz. Arraste a linha no celular pra comparar.</p>
+        <p lang="en">The same profile, before and after dreamz. Drag the line on the phone to compare.</p>
+        <div class="ad-abas" role="group" aria-label="Cliente"><button type="button" id="ad-anjos" data-c="anjos" aria-pressed="true">Anjos Colchões</button><button type="button" id="ad-caca" data-c="caca" aria-pressed="false">Cacá Games</button></div>
+        <div class="ad-legenda"><span><span lang="pt">← antes</span><span lang="en">← before</span></span><span><span lang="pt">depois →</span><span lang="en">after →</span></span></div>
+      </div>
+      <div class="ad-fone">
+        <div class="ad-tela" id="ad-tela" tabindex="0" role="slider" aria-label="Comparar antes e depois" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img class="antes" id="ad-antes" src="assets/antes-depois/anjos-antes.webp" alt="Perfil antes">
+          <img class="depois" id="ad-depois" src="assets/antes-depois/anjos-depois.webp" alt="Perfil depois">
+          <span class="rot-ad a"><span lang="pt">antes</span><span lang="en">before</span></span><span class="rot-ad d"><span lang="pt">depois</span><span lang="en">after</span></span>
+          <span class="divisor"><span>⇆</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="faixa quem" id="quem" data-cena-pt="sonho lúcido" data-cena-en="lucid dream">
     <div class="miolo">
       <div class="rotulo">05:00 · <span lang="pt">quem sonha</span><span lang="en">the dreamer</span></div>
@@ -458,6 +535,33 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
             <a class="pilula" href="https://instagram.com/maldonaenz" target="_blank" rel="noopener">@maldonaenz ↗</a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faixa insonia" id="insonia" data-cena-pt="perguntas de insônia" data-cena-en="sleepless questions">
+    <div class="miolo">
+      <div class="cab-f">
+        <div>
+          <div class="rotulo">05:30 · <span lang="pt">dúvidas</span><span lang="en">questions</span></div>
+          <h2><span lang="pt">Perguntas de <em>insônia</em></span><span lang="en">Sleepless <em>questions</em></span></h2>
+        </div>
+        <p lang="pt">As dúvidas que tiram o sono de quem está pensando em contratar.</p>
+        <p lang="en">The questions that keep people up before they hire us.</p>
+      </div>
+      <div class="perguntas">
+        <details><summary><span class="hr">05:31</span><span class="q"><span lang="pt">Quanto custa?</span><span lang="en">How much does it cost?</span></span><span class="mais" aria-hidden="true">+</span></summary>
+          <p class="r"><span lang="pt">Depende do tamanho do sonho. Cada projeto tem um orçamento sob medida: conte o seu aqui embaixo e a gente responde com valor e prazo.</span><span lang="en">It depends on the size of the dream. Every project gets a tailored quote: tell us yours below and we'll reply with price and timing.</span></p></details>
+        <details><summary><span class="hr">05:34</span><span class="q"><span lang="pt">Quanto tempo leva?</span><span lang="en">How long does it take?</span></span><span class="mais" aria-hidden="true">+</span></summary>
+          <p class="r"><span lang="pt">O prazo é combinado no orçamento, antes de começar, e muda conforme o que a marca precisa. Você sabe a data de entrega desde o primeiro dia.</span><span lang="en">Timing is agreed in the quote, before we start, and depends on what the brand needs. You know the delivery date from day one.</span></p></details>
+        <details><summary><span class="hr">05:38</span><span class="q"><span lang="pt">Preciso ter logo pra fazer social media?</span><span lang="en">Do I need a logo for social media?</span></span><span class="mais" aria-hidden="true">+</span></summary>
+          <p class="r"><span lang="pt">Não. Se a marca já tem identidade, o social segue o que existe. Se ainda não tem, dá pra começar pela identidade e emendar o social depois.</span><span lang="en">No. If the brand already has an identity, social follows it. If it doesn't, we can start with the identity and move on to social after.</span></p></details>
+        <details><summary><span class="hr">05:43</span><span class="q"><span lang="pt">Vocês atendem fora da minha cidade?</span><span lang="en">Do you work outside my city?</span></span><span class="mais" aria-hidden="true">+</span></summary>
+          <p class="r"><span lang="pt">Sim. O trabalho acontece todo online, por WhatsApp e chamada, então a distância não muda nada.</span><span lang="en">Yes. Everything happens online, over WhatsApp and calls, so distance doesn't matter.</span></p></details>
+        <details><summary><span class="hr">05:47</span><span class="q"><span lang="pt">Posso pedir ajustes?</span><span lang="en">Can I ask for changes?</span></span><span class="mais" aria-hidden="true">+</span></summary>
+          <p class="r"><span lang="pt">Pode. Ajuste faz parte do processo: a gente apresenta, você comenta e a gente refina até o sonho ficar com a sua cara.</span><span lang="en">Yes. Revisions are part of the process: we present, you comment, and we refine until the dream looks like you.</span></p></details>
+        <details><summary><span class="hr">05:52</span><span class="q"><span lang="pt">O que eu recebo no final?</span><span lang="en">What do I get at the end?</span></span><span class="mais" aria-hidden="true">+</span></summary>
+          <p class="r"><span lang="pt">Na identidade visual: logo e variações, paleta, tipografia e as aplicações combinadas, em arquivos prontos pra usar. No social media: os posts prontos pra publicar.</span><span lang="en">For visual identity: logo and variations, palette, typography and the agreed applications, in ready-to-use files. For social media: posts ready to publish.</span></p></details>
       </div>
     </div>
   </section>
@@ -509,6 +613,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 
   <footer class="faixa">
     <span class="logo" role="img" aria-label="dreamz"></span>
+    <p class="insone-f" id="insone-f"></p>
     <p class="acordou"><span lang="pt">Bom dia. Você acordou.</span><span lang="en">Good morning. You're awake.</span></p>
     <p>dreamz © 2026 · <span lang="pt">galeria de design conceitual</span><span lang="en">conceptual design gallery</span></p>
   </footer>
@@ -632,6 +737,33 @@ const linhaFotos=(l,cls,d)=>`<div class="esteira fotos ${cls}" style="--dur:${d}
 const linhaNomes=(l,cls,d)=>`<div class="esteira nomes ${cls}" style="--dur:${d}s">${dobra(l).map(k=>`<button type="button" data-k="${k}">${OBRAS[k].t}</button>`).join("")}</div>`;
 fxs.innerHTML=linhaNomes(idx,"",70)+linhaFotos(idx.slice().reverse(),"volta",55)+linhaNomes(idx.slice(6).concat(idx.slice(0,6)),"volta",80)+linhaFotos(idx.slice(4).concat(idx.slice(0,4)),"",65);
 fxs.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) abrirObra(+b.dataset.k); });
+
+/* ---------- antes × depois ---------- */
+const adTela=document.getElementById("ad-tela");
+const adCorte=v=>{ v=Math.max(0,Math.min(100,v)); adTela.style.setProperty("--corte",v+"%"); adTela.setAttribute("aria-valuenow",Math.round(v)); };
+let adDown=false;
+const adPonto=e=>{ const r=adTela.getBoundingClientRect(); adCorte((e.clientX-r.left)/r.width*100); };
+adTela.addEventListener("pointerdown",e=>{ adDown=true; adPonto(e); });
+adTela.addEventListener("pointermove",e=>{ if(adDown||e.pointerType==="mouse") adPonto(e); });
+addEventListener("pointerup",()=>adDown=false);
+adTela.addEventListener("keydown",e=>{ const v=parseFloat(adTela.getAttribute("aria-valuenow")); if(e.key==="ArrowLeft") adCorte(v-5); if(e.key==="ArrowRight") adCorte(v+5); });
+document.querySelectorAll(".ad-abas button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".ad-abas button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  document.getElementById("ad-antes").src=`assets/antes-depois/${b.dataset.c}-antes.webp`; document.getElementById("ad-depois").src=`assets/antes-depois/${b.dataset.c}-depois.webp`; adCorte(50); }));
+
+/* ---------- rastro de estrelas ---------- */
+if(matchMedia("(pointer:fine)").matches&&!calmo){ let ult=0; const cores=["#FEFAE2","#8AC4FE","#A6D8FF","#7690D4"];
+  addEventListener("pointermove",e=>{ const t=performance.now(); if(t-ult<38) return; ult=t;
+    const f=document.createElement("span"); f.className="faisca"; const sz=5+Math.random()*7;
+    f.style.cssText=`left:${e.clientX-sz/2}px;top:${e.clientY-sz/2}px;--t:${sz}px;--cf:${cores[Math.floor(Math.random()*4)]};--dx:${(Math.random()*40-20).toFixed(0)}px;--dy:${(10+Math.random()*30).toFixed(0)}px`;
+    document.body.appendChild(f); setTimeout(()=>f.remove(),950); },{passive:true}); }
+
+/* ---------- contador de sono perdido ---------- */
+const t0=Date.now(), insone=document.getElementById("insone"), insoneF=document.getElementById("insone-f");
+function contaSono(){ const s=Math.floor((Date.now()-t0)/1000), mm=String(Math.floor(s/60)).padStart(2,"0"), ss=String(s%60).padStart(2,"0");
+  const txt=lang==="pt"?`há <b>${mm}:${ss}</b> perdendo o sono com a gente`:`<b>${mm}:${ss}</b> of sleep lost with us`;
+  insone.innerHTML=txt; insoneF.innerHTML=lang==="pt"?`Você passou <b>${mm}:${ss}</b> acordado com a gente.`:`You stayed up <b>${mm}:${ss}</b> with us.`; }
+contaSono(); setInterval(contaSono,1000);
 
 /* ---------- visor ---------- */
 const visor=document.getElementById("visor"), trilho=document.getElementById("trilho");
