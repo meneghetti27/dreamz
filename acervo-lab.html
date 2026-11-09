@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..900,0..100&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Caveat:wght@600&display=swap">
 <style>
-/* Laboratório, rodada 3: mais 10 maneiras de mostrar o acervo, uma por aba. Visual único (noite), não segue o tema do sistema. */
+/* Laboratório, rodada 4: 9 maneiras de mostrar o acervo, uma por aba. Visual único (noite), não segue o tema do sistema. */
 :root{
   color-scheme:dark;
   --noite:#05060c; --marinho:#283456; --lavanda:#7690D4; --ceu:#8AC4FE; --bebe:#A6D8FF; --creme:#FEFAE2; --marrom:#704838; --tinta:#141a30;
@@ -40,121 +40,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .btn{all:unset;cursor:pointer;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:9px 15px}
 .btn:focus-visible{outline:2px solid var(--ceu)}
 
-/* 13 constelações */
-.ceu-c{position:relative;height:min(820px,110vh);overflow:hidden;background:radial-gradient(70% 60% at 50% 40%,#101a3c,#05060c 75%)}
-.ceu-c svg{position:absolute;inset:0;width:100%;height:100%}
-.ceu-c .const{cursor:pointer}
-.ceu-c .const line{stroke:rgba(166,216,255,.25);stroke-width:1;transition:stroke .3s}
-.ceu-c .const circle.e{fill:#FEFAE2;transition:r .3s}
-.ceu-c .const text{fill:rgba(254,250,226,.55);font-family:var(--f-display);font-style:italic;font-weight:700;font-size:15px;transition:fill .3s}
-.ceu-c .const:hover line,.ceu-c .const:focus line{stroke:#8AC4FE;stroke-width:1.6}
-.ceu-c .const:hover text,.ceu-c .const:focus text{fill:#FEFAE2}
-.ceu-c .const:focus{outline:none}
-.ceu-c .previa-c{position:absolute;width:200px;pointer-events:none;opacity:0;transform:translateY(8px) scale(.95);transition:opacity .3s,transform .3s;z-index:3}
-.ceu-c .previa-c.on{opacity:1;transform:none}
-.ceu-c .previa-c img{width:100%;box-shadow:0 0 0 1px rgba(166,216,255,.4),0 20px 50px rgba(0,0,0,.6),0 0 40px rgba(138,196,254,.25)}
-
-/* 14 persiana */
-.janela-p{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:30px;align-items:start}
-.moldura-p{position:relative;aspect-ratio:4/5;max-height:78vh;margin:0 auto;width:100%;max-width:620px;border:14px solid #2a2f3d;border-radius:4px;box-shadow:inset 0 0 0 2px #444b5c,0 30px 60px -20px rgba(0,0,0,.8);overflow:hidden;perspective:900px;background:#000}
-.moldura-p .atras{all:unset;cursor:zoom-in;position:absolute;inset:0;background-size:cover;background-position:center}
-.ripas{position:absolute;inset:0;display:grid;grid-template-rows:repeat(16,1fr);pointer-events:none}
-.ripa{transform-origin:50% 50%;background:linear-gradient(#e9e6dc,#cfcabd 60%,#b5af9f);box-shadow:0 1px 0 rgba(0,0,0,.25);transition:transform .7s cubic-bezier(.5,0,.2,1);transition-delay:calc(var(--i) * 25ms)}
-.moldura-p.aberta .ripa{transform:rotateX(78deg)}
-.moldura-p .luz{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,236,190,.18) 45%,transparent 60%);mix-blend-mode:screen}
-.lista-p{display:grid;gap:6px;max-height:78vh;overflow:auto}
-.lista-p button{all:unset;cursor:pointer;display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center;padding:6px;border-radius:8px;font-size:13px;font-weight:700}
-.lista-p button img{width:44px;height:52px;object-fit:cover;border-radius:4px}
-.lista-p button[aria-current="true"]{background:rgba(254,250,226,.1)}
-.lista-p button:focus-visible{outline:2px solid var(--ceu)}
-.cordao{display:flex;justify-content:center;margin-top:16px}
-
-/* 15 roda-gigante */
-.parque{position:relative;height:min(880px,120vh);overflow:hidden;background:linear-gradient(#05060c,#141a30 70%,#283456)}
-.roda{position:absolute;left:50%;top:44%;width:min(640px,74vw);aspect-ratio:1;transform:translate(-50%,-50%)}
-.roda .aro{position:absolute;inset:0;border-radius:50%;border:4px solid #b8c2d8;box-shadow:0 0 30px rgba(138,196,254,.35),inset 0 0 0 26px transparent}
-.roda .aro2{position:absolute;inset:7%;border-radius:50%;border:2px solid rgba(184,194,216,.6)}
-.roda .raio{position:absolute;left:50%;top:50%;width:50%;height:2px;background:rgba(184,194,216,.55);transform-origin:0 50%}
-.roda .lamp{position:absolute;width:7px;height:7px;border-radius:50%;background:#ffe9a8;box-shadow:0 0 10px #ffd27a;transform:translate(-50%,-50%);animation:pisca 1.4s infinite}
-@keyframes pisca{50%{opacity:.3}}
-.roda .eixo{position:absolute;left:50%;top:50%;width:34px;height:34px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(#e6ebf5,#7c879e)}
-.cabine{all:unset;cursor:pointer;position:absolute;width:clamp(58px,11vw,96px);transform:translate(-50%,0)}
-.cabine .gancho{display:block;width:2px;height:16px;margin:0 auto;background:#b8c2d8}
-.cabine .caixa-c{display:block;aspect-ratio:1;border-radius:14px 14px 22px 22px;overflow:hidden;border:3px solid var(--c);background:#0b0f22 center/cover;box-shadow:0 8px 18px rgba(0,0,0,.5)}
-.cabine:hover .caixa-c,.cabine:focus-visible .caixa-c{box-shadow:0 0 0 3px #FEFAE2,0 0 30px rgba(254,250,226,.5)}
-.base-roda{position:absolute;left:50%;top:44%;width:min(500px,72vw);height:56%;transform:translateX(-50%);pointer-events:none}
-.base-roda::before,.base-roda::after{content:"";position:absolute;top:0;bottom:0;width:4px;background:#8e99b2;transform-origin:top}
-.base-roda::before{left:50%;transform:rotate(18deg)}
-.base-roda::after{left:50%;transform:rotate(-18deg)}
-.placa-roda{position:absolute;left:0;right:0;bottom:24px;text-align:center;font-family:var(--f-display);font-style:italic;font-weight:700;font-size:20px;color:var(--muted);min-height:1.3em}
-
-/* 16 dreamz OS */
-.desktop{position:relative;height:min(760px,100vh);border-radius:14px;overflow:hidden;border:1px solid var(--line);
-  background:radial-gradient(60% 50% at 70% 30%,#8AC4FE,#7690D4 45%,#283456 100%)}
-.desktop .papel-p{position:absolute;right:6%;bottom:16%;width:min(300px,40vw);aspect-ratio:728/647;color:rgba(254,250,226,.18)}
-.icones{position:absolute;left:14px;top:14px;bottom:56px;display:grid;grid-auto-flow:column;grid-template-rows:repeat(auto-fill,96px);gap:4px 6px}
-.icone{all:unset;cursor:pointer;width:92px;display:grid;justify-items:center;gap:4px;padding:6px 2px;border-radius:6px;text-align:center;font-size:11.5px;font-weight:700;line-height:1.2;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.7)}
-.icone .pasta{width:46px;height:36px;border-radius:3px 8px 6px 6px;background:linear-gradient(#ffe48a,#f2c14e);position:relative;box-shadow:0 2px 4px rgba(0,0,0,.3);overflow:hidden}
-.icone .pasta::before{content:"";position:absolute;left:0;top:-6px;width:20px;height:10px;border-radius:3px 3px 0 0;background:#f2c14e}
-.icone .pasta i{position:absolute;left:6px;right:6px;top:6px;bottom:4px;background:center/cover;border:2px solid #fff;transform:rotate(-6deg)}
-.icone:hover,.icone:focus-visible{background:rgba(20,26,48,.35);outline:none}
-.janela-os{position:absolute;width:min(460px,86%);background:#e8ebf2;color:#141a30;border-radius:8px;box-shadow:0 20px 50px rgba(0,0,0,.5);overflow:hidden}
-.janela-os .barra{display:flex;align-items:center;gap:8px;padding:7px 8px 7px 12px;background:linear-gradient(#3b4f8f,#283456);color:#fff;font-size:12px;font-weight:700;cursor:grab;user-select:none;touch-action:none}
-.janela-os .barra span{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.janela-os .barra button{all:unset;cursor:pointer;width:20px;height:18px;border-radius:3px;display:grid;place-items:center;background:#e8ebf2;color:#141a30;font-size:11px;font-weight:800}
-.janela-os .conteudo{background:#0b0f22;aspect-ratio:4/3;display:grid;place-items:center;cursor:zoom-in}
-.janela-os .conteudo img{max-width:100%;max-height:100%;object-fit:contain}
-.janela-os .rodape-os{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;font-family:var(--f-mono);font-size:11px}
-.janela-os .rodape-os button{all:unset;cursor:pointer;padding:2px 8px;border:1px solid #9aa3b8;border-radius:3px;background:#fff}
-.tarefas{position:absolute;left:0;right:0;bottom:0;height:42px;display:flex;align-items:center;gap:8px;padding:0 8px;background:rgba(20,26,48,.85);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.tarefas .iniciar{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;background:#FEFAE2;color:#141a30;font-weight:800;font-size:12px}
-.tarefas .iniciar .simbolo{width:20px;height:18px}
-.tarefas .hora-os{margin-left:auto;font-family:var(--f-mono);font-size:12px}
-
-/* 17 tela de bloqueio */
-.celular{width:min(380px,100%);margin:0 auto;aspect-ratio:9/19;border-radius:52px;padding:12px;background:#111;box-shadow:inset 0 0 0 2px #333,0 40px 80px -30px rgba(0,0,0,.9)}
-.tela-c{position:relative;height:100%;border-radius:42px;overflow:hidden;background:radial-gradient(80% 60% at 50% 20%,#283456,#0b0f22 70%)}
-.tela-c::before{content:"";position:absolute;left:50%;top:10px;width:110px;height:30px;border-radius:20px;background:#000;transform:translateX(-50%);z-index:3}
-.bloqueio-topo{text-align:center;padding-top:56px}
-.bloqueio-topo .data-c{font-size:15px;font-weight:600;opacity:.85}
-.bloqueio-topo .hora-c{font-family:var(--f-display);font-weight:800;font-size:86px;line-height:1;letter-spacing:-.03em}
-.notifs{position:absolute;left:10px;right:10px;top:200px;bottom:20px;overflow-y:auto;display:grid;gap:8px;align-content:start;scrollbar-width:none}
-.notifs::-webkit-scrollbar{display:none}
-.notif{all:unset;cursor:pointer;display:grid;grid-template-columns:34px 1fr 46px;gap:10px;align-items:center;padding:10px 12px;border-radius:20px;
-  background:rgba(230,236,255,.16);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);animation:chega .5s cubic-bezier(.2,.9,.3,1.2) both;animation-delay:var(--d)}
-@keyframes chega{from{opacity:0;transform:translateY(-14px) scale(.96)}}
-.notif .app{width:34px;height:34px;border-radius:9px;background:#FEFAE2;color:#141a30;display:grid;place-items:center}
-.notif .app .simbolo{width:24px;height:21px}
-.notif .txt-n{min-width:0;font-size:12.5px;line-height:1.3}
-.notif .txt-n b{display:flex;justify-content:space-between;font-size:12.5px}
-.notif .txt-n b small{font-weight:500;opacity:.6}
-.notif .txt-n span{display:block;opacity:.85;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.notif img{width:46px;height:46px;border-radius:8px;object-fit:cover}
-.notif:focus-visible{outline:2px solid var(--ceu)}
-
-/* 18 vidro embaçado */
-.vidro-w{position:relative;max-width:1100px;margin:0 auto;border-radius:12px;overflow:hidden;border:10px solid #1b2030;box-shadow:0 30px 60px -20px rgba(0,0,0,.8)}
-.vidro-w canvas{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair}
-.dica-v{position:absolute;left:0;right:0;top:44%;text-align:center;font-family:"Caveat",cursive;font-size:clamp(28px,4vw,48px);color:rgba(20,26,48,.55);pointer-events:none;transition:opacity .6s}
-
-/* 19 iPod */
-.ipod{width:min(320px,100%);margin:0 auto;aspect-ratio:.6;border-radius:34px;padding:18px;display:grid;grid-template-rows:auto 1fr;gap:18px;
-  background:linear-gradient(160deg,#ffffff,#e4e7ec 50%,#c9ced6);box-shadow:inset 0 2px 3px #fff,inset 0 -4px 10px rgba(0,0,0,.12),0 40px 70px -30px rgba(0,0,0,.9);color:#111}
-.tela-i{border-radius:8px;background:#f4f6f8;border:3px solid #2a2d33;overflow:hidden;font-size:11px}
-.tela-i .barra-i{display:flex;justify-content:space-between;padding:3px 8px;background:linear-gradient(#f3f4f6,#c8ccd3);font-weight:800;font-size:10px}
-.tela-i .agora{display:grid;grid-template-columns:96px 1fr;gap:10px;padding:10px;align-items:center}
-.tela-i .agora img{width:96px;height:96px;object-fit:cover;box-shadow:0 4px 8px rgba(0,0,0,.3);transform:perspective(200px) rotateY(12deg)}
-.tela-i .agora b{display:block;font-size:13px;line-height:1.2}
-.tela-i .agora span{display:block;color:#555}
-.tela-i .prog{margin:0 10px 10px;height:6px;border-radius:3px;background:#c9ced6;overflow:hidden}
-.tela-i .prog i{display:block;height:100%;background:linear-gradient(#8AC4FE,#3b6fd1)}
-.tela-i .tempo{display:flex;justify-content:space-between;padding:0 10px 8px;font-family:var(--f-mono);font-size:10px;color:#555}
-.roda-i{position:relative;align-self:center;justify-self:center;width:min(210px,100%);aspect-ratio:1;border-radius:50%;background:linear-gradient(160deg,#ffffff,#e7e9ee);box-shadow:inset 0 2px 6px rgba(0,0,0,.12);touch-action:none;cursor:grab}
-.roda-i .rot-i{position:absolute;font-size:11px;font-weight:800;color:#8b919b;pointer-events:none}
-.roda-i .centro{all:unset;cursor:pointer;position:absolute;left:50%;top:50%;width:36%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:linear-gradient(160deg,#f6f7f9,#d6dae0);box-shadow:0 1px 3px rgba(0,0,0,.25)}
-.roda-i .zona{all:unset;cursor:pointer;position:absolute;width:30%;height:22%;display:grid;place-items:center}
-.roda-i .zona:focus-visible,.roda-i .centro:focus-visible{outline:2px solid #3b6fd1}
-
 /* 20 tarô */
 .mesa-t{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:22px;perspective:1400px}
 .carta{all:unset;cursor:pointer;aspect-ratio:.58;position:relative;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.3,1.3,.5,1)}
@@ -185,18 +70,178 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .faixa.nomes button:hover,.faixa.nomes button:focus-visible{color:#8AC4FE;-webkit-text-stroke-color:#8AC4FE}
 .faixa.nomes button::after{content:"✦";font-size:.4em;vertical-align:middle;margin-left:28px;color:#8AC4FE;-webkit-text-stroke:0}
 
-/* 22 lençol */
-.cama{position:relative;height:min(760px,105vh);border-radius:16px;overflow:hidden;touch-action:none;
-  background:radial-gradient(40% 30% at 30% 30%,rgba(255,255,255,.5),transparent 70%),radial-gradient(50% 40% at 75% 70%,rgba(255,255,255,.35),transparent 70%),
-  repeating-linear-gradient(118deg,rgba(0,0,0,0) 0 60px,rgba(120,130,160,.10) 90px,rgba(0,0,0,0) 140px),linear-gradient(160deg,#eef0f6,#d6dbe8)}
-.cama::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 40%,transparent 60%,rgba(20,26,48,.35))}
-.solta{position:absolute;width:clamp(120px,16vw,190px);background:#fff;padding:8px 8px 30px;box-shadow:0 12px 26px -8px rgba(0,0,0,.45);cursor:grab;user-select:none;touch-action:none}
-.solta.pega{cursor:grabbing;box-shadow:0 26px 40px -10px rgba(0,0,0,.55)}
-.solta img{width:100%;aspect-ratio:4/5;object-fit:cover;pointer-events:none}
-.solta span{position:absolute;left:8px;right:8px;bottom:6px;font-family:"Caveat",cursive;font-size:18px;color:#283456;text-align:center}
-.solta:focus-visible{outline:3px solid #283456}
-.acoes-c{display:flex;gap:10px;justify-content:center;margin-top:20px}
+/* ===== 7 · índice gigante ===== */
+.indice{padding-bottom:110px}
+.linha-i{all:unset;cursor:pointer;display:grid;grid-template-columns:60px minmax(0,1fr) auto;align-items:baseline;gap:20px;width:100%;padding:10px 0 6px;border-top:1px solid var(--line);transition:opacity .25s}
+.indice:hover .linha-i{opacity:.28}
+.indice .linha-i:hover,.indice .linha-i:focus-visible{opacity:1}
+.linha-i .n{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.linha-i .nome{font-family:var(--f-display);font-weight:900;font-variation-settings:"SOFT" 100,"opsz" 144;font-size:clamp(40px,8.4vw,128px);line-height:.95;letter-spacing:-.03em;transition:transform .35s cubic-bezier(.2,.8,.2,1),color .25s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.linha-i:hover .nome,.linha-i:focus-visible .nome{font-style:italic;color:var(--ceu);transform:translateX(22px)}
+.linha-i .meta{font-family:var(--f-mono);font-size:12px;color:var(--muted);text-align:right;line-height:1.5}
+.linha-i .mini{display:none}
+.flutua{position:fixed;left:0;top:0;width:min(300px,26vw);pointer-events:none;z-index:40;opacity:0;transform:translate(-50%,-50%) scale(.8) rotate(-4deg);transition:opacity .25s,transform .35s cubic-bezier(.2,.8,.2,1)}
+.flutua.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4deg)}
+.flutua img{width:100%;height:auto;box-shadow:0 30px 60px rgba(0,0,0,.6)}
 
+/* ===== 9 · painel de partidas ===== */
+.aeroporto{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:30px;align-items:start;padding-bottom:100px}
+.painel{background:#0b0c0f;border-radius:14px;padding:18px 18px 22px;box-shadow:inset 0 0 0 2px #22252c,0 30px 60px -25px rgba(0,0,0,.9);overflow-x:auto}
+.painel .cab-p{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-mono);font-size:13px;letter-spacing:.14em;color:#f5d36b;margin-bottom:12px;min-width:620px}
+.painel table{border-collapse:separate;border-spacing:0 5px;width:100%;min-width:620px;font-family:var(--f-mono)}
+.painel th{text-align:left;font-size:10px;font-weight:400;letter-spacing:.16em;color:#8d93a0;padding:0 6px}
+.painel tr.voo{cursor:pointer}
+.painel tr.voo:focus-visible{outline:2px solid #f5d36b}
+.painel td{padding:0 6px}
+.flap{display:inline-flex;gap:2px}
+.flap i{font-style:normal;display:inline-grid;place-items:center;width:17px;height:26px;border-radius:3px;font-size:15px;font-weight:700;color:#f3f1e9;
+  background:linear-gradient(#24272e 0 49%,#0b0c0f 49% 51%,#1d2026 51%);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.flap i.vira{animation:vira .08s steps(1) 1}
+@keyframes vira{50%{transform:scaleY(.2)}}
+tr.voo.sel .flap i{color:#f5d36b}
+.status-on{color:#7CFF9A!important}
+.embarque{background:#FEFAE2;color:var(--tinta);border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -25px rgba(0,0,0,.9);position:sticky;top:90px}
+.embarque .faixa-e{display:flex;justify-content:space-between;align-items:center;background:var(--tinta);color:var(--creme);padding:12px 18px;font-family:var(--f-mono);font-size:11px;letter-spacing:.16em}
+.embarque .faixa-e .simbolo{width:24px;height:21px}
+.embarque .corpo-e{padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;font-family:var(--f-mono)}
+.embarque .corpo-e small{display:block;font-size:9px;letter-spacing:.16em;color:#6b7390}
+.embarque .corpo-e b{font-size:15px}
+.embarque .destino{grid-column:1/-1}
+.embarque .destino b{font-family:var(--f-display);font-weight:900;font-size:clamp(26px,2.6vw,36px);letter-spacing:-.02em;line-height:1}
+.embarque img{width:100%;aspect-ratio:16/10;object-fit:cover;border-top:2px dashed rgba(20,26,48,.3)}
+.embarque button{all:unset;cursor:pointer;display:block;text-align:center;background:var(--tinta);color:var(--creme);padding:14px;font-family:var(--f-mono);font-size:12px;letter-spacing:.2em}
+.embarque button:focus-visible{outline:2px solid var(--ceu);outline-offset:-4px}
+.codigo{height:34px;margin:0 18px 16px;background:repeating-linear-gradient(90deg,var(--tinta) 0 2px,transparent 2px 4px,var(--tinta) 4px 5px,transparent 5px 8px,var(--tinta) 8px 11px,transparent 11px 12px)}
+
+/* 23 rabisco ao sonho */
+.rabisco{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:34px;align-items:start}
+.prancheta{position:relative;padding:28px;background-color:#f4f1e8;transform:rotate(-.5deg);box-shadow:0 30px 60px -25px rgba(0,0,0,.9);
+  background-image:linear-gradient(rgba(90,120,180,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(90,120,180,.16) 1px,transparent 1px);background-size:22px 22px}
+.pr-palco{all:unset;position:relative;display:block;margin:0 auto;width:min(100%,560px);cursor:ew-resize;touch-action:pan-y;--corte:50%}
+.pr-palco img{display:block;width:100%;height:auto}
+.pr-palco .rascunho{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:url(#esboco);clip-path:inset(0 0 0 var(--corte));background:#f4f1e8}
+.pr-palco .linha-r{position:absolute;top:-10px;bottom:-10px;left:var(--corte);width:2px;background:#283456;transform:translateX(-1px)}
+.pr-palco .linha-r span{position:absolute;top:50%;left:50%;width:38px;height:38px;transform:translate(-50%,-50%);border-radius:50%;background:#283456;color:#FEFAE2;display:grid;place-items:center;font-size:18px}
+.pr-palco:focus-visible{outline:3px solid #283456;outline-offset:6px}
+.anot{position:absolute;font-family:"Caveat",cursive;font-size:24px;color:#283456;pointer-events:none}
+.anot.a1{left:6px;top:-2px}
+.anot.a2{right:6px;top:-2px}
+.lado-r{display:grid;gap:14px}
+.lado-r .tit-r{font-family:var(--f-display);font-weight:900;font-size:clamp(34px,3.4vw,46px);line-height:.95}
+.lado-r .frase-r{font-family:"Caveat",cursive;font-size:26px;line-height:1.15;color:var(--bebe)}
+.lado-r .ficha-r{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.tira-r{grid-column:1/-1;display:flex;gap:10px;overflow-x:auto;padding:6px 2px 10px;scrollbar-width:thin}
+.tira-r button{all:unset;cursor:pointer;flex:none;width:78px;background:#f4f1e8;padding:4px}
+.tira-r button img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:url(#esboco);transition:filter .3s}
+.tira-r button:hover img,.tira-r button[aria-current="true"] img{filter:none}
+.tira-r button[aria-current="true"]{outline:2px solid var(--ceu)}
+
+/* 25 neon */
+.rua{position:relative;padding:50px var(--gutter-r) 120px var(--gutter);overflow:hidden;
+  background-color:#17110f;
+  background-image:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.7)),
+   linear-gradient(#0b0807 2px,transparent 2px),linear-gradient(90deg,#0b0807 2px,transparent 2px),linear-gradient(90deg,#0b0807 2px,transparent 2px);
+  background-size:100% 100%,64px 28px,64px 56px,64px 56px;background-position:0 0,0 0,0 0,32px 28px}
+.rua::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(transparent,rgba(30,40,80,.5)),repeating-linear-gradient(90deg,rgba(255,255,255,.02) 0 3px,transparent 3px 9px);pointer-events:none}
+.lojas{position:relative;z-index:1;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:56px 34px}
+.loja-n{all:unset;cursor:pointer;display:grid;gap:14px;justify-items:center;text-align:center}
+.letreiro{min-height:74px;display:grid;place-items:center;padding:4px 10px}
+.tubo{font-size:clamp(30px,3vw,42px);line-height:1;color:color-mix(in srgb,var(--n) 22%,#2a2a2e);transition:color .2s,text-shadow .2s;text-wrap:balance;max-width:100%}
+.tubo.f1{font-family:var(--f-display);font-style:italic;font-weight:900}
+.tubo.f2{font-family:"Caveat",cursive;font-weight:600;font-size:clamp(34px,3.4vw,46px)}
+.tubo.f3{font-family:var(--f-mono);font-weight:700;text-transform:uppercase;font-size:clamp(22px,2.2vw,30px);letter-spacing:.06em}
+.loja-n.acesa .tubo{color:color-mix(in srgb,var(--n) 30%,#fff);text-shadow:0 0 3px #fff,0 0 8px var(--n),0 0 18px var(--n),0 0 40px var(--n),0 0 80px var(--n);animation:liga .55s steps(1)}
+@keyframes liga{0%{opacity:.2}15%{opacity:1}22%{opacity:.3}35%{opacity:1}45%{opacity:.5}60%,100%{opacity:1}}
+.vitrine{position:relative;width:100%;aspect-ratio:4/3;border:8px solid #1d1d22;border-bottom-width:14px;background:#050507;overflow:hidden;box-shadow:inset 0 0 0 1px #333}
+.vitrine img{width:100%;height:100%;object-fit:cover;filter:brightness(.12) saturate(.4);transition:filter .5s}
+.vitrine::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.1) 0%,transparent 35%,transparent 70%,rgba(255,255,255,.05));pointer-events:none}
+.loja-n.acesa .vitrine img{filter:brightness(1) saturate(1)}
+.loja-n.acesa .vitrine{box-shadow:inset 0 0 0 1px #333,0 0 40px -6px var(--n)}
+.loja-n .nome-n{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(254,250,226,.45)}
+.loja-n:focus-visible .vitrine{outline:2px solid var(--n);outline-offset:4px}
+
+/* 26 VHS */
+.filmadora{max-width:980px;margin:0 auto;display:grid;gap:20px}
+.visor-vhs{position:relative;aspect-ratio:4/3;background:#000;overflow:hidden;border-radius:16px/22px;box-shadow:0 0 0 14px #15161a,0 0 0 16px #2c2e35,0 40px 70px -25px rgba(0,0,0,.9);cursor:zoom-in}
+.visor-vhs:focus-visible{outline:3px solid #ff3b30;outline-offset:20px}
+.cena-vhs{position:absolute;inset:0;display:grid;place-items:center}
+.cena-vhs .fundo-v{position:absolute;inset:-10%;background:center/cover;filter:blur(30px) brightness(.45)}
+.cena-vhs img{position:relative;max-height:88%;max-width:90%;filter:url(#vhs) contrast(1.12) saturate(1.3) brightness(1.05);animation:zoomv 3s ease-out}
+@keyframes zoomv{from{transform:scale(1.12)}}
+.visor-vhs .linhas-v{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(transparent 0 2px,rgba(0,0,0,.28) 2px 3px)}
+.visor-vhs .trk{position:absolute;left:0;right:0;height:9%;top:-12%;pointer-events:none;background:linear-gradient(transparent,rgba(255,255,255,.12),transparent);-webkit-backdrop-filter:blur(1.5px) saturate(2);backdrop-filter:blur(1.5px) saturate(2);animation:trk 7s linear infinite}
+@keyframes trk{0%{top:-12%}60%,100%{top:112%}}
+.visor-vhs canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none;image-rendering:pixelated}
+.visor-vhs.chiando canvas{opacity:1}
+.osd-v{position:absolute;font-family:var(--f-mono);font-weight:700;color:#fff;text-shadow:2px 2px 0 rgba(0,0,0,.6);font-size:clamp(13px,1.8vw,22px);letter-spacing:.06em;pointer-events:none}
+.osd-v.rec{left:6%;top:6%}
+.osd-v.rec b{color:#ff3b30;animation:pisca2 1s steps(1) infinite}
+@keyframes pisca2{50%{opacity:0}}
+.osd-v.bat{right:6%;top:6%}
+.osd-v.sp{right:6%;top:13%}
+.osd-v.play{left:6%;top:13%}
+.osd-v.data{right:6%;bottom:7%;text-align:right}
+.osd-v.titulo-v{left:6%;bottom:7%;max-width:60%}
+.canto{position:absolute;width:6%;aspect-ratio:1;border-color:rgba(255,255,255,.8);border-style:solid;border-width:0;pointer-events:none}
+.canto.c1{left:30%;top:30%;border-left-width:2px;border-top-width:2px}.canto.c2{right:30%;top:30%;border-right-width:2px;border-top-width:2px}
+.canto.c3{left:30%;bottom:30%;border-left-width:2px;border-bottom-width:2px}.canto.c4{right:30%;bottom:30%;border-right-width:2px;border-bottom-width:2px}
+.controles-vhs{display:flex;justify-content:center;gap:10px}
+.controles-vhs button{all:unset;cursor:pointer;min-width:58px;text-align:center;padding:10px 14px;border-radius:8px;background:linear-gradient(#3a3d45,#1e2026);box-shadow:0 3px 0 #0b0c0f,inset 0 1px 0 rgba(255,255,255,.15);font-family:var(--f-mono);font-size:14px}
+.controles-vhs button:active{transform:translateY(2px);box-shadow:0 1px 0 #0b0c0f}
+.controles-vhs button:focus-visible{outline:2px solid var(--ceu)}
+.fitas{display:flex;gap:10px;overflow-x:auto;padding:8px 2px 12px;scrollbar-width:thin}
+.fita{all:unset;cursor:pointer;flex:none;width:200px;height:46px;border-radius:4px;background:linear-gradient(#18191d,#0c0d10);display:grid;place-items:center;box-shadow:0 6px 12px rgba(0,0,0,.5);position:relative}
+.fita span{width:84%;padding:3px 8px;background:#f2efe6;color:#141a30;font-family:"Caveat",cursive;font-size:19px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transform:rotate(-1deg)}
+.fita[aria-current="true"]{transform:translateY(-6px);box-shadow:0 10px 18px rgba(0,0,0,.6),0 0 0 2px #ff3b30}
+.fita:focus-visible{outline:2px solid var(--ceu)}
+
+/* 27 telescópio */
+.observatorio{position:relative;height:min(820px,100vh);overflow:hidden;background:radial-gradient(70% 60% at 50% 45%,#0f1a3c,#04050b 80%);cursor:none;touch-action:none;--x:50%;--y:50%;--r:130px}
+.observatorio canvas{position:absolute;inset:0;width:100%;height:100%}
+.planeta{all:unset;cursor:none;position:absolute;width:var(--t);aspect-ratio:1;border-radius:50%;background:center/cover;transform:translate(-50%,-50%);box-shadow:0 0 0 2px rgba(255,255,255,.15),0 0 24px var(--c),inset -10px -10px 20px rgba(0,0,0,.6);transition:transform .4s}
+.planeta.anel::after{content:"";position:absolute;left:-30%;right:-30%;top:40%;height:20%;border-radius:50%;border:2px solid rgba(254,250,226,.5);transform:rotate(-18deg)}
+.planeta.alvo{transform:translate(-50%,-50%) scale(1.9);z-index:2}
+.escuro{position:absolute;inset:0;pointer-events:none;background:rgba(2,3,8,.975);
+  -webkit-mask:radial-gradient(circle var(--r) at var(--x) var(--y),transparent calc(var(--r) - 3px),#000 var(--r));mask:radial-gradient(circle var(--r) at var(--x) var(--y),transparent calc(var(--r) - 3px),#000 var(--r))}
+.mira{position:absolute;left:var(--x);top:var(--y);width:calc(var(--r) * 2);height:calc(var(--r) * 2);transform:translate(-50%,-50%);pointer-events:none;border-radius:50%;box-shadow:0 0 0 2px rgba(166,216,255,.5),inset 0 0 40px rgba(0,0,0,.7)}
+.mira svg{width:100%;height:100%}
+.painel-obs{position:absolute;left:var(--gutter);bottom:calc(20px + env(safe-area-inset-bottom,0px));width:min(300px,calc(100% - 32px));background:rgba(10,14,30,.88);border:1px solid rgba(166,216,255,.35);border-radius:12px;padding:12px;display:grid;grid-template-columns:70px 1fr;gap:12px;align-items:center;z-index:5;cursor:auto;transition:opacity .3s}
+.painel-obs[data-vazio="1"]{opacity:.7}
+.painel-obs img{width:70px;height:70px;object-fit:cover;border-radius:50%}
+.painel-obs small{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;color:var(--bebe)}
+.painel-obs b{display:block;font-family:var(--f-display);font-weight:900;font-size:20px;line-height:1.05}
+.painel-obs button{all:unset;cursor:pointer;margin-top:6px;font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid currentColor}
+.contador-obs{position:absolute;right:var(--gutter-r);top:16px;font-family:var(--f-mono);font-size:12px;color:var(--bebe);z-index:5}
+
+/* 28 cabine 3x4 */
+.estudio-f{display:grid;grid-template-columns:300px minmax(0,1fr);gap:46px;align-items:start}
+.cabine-f{position:relative;width:300px;max-width:100%;margin:0 auto}
+.cab-topo{position:relative;padding:12px;border-radius:14px 14px 0 0;background:#283456;text-align:center;font-family:var(--f-display);font-weight:900;font-size:26px;color:#FEFAE2;letter-spacing:.02em}
+.cab-topo small{display:block;font-family:var(--f-mono);font-weight:700;font-size:10px;letter-spacing:.2em;color:#8AC4FE}
+.cab-topo .lampadas{position:absolute;inset:4px;border-radius:12px;pointer-events:none;background:radial-gradient(circle,#ffe9a8 2.5px,transparent 3px) 0 0/18px 18px;-webkit-mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);-webkit-mask-composite:xor;mask-composite:exclude;padding:6px;animation:pisca2 1.2s steps(1) infinite}
+.cab-corpo{position:relative;height:400px;background:linear-gradient(90deg,#c8ccd6,#eef1f5 30%,#c3c8d2);padding:18px;display:grid;grid-template-rows:1fr auto;gap:14px}
+.cortina{position:relative;border-radius:6px;overflow:hidden;background:#080a12}
+.cortina::before{content:"";position:absolute;inset:0 0 0 46%;background:repeating-linear-gradient(90deg,#6d1f2b 0 14px,#8e2a38 14px 22px,#5a1823 22px 30px);box-shadow:-8px 0 20px rgba(0,0,0,.5)}
+.cortina .tela-f{position:absolute;left:10%;top:16%;width:30%;aspect-ratio:1;border-radius:8px;background:#0f1424;display:grid;place-items:center;font-family:var(--f-display);font-weight:900;font-size:40px;color:#8AC4FE}
+.cortina .flash-f{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+.cortina .flash-f.on{animation:fl .35s ease-out}
+@keyframes fl{0%{opacity:.95}100%{opacity:0}}
+.cab-controles{display:flex;justify-content:space-between;align-items:center}
+.disparo{all:unset;cursor:pointer;width:74px;height:74px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#ff8a7a,#e01b10 60%,#8a0b05);box-shadow:0 5px 0 #6a0904,0 10px 20px rgba(0,0,0,.35);display:grid;place-items:center;font-size:10px;font-weight:800;letter-spacing:.1em;color:#fff;text-align:center;line-height:1.1}
+.disparo:active{transform:translateY(3px);box-shadow:0 2px 0 #6a0904}
+.disparo:focus-visible{outline:3px solid #283456;outline-offset:4px}
+.fenda{width:96px;height:10px;border-radius:5px;background:#1b1e26;box-shadow:inset 0 2px 3px #000;position:relative}
+.saindo{position:absolute;left:50%;top:5px;transform:translateX(-50%);width:84px;overflow:hidden;height:0;transition:height 1.4s linear;z-index:3}
+.instr-f{text-align:center;font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-top:14px}
+.parede-f{display:flex;flex-wrap:wrap;gap:26px 22px;align-content:flex-start;min-height:420px;padding:24px;border-radius:12px;background:#11152a;border:1px dashed var(--line)}
+.parede-f .vazio-f{color:var(--muted);font-family:var(--f-display);font-style:italic;font-weight:600;font-size:22px;align-self:center;margin:auto}
+.tira3x4{all:unset;cursor:zoom-in;display:block;width:110px;background:#fbfaf6;padding:6px 6px 0;box-shadow:0 14px 22px -10px rgba(0,0,0,.7);position:relative;animation:pousa .6s cubic-bezier(.3,1.4,.5,1)}
+@keyframes pousa{from{transform:translateY(-40px) rotate(0) scale(.9);opacity:0}}
+.tira3x4::before{content:"";position:absolute;top:-10px;left:50%;width:50px;height:18px;transform:translateX(-50%) rotate(-3deg);background:rgba(232,220,180,.75)}
+.tira3x4 i{display:block;aspect-ratio:3/4;margin-bottom:5px;background:center/cover;filter:contrast(1.1) saturate(.9)}
+.tira3x4 small{display:block;padding:2px 0 7px;text-align:center;font-family:var(--f-mono);font-size:7.5px;letter-spacing:.06em;color:#141a30;line-height:1.3}
+.tira3x4:focus-visible{outline:2px solid var(--ceu);outline-offset:3px}
+.saindo .tira3x4{width:84px;animation:none;padding:4px 4px 0}
 dialog.visor{border:0;padding:0;margin:0;width:100%;max-width:100%;height:100%;max-height:100%;background:rgba(0,0,0,.95);color:#FEFAE2;overflow:hidden}
 .visor-in{height:100%;display:grid;grid-template-rows:auto 1fr;padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
 .visor-topo{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-left:var(--gutter);padding-right:var(--gutter-r)}
@@ -204,91 +249,110 @@ dialog.visor{border:0;padding:0;margin:0;width:100%;max-width:100%;height:100%;m
 .visor button{all:unset;cursor:pointer;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(254,250,226,.5);border-radius:99px;padding:8px 14px}
 .trilho{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px var(--gutter-r) 10px var(--gutter);align-items:center;min-height:0}
 .trilho img{height:100%;max-height:calc(100svh - 120px);width:auto;max-width:88vw;object-fit:contain;scroll-snap-align:center;flex:none}
-@media (max-width:800px){ .janela-p{grid-template-columns:1fr} .lista-p{grid-auto-flow:column;grid-auto-columns:150px;overflow-x:auto;max-height:none} .icones{grid-template-rows:repeat(auto-fill,88px)} }
+@media (max-width:900px){ .aeroporto{grid-template-columns:1fr} .embarque{position:static} .rabisco,.estudio-f{grid-template-columns:1fr} }
+@media (max-width:640px){ .linha-i{grid-template-columns:34px minmax(0,1fr) 54px} .linha-i .meta{display:none} .linha-i .mini{display:block;width:54px;aspect-ratio:4/5;object-fit:cover;align-self:center} .flutua{display:none} .lojas{grid-template-columns:1fr 1fr;gap:34px 14px} .letreiro{min-height:54px} }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
-
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<filter id="esboco" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feConvolveMatrix order="3" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" preserveAlpha="true"/>
+<feComponentTransfer><feFuncR type="linear" slope="-2.6" intercept="1"/><feFuncG type="linear" slope="-2.6" intercept="1"/><feFuncB type="linear" slope="-2.4" intercept="1"/></feComponentTransfer>
+<feColorMatrix type="matrix" values="0.92 0 0 0 0.02  0 0.9 0 0 0.03  0 0 0.95 0 0.06  0 0 0 1 0"/></filter>
+<filter id="vhs" color-interpolation-filters="sRGB"><feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="r"/><feOffset in="r" dx="3" result="r2"/>
+<feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" result="gb"/><feOffset in="gb" dx="-2" result="gb2"/><feBlend in="r2" in2="gb2" mode="screen"/></filter>
+</defs></svg>
 <nav class="abas" aria-label="Versões do acervo">
   <span class="marca"><span class="simbolo" aria-hidden="true"></span>DREAMZ</span>
   <div class="lista-abas" id="abas">
-    <button type="button" id="aba-v13" data-v="v13" aria-pressed="true"><b>13</b>Constelações</button>
-    <button type="button" id="aba-v14" data-v="v14" aria-pressed="false"><b>14</b>Persiana</button>
-    <button type="button" id="aba-v15" data-v="v15" aria-pressed="false"><b>15</b>Roda-gigante</button>
-    <button type="button" id="aba-v16" data-v="v16" aria-pressed="false"><b>16</b>dreamz OS</button>
-    <button type="button" id="aba-v17" data-v="v17" aria-pressed="false"><b>17</b>Notificações às 3h</button>
-    <button type="button" id="aba-v18" data-v="v18" aria-pressed="false"><b>18</b>Vidro embaçado</button>
-    <button type="button" id="aba-v19" data-v="v19" aria-pressed="false"><b>19</b>iPod</button>
+    <button type="button" id="aba-v7" data-v="v7" aria-pressed="true"><b>7</b>Índice gigante</button>
+    <button type="button" id="aba-v9" data-v="v9" aria-pressed="false"><b>9</b>Partidas</button>
     <button type="button" id="aba-v20" data-v="v20" aria-pressed="false"><b>20</b>Tarô</button>
     <button type="button" id="aba-v21" data-v="v21" aria-pressed="false"><b>21</b>Faixas</button>
-    <button type="button" id="aba-v22" data-v="v22" aria-pressed="false"><b>22</b>Lençol</button>
+    <button type="button" id="aba-v23" data-v="v23" aria-pressed="false"><b>23</b>Rabisco ao sonho</button>
+    <button type="button" id="aba-v25" data-v="v25" aria-pressed="false"><b>25</b>Neon</button>
+    <button type="button" id="aba-v26" data-v="v26" aria-pressed="false"><b>26</b>Filmadora VHS</button>
+    <button type="button" id="aba-v27" data-v="v27" aria-pressed="false"><b>27</b>Luneta</button>
+    <button type="button" id="aba-v28" data-v="v28" aria-pressed="false"><b>28</b>Cabine de fotos</button>
   </div>
 </nav>
-
 <main>
-  <section class="versao" id="v13">
-    <div class="intro"><div><div class="num">Rodada 3 · versão 13</div><h2>Constelações</h2></div><p>Cada projeto é uma constelação no céu da dreamz. Passe o mouse pra ligar as estrelas e ver o sonho. Clique pra abrir.</p></div>
-    <div class="ceu-c" id="ceu-c"><svg id="ceu-svg"></svg><div class="previa-c" id="previa-c"><img id="previa-c-img" alt=""></div></div>
+<section class="versao" id="v7">
+    <div class="intro"><div><div class="num">Rodada 2 · versão 7</div><h2>Índice <em>gigante</em></h2></div>
+      <p>Só os nomes, enormes, na fonte gorda. Passe o mouse num nome e a peça aparece flutuando junto do cursor. Clique pra abrir.</p></div>
+    <div class="miolo indice" id="indice"></div>
+    <div class="flutua" id="flutua" aria-hidden="true"><img id="flutua-img" alt=""></div>
   </section>
-
-  <section class="versao" id="v14" hidden>
-    <div class="intro"><div><div class="num">Rodada 3 · versão 14</div><h2>Atrás da <em>persiana</em></h2></div><p>Um sonho de cada vez, escondido atrás da persiana do quarto. Escolha um projeto e ela abre devagar, deixando a luz entrar.</p></div>
-    <div class="miolo janela-p">
-      <div><div class="moldura-p" id="moldura-p"><button type="button" class="atras" id="atras-p" aria-label="Ver as peças"></button><div class="ripas" id="ripas"></div><div class="luz"></div></div>
-        <div class="cordao"><button type="button" class="btn" id="puxa">puxar a cordinha</button></div></div>
-      <div class="lista-p" id="lista-p"></div>
+<section class="versao" id="v9" hidden>
+    <div class="intro"><div><div class="num">Rodada 2 · versão 9</div><h2>Partidas para o <em>sonho</em></h2></div>
+      <p>Um painel de aeroporto de madrugada. Cada voo leva a um projeto. Escolha um voo pra ver o cartão de embarque.</p></div>
+    <div class="miolo aeroporto">
+      <div class="painel">
+        <div class="cab-p"><span>✈ PARTIDAS · DEPARTURES</span><span id="relogio-p">02:00</span></div>
+        <table><thead><tr><th>HORA</th><th>DESTINO</th><th>TÉCNICA</th><th>PORTÃO</th><th>STATUS</th></tr></thead><tbody id="voos"></tbody></table>
+      </div>
+      <aside class="embarque" id="embarque"></aside>
     </div>
   </section>
-
-  <section class="versao" id="v15" hidden>
-    <div class="intro"><div><div class="num">Rodada 3 · versão 15</div><h2>Roda-<em>gigante</em></h2></div><p>Um parque de madrugada. Cada cabine leva um sonho. Arraste a roda pra girar mais rápido e clique numa cabine.</p></div>
-    <div class="parque" id="parque"><div class="base-roda"></div><div class="roda" id="roda"></div><p class="placa-roda" id="placa-roda"></p></div>
-  </section>
-
-  <section class="versao" id="v16" hidden>
-    <div class="intro"><div><div class="num">Rodada 3 · versão 16</div><h2>dreamz <em>OS</em></h2></div><p>Um computador dos anos 2000. Cada projeto é uma pasta na área de trabalho. Abra várias janelas e arraste elas pela tela.</p></div>
-    <div class="miolo"><div class="desktop" id="desktop"><span class="simbolo papel-p" aria-hidden="true"></span><div class="icones" id="icones"></div>
-      <div class="tarefas"><span class="iniciar"><span class="simbolo"></span>iniciar</span><span class="hora-os" id="hora-os">03:12</span></div></div></div>
-  </section>
-
-  <section class="versao" id="v17" hidden>
-    <div class="intro"><div><div class="num">Rodada 3 · versão 17</div><h2>3h12 e o celular <em>não para</em></h2></div><p>A tela de bloqueio cheia de notificações da dreamz: cada uma é um sonho chegando. Toque numa notificação pra abrir.</p></div>
-    <div class="miolo"><div class="celular"><div class="tela-c"><div class="bloqueio-topo"><div class="data-c">sábado, 9 de novembro</div><div class="hora-c">3:12</div></div><div class="notifs" id="notifs"></div></div></div></div>
-  </section>
-
-  <section class="versao" id="v18" hidden>
-    <div class="intro"><div><div class="num">Rodada 3 · versão 18</div><h2>Vidro <em>embaçado</em></h2></div><p>A janela do quarto embaçou de madrugada. Passe o dedo (ou o mouse) pra limpar o vidro e descobrir os sonhos. Ele embaça de novo aos poucos. Toque num sonho limpo pra abrir.</p></div>
-    <div class="miolo"><div class="vidro-w"><canvas id="vidro" width="1100" height="660"></canvas><div class="dica-v" id="dica-v">passe o dedo aqui</div></div></div>
-  </section>
-
-  <section class="versao" id="v19" hidden>
-    <div class="intro"><div><div class="num">Rodada 3 · versão 19</div><h2>Tocando <em>agora</em></h2></div><p>Os 13 sonhos como faixas num iPod. Gire a roda com o dedo ou o mouse pra trocar de faixa, ▶ toca sozinho e o botão do meio abre o projeto.</p></div>
-    <div class="miolo"><div class="ipod">
-      <div class="tela-i"><div class="barra-i"><span>▶ tocando agora</span><span id="faixa-i">1 de 13</span></div>
-        <div class="agora"><img id="capa-i" alt=""><div><b id="titulo-i"></b><span>dreamz</span><span id="tipo-i"></span></div></div>
-        <div class="prog"><i id="prog-i" style="width:0%"></i></div><div class="tempo"><span id="t-i">0:00</span><span id="d-i"></span></div></div>
-      <div class="roda-i" id="roda-i">
-        <button type="button" class="zona" style="left:35%;top:2%" id="i-menu" aria-label="Menu">MENU</button>
-        <button type="button" class="zona" style="left:2%;top:39%" id="i-ant" aria-label="Faixa anterior">⏮</button>
-        <button type="button" class="zona" style="right:2%;top:39%" id="i-prox" aria-label="Próxima faixa">⏭</button>
-        <button type="button" class="zona" style="left:35%;bottom:2%" id="i-play" aria-label="Tocar ou pausar">▶❚❚</button>
-        <button type="button" class="centro" id="i-centro" aria-label="Abrir este sonho"></button>
-      </div>
-    </div></div>
-  </section>
-
-  <section class="versao" id="v20" hidden>
+<section class="versao" id="v20" hidden>
     <div class="intro"><div><div class="num">Rodada 3 · versão 20</div><h2>O tarô dos <em>sonhos</em></h2></div><p>Treze cartas viradas pra baixo. Escolha uma pra descobrir o sonho, e toque de novo na carta aberta pra ver as peças.</p></div>
     <div class="miolo"><div class="mesa-t" id="mesa-t"></div><div class="acoes-t"><button type="button" class="btn" id="embaralha">embaralhar</button><button type="button" class="btn" id="vira-todas">virar todas</button></div></div>
   </section>
-
-  <section class="versao" id="v21" hidden>
+<section class="versao" id="v21" hidden>
     <div class="intro"><div><div class="num">Rodada 3 · versão 21</div><h2>Faixas <em>infinitas</em></h2></div><p>Nomes gigantes e peças passando sem parar, em direções opostas, como letreiro de rua. Passe o mouse pra pausar e clique pra abrir.</p></div>
     <div class="faixas" id="faixas"></div>
   </section>
+  <section class="versao" id="v23" hidden>
+    <div class="intro"><div><div class="num">Rodada 4 · versão 23</div><h2>Do rabisco ao <em>sonho</em></h2></div><p>Todo projeto começa como rascunho. Arraste a linha sobre a peça pra ver o esboço virar o trabalho final. Escolha outro sonho na tira de baixo.</p></div>
+    <div class="miolo rabisco">
+      <div class="prancheta"><span class="anot a1">final ↓</span><span class="anot a2">↓ rascunho</span>
+        <button type="button" class="pr-palco" id="pr-palco" aria-label="Arraste para comparar rascunho e final; toque para ver as peças"><img class="final" id="pr-final" alt=""><img class="rascunho" id="pr-rasc" alt=""><span class="linha-r"><span>✎</span></span></button></div>
+      <div class="lado-r"><span class="ficha-r" id="ficha-r"></span><span class="tit-r" id="tit-r"></span><span class="frase-r" id="frase-r"></span><button type="button" class="btn" id="ver-r">ver todas as peças</button></div>
+      <div class="tira-r" id="tira-r"></div>
+    </div>
+  </section>
 
-  <section class="versao" id="v22" hidden>
-    <div class="intro"><div><div class="num">Rodada 3 · versão 22</div><h2>Espalhado na <em>cama</em></h2></div><p>As fotos dos sonhos jogadas no lençol. Arraste pra mexer, empilhe do seu jeito e toque numa foto (sem arrastar) pra abrir.</p></div>
-    <div class="miolo"><div class="cama" id="cama"></div><div class="acoes-c"><button type="button" class="btn" id="bagunca">bagunçar de novo</button></div></div>
+  <section class="versao" id="v25" hidden>
+    <div class="intro"><div><div class="num">Rodada 4 · versão 25</div><h2>Aberto de <em>madrugada</em></h2></div><p>Uma rua escura com 13 letreiros de neon, um por sonho. Alguns acendem sozinhos. Passe o mouse ou toque pra acender e ver a vitrine.</p></div>
+    <div class="rua"><div class="lojas" id="lojas"></div></div>
+  </section>
+
+  <section class="versao" id="v26" hidden>
+    <div class="intro"><div><div class="num">Rodada 4 · versão 26</div><h2>Gravado às <em>3h12</em></h2></div><p>O acervo pelo visor de uma filmadora VHS. Cada projeto é uma fita. Troque de fita, avance e volte, e toque na tela pra ver as peças.</p></div>
+    <div class="miolo filmadora">
+      <div class="visor-vhs" id="visor-vhs" role="button" tabindex="0" aria-label="Ver as peças desta fita">
+        <div class="cena-vhs"><span class="fundo-v" id="vhs-fundo"></span><img id="vhs-img" alt=""></div>
+        <div class="linhas-v"></div><div class="trk"></div><canvas id="vhs-ruido" width="160" height="120"></canvas>
+        <div class="osd-v rec"><b>●</b> REC</div><div class="osd-v bat">▮▮▮▯</div><div class="osd-v sp">SP</div><div class="osd-v play" id="vhs-play">PLAY ▶</div>
+        <div class="osd-v data" id="vhs-data"></div><div class="osd-v titulo-v" id="vhs-tit"></div>
+        <span class="canto c1"></span><span class="canto c2"></span><span class="canto c3"></span><span class="canto c4"></span>
+      </div>
+      <div class="controles-vhs"><button type="button" id="vhs-rew" aria-label="Fita anterior">◀◀</button><button type="button" id="vhs-pp" aria-label="Pausar ou tocar">❚❚</button><button type="button" id="vhs-ff" aria-label="Próxima fita">▶▶</button></div>
+      <div class="fitas" id="fitas"></div>
+    </div>
+  </section>
+
+  <section class="versao" id="v27" hidden>
+    <div class="intro"><div><div class="num">Rodada 4 · versão 27</div><h2>Pela <em>luneta</em></h2></div><p>O céu está escuro e os sonhos estão escondidos nele como planetas. Mova a luneta (mouse ou dedo) pra procurar. Quando achar um, ele aparece no painel.</p></div>
+    <div class="observatorio" id="obs">
+      <canvas id="obs-ceu"></canvas><div id="planetas"></div><div class="escuro"></div>
+      <div class="mira"><svg viewBox="0 0 200 200" fill="none" stroke="rgba(166,216,255,.55)" stroke-width="1"><line x1="100" y1="10" x2="100" y2="80"/><line x1="100" y1="120" x2="100" y2="190"/><line x1="10" y1="100" x2="80" y2="100"/><line x1="120" y1="100" x2="190" y2="100"/><circle cx="100" cy="100" r="30" stroke-dasharray="3 5"/></svg></div>
+      <div class="contador-obs" id="contador-obs">0 de 13 encontrados</div>
+      <div class="painel-obs" id="painel-obs" data-vazio="1"><img id="obs-img" alt="" src="assets/marca/simbolo.png" style="background:#141a30"><div><small id="obs-sub">PROCURANDO…</small><b id="obs-tit">Mova a luneta</b><button type="button" id="obs-ver" hidden>observar de perto</button></div></div>
+    </div>
+  </section>
+
+  <section class="versao" id="v28" hidden>
+    <div class="intro"><div><div class="num">Rodada 4 · versão 28</div><h2>Cabine de <em>fotos</em></h2></div><p>Aperte o botão vermelho: a cabine faz 4 poses e solta uma tirinha com um sonho. As tirinhas vão sendo coladas na parede. Toque numa tirinha pra ver as peças.</p></div>
+    <div class="miolo estudio-f">
+      <div>
+        <div class="cabine-f">
+          <div class="cab-topo"><span class="lampadas"></span><small>FOTOS · 4 POSES</small>dreamz</div>
+          <div class="cab-corpo"><div class="cortina"><span class="tela-f" id="tela-f">★</span><span class="flash-f" id="flash-f"></span></div>
+            <div class="cab-controles"><button type="button" class="disparo" id="disparo">TIRAR<br>FOTO</button><span class="fenda"><span class="saindo" id="saindo"></span></span></div></div>
+        </div>
+        <p class="instr-f" id="instr-f">13 sonhos na cabine</p>
+      </div>
+      <div class="parede-f" id="parede-f"></div>
+    </div>
   </section>
 </main>
 
@@ -323,123 +387,12 @@ const fechar=()=>visor.close?visor.close():visor.removeAttribute("open");
 document.getElementById("fechar").addEventListener("click",fechar); visor.addEventListener("click",e=>{ if(e.target===visor) fechar(); });
 let seed=7; const rnd=()=>{ seed=(seed*16807)%2147483647; return seed/2147483647; };
 
-const abas=[...document.querySelectorAll("#abas button")]; let ativa="v13"; const prep={};
-function mostra(v){ if(!abas.some(b=>b.dataset.v===v)) v="v13";
+const abas=[...document.querySelectorAll("#abas button")]; let ativa="v7"; const prep={};
+function mostra(v){ if(!abas.some(b=>b.dataset.v===v)) v="v7";
   abas.forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); document.querySelectorAll(".versao").forEach(s=>s.hidden=s.id!==v);
   ativa=v; scrollTo(0,0); if(prep[v]) prep[v](); }
 abas.forEach(b=>b.addEventListener("click",()=>{ if(location.hash!=="#"+b.dataset.v) location.hash=b.dataset.v; else mostra(b.dataset.v); }));
 addEventListener("hashchange",()=>mostra(location.hash.slice(1)));
-
-/* 13 constelações */
-const ceuC=document.getElementById("ceu-c"), ceuSvg=document.getElementById("ceu-svg"), prevC=document.getElementById("previa-c"), prevImg=document.getElementById("previa-c-img");
-prep.v13=function(){ seed=11; const W=ceuC.clientWidth, H=ceuC.clientHeight, cols=W<700?3:5, rows=Math.ceil(N/cols), cw=W/cols, ch=(H-40)/rows;
-  let h=""; for(let i=0;i<260;i++) h+=`<circle cx="${rnd()*W}" cy="${rnd()*H}" r="${rnd()*1.1+0.2}" fill="rgba(254,250,226,${0.2+rnd()*0.6})"/>`;
-  OBRAS.forEach((o,k)=>{ const c=k%cols, r=Math.floor(k/cols), x0=c*cw+cw*0.18, y0=20+r*ch+ch*0.12, n=4+Math.floor(rnd()*3);
-    const pts=Array.from({length:n},()=>[x0+rnd()*cw*0.64, y0+rnd()*ch*0.55]).sort((a,b)=>a[0]-b[0]);
-    const linhas=pts.slice(1).map((p,i)=>`<line x1="${pts[i][0]}" y1="${pts[i][1]}" x2="${p[0]}" y2="${p[1]}"/>`).join("");
-    const estrelas=pts.map(p=>`<circle class="e" cx="${p[0]}" cy="${p[1]}" r="${2+rnd()*2.2}"/>`).join("");
-    const lx=pts.reduce((s,p)=>s+p[0],0)/n, ly=Math.max(...pts.map(p=>p[1]))+26;
-    h+=`<g class="const" tabindex="0" role="button" aria-label="${o.t}" data-k="${k}" data-x="${lx}" data-y="${y0}"><rect x="${x0-10}" y="${y0-10}" width="${cw*0.64+20}" height="${ch*0.55+40}" fill="transparent"/>${linhas}${estrelas}<text x="${lx}" y="${ly}" text-anchor="middle">${o.t}</text></g>`; });
-  ceuSvg.setAttribute("viewBox",`0 0 ${W} ${H}`); ceuSvg.innerHTML=h; };
-function previaConst(g){ if(!g){ prevC.classList.remove("on"); return; } const k=+g.dataset.k, x=+g.dataset.x, y=+g.dataset.y;
-  prevImg.src=img(OBRAS[k],1); prevC.style.left=Math.min(ceuC.clientWidth-210,Math.max(10,x-100))+"px"; prevC.style.top=Math.max(10,y-150)+"px"; prevC.classList.add("on"); }
-ceuSvg.addEventListener("pointerover",e=>previaConst(e.target.closest(".const"))); ceuSvg.addEventListener("pointerleave",()=>previaConst(null));
-ceuSvg.addEventListener("focusin",e=>previaConst(e.target.closest(".const")));
-ceuSvg.addEventListener("click",e=>{ const g=e.target.closest(".const"); if(g) abrirObra(+g.dataset.k); });
-ceuSvg.addEventListener("keydown",e=>{ const g=e.target.closest(".const"); if(g&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); abrirObra(+g.dataset.k); } });
-
-/* 14 persiana */
-const mold=document.getElementById("moldura-p"), atras=document.getElementById("atras-p"), listaP=document.getElementById("lista-p"); let atualP=0;
-document.getElementById("ripas").innerHTML=Array.from({length:16},(_,i)=>`<span class="ripa" style="--i:${i}"></span>`).join("");
-listaP.innerHTML=OBRAS.map((o,k)=>`<button type="button" data-k="${k}"><img src="${img(o,1)}" alt="" loading="lazy">${o.t}</button>`).join("");
-function persiana(k){ atualP=k; listaP.querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-current",i===k));
-  mold.classList.remove("aberta"); setTimeout(()=>{ atras.style.backgroundImage=`url(${img(OBRAS[k],1)})`; atras.setAttribute("aria-label",`Ver as peças de ${OBRAS[k].t}`); setTimeout(()=>mold.classList.add("aberta"),calmo?0:120); },calmo?0:800); }
-listaP.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) persiana(+b.dataset.k); });
-document.getElementById("puxa").addEventListener("click",()=>mold.classList.toggle("aberta"));
-atras.addEventListener("click",()=>abrirObra(atualP));
-atras.style.backgroundImage=`url(${img(OBRAS[0],1)})`; listaP.querySelector("button").setAttribute("aria-current","true");
-prep.v14=()=>{ mold.classList.remove("aberta"); setTimeout(()=>mold.classList.add("aberta"),600); };
-
-/* 15 roda-gigante */
-const roda=document.getElementById("roda"), parque=document.getElementById("parque"); let ang=0, vel=6, cabines=[], arrasta=null;
-(function(){ let h=`<span class="aro"></span><span class="aro2"></span>`; for(let i=0;i<N;i++) h+=`<span class="raio" style="transform:rotate(${i*360/N}deg)"></span>`;
-  for(let i=0;i<40;i++){ const a=i/40*6.283; h+=`<span class="lamp" style="left:${50+Math.cos(a)*50}%;top:${50+Math.sin(a)*50}%;animation-delay:${(i%4)*0.35}s"></span>`; }
-  h+=`<span class="eixo"></span>`; roda.innerHTML=h;
-  cabines=OBRAS.map((o,k)=>{ const b=document.createElement("button"); b.type="button"; b.className="cabine"; b.style.setProperty("--c",o.c); b.setAttribute("aria-label",o.t);
-    b.innerHTML=`<span class="gancho"></span><span class="caixa-c" style="background-image:url(${img(o,1)})"></span>`; b.addEventListener("click",()=>{ if(!roda._arrastou) abrirObra(k); });
-    b.addEventListener("pointerenter",()=>{ document.getElementById("placa-roda").textContent=`${o.t} · ${o.pt}`; vel=1.2; }); b.addEventListener("pointerleave",()=>vel=6);
-    roda.appendChild(b); return b; }); })();
-function giraRoda(dt){ if(!calmo&&!arrasta) ang+=vel*dt; roda.querySelectorAll(".raio").forEach((r,i)=>r.style.transform=`rotate(${ang+i*360/N}deg)`);
-  cabines.forEach((b,i)=>{ const a=(ang+i*360/N)*Math.PI/180; b.style.left=50+Math.cos(a)*50+"%"; b.style.top=50+Math.sin(a)*50+"%"; }); }
-roda.addEventListener("pointerdown",e=>{ const r=roda.getBoundingClientRect(); arrasta={a:Math.atan2(e.clientY-r.top-r.height/2,e.clientX-r.left-r.width/2),ang}; roda._arrastou=false; });
-addEventListener("pointermove",e=>{ if(!arrasta) return; const r=roda.getBoundingClientRect(), a=Math.atan2(e.clientY-r.top-r.height/2,e.clientX-r.left-r.width/2), d=(a-arrasta.a)*180/Math.PI; if(Math.abs(d)>2) roda._arrastou=true; ang=arrasta.ang+d; });
-addEventListener("pointerup",()=>{ arrasta=null; setTimeout(()=>roda._arrastou=false,0); });
-
-/* 16 dreamz OS */
-const desk=document.getElementById("desktop"), icones=document.getElementById("icones"); let zTop=10, janelas=0;
-icones.innerHTML=OBRAS.map((o,k)=>`<button type="button" class="icone" data-k="${k}"><span class="pasta"><i style="background-image:url(${img(o,1)})"></i></span>${o.t}</button>`).join("");
-function abreJanela(k){ const o=OBRAS[k]; let p=1; const j=document.createElement("div"); j.className="janela-os"; j.setAttribute("role","dialog"); j.setAttribute("aria-label",o.t);
-  const W=desk.clientWidth, H=desk.clientHeight, jw=Math.min(460,W*0.86); j.style.left=Math.max(10,Math.min(W-jw-10,120+(janelas*36)%(W*0.4)))+"px"; j.style.top=Math.max(10,(30+(janelas*30)%(H*0.3)))+"px"; janelas++;
-  j.style.zIndex=++zTop;
-  j.innerHTML=`<div class="barra"><span>📁 ${o.t.toLowerCase().replace(/ /g,"_")}_${String(p).padStart(2,"0")}.jpg</span><button type="button" aria-label="Fechar">✕</button></div>
-    <div class="conteudo"><img alt="${o.t}" src="${img(o,1)}"></div><div class="rodape-os"><button type="button" data-d="-1">◀</button><span>${p} / ${o.n} · ${o.tipo}</span><button type="button" data-d="1">▶</button></div>`;
-  const atual=()=>{ j.querySelector("img").src=img(o,p); j.querySelector(".barra span").textContent=`📁 ${o.t.toLowerCase().replace(/ /g,"_")}_${String(p).padStart(2,"0")}.jpg`; j.querySelector(".rodape-os span").textContent=`${p} / ${o.n} · ${o.tipo}`; };
-  j.querySelectorAll(".rodape-os button").forEach(b=>b.addEventListener("click",()=>{ p=(p-1+ +b.dataset.d+o.n)%o.n+1; atual(); }));
-  j.querySelector(".barra button").addEventListener("click",()=>j.remove());
-  j.querySelector(".conteudo").addEventListener("click",()=>abrirObra(k));
-  j.addEventListener("pointerdown",()=>j.style.zIndex=++zTop);
-  const barra=j.querySelector(".barra"); let d=null;
-  barra.addEventListener("pointerdown",e=>{ if(e.target.closest("button")) return; d={x:e.clientX-j.offsetLeft,y:e.clientY-j.offsetTop}; barra.setPointerCapture(e.pointerId); });
-  barra.addEventListener("pointermove",e=>{ if(!d) return; j.style.left=Math.max(-jw+60,Math.min(desk.clientWidth-60,e.clientX-d.x))+"px"; j.style.top=Math.max(0,Math.min(desk.clientHeight-80,e.clientY-d.y))+"px"; });
-  barra.addEventListener("pointerup",()=>d=null);
-  desk.appendChild(j); }
-icones.addEventListener("click",e=>{ const b=e.target.closest(".icone"); if(b) abreJanela(+b.dataset.k); });
-prep.v16=()=>{ if(!desk.querySelector(".janela-os")) abreJanela(2); };
-
-/* 17 notificações */
-document.getElementById("notifs").innerHTML=OBRAS.map((o,k)=>`<button type="button" class="notif" data-k="${k}" style="--d:${0.15+k*0.12}s">
-  <span class="app"><span class="simbolo"></span></span><span class="txt-n"><b>dreamz <small>${k===0?"agora":`${k*3} min`}</small></b>Novo sonho: ${o.t}<span>${o.pt}</span></span><img src="${img(o,1)}" alt="" loading="lazy"></button>`).join("");
-document.getElementById("notifs").addEventListener("click",e=>{ const b=e.target.closest(".notif"); if(b) abrirObra(+b.dataset.k); });
-prep.v17=()=>{ const n=document.getElementById("notifs"); n.innerHTML=n.innerHTML; };
-
-/* 18 vidro embaçado */
-const cv=document.getElementById("vidro"), cx=cv.getContext("2d"), CW=1100, CH=660, COLS=5, ROWS=3;
-const nitida=document.createElement("canvas"), borrada=document.createElement("canvas"), mascara=document.createElement("canvas"), tmp=document.createElement("canvas");
-[nitida,borrada,mascara,tmp].forEach(c=>{ c.width=CW; c.height=CH; });
-const mx=mascara.getContext("2d"); let carregadas=0, tiles=[];
-OBRAS.forEach((o,k)=>{ const im=new Image(); im.onload=()=>{ carregadas++; if(carregadas===N) montaVidro(); }; im.src=img(o,1); o._im=im; });
-function montaVidro(){ const nx=nitida.getContext("2d"); nx.fillStyle="#141a30"; nx.fillRect(0,0,CW,CH); const tw=CW/COLS, th=CH/ROWS; tiles=[];
-  OBRAS.forEach((o,k)=>{ const c=k%COLS, r=Math.floor(k/COLS), x=c*tw+(r===2?tw:0), y=r*th; const im=o._im, s=Math.max((tw-8)/im.width,(th-8)/im.height), w=im.width*s, h=im.height*s;
-    nx.save(); nx.beginPath(); nx.rect(x+4,y+4,tw-8,th-8); nx.clip(); nx.drawImage(im,x+tw/2-w/2,y+th/2-h/2,w,h); nx.restore(); tiles.push({k,x,y,w:tw,h:th}); });
-  const bx=borrada.getContext("2d"); bx.filter="blur(22px)"; bx.drawImage(nitida,0,0); bx.filter="none"; bx.fillStyle="rgba(225,232,245,.55)"; bx.fillRect(0,0,CW,CH);
-  for(let i=0;i<500;i++){ bx.fillStyle=`rgba(255,255,255,${Math.random()*0.35})`; bx.beginPath(); bx.arc(Math.random()*CW,Math.random()*CH,Math.random()*3+0.5,0,6.283); bx.fill(); }
-  desenhaVidro(); }
-function desenhaVidro(){ if(!tiles.length) return; cx.drawImage(borrada,0,0); const t=tmp.getContext("2d"); t.globalCompositeOperation="source-over"; t.clearRect(0,0,CW,CH); t.drawImage(nitida,0,0);
-  t.globalCompositeOperation="destination-in"; t.drawImage(mascara,0,0); cx.drawImage(tmp,0,0); }
-let limpando=false, moveu=0, ult=null;
-function ponto(e){ const r=cv.getBoundingClientRect(); return [(e.clientX-r.left)*CW/r.width,(e.clientY-r.top)*CH/r.height]; }
-function passa(x,y){ const g=mx.createRadialGradient(x,y,0,x,y,70); g.addColorStop(0,"rgba(0,0,0,1)"); g.addColorStop(.6,"rgba(0,0,0,.85)"); g.addColorStop(1,"rgba(0,0,0,0)"); mx.fillStyle=g; mx.beginPath(); mx.arc(x,y,70,0,6.283); mx.fill(); }
-cv.addEventListener("pointerdown",e=>{ limpando=true; moveu=0; ult=ponto(e); passa(...ult); document.getElementById("dica-v").style.opacity=0; cv.setPointerCapture(e.pointerId); desenhaVidro(); });
-cv.addEventListener("pointermove",e=>{ const p=ponto(e); if(e.pointerType==="mouse"&&!limpando){ passa(...p); desenhaVidro(); document.getElementById("dica-v").style.opacity=0; return; } if(!limpando) return;
-  moveu+=Math.hypot(p[0]-ult[0],p[1]-ult[1]); const n=Math.ceil(Math.hypot(p[0]-ult[0],p[1]-ult[1])/12); for(let i=1;i<=n;i++) passa(ult[0]+(p[0]-ult[0])*i/n,ult[1]+(p[1]-ult[1])*i/n); ult=p; desenhaVidro(); });
-cv.addEventListener("pointerup",e=>{ limpando=false; if(moveu<8){ const [x,y]=ponto(e), t=tiles.find(t=>x>=t.x&&x<t.x+t.w&&y>=t.y&&y<t.y+t.h); if(t&&mx.getImageData(x|0,y|0,1,1).data[3]>120) abrirObra(t.k); } });
-setInterval(()=>{ if(ativa!=="v18"||calmo) return; mx.globalCompositeOperation="destination-out"; mx.fillStyle="rgba(0,0,0,.035)"; mx.fillRect(0,0,CW,CH); mx.globalCompositeOperation="source-over"; desenhaVidro(); },120);
-
-/* 19 iPod */
-let faixa=0, tocando=false, tPassado=0, fim=12;
-function mostraFaixa(){ const o=OBRAS[faixa]; document.getElementById("capa-i").src=img(o,1); document.getElementById("capa-i").alt=o.t; document.getElementById("titulo-i").textContent=o.t;
-  document.getElementById("tipo-i").textContent=o.tipo; document.getElementById("faixa-i").textContent=`${faixa+1} de ${N}`; document.getElementById("d-i").textContent=`-0:${String(fim).padStart(2,"0")}`; tPassado=0; progI(); }
-function progI(){ document.getElementById("prog-i").style.width=(tPassado/fim*100)+"%"; document.getElementById("t-i").textContent=`0:${String(Math.floor(tPassado)).padStart(2,"0")}`; }
-const muda=d=>{ faixa=(faixa+d+N)%N; mostraFaixa(); };
-document.getElementById("i-prox").addEventListener("click",()=>muda(1)); document.getElementById("i-ant").addEventListener("click",()=>muda(-1));
-document.getElementById("i-play").addEventListener("click",()=>tocando=!tocando); document.getElementById("i-centro").addEventListener("click",()=>abrirObra(faixa));
-document.getElementById("i-menu").addEventListener("click",()=>{ tocando=false; faixa=0; mostraFaixa(); });
-const rodaI=document.getElementById("roda-i"); let ri=null, acum=0;
-rodaI.addEventListener("pointerdown",e=>{ if(e.target.closest("button")) return; const r=rodaI.getBoundingClientRect(); ri=Math.atan2(e.clientY-r.top-r.height/2,e.clientX-r.left-r.width/2); acum=0; rodaI.setPointerCapture(e.pointerId); });
-rodaI.addEventListener("pointermove",e=>{ if(ri===null) return; const r=rodaI.getBoundingClientRect(), a=Math.atan2(e.clientY-r.top-r.height/2,e.clientX-r.left-r.width/2); let d=a-ri; if(d>Math.PI) d-=6.283; if(d<-Math.PI) d+=6.283; ri=a; acum+=d; if(Math.abs(acum)>0.6){ muda(acum>0?1:-1); acum=0; } });
-rodaI.addEventListener("pointerup",()=>ri=null);
-rodaI.addEventListener("wheel",e=>{ e.preventDefault(); muda(e.deltaY>0?1:-1); },{passive:false});
-mostraFaixa();
 
 /* 20 tarô */
 const mesa=document.getElementById("mesa-t"); let ordem=OBRAS.map((_,k)=>k);
@@ -451,31 +404,127 @@ document.getElementById("embaralha").addEventListener("click",()=>{ ordem.sort((
 document.getElementById("vira-todas").addEventListener("click",()=>mesa.querySelectorAll(".carta").forEach((c,i)=>setTimeout(()=>c.classList.add("virada"),calmo?0:i*70)));
 
 /* 21 faixas */
-const fx=document.getElementById("faixas"), dobra=a=>a.concat(a);
+const fxs=document.getElementById("faixas"), dobra=a=>a.concat(a);
 const linhaFotos=(lista,cls,dur)=>`<div class="faixa fotos ${cls}" style="--dur:${dur}s">${dobra(lista).map(k=>`<button type="button" data-k="${k}" aria-label="${OBRAS[k].t}"><img src="${img(OBRAS[k],1)}" alt="" loading="lazy"></button>`).join("")}</div>`;
 const linhaNomes=(lista,cls,dur)=>`<div class="faixa nomes ${cls}" style="--dur:${dur}s">${dobra(lista).map(k=>`<button type="button" data-k="${k}">${OBRAS[k].t}</button>`).join("")}</div>`;
 const idx=OBRAS.map((_,k)=>k);
-fx.innerHTML=linhaNomes(idx,"",70)+linhaFotos(idx.slice().reverse(),"volta",55)+linhaNomes(idx.slice(6).concat(idx.slice(0,6)),"volta",80)+linhaFotos(idx.slice(4).concat(idx.slice(0,4)),"",65);
-fx.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) abrirObra(+b.dataset.k); });
+fxs.innerHTML=linhaNomes(idx,"",70)+linhaFotos(idx.slice().reverse(),"volta",55)+linhaNomes(idx.slice(6).concat(idx.slice(0,6)),"volta",80)+linhaFotos(idx.slice(4).concat(idx.slice(0,4)),"",65);
+fxs.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) abrirObra(+b.dataset.k); });
 
-/* 22 lençol */
-const cama=document.getElementById("cama"); let zc=20;
-function espalha(){ cama.innerHTML=""; const W=cama.clientWidth||900, H=cama.clientHeight||600, fw=Math.min(190,Math.max(120,W*0.16));
-  OBRAS.forEach((o,k)=>{ const d=document.createElement("div"); d.className="solta"; d.tabIndex=0; d.setAttribute("role","button"); d.setAttribute("aria-label",o.t);
-    d.innerHTML=`<img src="${img(o,1)}" alt=""><span>${o.t}</span>`; d.style.left=(Math.random()*(W-fw-20)+10)+"px"; d.style.top=(Math.random()*(H-fw*1.45-20)+10)+"px";
-    d.style.transform=`rotate(${(Math.random()*30-15).toFixed(1)}deg)`; d.style.zIndex=k; cama.appendChild(d);
-    let p=null, mov=0;
-    d.addEventListener("pointerdown",e=>{ p={x:e.clientX-d.offsetLeft,y:e.clientY-d.offsetTop}; mov=0; d.style.zIndex=++zc; d.classList.add("pega"); d.setPointerCapture(e.pointerId); });
-    d.addEventListener("pointermove",e=>{ if(!p) return; const nx=e.clientX-p.x, ny=e.clientY-p.y; mov+=Math.abs(nx-d.offsetLeft)+Math.abs(ny-d.offsetTop);
-      d.style.left=Math.max(-40,Math.min(cama.clientWidth-60,nx))+"px"; d.style.top=Math.max(-40,Math.min(cama.clientHeight-60,ny))+"px"; });
-    d.addEventListener("pointerup",()=>{ p=null; d.classList.remove("pega"); if(mov<6) abrirObra(k); });
-    d.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); abrirObra(k); } }); }); }
-document.getElementById("bagunca").addEventListener("click",espalha);
-prep.v22=()=>{ if(!cama.children.length) espalha(); };
+/* 7 · índice */
+const indice=document.getElementById("indice"), flutua=document.getElementById("flutua"), fImg=document.getElementById("flutua-img");
+indice.innerHTML=OBRAS.map((o,k)=>`<button type="button" class="linha-i" data-k="${k}"><span class="n">${nn(k)}</span><span class="nome">${o.t}</span><span class="meta">${o.tipo}<br>${o.h}</span><img class="mini" src="${img(o,1)}" alt="" loading="lazy"></button>`).join("");
+let fx=0,fy=0,tx=0,ty=0;
+indice.addEventListener("pointermove",e=>{ tx=e.clientX; ty=e.clientY; });
+indice.addEventListener("pointerover",e=>{ const b=e.target.closest(".linha-i"); if(!b) return; fImg.src=img(OBRAS[+b.dataset.k],1); flutua.classList.add("on"); });
+indice.addEventListener("pointerleave",()=>flutua.classList.remove("on"));
+indice.addEventListener("click",e=>{ const b=e.target.closest(".linha-i"); if(b) abrirObra(+b.dataset.k); });
+(function segue(){ fx+=(tx-fx)*0.14; fy+=(ty-fy)*0.14; flutua.style.left=fx+"px"; flutua.style.top=fy+"px"; requestAnimationFrame(segue); })();
 
-let ultT=0; (function laco(t){ const dt=Math.min(0.05,(t-ultT)/1000||0); ultT=t;
-  if(ativa==="v15") giraRoda(dt);
-  if(ativa==="v19"&&tocando&&!calmo){ tPassado+=dt; if(tPassado>=fim) muda(1); progI(); }
-  requestAnimationFrame(laco); })(0);
-mostra(location.hash.slice(1)||"v13");
+/* 9 · partidas */
+const ST=["EMBARCANDO","NO HORÁRIO","SONHANDO","ÚLTIMA CHAMADA"];
+const tb=document.getElementById("voos");
+function celulas(txt,n){ const t=txt.toUpperCase().padEnd(n," ").slice(0,n); return `<span class="flap" data-alvo="${t}">${[...t].map(c=>`<i>${c===" "?"&nbsp;":c}</i>`).join("")}</span>`; }
+tb.innerHTML=OBRAS.map((o,k)=>`<tr class="voo" tabindex="0" data-k="${k}"><td>${celulas(o.h,5)}</td><td>${celulas(o.t.replace("Ativos Judiciais","AT. JUD."),16)}</td><td>${celulas(o.tipo==="Identidade visual"?"ID VISUAL":"SOCIAL",9)}</td><td>${celulas(nn(k),2)}</td><td>${celulas(ST[k%4],14)}</td></tr>`).join("");
+const LETRAS="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:.";
+function embaralhaPainel(){ if(calmo) return; tb.querySelectorAll(".flap").forEach(f=>{ const alvo=f.dataset.alvo, is=[...f.children];
+  is.forEach((el,i)=>{ let n=3+Math.floor(Math.random()*6); const tick=()=>{ if(n--<=0){ el.innerHTML=alvo[i]===" "?"&nbsp;":alvo[i]; return; }
+    el.textContent=LETRAS[Math.floor(Math.random()*LETRAS.length)]; el.classList.remove("vira"); void el.offsetWidth; el.classList.add("vira"); setTimeout(tick,45); }; setTimeout(tick,i*12); }); }); }
+const emb=document.getElementById("embarque");
+function cartao(k){ const o=OBRAS[k]; tb.querySelectorAll("tr").forEach(r=>r.classList.toggle("sel",+r.dataset.k===k));
+  emb.innerHTML=`<div class="faixa-e"><span class="simbolo"></span><span>CARTÃO DE EMBARQUE · BOARDING PASS</span></div>
+   <div class="corpo-e"><div class="destino"><small>DESTINO</small><b>${o.t}</b></div><div><small>PARTIDA</small><b>${o.h}</b></div><div><small>PORTÃO</small><b>${nn(k)}</b></div>
+   <div><small>CLASSE</small><b>${o.tipo==="Identidade visual"?"ID VISUAL":"SOCIAL"}</b></div><div><small>BAGAGEM</small><b>${o.n} PEÇAS</b></div></div>
+   <img src="${img(o,1)}" alt="${o.t}"><div class="codigo" aria-hidden="true"></div><button type="button" id="embarcar">EMBARCAR NO SONHO →</button>`;
+  document.getElementById("embarcar").addEventListener("click",()=>abrirObra(k)); }
+tb.addEventListener("click",e=>{ const r=e.target.closest("tr.voo"); if(r) cartao(+r.dataset.k); });
+tb.addEventListener("keydown",e=>{ const r=e.target.closest("tr.voo"); if(r&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); cartao(+r.dataset.k); } });
+cartao(2);
+
+prep.v9=embaralhaPainel;
+/* 23 rabisco ao sonho */
+const prPalco=document.getElementById("pr-palco"), prFinal=document.getElementById("pr-final"), prRasc=document.getElementById("pr-rasc"), tiraR=document.getElementById("tira-r"); let atualR=0, anim=null;
+tiraR.innerHTML=OBRAS.map((o,k)=>`<button type="button" data-k="${k}" aria-label="${o.t}"><img src="${img(o,1)}" alt="" loading="lazy"></button>`).join("");
+function corte(v){ prPalco.style.setProperty("--corte",v+"%"); }
+function rabisco(k){ atualR=k; const o=OBRAS[k]; prFinal.src=prRasc.src=img(o,1); prFinal.alt=o.t;
+  document.getElementById("tit-r").textContent=o.t; document.getElementById("frase-r").textContent=o.pt; document.getElementById("ficha-r").textContent=`Nº ${nn(k)} · ${o.tipo} · ${o.h}`;
+  tiraR.querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-current",i===k));
+  cancelAnimationFrame(anim); if(calmo){ corte(50); return; } let t0=null; const ir=t=>{ if(!t0) t0=t; const u=Math.min(1,(t-t0)/1600), e=1-Math.pow(1-u,3); corte(e*55); if(u<1) anim=requestAnimationFrame(ir); }; corte(0); anim=requestAnimationFrame(ir); }
+let prMov=0, prDown=false;
+function prPonto(e){ const r=prPalco.getBoundingClientRect(); corte(Math.max(0,Math.min(100,(e.clientX-r.left)/r.width*100))); }
+prPalco.addEventListener("pointerdown",e=>{ prDown=true; prMov=0; cancelAnimationFrame(anim); });
+prPalco.addEventListener("pointermove",e=>{ if(e.pointerType==="mouse"||prDown){ prMov+=Math.abs(e.movementX||1); cancelAnimationFrame(anim); prPonto(e); } });
+prPalco.addEventListener("pointerup",()=>{ prDown=false; });
+prPalco.addEventListener("click",()=>{ if(prMov<4) abrirObra(atualR); prMov=0; });
+prPalco.addEventListener("keydown",e=>{ const v=parseFloat(prPalco.style.getPropertyValue("--corte"))||50; if(e.key==="ArrowLeft") corte(Math.max(0,v-5)); if(e.key==="ArrowRight") corte(Math.min(100,v+5)); });
+tiraR.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) rabisco(+b.dataset.k); });
+document.getElementById("ver-r").addEventListener("click",()=>abrirObra(atualR));
+rabisco(2); prep.v23=()=>rabisco(atualR);
+
+/* 25 neon */
+const NEON=["#FF5FA2","#8AC4FE","#B6FF5C","#FFB347","#C59BFF","#5CFFE4","#FF6B5C","#FFE45C","#7690D4","#FF8AD8","#6CF0FF","#FFA06B","#A6D8FF"];
+const lojas=document.getElementById("lojas");
+lojas.innerHTML=OBRAS.map((o,k)=>`<button type="button" class="loja-n" data-k="${k}" style="--n:${NEON[k]}" aria-label="${o.t}"><span class="letreiro"><span class="tubo f${k%3+1}">${k%3===2?o.t.split(" ")[0]:o.t}</span></span><span class="vitrine"><img src="${img(o,1)}" alt="" loading="lazy"></span><span class="nome-n">${o.tipo} · ${o.h}</span></button>`).join("");
+const lojasEl=[...lojas.children];
+lojas.addEventListener("pointerover",e=>{ const b=e.target.closest(".loja-n"); if(b&&!b.classList.contains("acesa")) b.classList.add("acesa"); b&&(b._fixa=true); });
+lojas.addEventListener("pointerout",e=>{ const b=e.target.closest(".loja-n"); if(b&&!b.contains(e.relatedTarget)){ b._fixa=false; setTimeout(()=>{ if(!b._fixa&&!b._auto) b.classList.remove("acesa"); },900); } });
+lojas.addEventListener("focusin",e=>{ const b=e.target.closest(".loja-n"); if(b) b.classList.add("acesa"); });
+lojas.addEventListener("click",e=>{ const b=e.target.closest(".loja-n"); if(!b) return; if(!b.classList.contains("acesa")){ b.classList.add("acesa"); return; } abrirObra(+b.dataset.k); });
+[1,4,9].forEach(k=>{ lojasEl[k].classList.add("acesa"); lojasEl[k]._auto=true; });
+setInterval(()=>{ if(ativa!=="v25"||calmo) return; const b=lojasEl[Math.floor(Math.random()*N)]; if(b._fixa) return;
+  if(b.classList.contains("acesa")){ b.classList.remove("acesa"); b._auto=false; } else { b.classList.add("acesa"); b._auto=true; } },1800);
+
+/* 26 VHS */
+const vv=document.getElementById("visor-vhs"), vImg=document.getElementById("vhs-img"), vFundo=document.getElementById("vhs-fundo"), vRu=document.getElementById("vhs-ruido"), vRx=vRu.getContext("2d"), fitas=document.getElementById("fitas");
+let fitaA=0, pecaV=1, tocandoV=true, chiadoT=0;
+fitas.innerHTML=OBRAS.map((o,k)=>`<button type="button" class="fita" data-k="${k}" aria-label="Fita ${k+1}, ${o.t}"><span>fita ${nn(k)} · ${o.t}</span></button>`).join("");
+function chiado(ms){ if(calmo) return; vv.classList.add("chiando"); chiadoT=performance.now()+ms; }
+function quadroV(){ const o=OBRAS[fitaA]; vImg.src=img(o,pecaV); vFundo.style.backgroundImage=`url(${img(o,pecaV)})`; vImg.style.animation="none"; void vImg.offsetWidth; vImg.style.animation=""; }
+function poeFita(k){ fitaA=(k+N)%N; pecaV=1; chiado(450); setTimeout(quadroV,calmo?0:250); const o=OBRAS[fitaA];
+  document.getElementById("vhs-tit").textContent=`FITA ${nn(fitaA)} · ${o.t.toUpperCase()}`; fitas.querySelectorAll(".fita").forEach((b,i)=>b.setAttribute("aria-current",i===fitaA));
+  document.getElementById("vhs-play").textContent=tocandoV?"PLAY ▶":"PAUSE ❚❚"; }
+document.getElementById("vhs-rew").addEventListener("click",()=>poeFita(fitaA-1));
+document.getElementById("vhs-ff").addEventListener("click",()=>poeFita(fitaA+1));
+document.getElementById("vhs-pp").addEventListener("click",e=>{ tocandoV=!tocandoV; e.currentTarget.textContent=tocandoV?"❚❚":"▶"; document.getElementById("vhs-play").textContent=tocandoV?"PLAY ▶":"PAUSE ❚❚"; });
+fitas.addEventListener("click",e=>{ const b=e.target.closest(".fita"); if(b) poeFita(+b.dataset.k); });
+vv.addEventListener("click",()=>abrirObra(fitaA));
+vv.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); abrirObra(fitaA); } });
+setInterval(()=>{ if(ativa!=="v26"||!tocandoV||calmo) return; const o=OBRAS[fitaA]; pecaV=pecaV%o.n+1; chiado(120); setTimeout(quadroV,60); },3200);
+let segV=0; setInterval(()=>{ segV++; const s=12*60+segV; document.getElementById("vhs-data").innerHTML=`NOV.09 2026<br>3:${String(Math.floor(s/60)%60).padStart(2,"0")}:${String(s%60).padStart(2,"0")} AM`; },1000);
+poeFita(0);
+
+/* 27 telescópio */
+const obs=document.getElementById("obs"), plan=document.getElementById("planetas"); let planetas=[], achados=new Set(), alvoP=-1;
+function montaObs(){ seed=29; const W=obs.clientWidth, H=obs.clientHeight, c=document.getElementById("obs-ceu"); c.width=W; c.height=H; const x=c.getContext("2d");
+  for(let i=0;i<W*H/2200;i++){ x.fillStyle=`rgba(254,250,226,${0.2+rnd()*0.7})`; x.beginPath(); x.arc(rnd()*W,rnd()*H,rnd()*1.3+0.2,0,6.283); x.fill(); }
+  const pos=[]; OBRAS.forEach((o,k)=>{ let px,py,ok,t=0; do{ px=60+rnd()*(W-120); py=60+rnd()*(H-160); ok=pos.every(p=>Math.hypot(p[0]-px,p[1]-py)>Math.min(W,H)*0.17); t++; }while(!ok&&t<200); pos.push([px,py]); });
+  plan.innerHTML=OBRAS.map((o,k)=>`<button type="button" class="planeta${k%3===1?" anel":""}" data-k="${k}" aria-label="${o.t}" style="left:${pos[k][0]}px;top:${pos[k][1]}px;--t:${(W<700?30:42)+((k*7)%5)*6}px;--c:${o.c};background-image:url(${img(o,1)})"></button>`).join("");
+  planetas=OBRAS.map((o,k)=>({k,x:pos[k][0],y:pos[k][1]})); obs.style.setProperty("--r",(W<700?95:130)+"px"); mira(W/2,H/2); }
+function mira(x,y){ obs.style.setProperty("--x",x+"px"); obs.style.setProperty("--y",y+"px"); const r=parseFloat(getComputedStyle(obs).getPropertyValue("--r"))||120;
+  let melhor=-1, dm=1e9; planetas.forEach(p=>{ const d=Math.hypot(p.x-x,p.y-y); if(d<dm){ dm=d; melhor=p.k; } });
+  const novo=dm<r*0.5?melhor:-1; if(novo===alvoP) return; alvoP=novo; plan.querySelectorAll(".planeta").forEach((b,i)=>b.classList.toggle("alvo",i===novo));
+  const pn=document.getElementById("painel-obs"), ver=document.getElementById("obs-ver");
+  if(novo<0){ pn.dataset.vazio="1"; document.getElementById("obs-sub").textContent="PROCURANDO…"; document.getElementById("obs-tit").textContent="Mova a luneta"; ver.hidden=true; return; }
+  const o=OBRAS[novo]; achados.add(novo); pn.dataset.vazio="0"; document.getElementById("obs-img").src=img(o,1); document.getElementById("obs-sub").textContent=`OBJETO Nº ${nn(novo)} · ${o.h}`;
+  document.getElementById("obs-tit").textContent=o.t; ver.hidden=false; document.getElementById("contador-obs").textContent=`${achados.size} de ${N} encontrados`; }
+obs.addEventListener("pointermove",e=>{ if(e.target.closest(".painel-obs")) return; const r=obs.getBoundingClientRect(); mira(e.clientX-r.left,e.clientY-r.top); });
+obs.addEventListener("pointerdown",e=>{ if(e.target.closest(".painel-obs")) return; const r=obs.getBoundingClientRect(); mira(e.clientX-r.left,e.clientY-r.top); });
+plan.addEventListener("click",e=>{ const b=e.target.closest(".planeta"); if(b&&+b.dataset.k===alvoP) abrirObra(alvoP); });
+document.getElementById("obs-ver").addEventListener("click",()=>{ if(alvoP>=0) abrirObra(alvoP); });
+prep.v27=montaObs; addEventListener("resize",()=>{ if(ativa==="v27") montaObs(); });
+
+/* 28 cabine 3x4 */
+const parede=document.getElementById("parede-f"), saindo=document.getElementById("saindo"); let filaF=OBRAS.map((_,k)=>k).sort(()=>Math.random()-.5), ocupado=false;
+const tiraHTML=(k)=>{ const o=OBRAS[k]; return `<i style="background-image:url(${img(o,1)})"></i><i style="background-image:url(${img(o,Math.min(2,o.n))})"></i><i style="background-image:url(${img(o,Math.min(3,o.n))})"></i><i style="background-image:url(${img(o,Math.min(4,o.n))})"></i><small>dreamz · 09.11.26<br>${o.t}</small>`; };
+function colaTira(k){ const vazio=parede.querySelector(".vazio-f"); if(vazio) vazio.remove(); const b=document.createElement("button"); b.type="button"; b.className="tira3x4"; b.setAttribute("aria-label",`Tirinha de ${OBRAS[k].t}`);
+  b.style.transform=`rotate(${(Math.random()*8-4).toFixed(1)}deg)`; b.innerHTML=tiraHTML(k); b.addEventListener("click",()=>abrirObra(k)); parede.prepend(b);
+  document.getElementById("instr-f").textContent=`${filaF.length} sonhos ainda na cabine`; }
+document.getElementById("disparo").addEventListener("click",()=>{ if(ocupado) return; if(!filaF.length){ filaF=OBRAS.map((_,k)=>k).sort(()=>Math.random()-.5); parede.innerHTML=""; }
+  ocupado=true; const k=filaF.shift(), tela=document.getElementById("tela-f"), fl=document.getElementById("flash-f"); let pose=0;
+  const umaPose=()=>{ let c=3; const conta=()=>{ tela.textContent=c; if(c--===0){ tela.textContent="★"; fl.classList.remove("on"); void fl.offsetWidth; fl.classList.add("on"); pose++; if(pose<4) setTimeout(umaPose,350); else revela(); return; } setTimeout(conta,calmo?0:260); }; conta(); };
+  const revela=()=>{ saindo.innerHTML=`<span class="tira3x4" style="display:block">${tiraHTML(k)}</span>`; saindo.style.height="0px"; void saindo.offsetWidth; saindo.style.height="150px";
+    setTimeout(()=>{ saindo.style.transition="none"; saindo.style.height="0px"; saindo.innerHTML=""; void saindo.offsetWidth; saindo.style.transition=""; colaTira(k); ocupado=false; },calmo?0:1600); };
+  umaPose(); });
+parede.innerHTML=`<p class="vazio-f">As tirinhas aparecem aqui.</p>`; [filaF.shift(),filaF.shift()].forEach(colaTira);
+mostra(location.hash.slice(1)||"v7");
 </script>
