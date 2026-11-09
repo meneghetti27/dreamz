@@ -320,24 +320,6 @@ footer .insone-f b{font-family:var(--f-mono)}
 @keyframes zzzz{0%{opacity:0;transform:translate(0,14px)}30%{opacity:1}100%{opacity:0;transform:translate(26px,-40px)}}
 .sonolento .dica-s{position:absolute;left:0;right:0;bottom:calc(14% + env(safe-area-inset-bottom,0px));text-align:center;font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:rgba(254,250,226,.75)}
 
-/* adesivos soltos pela página (arrastáveis) */
-.adesivos{position:absolute;left:0;top:0;width:100%;height:0;z-index:30;pointer-events:none}
-.adesivo{position:absolute;pointer-events:auto;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;transform:rotate(var(--r));
-  filter:drop-shadow(0 0 0 #fff) drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(0 8px 10px rgba(0,0,0,.35));transition:transform .2s}
-.adesivo:hover{transform:rotate(var(--r)) scale(1.05)}
-.adesivo.pega{cursor:grabbing;transform:rotate(calc(var(--r) - 6deg)) scale(1.12);transition:none;z-index:2}
-.adesivo.balanca{animation:balancaA .45s ease}
-@keyframes balancaA{25%{transform:rotate(calc(var(--r) - 10deg))}60%{transform:rotate(calc(var(--r) + 8deg))}}
-.adesivo:focus-visible{outline:2px dashed #FEFAE2;outline-offset:6px}
-.ad-simbolo{width:78px;height:78px;border-radius:50%;background:#FEFAE2;color:#141a30;display:grid;place-items:center}
-.ad-simbolo .simbolo{width:50px;height:44px}
-.ad-estrela{width:64px;height:64px;background:#8AC4FE;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
-.ad-pilula{padding:9px 16px;border-radius:99px;background:#704838;color:#FEFAE2;font-family:var(--f-display);font-weight:900;font-size:20px;letter-spacing:-.01em;white-space:nowrap}
-.ad-frase{padding:8px 12px;background:#FEFAE2;color:#141a30;font-family:var(--f-display);font-style:italic;font-weight:900;font-size:19px;white-space:nowrap}
-.ad-lcd{padding:6px 12px;border-radius:12px;background:#b9cc96;color:#17240c;font-family:var(--f-mono);font-weight:700;font-size:22px;letter-spacing:.06em;box-shadow:inset 0 2px 4px rgba(0,0,0,.3)}
-.ad-redondo{width:88px;height:88px;border-radius:50%;background:#7690D4;color:#FEFAE2;display:grid;place-items:center;text-align:center;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;line-height:1.25}
-@media (max-width:640px){ .adesivo{zoom:.72} }
-
 /* easter egg: o menino acorda */
 .estrela-voa{position:fixed;left:0;top:0;width:var(--t);height:var(--t);pointer-events:none;z-index:95;background:var(--cf);
   clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);filter:drop-shadow(0 0 6px var(--cf))}
@@ -405,7 +387,6 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 
 <div class="insone" id="insone" aria-hidden="true"></div>
 <div class="sonolento" id="sonolento" aria-hidden="true"><div class="vela"></div><div class="pp cima"></div><div class="pp baixo"></div><span class="zzz"><i>z</i> <i>z</i> <i>z</i></span><span class="dica-s" id="dica-s"></span></div>
-<div class="adesivos" id="adesivos"></div>
 <main>
   <section class="faixa entrada" id="entrada" data-cena-pt="acordando no sonho" data-cena-en="waking inside the dream">
     <div>
@@ -747,36 +728,6 @@ function acorda(){ paradoDesde=Date.now(); if(sonolento.classList.contains("on")
 ["pointermove","pointerdown","keydown","wheel","touchstart","scroll"].forEach(ev=>addEventListener(ev,acorda,{passive:true}));
 setInterval(()=>{ if(calmo||document.hidden||document.querySelector("dialog[open]")) { paradoDesde=Math.max(paradoDesde,Date.now()-15000); return; }
   if(Date.now()-paradoDesde>20000&&!sonolento.classList.contains("on")){ document.getElementById("dica-s").textContent=lang==="pt"?"mexa pra acordar":"move to wake up"; sonolento.classList.add("on"); } },1000);
-
-/* ---------- adesivos soltos ---------- */
-const camadaAd=document.getElementById("adesivos");
-const ADESIVOS=[
-  {id:"simbolo",html:'<div class="ad-simbolo"><span class="simbolo"></span></div>',sec:"entrada",x:.07,y:.62,r:-8},
-  {id:"estrela",html:'<div class="ad-estrela"></div>',sec:"manifesto",x:.9,y:.12,r:12},
-  {id:"pilula",html:'<div class="ad-pilula">dreamz®</div>',sec:"tecnicas",x:.04,y:.03,r:-6},
-  {id:"lcd",html:'<div class="ad-lcd">03:12 AL</div>',sec:"partidas",x:.86,y:.02,r:7},
-  {id:"frase",html:'<div class="ad-frase">lo$ing $leep</div>',sec:"taro",x:.05,y:.06,r:-4},
-  {id:"redondo",html:'<div class="ad-redondo">sonhe<br>alto ✦</div>',sec:"quem",x:.86,y:.1,r:10},
-  {id:"estrela2",html:'<div class="ad-estrela" style="background:#FEFAE2;width:48px;height:48px"></div>',sec:"sonho",x:.92,y:.04,r:-14},
-];
-let salvos={}; try{ salvos=JSON.parse(localStorage.getItem("dreamz-adesivos")||"{}")||{}; }catch(e){}
-function guardaAd(){ try{ localStorage.setItem("dreamz-adesivos",JSON.stringify(salvos)); }catch(e){} }
-function poeAdesivos(){ camadaAd.innerHTML=""; const W=document.documentElement.clientWidth;
-  ADESIVOS.forEach(a=>{ const sec=document.getElementById(a.sec); if(!sec) return; const el=document.createElement("div"); el.className="adesivo"; el.tabIndex=0;
-    el.setAttribute("role","img"); el.setAttribute("aria-label",lang==="pt"?"Adesivo da dreamz (arraste pra mover)":"dreamz sticker (drag to move)");
-    el.style.setProperty("--r",a.r+"deg"); el.innerHTML=a.html;
-    const sv=salvos[a.id]; const left=sv?sv.x*W:a.x*W, top=sv?sv.y:sec.offsetTop+sec.offsetHeight*a.y;
-    el.style.left=Math.min(W-90,Math.max(4,left))+"px"; el.style.top=top+"px"; camadaAd.appendChild(el);
-    let ini=null, mov=0;
-    el.addEventListener("pointerdown",e=>{ ini={x:e.clientX-el.offsetLeft,y:e.clientY-el.offsetTop}; mov=0; el.classList.add("pega"); el.setPointerCapture(e.pointerId); e.preventDefault(); });
-    el.addEventListener("pointermove",e=>{ if(!ini) return; const nx=e.clientX-ini.x, ny=e.clientY-ini.y; mov+=Math.abs(nx-el.offsetLeft)+Math.abs(ny-el.offsetTop);
-      el.style.left=Math.min(document.documentElement.clientWidth-60,Math.max(-20,nx))+"px"; el.style.top=Math.max(0,ny)+"px"; });
-    el.addEventListener("pointerup",()=>{ if(!ini) return; ini=null; el.classList.remove("pega");
-      if(mov<5){ el.classList.remove("balanca"); void el.offsetWidth; el.classList.add("balanca"); return; }
-      salvos[a.id]={x:el.offsetLeft/document.documentElement.clientWidth,y:el.offsetTop}; guardaAd(); });
-    el.addEventListener("keydown",e=>{ const d={ArrowLeft:[-10,0],ArrowRight:[10,0],ArrowUp:[0,-10],ArrowDown:[0,10]}[e.key]; if(!d) return; e.preventDefault();
-      el.style.left=(el.offsetLeft+d[0])+"px"; el.style.top=(el.offsetTop+d[1])+"px"; salvos[a.id]={x:el.offsetLeft/document.documentElement.clientWidth,y:el.offsetTop}; guardaAd(); }); }); }
-addEventListener("load",poeAdesivos); let tAd; addEventListener("resize",()=>{ clearTimeout(tAd); tAd=setTimeout(poeAdesivos,300); });
 
 /* ---------- visor ---------- */
 const visor=document.getElementById("visor"), trilho=document.getElementById("trilho");
