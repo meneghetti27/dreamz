@@ -4,7 +4,7 @@
 <meta name="description" content="dreamz — galeria de design conceitual. Identidade visual e social media.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..900,0..100&family=Manrope:wght@400;500;600;700&family=Caveat:wght@400;600;700&family=VT323&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..900,0..100&family=Manrope:wght@400;500;600;700&family=Caveat:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap">
 <style>
 /* Layout: uma noite em rolagem — 23:47 (acordando dentro do sonho) até 06:00 (o despertador toca no orçamento).
    O fundo vai do preto ao creme do amanhecer. Visual único e deliberado: a cor é dada pela hora, não pelo tema do sistema. */
@@ -15,6 +15,7 @@
   --bg:#000000; --fg:#FEFAE2; --muted:rgba(254,250,226,.64); --line:rgba(254,250,226,.18); --accent:#8AC4FE;
   --f-display:"Fraunces","Cooper Black",Georgia,serif;
   --f-body:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"Space Mono",ui-monospace,Menlo,monospace;
   --gutter:max(16px, env(safe-area-inset-left, 0px));
   --gutter-r:max(16px, env(safe-area-inset-right, 0px));
 }
@@ -122,94 +123,82 @@ em{font-style:italic}
 .estrela5{display:block;background:currentColor;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
 .placa .estrela5{position:absolute;top:24px;right:24px;width:18px;height:18px;color:var(--accent)}
 
-/* 02:00 — canal da madrugada (TV Y2K) */
+/* 02:00–04:30 — acervo em 4 atos: índice, partidas, tarô e faixas */
 .secao-obra{padding-block:clamp(60px,9vw,120px)}
 .secao-obra .cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px 40px;margin-bottom:44px}
 .secao-obra h2{margin:16px 0 0;font-size:clamp(48px,7.5vw,108px);line-height:.9;letter-spacing:-.01em}
 .secao-obra h2 em{color:var(--accent)}
-.secao-obra .cab p{margin:0;max-width:36ch;color:var(--muted)}
-.tv-cena{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:34px;align-items:end;max-width:960px;margin:0 auto}
-.tv{position:relative;border-radius:38px 38px 30px 30px;padding:24px 24px 62px;
-  background:linear-gradient(160deg,#EEF1F5 0%,#C3C9D2 35%,#9AA2AE 70%,#7D8591 100%);
-  box-shadow:inset 0 3px 4px rgba(255,255,255,.9),inset 0 -10px 18px rgba(0,0,0,.25),0 40px 70px -25px rgba(0,0,0,.7)}
-.tv::after{content:"";position:absolute;left:18%;right:18%;bottom:-16px;height:16px;border-radius:0 0 18px 18px;background:linear-gradient(#8E96A2,#5E6570);z-index:-1}
-.tela-tv{position:relative;aspect-ratio:4/3;border-radius:30px/36px;overflow:hidden;background:#05070a;cursor:zoom-in;
-  box-shadow:inset 0 0 0 10px #1b1f26,inset 0 0 40px 18px rgba(0,0,0,.9),0 0 0 3px #5d646e}
-.tela-tv:focus-visible{outline:3px solid var(--accent);outline-offset:6px}
-.tela-tv .fundo{position:absolute;inset:-10%;background-size:cover;background-position:center;filter:blur(26px) brightness(.55) saturate(1.2)}
-.tela-tv img.prog{position:absolute;inset:7% 0;margin:auto;height:86%;width:auto;max-width:92%;object-fit:contain;transition:opacity .45s ease;box-shadow:0 10px 30px rgba(0,0,0,.5)}
-.tela-tv .linhas{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.28) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}
-.tela-tv .vidro{position:absolute;inset:0;pointer-events:none;border-radius:inherit;
-  background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(0,0,0,.65) 100%),linear-gradient(125deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 32%)}
-.tela-tv canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none}
-.tela-tv.zapeando canvas{opacity:1}
-.osd{position:absolute;font-family:"VT323",ui-monospace,monospace;color:#7CFF7C;text-shadow:0 0 6px rgba(124,255,124,.8);pointer-events:none;letter-spacing:.04em}
-.osd.ch{top:6%;right:7%;font-size:clamp(26px,3.6vw,44px)}
-.osd.rodape{left:6%;right:6%;bottom:5%;font-size:clamp(15px,1.9vw,22px);line-height:1.15;background:rgba(0,0,0,.55);padding:6px 10px;border-left:3px solid #7CFF7C}
-.osd.rodape b{font-weight:400;color:#fff;text-shadow:0 0 6px rgba(255,255,255,.6)}
-.painel-tv{position:absolute;left:28px;right:28px;bottom:16px;display:flex;align-items:center;gap:14px}
-.painel-tv .marca-tv{font-family:var(--f-display);font-weight:600;letter-spacing:.4em;font-size:13px;color:#4b525c;text-shadow:0 1px 0 rgba(255,255,255,.7)}
-.painel-tv .grade-som{flex:1;height:18px;background:repeating-linear-gradient(90deg,#6f7782 0 2px,transparent 2px 6px);border-radius:4px;opacity:.6}
-.painel-tv .botao{width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f4f6f9,#8c939d);box-shadow:0 2px 3px rgba(0,0,0,.35)}
-.painel-tv .led{width:8px;height:8px;border-radius:50%;background:#55ff6a;box-shadow:0 0 8px #55ff6a}
-.controle{justify-self:center;width:118px;border-radius:40px 40px 34px 34px;padding:22px 16px 26px;display:grid;gap:12px;justify-items:center;
-  background:linear-gradient(170deg,#3a3f48,#1c1f25);box-shadow:inset 0 2px 3px rgba(255,255,255,.18),0 26px 40px -18px rgba(0,0,0,.8);transform:rotate(6deg)}
-.controle button{all:unset;cursor:pointer;display:grid;place-items:center;color:#e9edf2;font:600 11px/1 var(--f-body);letter-spacing:.06em;
-  background:linear-gradient(#5a616c,#363b44);box-shadow:0 2px 0 #111,inset 0 1px 0 rgba(255,255,255,.2);transition:transform .08s}
-.controle button:active{transform:translateY(2px);box-shadow:0 0 0 #111}
-.controle button:focus-visible{outline:2px solid #7CFF7C;outline-offset:2px}
-.controle .liga{width:26px;height:26px;border-radius:50%;background:linear-gradient(#ff6b6b,#b82020)}
-.controle .nums{display:grid;grid-template-columns:repeat(3,24px);gap:7px}
-.controle .nums button{width:24px;height:20px;border-radius:7px}
-.controle .ch{display:grid;gap:6px;width:100%}
-.controle .ch button{height:34px;border-radius:12px;font-size:12px}
-.controle .ir{font:700 9px/1 var(--f-body);letter-spacing:.2em;color:#8a919c}
-.guia{margin:56px auto 0;max-width:960px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:2px 26px;
-  font-family:"VT323",ui-monospace,monospace;font-size:21px;line-height:1.2}
-.guia button{all:unset;cursor:pointer;display:grid;grid-template-columns:52px 52px 1fr;gap:8px;padding:8px 10px;border-bottom:1px dashed var(--line);color:var(--muted)}
-.guia button:hover,.guia button[aria-current="true"]{color:#7CFF7C;background:rgba(0,0,0,.35)}
-.guia button:focus-visible{outline:2px solid var(--accent)}
-.guia-titulo{max-width:960px;margin:56px auto -40px;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.secao-obra .cab p{margin:0;max-width:38ch;color:var(--muted)}
 
-/* 03:30 — diário de sonhos */
-.diario-wrap{max-width:1040px;margin:0 auto;perspective:2400px}
-.diario{position:relative;display:grid;grid-template-columns:1fr 1fr;transform:rotate(-1.2deg);filter:drop-shadow(0 40px 50px rgba(0,0,0,.55))}
-.pagina{position:relative;min-height:560px;padding:44px 46px 40px 58px;color:#1d2440;overflow:hidden;transform-style:preserve-3d;backface-visibility:hidden;
-  background:repeating-linear-gradient(to bottom,transparent 0 33px,rgba(86,116,180,.28) 33px 34px) 0 62px/100% calc(100% - 62px) no-repeat,#FBF6E8}
-.pagina.esq{border-radius:10px 2px 2px 10px;box-shadow:inset -34px 0 40px -30px rgba(70,50,20,.45);transform-origin:right center}
-.pagina.esq::before{content:"";position:absolute;top:0;bottom:0;left:44px;width:2px;background:rgba(214,92,92,.45)}
-.pagina.dir{border-radius:2px 10px 10px 2px;box-shadow:inset 34px 0 40px -30px rgba(70,50,20,.45);transform-origin:left center;padding-left:46px}
-.espiral{position:absolute;top:22px;bottom:22px;left:50%;width:30px;transform:translateX(-50%);z-index:5;pointer-events:none;
-  background:radial-gradient(circle at 50% 50%,transparent 5px,#9aa1ad 5.5px,#e9edf2 7px,#7d8591 8.5px,transparent 9px) 0 0/30px 26px repeat-y}
-.manus{font-family:"Caveat","Bradley Hand","Segoe Print",cursive}
-.pagina .data{font-family:"Caveat",cursive;font-size:22px;color:#5b6a9a;margin:0 0 6px}
-.pagina .nsonho{font-family:"Caveat",cursive;font-size:24px;color:#a2534f;margin:0}
-.pagina h3{margin:2px 0 10px;font-family:"Caveat",cursive;font-weight:700;font-size:clamp(46px,5vw,64px);line-height:.95;color:#1d2440}
-.pagina .relato{font-family:"Caveat",cursive;font-size:clamp(25px,2.4vw,30px);line-height:34px;margin:0 0 20px;max-width:24ch}
-.pagina .ficha-m{font-family:"Caveat",cursive;font-size:23px;line-height:34px;margin:0;color:#3b4672}
-.pagina .ficha-m s{color:#a2534f}
-.rabisco{position:absolute;right:34px;bottom:34px;width:70px;height:70px;color:#5b6a9a;opacity:.8}
-.ver-pecas{all:unset;cursor:pointer;margin-top:14px;font-family:"Caveat",cursive;font-size:26px;color:#1d2440;border-bottom:2px solid #a2534f;line-height:1.1}
-.ver-pecas:focus-visible{outline:2px solid #5b6a9a;outline-offset:3px}
-.polaroides{position:relative;height:100%;min-height:480px}
-.polaroid{all:unset;cursor:zoom-in;position:absolute;background:#fff;padding:10px 10px 38px;box-shadow:0 12px 24px -8px rgba(0,0,0,.45),0 1px 2px rgba(0,0,0,.2);transition:transform .25s ease}
-.polaroid img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
-.polaroid .leg{position:absolute;left:12px;right:12px;bottom:8px;font-family:"Caveat",cursive;font-size:20px;color:#3b4672;text-align:center}
-.polaroid::before{content:"";position:absolute;top:-12px;left:50%;width:82px;height:24px;transform:translateX(-50%) rotate(-4deg);background:rgba(232,220,180,.7);box-shadow:0 1px 2px rgba(0,0,0,.15)}
-.polaroid:hover{z-index:9;transform:rotate(0) scale(1.04)!important}
-.polaroid:focus-visible{outline:3px solid #5b6a9a;outline-offset:4px}
-.polaroid.p1{width:52%;left:2%;top:4%;transform:rotate(-6deg)}
-.polaroid.p2{width:46%;right:0;top:20%;transform:rotate(5deg)}
-.polaroid.p3{width:42%;left:20%;bottom:0;transform:rotate(-2deg)}
-.virar{display:flex;justify-content:center;align-items:center;gap:22px;margin-top:40px}
-.virar button{all:unset;cursor:pointer;font-family:"Caveat",cursive;font-size:28px;color:var(--fg);border-bottom:1.5px solid currentColor;line-height:1}
-.virar button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-.virar .pag{font-family:"Caveat",cursive;font-size:26px;color:var(--muted)}
-.pagina.vira-sai{transition:transform .38s ease-in;transform:rotateY(-90deg)}
-.pagina.esq.vira-sai{transform:rotateY(90deg)}
-.pagina.vira-entra{transition:none;transform:rotateY(90deg)}
-.pagina.dir.vira-entra{transform:rotateY(-90deg)}
-.pagina.vira-fim{transition:transform .38s ease-out;transform:rotateY(0)}
+/* índice gigante */
+.linha-i{all:unset;cursor:pointer;display:grid;grid-template-columns:60px minmax(0,1fr) auto;align-items:baseline;gap:20px;width:100%;padding:10px 0 6px;border-top:1px solid var(--line);transition:opacity .25s}
+.indice:hover .linha-i{opacity:.28}
+.indice .linha-i:hover,.indice .linha-i:focus-visible{opacity:1}
+.linha-i .n{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.linha-i .nome{font-family:var(--f-display);font-weight:900;font-variation-settings:"SOFT" 100,"opsz" 144;font-size:clamp(40px,8.4vw,124px);line-height:.95;letter-spacing:-.03em;transition:transform .35s cubic-bezier(.2,.8,.2,1),color .25s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.linha-i:hover .nome,.linha-i:focus-visible .nome{font-style:italic;color:var(--accent);transform:translateX(22px)}
+.linha-i .meta{font-family:var(--f-mono);font-size:12px;color:var(--muted);text-align:right;line-height:1.5}
+.linha-i .mini{display:none}
+.flutua{position:fixed;left:0;top:0;width:min(300px,26vw);pointer-events:none;z-index:40;opacity:0;transform:translate(-50%,-50%) scale(.8) rotate(-4deg);transition:opacity .25s,transform .35s cubic-bezier(.2,.8,.2,1)}
+.flutua.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-4deg)}
+.flutua img{width:100%;height:auto;box-shadow:0 30px 60px rgba(0,0,0,.6)}
+
+/* partidas */
+.aeroporto{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:30px;align-items:start}
+.painel{background:#0b0c0f;border-radius:14px;padding:18px 18px 22px;box-shadow:inset 0 0 0 2px #22252c,0 30px 60px -25px rgba(0,0,0,.9);overflow-x:auto;color:#f3f1e9}
+.painel .cab-p{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-mono);font-size:13px;letter-spacing:.14em;color:#f5d36b;margin-bottom:12px;min-width:620px}
+.painel table{border-collapse:separate;border-spacing:0 5px;width:100%;min-width:620px;font-family:var(--f-mono)}
+.painel th{text-align:left;font-size:10px;font-weight:400;letter-spacing:.16em;color:#8d93a0;padding:0 6px}
+.painel tr.voo{cursor:pointer}
+.painel tr.voo:focus-visible{outline:2px solid #f5d36b}
+.painel td{padding:0 6px}
+.flap{display:inline-flex;gap:2px}
+.flap i{font-style:normal;display:inline-grid;place-items:center;width:17px;height:26px;border-radius:3px;font-size:15px;font-weight:700;color:#f3f1e9;background:linear-gradient(#24272e 0 49%,#0b0c0f 49% 51%,#1d2026 51%);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.flap i.vira{animation:viraf .08s steps(1) 1}
+@keyframes viraf{50%{transform:scaleY(.2)}}
+tr.voo.sel .flap i{color:#f5d36b}
+.embarque{background:#FEFAE2;color:#141a30;border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -25px rgba(0,0,0,.9);position:sticky;top:90px}
+.embarque .faixa-e{display:flex;justify-content:space-between;align-items:center;background:#141a30;color:#FEFAE2;padding:12px 18px;font-family:var(--f-mono);font-size:11px;letter-spacing:.16em}
+.embarque .faixa-e .simbolo{width:24px;height:21px}
+.embarque .corpo-e{padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;font-family:var(--f-mono)}
+.embarque .corpo-e small{display:block;font-size:9px;letter-spacing:.16em;color:#6b7390}
+.embarque .corpo-e b{font-size:15px}
+.embarque .destino{grid-column:1/-1}
+.embarque .destino b{font-family:var(--f-display);font-weight:900;font-size:clamp(26px,2.6vw,36px);letter-spacing:-.02em;line-height:1}
+.embarque img{width:100%;aspect-ratio:16/10;object-fit:cover;border-top:2px dashed rgba(20,26,48,.3)}
+.embarque button{all:unset;cursor:pointer;display:block;text-align:center;background:#141a30;color:#FEFAE2;padding:14px;font-family:var(--f-mono);font-size:12px;letter-spacing:.2em}
+.embarque button:focus-visible{outline:2px solid #8AC4FE;outline-offset:-4px}
+.codigo{height:34px;margin:0 18px 16px;background:repeating-linear-gradient(90deg,#141a30 0 2px,transparent 2px 4px,#141a30 4px 5px,transparent 5px 8px,#141a30 8px 11px,transparent 11px 12px)}
+
+/* tarô */
+.mesa-t{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:22px;perspective:1400px}
+.carta{all:unset;cursor:pointer;aspect-ratio:.58;position:relative;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.3,1.3,.5,1)}
+.carta.virada{transform:rotateY(180deg)}
+.carta .face{position:absolute;inset:0;border-radius:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;box-shadow:0 14px 30px -10px rgba(0,0,0,.8)}
+.carta .verso{border:2px solid #d9c9a0;display:grid;place-items:center;background-image:radial-gradient(circle,rgba(254,250,226,.7) 1px,transparent 1.5px),radial-gradient(circle at 50% 50%,#283456,#141a30 70%);background-size:18px 18px,100% 100%}
+.carta .verso::before{content:"";position:absolute;inset:8px;border:1px solid rgba(217,201,160,.7);border-radius:8px}
+.carta .verso .simbolo{width:56%;aspect-ratio:728/647;color:#d9c9a0}
+.carta .frente{transform:rotateY(180deg);background:#f4ecd8;border:2px solid #d9c9a0;padding:10px;display:grid;grid-template-rows:auto 1fr auto;gap:6px;color:#141a30;text-align:center}
+.carta .frente .rom{font-family:var(--f-display);font-weight:800;font-size:15px;letter-spacing:.1em}
+.carta .frente .arte{background:center/cover;border:1px solid #141a30}
+.carta .frente .nome-t{font-family:var(--f-display);font-weight:900;font-size:13px;letter-spacing:.06em;text-transform:uppercase;line-height:1.1}
+.carta:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:12px}
+.acoes-t{display:flex;gap:10px;justify-content:center;margin-top:30px}
+.btn-l{all:unset;cursor:pointer;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:9px 15px}
+.btn-l:focus-visible{outline:2px solid var(--accent)}
+
+/* faixas infinitas */
+.faixas{display:grid;gap:14px;overflow:hidden}
+.esteira{display:flex;width:max-content;gap:14px;animation:corre var(--dur) linear infinite}
+.esteira.volta{animation-direction:reverse}
+.esteira:hover{animation-play-state:paused}
+@keyframes corre{to{transform:translateX(-50%)}}
+.esteira button{all:unset;cursor:pointer;flex:none}
+.esteira.fotos img{height:clamp(160px,26vw,300px);width:auto;transition:transform .3s,filter .3s;filter:grayscale(.6) brightness(.8)}
+.esteira.fotos button:hover img,.esteira.fotos button:focus-visible img{filter:none;transform:scale(1.04)}
+.esteira.nomes button{font-family:var(--f-display);font-weight:900;font-variation-settings:"SOFT" 100,"opsz" 144;font-size:clamp(48px,9vw,130px);line-height:1;letter-spacing:-.03em;padding:0 10px;color:transparent;-webkit-text-stroke:1.5px var(--muted);transition:color .2s}
+.esteira.nomes button:hover,.esteira.nomes button:focus-visible{color:var(--accent);-webkit-text-stroke-color:var(--accent)}
+.esteira.nomes button::after{content:"✦";font-size:.4em;vertical-align:middle;margin-left:28px;color:var(--accent);-webkit-text-stroke:0}
 
 /* 05:00 *//* 05:00 */
 .quem{padding-block:clamp(90px,12vw,160px)}
@@ -270,27 +259,17 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 .visor-pe .frase{font-family:var(--f-display);font-style:italic;text-transform:none;letter-spacing:0;font-size:20px;font-weight:400;max-width:60ch}
 
 @media (max-width:900px){
-  .tv-cena{grid-template-columns:1fr}
-  .controle{transform:none;width:auto;grid-template-columns:auto auto auto;align-items:center;border-radius:28px;padding:14px 18px}
-  .controle .nums{grid-template-columns:repeat(9,24px)}
-  .controle .ch{grid-template-columns:1fr 1fr;width:110px}
-  .controle .ir{display:none}
-  .diario{grid-template-columns:1fr;transform:none}
-  .espiral{display:none}
-  .pagina{min-height:0}
-  .pagina.esq,.pagina.dir{border-radius:10px;box-shadow:none}
-  .pagina.dir{border-top:1px dashed rgba(29,36,64,.25)}
-  .polaroides{min-height:420px}
+  .aeroporto{grid-template-columns:1fr}
+  .embarque{position:static}
   .quem .grade,.caixa{grid-template-columns:1fr}
 }
+@media (max-width:640px){
+  .linha-i{grid-template-columns:34px minmax(0,1fr) 54px}
+  .linha-i .meta{display:none}
+  .linha-i .mini{display:block;width:54px;aspect-ratio:4/5;object-fit:cover;align-self:center}
+  .flutua{display:none}
+}
 @media (max-width:560px){
-  .tv{padding:14px 14px 48px;border-radius:26px}
-  .painel-tv{left:18px;right:18px;bottom:12px}
-  .controle{grid-template-columns:1fr;justify-items:center}
-  .controle .nums{grid-template-columns:repeat(5,24px)}
-  .pagina{padding:30px 22px 30px 40px}
-  .pagina.esq::before{left:28px}
-  .polaroides{min-height:360px}
   .idioma .longo{display:none}
   .visor-pe .frase{display:none}
 }
@@ -368,64 +347,68 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
     </div>
   </section>
 
-  <section class="faixa secao-obra" id="acervo" data-cena-pt="canal da madrugada" data-cena-en="late-night TV">
+  <section class="faixa secao-obra" id="acervo" data-cena-pt="sono profundo" data-cena-en="deep sleep">
     <div class="miolo">
       <div class="cab">
         <div>
-          <div class="rotulo">02:00 · <span lang="pt">acervo, versão A</span><span lang="en">collection, version A</span></div>
-          <h2><span lang="pt">Canal da <em>madrugada</em></span><span lang="en">Late-night <em>channel</em></span></h2>
+          <div class="rotulo">02:00 · <span lang="pt">acervo</span><span lang="en">collection</span></div>
+          <h2><span lang="pt">13 <em>sonhos</em></span><span lang="en">13 <em>dreams</em></span></h2>
         </div>
-        <p lang="pt">Insônia, controle na mão. Cada canal passa o sonho de uma marca. Troque de canal no controle ou na programação, e toque na tela pra ver de perto.</p>
-        <p lang="en">Can't sleep, remote in hand. Every channel shows a brand's dream. Change channels on the remote or in the guide, and tap the screen to see it up close.</p>
+        <p lang="pt">Os nomes dos sonhos que a gente já tirou da cabeça de alguém. Passe o mouse num nome pra ver a peça, e clique pra abrir.</p>
+        <p lang="en">The names of the dreams we've already pulled out of someone's head. Hover a name to see the piece, and click to open it.</p>
       </div>
-      <div class="tv-cena">
-        <div class="tv">
-          <div class="tela-tv" id="tela-tv" role="button" tabindex="0" aria-label="Ver as peças deste canal">
-            <div class="fundo" id="tv-fundo"></div>
-            <img class="prog" id="tv-img" alt="" src="assets/obras/bmc/01.webp">
-            <div class="linhas"></div>
-            <canvas id="chiado" width="160" height="120"></canvas>
-            <div class="osd ch" id="tv-ch">CH 01</div>
-            <div class="osd rodape" id="tv-rodape"></div>
-            <div class="vidro"></div>
-          </div>
-          <div class="painel-tv" aria-hidden="true"><span class="marca-tv">DREAMZ</span><span class="grade-som"></span><span class="botao"></span><span class="botao"></span><span class="led"></span></div>
+      <div class="indice" id="indice"></div>
+    </div>
+    <div class="flutua" id="flutua" aria-hidden="true"><img id="flutua-img" alt=""></div>
+  </section>
+
+  <section class="faixa secao-obra" id="partidas" data-cena-pt="partidas" data-cena-en="departures">
+    <div class="miolo">
+      <div class="cab">
+        <div>
+          <div class="rotulo">02:45 · <span lang="pt">partidas</span><span lang="en">departures</span></div>
+          <h2><span lang="pt">Partidas para o <em>sonho</em></span><span lang="en">Departures to the <em>dream</em></span></h2>
         </div>
-        <div class="controle" role="group" aria-label="Controle remoto">
-          <button type="button" class="liga" id="tv-liga" aria-label="Canal aleatório"></button>
-          <div class="nums" id="tv-nums"></div>
-          <div class="ch"><button type="button" id="ch-mais" aria-label="Próximo canal">CH ▲</button><button type="button" id="ch-menos" aria-label="Canal anterior">CH ▼</button></div>
-          <span class="ir">DREAMZ</span>
-        </div>
+        <p lang="pt">O aeroporto de madrugada. Cada voo leva a um projeto. Escolha um voo pra ver o cartão de embarque.</p>
+        <p lang="en">The airport at dawn. Every flight goes to a project. Pick a flight to see its boarding pass.</p>
       </div>
-      <p class="guia-titulo"><span lang="pt">programação da madrugada</span><span lang="en">tonight's guide</span></p>
-      <div class="guia" id="guia"></div>
+      <div class="aeroporto">
+        <div class="painel">
+          <div class="cab-p"><span>✈ PARTIDAS · DEPARTURES</span><span>dreamz intl.</span></div>
+          <table><thead><tr><th><span lang="pt">HORA</span><span lang="en">TIME</span></th><th><span lang="pt">DESTINO</span><span lang="en">DESTINATION</span></th><th><span lang="pt">TÉCNICA</span><span lang="en">TECHNIQUE</span></th><th><span lang="pt">PORTÃO</span><span lang="en">GATE</span></th><th>STATUS</th></tr></thead><tbody id="voos"></tbody></table>
+        </div>
+        <aside class="embarque" id="embarque"></aside>
+      </div>
     </div>
   </section>
 
-  <section class="faixa secao-obra" id="diario" data-cena-pt="diário de sonhos" data-cena-en="dream journal">
+  <section class="faixa secao-obra" id="taro" data-cena-pt="sono REM" data-cena-en="REM sleep">
     <div class="miolo">
       <div class="cab">
         <div>
-          <div class="rotulo">03:30 · <span lang="pt">acervo, versão B</span><span lang="en">collection, version B</span></div>
-          <h2><span lang="pt">Diário de <em>sonhos</em></span><span lang="en">Dream <em>journal</em></span></h2>
+          <div class="rotulo">03:30 · <span lang="pt">tarô</span><span lang="en">tarot</span></div>
+          <h2><span lang="pt">O tarô dos <em>sonhos</em></span><span lang="en">The dream <em>tarot</em></span></h2>
         </div>
-        <p lang="pt">Sonho que não é anotado some de manhã. Por isso cada projeto ganhou uma página, com as peças coladas ao lado. Vire as páginas.</p>
-        <p lang="en">Dreams you don't write down are gone by morning, so every project got a page, with its pieces taped next to it. Turn the pages.</p>
+        <p lang="pt">Treze cartas viradas pra baixo. Escolha uma pra descobrir o sonho, e toque de novo na carta aberta pra ver as peças.</p>
+        <p lang="en">Thirteen cards face down. Pick one to reveal the dream, then tap the open card again to see every piece.</p>
       </div>
-      <div class="diario-wrap">
-        <div class="diario" id="diario-livro">
-          <div class="pagina esq" id="pag-esq"></div>
-          <div class="espiral" aria-hidden="true"></div>
-          <div class="pagina dir" id="pag-dir"></div>
-        </div>
-        <div class="virar">
-          <button type="button" id="pag-ant"><span lang="pt">← página anterior</span><span lang="en">← previous page</span></button>
-          <span class="pag" id="pag-num">1 / 13</span>
-          <button type="button" id="pag-prox"><span lang="pt">próxima página →</span><span lang="en">next page →</span></button>
-        </div>
-      </div>
+      <div class="mesa-t" id="mesa-t"></div>
+      <div class="acoes-t"><button type="button" class="btn-l" id="embaralha"><span lang="pt">embaralhar</span><span lang="en">shuffle</span></button><button type="button" class="btn-l" id="vira-todas"><span lang="pt">virar todas</span><span lang="en">turn them all</span></button></div>
     </div>
+  </section>
+
+  <section class="secao-obra" id="faixas-s" data-cena-pt="quase acordando" data-cena-en="almost awake">
+    <div class="faixa"><div class="miolo">
+      <div class="cab">
+        <div>
+          <div class="rotulo">04:15 · <span lang="pt">em looping</span><span lang="en">on loop</span></div>
+          <h2><span lang="pt">Sonhos em <em>looping</em></span><span lang="en">Dreams on <em>loop</em></span></h2>
+        </div>
+        <p lang="pt">Antes de acordar, tudo passa de novo, rápido, sem parar. Passe o mouse pra pausar e clique pra abrir.</p>
+        <p lang="en">Right before waking up, everything replays, fast and nonstop. Hover to pause and click to open.</p>
+      </div>
+    </div></div>
+    <div class="faixas" id="faixas"></div>
   </section>
 
   <section class="faixa quem" id="quem" data-cena-pt="sonho lúcido" data-cena-en="lucid dream">
@@ -568,66 +551,52 @@ function mostraHora(hh,mm){
 }
 setInterval(()=>{ const g=document.getElementById("dois-pontos"); if(g&&!calmo) g.style.opacity=g.style.opacity==="0"?"1":"0"; },600);
 
-/* ---------- versão A: TV da madrugada ---------- */
-const tvImg=document.getElementById("tv-img"), tvFundo=document.getElementById("tv-fundo"), telaTv=document.getElementById("tela-tv");
-const chiado=document.getElementById("chiado"), cz=chiado.getContext("2d"), guia=document.getElementById("guia");
-let canal=0, peca=1, zapTimer=0, pecaTimer=0;
-document.getElementById("tv-nums").innerHTML=Array.from({length:9},(_,i)=>`<button type="button" data-ch="${i}">${i+1}</button>`).join("");
-guia.innerHTML=OBRAS.map((o,k)=>`<button type="button" data-ch="${k}"><span>CH ${String(k+1).padStart(2,"0")}</span><span>${o.h}</span><span>${o.t.toUpperCase()}</span></button>`).join("");
-function pintaChiado(){ const d=cz.createImageData(160,120); for(let i=0;i<d.data.length;i+=4){ const v=Math.random()*255; d.data[i]=d.data[i+1]=d.data[i+2]=v; d.data[i+3]=255; } cz.putImageData(d,0,0); }
-function mostraPeca(){ const o=OBRAS[canal], src=img(o,peca); tvImg.style.opacity=0; setTimeout(()=>{ tvImg.src=src; tvImg.alt=`${o.t}, peça ${peca}`; tvFundo.style.backgroundImage=`url(${src})`; tvImg.style.opacity=1; },calmo?0:220); }
-function rodapeTv(){ const o=OBRAS[canal];
-  document.getElementById("tv-ch").textContent=`CH ${String(canal+1).padStart(2,"0")}`;
-  document.getElementById("tv-rodape").innerHTML=`${o.h} · <b>${o.t.toUpperCase()}</b><br><span lang="pt">${TIPO[o.tipo].pt.toLowerCase()} · ${o.pecas} peças</span><span lang="en">${TIPO[o.tipo].en.toLowerCase()} · ${o.pecas} pieces</span>`;
-  guia.querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-current",i===canal)); }
-function sintoniza(k){
-  canal=(k+N)%N; peca=1;
-  if(!calmo){ telaTv.classList.add("zapeando"); let n=0; clearInterval(zapTimer); zapTimer=setInterval(()=>{ pintaChiado(); if(++n>9){ clearInterval(zapTimer); telaTv.classList.remove("zapeando"); } },40); }
-  rodapeTv(); const o=OBRAS[canal]; tvImg.src=img(o,1); tvImg.alt=o.t; tvFundo.style.backgroundImage=`url(${img(o,1)})`;
-  clearInterval(pecaTimer); if(!calmo) pecaTimer=setInterval(()=>{ peca=peca%OBRAS[canal].n+1; mostraPeca(); },2800);
-}
-document.getElementById("ch-mais").addEventListener("click",()=>sintoniza(canal+1));
-document.getElementById("ch-menos").addEventListener("click",()=>sintoniza(canal-1));
-document.getElementById("tv-liga").addEventListener("click",()=>sintoniza(Math.floor(Math.random()*N)));
-document.getElementById("tv-nums").addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) sintoniza(+b.dataset.ch); });
-guia.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b){ sintoniza(+b.dataset.ch); telaTv.scrollIntoView({behavior:calmo?"auto":"smooth",block:"center"}); } });
-telaTv.addEventListener("click",()=>abrirObra(canal));
-telaTv.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); abrirObra(canal); } if(e.key==="ArrowRight"||e.key==="ArrowUp") sintoniza(canal+1); if(e.key==="ArrowLeft"||e.key==="ArrowDown") sintoniza(canal-1); });
-sintoniza(0);
+/* ---------- acervo 1: índice gigante ---------- */
+const indice=document.getElementById("indice"), flutua=document.getElementById("flutua"), fImg=document.getElementById("flutua-img");
+indice.innerHTML=OBRAS.map((o,k)=>`<button type="button" class="linha-i" data-k="${k}"><span class="n">${String(k+1).padStart(2,"0")}</span><span class="nome">${o.t}</span><span class="meta"><span lang="pt">${TIPO[o.tipo].pt}</span><span lang="en">${TIPO[o.tipo].en}</span><br>${o.h}</span><img class="mini" src="${img(o,1)}" alt="" loading="lazy"></button>`).join("");
+let fx=0,fy=0,tx=0,ty=0;
+indice.addEventListener("pointermove",e=>{ tx=e.clientX; ty=e.clientY; });
+indice.addEventListener("pointerover",e=>{ const b=e.target.closest(".linha-i"); if(!b) return; fImg.src=img(OBRAS[+b.dataset.k],1); flutua.classList.add("on"); });
+indice.addEventListener("pointerleave",()=>flutua.classList.remove("on"));
+indice.addEventListener("click",e=>{ const b=e.target.closest(".linha-i"); if(b) abrirObra(+b.dataset.k); });
+(function segue(){ fx+=(tx-fx)*0.14; fy+=(ty-fy)*0.14; flutua.style.left=fx+"px"; flutua.style.top=fy+"px"; requestAnimationFrame(segue); })();
 
-/* ---------- versão B: diário de sonhos ---------- */
-const pagEsq=document.getElementById("pag-esq"), pagDir=document.getElementById("pag-dir");
-let folha=0, virando=false;
-const RABISCO=`<svg class="rabisco" viewBox="0 0 70 70" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M35 8 L41 27 L61 27 L45 39 L51 58 L35 46 L19 58 L25 39 L9 27 L29 27 Z"/><path d="M12 64 q10 -6 20 0 t20 0" opacity=".6"/></svg>`;
-function escrevePaginas(k){
-  const o=OBRAS[k];
-  pagEsq.innerHTML=`<p class="data"><span lang="pt">noite de 8 pra 9 · ${o.h}</span><span lang="en">night of the 8th · ${o.h}</span></p>
-    <p class="nsonho"><span lang="pt">sonho nº ${k+1}</span><span lang="en">dream no. ${k+1}</span></p>
-    <h3>${o.t}</h3>
-    <p class="relato"><span lang="pt">${o.pt}</span><span lang="en">${o.en}</span></p>
-    <p class="ficha-m"><span lang="pt">técnica: ${TIPO[o.tipo].pt.toLowerCase()}</span><span lang="en">technique: ${TIPO[o.tipo].en.toLowerCase()}</span><br>
-    <span lang="pt">${o.pecas} peças</span><span lang="en">${o.pecas} pieces</span> · <s><span lang="pt">esquecer</span><span lang="en">forget</span></s> <span lang="pt">anotar tudo</span><span lang="en">write it all down</span></p>
-    <button type="button" class="ver-pecas" data-k="${k}"><span lang="pt">ver todas as peças →</span><span lang="en">see every piece →</span></button>${RABISCO}`;
-  const ps=[1,2,3].filter(i=>i<=o.n);
-  pagDir.innerHTML=`<div class="polaroides">${ps.map((i,j)=>`<button type="button" class="polaroid p${j+1}" data-k="${k}" aria-label="${o.t}, peça ${i}"><img src="${img(o,i)}" alt="" loading="lazy"><span class="leg">${o.t.split(" ")[0].toLowerCase()} · ${i}</span></button>`).join("")}</div>`;
-  document.getElementById("pag-num").textContent=`${k+1} / ${N}`;
-}
-function vira(dir){
-  if(virando) return; const novo=(folha+dir+N)%N;
-  if(calmo||innerWidth<900){ folha=novo; escrevePaginas(folha); return; }
-  virando=true; const sai=dir>0?pagDir:pagEsq, entra=dir>0?pagEsq:pagDir;
-  sai.classList.add("vira-sai");
-  setTimeout(()=>{ folha=novo; escrevePaginas(folha); sai.classList.remove("vira-sai");
-    entra.classList.add("vira-entra"); void entra.offsetWidth; entra.classList.add("vira-fim");
-    setTimeout(()=>{ entra.classList.remove("vira-entra","vira-fim"); virando=false; },400); },380);
-}
-document.getElementById("pag-prox").addEventListener("click",()=>vira(1));
-document.getElementById("pag-ant").addEventListener("click",()=>vira(-1));
-document.getElementById("diario-livro").addEventListener("click",e=>{ const b=e.target.closest(".polaroid,.ver-pecas"); if(b) abrirObra(+b.dataset.k); });
-let toqueX=null;
-document.getElementById("diario-livro").addEventListener("touchstart",e=>{ toqueX=e.touches[0].clientX; },{passive:true});
-document.getElementById("diario-livro").addEventListener("touchend",e=>{ if(toqueX===null) return; const dx=e.changedTouches[0].clientX-toqueX; if(Math.abs(dx)>50) vira(dx<0?1:-1); toqueX=null; });
-escrevePaginas(0);
+/* ---------- acervo 2: partidas ---------- */
+const ST={pt:["EMBARCANDO","NO HORÁRIO","SONHANDO","ÚLTIMA CHAMADA"],en:["BOARDING","ON TIME","DREAMING","FINAL CALL"]};
+const tb=document.getElementById("voos"), emb=document.getElementById("embarque"); let vooSel=2;
+const celulas=(txt,n)=>{ const t=txt.toUpperCase().padEnd(n," ").slice(0,n); return `<span class="flap" data-alvo="${t}">${[...t].map(c=>`<i>${c===" "?"&nbsp;":c}</i>`).join("")}</span>`; };
+function montaPainel(){ tb.innerHTML=OBRAS.map((o,k)=>`<tr class="voo${k===vooSel?" sel":""}" tabindex="0" data-k="${k}"><td>${celulas(o.h,5)}</td><td>${celulas(o.t.replace("Ativos Judiciais","AT. JUD."),16)}</td><td>${celulas(o.tipo==="id"?"ID VISUAL":"SOCIAL",9)}</td><td>${celulas(String(k+1).padStart(2,"0"),2)}</td><td>${celulas(ST[lang][k%4],14)}</td></tr>`).join(""); }
+const LETRAS="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:.";
+function embaralhaPainel(){ if(calmo) return; tb.querySelectorAll(".flap").forEach(f=>{ const alvo=f.dataset.alvo;
+  [...f.children].forEach((el,i)=>{ let n=3+Math.floor(Math.random()*6); const tick=()=>{ if(n--<=0){ el.innerHTML=alvo[i]===" "?"&nbsp;":alvo[i]; return; }
+    el.textContent=LETRAS[Math.floor(Math.random()*LETRAS.length)]; el.classList.remove("vira"); void el.offsetWidth; el.classList.add("vira"); setTimeout(tick,45); }; setTimeout(tick,i*12); }); }); }
+function cartao(k){ vooSel=k; const o=OBRAS[k]; tb.querySelectorAll("tr").forEach(r=>r.classList.toggle("sel",+r.dataset.k===k));
+  emb.innerHTML=`<div class="faixa-e"><span class="simbolo"></span><span><span lang="pt">CARTÃO DE EMBARQUE</span><span lang="en">BOARDING PASS</span></span></div>
+   <div class="corpo-e"><div class="destino"><small><span lang="pt">DESTINO</span><span lang="en">DESTINATION</span></small><b>${o.t}</b></div><div><small><span lang="pt">PARTIDA</span><span lang="en">DEPARTS</span></small><b>${o.h}</b></div><div><small><span lang="pt">PORTÃO</span><span lang="en">GATE</span></small><b>${String(k+1).padStart(2,"0")}</b></div>
+   <div><small><span lang="pt">CLASSE</span><span lang="en">CLASS</span></small><b>${o.tipo==="id"?"ID VISUAL":"SOCIAL"}</b></div><div><small><span lang="pt">BAGAGEM</span><span lang="en">BAGGAGE</span></small><b>${o.pecas} <span lang="pt">PEÇAS</span><span lang="en">PIECES</span></b></div></div>
+   <img src="${img(o,1)}" alt="${o.t}"><div class="codigo" aria-hidden="true"></div><button type="button" id="embarcar"><span lang="pt">EMBARCAR NO SONHO →</span><span lang="en">BOARD THE DREAM →</span></button>`;
+  document.getElementById("embarcar").addEventListener("click",()=>abrirObra(k)); }
+tb.addEventListener("click",e=>{ const r=e.target.closest("tr.voo"); if(r) cartao(+r.dataset.k); });
+tb.addEventListener("keydown",e=>{ const r=e.target.closest("tr.voo"); if(r&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); cartao(+r.dataset.k); } });
+montaPainel(); cartao(vooSel);
+if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ embaralhaPainel(); io.disconnect(); } },{threshold:.3}); io.observe(tb); }
+
+/* ---------- acervo 3: tarô ---------- */
+const ROM=["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII"];
+const mesa=document.getElementById("mesa-t"); let ordem=OBRAS.map((_,k)=>k);
+function poeCartas(){ mesa.innerHTML=ordem.map(k=>{ const o=OBRAS[k]; return `<button type="button" class="carta" data-k="${k}" aria-label="${lang==="pt"?"Carta virada. Toque pra revelar.":"Face-down card. Tap to reveal."}">
+  <span class="face verso"><span class="simbolo"></span></span><span class="face frente"><span class="rom">${ROM[k]}</span><span class="arte" style="background-image:url(${img(o,1)})"></span><span class="nome-t">${o.t}</span></span></button>`; }).join(""); }
+poeCartas();
+mesa.addEventListener("click",e=>{ const c=e.target.closest(".carta"); if(!c) return; if(c.classList.contains("virada")) abrirObra(+c.dataset.k); else { c.classList.add("virada"); c.setAttribute("aria-label",OBRAS[+c.dataset.k].t); } });
+document.getElementById("embaralha").addEventListener("click",()=>{ ordem.sort(()=>Math.random()-.5); poeCartas(); });
+document.getElementById("vira-todas").addEventListener("click",()=>mesa.querySelectorAll(".carta").forEach((c,i)=>setTimeout(()=>c.classList.add("virada"),calmo?0:i*70)));
+
+/* ---------- acervo 4: faixas infinitas ---------- */
+const fxs=document.getElementById("faixas"), dobra=a=>a.concat(a), idx=OBRAS.map((_,k)=>k);
+const linhaFotos=(l,cls,d)=>`<div class="esteira fotos ${cls}" style="--dur:${d}s">${dobra(l).map(k=>`<button type="button" data-k="${k}" aria-label="${OBRAS[k].t}"><img src="${img(OBRAS[k],1)}" alt="" loading="lazy"></button>`).join("")}</div>`;
+const linhaNomes=(l,cls,d)=>`<div class="esteira nomes ${cls}" style="--dur:${d}s">${dobra(l).map(k=>`<button type="button" data-k="${k}">${OBRAS[k].t}</button>`).join("")}</div>`;
+fxs.innerHTML=linhaNomes(idx,"",70)+linhaFotos(idx.slice().reverse(),"volta",55)+linhaNomes(idx.slice(6).concat(idx.slice(0,6)),"volta",80)+linhaFotos(idx.slice(4).concat(idx.slice(0,4)),"",65);
+fxs.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) abrirObra(+b.dataset.k); });
 
 /* ---------- visor ---------- */
 const visor=document.getElementById("visor"), trilho=document.getElementById("trilho");
@@ -655,7 +624,7 @@ function aplicaLang(l,animar){
     document.querySelectorAll(".idioma button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.set===l));
     document.querySelectorAll("#prazo option").forEach(o=>o.textContent=o.dataset[l]);
     try{ localStorage.setItem("dreamz-lang",l); }catch(e){}
-    atualizaMensagem(); };
+    atualizaMensagem(); if(typeof montaPainel==='function'){ montaPainel(); cartao(vooSel); embaralhaPainel(); } };
   if(!animar||calmo){ go(); return; }
   document.body.classList.add("trocando"); setTimeout(()=>{ go(); document.body.classList.remove("trocando"); },320);
 }

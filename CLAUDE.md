@@ -16,11 +16,11 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   e pisca às 06:00. Reprovados: despertador analógico de sinos, despertador Y2K grande no canto (verde-limão e depois verde escuro: "feio").
 - Céu: via láctea, estrelas de vários tamanhos piscando, **sem lua** (o dono pediu para tirar; as luas desenhadas e a foto foram reprovadas), **estrelas cadentes e cometas**.
   Amanhecer (refeito, o 1º com sol de raios desenhados foi reprovado): céu pêssego/rosa, sol com brilho difuso, fiapos de nuvem, **mar de nuvens** embaixo e **passarinhos**.
-- Acervo em teste — duas versões no site, lado a lado, para o dono escolher:
-  - **A · Canal da madrugada (02:00)**: TV de tubo prateada Y2K; cada projeto é um canal (OSD verde VT323, chiado ao trocar, peças passando sozinhas),
-    controle remoto (1–9, CH▲▼, botão vermelho = canal aleatório) e "programação da madrugada" clicável.
-  - **B · Diário de sonhos (03:30)**: caderno espiral pautado; página esquerda manuscrita (Caveat) com o relato do sonho, direita com 3 polaroids com fita; páginas viram.
-  - Diário: "curti, mas não muito". Ideias rejeitadas sem fazer: lanterna na galeria, janelas acesas, estante de CDs, carneirinhos. Reprovados: grade de cards ("horrível") e túnel de sonhos ("não gostei", reserva).
+- **Acervo no site (aprovado)**: 4 atos seguidos, todos em PT/EN, todos abrem o visor com as peças:
+  02:00 **índice gigante** (13 nomes em Fraunces 900, peça flutua no cursor; miniatura no celular) ·
+  02:45 **partidas para o sonho** (painel split-flap de aeroporto + cartão de embarque; status muda com o idioma) ·
+  03:30 **tarô dos sonhos** (13 cartas, virar revela, embaralhar) · 04:15 **sonhos em looping** (faixas infinitas de nomes vazados e fotos).
+  Saíram do site: TV da madrugada e diário de sonhos. Reprovados: grade de cards ("horrível"), túnel de sonhos.
 - **Laboratório do acervo**: https://claude.ai/artifact/FxTWhcN8vGXG2nhasKxgr8 (`acervo-lab.html`, só PT, para comparar): 6 versões em abas —
   1 sonho que desembaça (tela cheia, blur↔foco na rolagem) · 2 cartela de remédio dreamz® + bula · 3 lambe-lambe na parede com flash ·
   4 quarto escuro (varal, fotos revelam no hover) · 5 bolhas de sabão iridescentes que estouram · 6 máquina de cápsulas (gashapon).
@@ -35,7 +35,7 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   23 do rabisco ao sonho (esboço a lápis via filtro SVG → final, linha arrastável) · 25 rua de letreiros neon com vitrines ·
   26 filmadora VHS (REC, data, tracking, fitas com etiqueta) · 27 luneta que procura os sonhos como planetas · 28 cabine de fotos 3x4 que solta tirinhas.
   Ideias só propostas (não feitas): 24 álbum de figurinhas, 29 mapa do metrô, 30 globo de neve, 31 projetor de estrelas no teto, 32 stories.
-  A escolhida vai para o site no lugar da TV/diário e ganha versão EN.
+  O dono escolheu 7, 9, 20 e 21 → foram para o site (acima).
 - WhatsApp: **+55 17 99108-9367** (constante `WHATSAPP = "5517991089367"` no script).
 - Imagens do acervo: `assets/obras/<projeto>/NN.webp` (01 = capa, 02 = aparece no hover). Originais no Drive "PROJETOS DREAMZ 2026".
 - Ideias guardadas para a v2: cursor de estrela, contador "noites sem dormir", mesa de luz com peças arrastáveis.
