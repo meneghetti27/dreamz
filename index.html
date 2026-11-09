@@ -119,7 +119,8 @@ em{font-style:italic}
 .tecnicas .cab-t p{margin:0;max-width:36ch;color:var(--muted)}
 .tec-bloco{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,5vw,70px);align-items:center}
 .tec-bloco + .tec-bloco{margin-top:clamp(70px,10vw,130px)}
-.tec-bloco.inv{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+.tec-bloco.inv{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.tec-bloco.inv .fone{margin:0 0 0 auto}
 .tec-bloco.inv .tec-txt{order:2}
 .tec-txt .tec-n{font-family:var(--f-display);font-style:italic;font-weight:700;font-size:22px;color:var(--muted)}
 .tec-txt h3{margin:6px 0 0;font-size:clamp(46px,6vw,84px);line-height:.92}
@@ -331,6 +332,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
   .insone{display:none}
   .tec-bloco,.tec-bloco.inv{grid-template-columns:1fr}
   .tec-bloco.inv .tec-txt{order:0}
+  .tec-bloco.inv .fone{margin:0 auto}
   .aeroporto{grid-template-columns:1fr}
   .embarque{position:static}
   .quem .grade,.acordar{grid-template-columns:1fr}
