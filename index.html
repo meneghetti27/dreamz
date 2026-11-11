@@ -168,56 +168,116 @@ em{font-style:italic}
 .rolo button{all:unset;cursor:zoom-in;display:block;aspect-ratio:4/5;background:#ddd center/cover}
 .rolo button:focus-visible{outline:2px solid #3b6fd1;outline-offset:-2px}
 
-/* 02:00–04:30 — acervo em 3 atos: partidas, tarô e faixas */
+/* 02:45–04:15 — acervo: partidas e faixas */
 .secao-obra{padding-block:clamp(60px,9vw,120px)}
 .secao-obra .cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px 40px;margin-bottom:44px}
 .secao-obra h2{margin:16px 0 0;font-size:clamp(48px,7.5vw,108px);line-height:.9;letter-spacing:-.01em}
 .secao-obra h2 em{color:var(--accent)}
 .secao-obra .cab p{margin:0;max-width:38ch;color:var(--muted)}
 
-/* partidas */
-.aeroporto{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:30px;align-items:start}
-.painel{background:#0b0c0f;border-radius:14px;padding:18px 18px 22px;box-shadow:inset 0 0 0 2px #22252c,0 30px 60px -25px rgba(0,0,0,.9);overflow-x:auto;color:#f3f1e9}
-.painel .cab-p{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-mono);font-size:13px;letter-spacing:.14em;color:#f5d36b;margin-bottom:12px;min-width:620px}
-.painel table{border-collapse:separate;border-spacing:0 5px;width:100%;min-width:620px;font-family:var(--f-mono)}
+/* partidas: saguão do aeroporto */
+#partidas{position:relative;overflow:clip;isolation:isolate}
+.saguao-fundo{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.saguao-fundo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:220px;background:linear-gradient(transparent,rgba(138,196,254,.09))}
+.aviao{position:absolute;left:0;top:var(--y);width:var(--w);opacity:var(--o,1);transform:translateX(var(--xc,30vw));animation:voa var(--d) linear var(--atraso,0s) infinite;will-change:transform}
+.aviao.volta{animation-name:voaVolta}
+.aviao .giro{position:relative;transform:rotate(var(--r,-9deg))}
+.aviao .giro::before{content:"";position:absolute;right:93%;top:54%;width:var(--rastro,240px);height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(254,250,226,.32))}
+.aviao svg{display:block;width:100%;height:auto;overflow:visible}
+.av-c{fill:#FEFAE2}.av-s{fill:#c4cbe3}.av-j{fill:#283456}
+.luz-v,.luz-b{fill:#ff6a5c;animation:luzAv 1.3s steps(1) infinite}
+.luz-b{animation-delay:.6s}
+.luz-s{fill:#fff;animation:strobe 1.7s linear infinite}
+.aviao circle{filter:drop-shadow(0 0 3px currentColor)}
+@keyframes luzAv{50%{opacity:.15}}
+@keyframes strobe{0%,7%{opacity:1}8%,100%{opacity:0}}
+@keyframes voa{from{transform:translate(-30vw,0)}to{transform:translate(118vw,var(--sobe,-220px))}}
+@keyframes voaVolta{from{transform:translate(118vw,0) scaleX(-1)}to{transform:translate(-30vw,var(--sobe,0px)) scaleX(-1)}}
+.pista{position:absolute;left:0;right:0;bottom:30px;height:24px;opacity:.8;
+  background:radial-gradient(circle,#f5d36b 0 1.5px,transparent 2.5px) 0 0/30px 8px repeat-x,radial-gradient(circle,#8AC4FE 0 1.4px,transparent 2.3px) 15px 16px/30px 8px repeat-x}
+.pista i{position:absolute;left:0;top:-5px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle,#fff 0 2px,rgba(255,255,255,.45) 3px,transparent 9px);animation:coelho 3s linear infinite}
+@keyframes coelho{from{transform:translateX(-4vw)}55%,to{transform:translateX(104vw)}}
+
+.painel{--cw:clamp(11px,calc((100cqw - 72px - 90px) / 51),17px);--fg-gap:2px;container-type:inline-size;position:relative;background:#0b0c0f;border-radius:14px;padding:16px 18px 20px;box-shadow:inset 0 0 0 2px #22252c,0 30px 60px -25px rgba(0,0,0,.9);color:#f3f1e9}
+.painel::before{content:"";position:absolute;bottom:100%;left:14%;right:14%;height:44px;background:linear-gradient(90deg,#22252c 0 4px,transparent 4px calc(100% - 4px),#22252c 0)}
+.painel .cab-p{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--f-mono);font-size:13px;letter-spacing:.14em;color:#f5d36b;margin-bottom:10px}
+.aviso{overflow:hidden;border-radius:6px;background:#15130b;box-shadow:inset 0 0 0 1px #2c2814;margin-bottom:10px;padding:6px 0}
+.aviso span{display:inline-block;white-space:nowrap;padding-left:100%;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:#f5d36b;text-shadow:0 0 6px rgba(245,211,107,.6);animation:aviso 38s linear infinite}
+@keyframes aviso{to{transform:translateX(-100%)}}
+.painel table{border-collapse:separate;border-spacing:0 5px;width:100%;font-family:var(--f-mono)}
 .painel th{text-align:left;font-size:10px;font-weight:400;letter-spacing:.16em;color:#8d93a0;padding:0 6px}
+.painel th.sub,.painel td.sub{display:none}
 .painel tr.voo{cursor:pointer}
 .painel tr.voo:focus-visible{outline:2px solid #f5d36b}
-.painel td{padding:0 6px}
-.flap{display:inline-flex;gap:2px}
-.flap i{font-style:normal;display:inline-grid;place-items:center;width:17px;height:26px;border-radius:3px;font-size:15px;font-weight:700;color:#f3f1e9;background:linear-gradient(#24272e 0 49%,#0b0c0f 49% 51%,#1d2026 51%);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
-.flap i.vira{animation:viraf .08s steps(1) 1}
-@keyframes viraf{50%{transform:scaleY(.2)}}
+.painel td{padding:0 6px;white-space:nowrap}
+.flap{display:inline-flex;gap:var(--fg-gap)}
+.flap i{font-style:normal;display:inline-grid;place-items:center;width:var(--cw);height:calc(var(--cw) * 1.53);border-radius:3px;font-size:calc(var(--cw) * .88);font-weight:700;color:#f3f1e9;background:linear-gradient(#24272e 0 49%,#0b0c0f 49% 51%,#1d2026 51%);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+tr.voo[data-st="0"] .st .flap i,tr.voo[data-st="0"] .sub b{color:#8AC4FE}
+tr.voo[data-st="2"] .st .flap i,tr.voo[data-st="2"] .sub b{color:#b9c6f2}
+tr.voo[data-st="3"] .st .flap i,tr.voo[data-st="3"] .sub b{color:#ff9d7a}
+tr.voo[data-st="3"] .st .flap,tr.voo[data-st="3"] .sub b{animation:chamada 1.1s steps(1) infinite}
+@keyframes chamada{50%{opacity:.3}}
+tr.voo:hover .flap i{color:#fff2bd}
 tr.voo.sel .flap i{color:#f5d36b}
-.embarque{background:#FEFAE2;color:#141a30;border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -25px rgba(0,0,0,.9);position:sticky;top:90px}
-.embarque .faixa-e{display:flex;justify-content:space-between;align-items:center;background:#141a30;color:#FEFAE2;padding:12px 18px;font-family:var(--f-mono);font-size:11px;letter-spacing:.16em}
-.embarque .faixa-e .simbolo{width:24px;height:21px}
-.embarque .corpo-e{padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;font-family:var(--f-mono)}
-.embarque .corpo-e small{display:block;font-size:9px;letter-spacing:.16em;color:#6b7390}
-.embarque .corpo-e b{font-size:15px}
-.embarque .destino{grid-column:1/-1}
-.embarque .destino b{font-family:var(--f-display);font-weight:900;font-size:clamp(26px,2.6vw,36px);letter-spacing:-.02em;line-height:1}
-.embarque img{width:100%;aspect-ratio:16/10;object-fit:cover;border-top:2px dashed rgba(20,26,48,.3)}
-.embarque button{all:unset;cursor:pointer;display:block;text-align:center;background:#141a30;color:#FEFAE2;padding:14px;font-family:var(--f-mono);font-size:12px;letter-spacing:.2em}
-.embarque button:focus-visible{outline:2px solid #8AC4FE;outline-offset:-4px}
-.codigo{height:34px;margin:0 18px 16px;background:repeating-linear-gradient(90deg,#141a30 0 2px,transparent 2px 4px,#141a30 4px 5px,transparent 5px 8px,#141a30 8px 11px,transparent 11px 12px)}
 
-/* tarô */
-.mesa-t{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:22px;perspective:1400px}
-.carta{all:unset;cursor:pointer;aspect-ratio:.58;position:relative;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.3,1.3,.5,1)}
-.carta.virada{transform:rotateY(180deg)}
-.carta .face{position:absolute;inset:0;border-radius:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;box-shadow:0 14px 30px -10px rgba(0,0,0,.8)}
-.carta .verso{border:2px solid #d9c9a0;display:grid;place-items:center;background-image:radial-gradient(circle,rgba(254,250,226,.7) 1px,transparent 1.5px),radial-gradient(circle at 50% 50%,#283456,#141a30 70%);background-size:18px 18px,100% 100%}
-.carta .verso::before{content:"";position:absolute;inset:8px;border:1px solid rgba(217,201,160,.7);border-radius:8px}
-.carta .verso .simbolo{width:56%;aspect-ratio:728/647;color:#d9c9a0}
-.carta .frente{transform:rotateY(180deg);background:#f4ecd8;border:2px solid #d9c9a0;padding:10px;display:grid;grid-template-rows:auto 1fr auto;gap:6px;color:#141a30;text-align:center}
-.carta .frente .rom{font-family:var(--f-display);font-weight:800;font-size:15px;letter-spacing:.1em}
-.carta .frente .arte{background:center/cover;border:1px solid #141a30}
-.carta .frente .nome-t{font-family:var(--f-display);font-weight:900;font-size:13px;letter-spacing:.06em;text-transform:uppercase;line-height:1.1}
-.carta:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:12px}
-.acoes-t{display:flex;gap:10px;justify-content:center;margin-top:30px}
-.btn-l{all:unset;cursor:pointer;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:9px 15px}
-.btn-l:focus-visible{outline:2px solid var(--accent)}
+.saguao{display:grid;grid-template-columns:minmax(0,230px) minmax(0,1fr);gap:clamp(28px,4vw,60px);align-items:end;margin-top:64px}
+.balcao{min-width:0;scroll-margin-top:84px}
+.fenda-txt{display:flex;align-items:center;gap:9px;font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;color:var(--muted);margin:0 0 9px 6px}
+.fenda-txt .led{width:7px;height:7px;border-radius:50%;background:#5fd08e;box-shadow:0 0 8px #5fd08e;flex:none}
+.fenda-txt .imp{display:none}
+.balcao.imprimindo .fenda-txt .imp{display:inline}
+.balcao.imprimindo .fenda-txt .ok{display:none}
+.balcao.imprimindo .led{background:#f5d36b;box-shadow:0 0 8px #f5d36b;animation:chamada .22s steps(1) infinite}
+.fenda{position:relative;z-index:2;height:16px;border-radius:10px;background:#07080b;box-shadow:inset 0 5px 7px rgba(0,0,0,.95),0 0 0 2px #22252c,0 1px 0 3px rgba(255,255,255,.04)}
+.saida{overflow:hidden;margin:-8px -26px 0;padding:0 26px 50px}
+.embarque{--canhoto:176px;display:grid;grid-template-columns:minmax(0,1fr) var(--canhoto);background:#FEFAE2;color:#141a30;border-radius:16px;overflow:hidden;
+  box-shadow:0 30px 60px -25px rgba(0,0,0,.9);
+  -webkit-mask:radial-gradient(circle 12px at calc(100% - var(--canhoto)) 0,#0000 96%,#000) top/100% 51% no-repeat,radial-gradient(circle 12px at calc(100% - var(--canhoto)) 100%,#0000 96%,#000) bottom/100% 51% no-repeat;
+  mask:radial-gradient(circle 12px at calc(100% - var(--canhoto)) 0,#0000 96%,#000) top/100% 51% no-repeat,radial-gradient(circle 12px at calc(100% - var(--canhoto)) 100%,#0000 96%,#000) bottom/100% 51% no-repeat}
+.embarque.imprime{animation:imprime 1.25s cubic-bezier(.35,.1,.25,1) both}
+@keyframes imprime{from{transform:translateY(-102%)}12%{transform:translateY(-88%)}20%{transform:translateY(-86%)}45%{transform:translateY(-40%)}52%{transform:translateY(-37%)}to{transform:none}}
+.embarque small{display:block;font-size:9px;letter-spacing:.16em;color:#6b7390;margin-bottom:3px}
+.embarque b{font-size:14px;font-weight:700}
+.e-faixa{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:46px;box-sizing:border-box;background:#141a30;color:#FEFAE2;padding:12px 18px;font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;white-space:nowrap}
+.e-marca{display:flex;align-items:center;gap:10px}
+.e-marca .simbolo{width:24px;height:21px}
+.e-corpo{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}
+.e-foto{position:relative;min-height:250px;background:#d8d2bd}
+.e-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.e-info{padding:18px 20px 20px;display:grid;gap:14px;align-content:start;font-family:var(--f-mono)}
+.rota{display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--f-display);font-weight:900;font-variation-settings:"SOFT" 100,"opsz" 144;font-size:clamp(34px,3.4vw,46px);line-height:.9;letter-spacing:-.01em}
+.rota .seta{flex:1;display:flex;align-items:center;gap:8px;font-size:.42em;color:#7690D4}
+.rota .seta::before,.rota .seta::after{content:"";flex:1;border-top:2px dotted rgba(118,144,212,.6)}
+.rota-nomes{display:flex;justify-content:space-between;gap:10px;font-size:10px;letter-spacing:.14em;color:#6b7390;margin-top:-8px;text-transform:uppercase}
+.dados{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 14px}
+.e-info button{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;text-align:center;background:#141a30;color:#FEFAE2;padding:13px;border-radius:10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;transition:background .2s}
+.e-info button:hover{background:#283456}
+.e-info button:focus-visible{outline:2px solid #8AC4FE;outline-offset:2px}
+.e-canhoto{display:grid;grid-template-rows:auto 1fr auto;border-left:2px dashed rgba(20,26,48,.28);font-family:var(--f-mono);min-width:0}
+.e-canhoto .e-faixa{justify-content:center}
+.c-dados{padding:16px 16px 0;display:grid;gap:10px;align-content:start}
+.c-cod{font-family:var(--f-display);font-weight:900;font-size:34px!important;line-height:1}
+.codigo{min-height:58px;margin:12px 16px 16px;background:repeating-linear-gradient(90deg,#141a30 0 2px,transparent 2px 4px,#141a30 4px 5px,transparent 5px 8px,#141a30 8px 11px,transparent 11px 12px)}
+
+/* a mala */
+.mala{position:relative;width:100%;max-width:230px;justify-self:center;aspect-ratio:220/290;container-type:inline-size;filter:drop-shadow(0 26px 24px rgba(0,0,0,.55));margin-bottom:50px}
+.mala>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.adesivo{position:absolute;display:grid;place-items:center;text-align:center;line-height:1;box-shadow:0 2px 3px rgba(0,0,0,.25)}
+.ad-1{left:12%;top:33%;width:34%;aspect-ratio:1;border-radius:50%;background:#141a30;box-shadow:inset 0 0 0 2.5cqw #141a30,inset 0 0 0 3.2cqw #FEFAE2,0 2px 3px rgba(0,0,0,.3);transform:rotate(-10deg)}
+.ad-1 .simbolo{width:62%;aspect-ratio:728/647;color:#FEFAE2}
+.ad-2{left:50%;top:36%;width:40%;aspect-ratio:668/274;border-radius:3cqw;background:#7690D4 url(assets/marca/estrelas.png) center/78% no-repeat;transform:rotate(9deg)}
+.ad-3{left:9%;top:66%;width:46%;padding:3cqw 2cqw;background:#FEFAE2;color:#141a30;border:2.4cqw solid transparent;border-image:repeating-linear-gradient(45deg,#7690D4 0 3cqw,#FEFAE2 3cqw 6cqw,#704838 6cqw 9cqw,#FEFAE2 9cqw 12cqw) 10;font-family:var(--f-mono);font-size:5.2cqw;font-weight:700;letter-spacing:.06em;transform:rotate(-5deg)}
+.ad-4{left:57%;top:62%;width:36%;aspect-ratio:1.6;border-radius:50%;background:#8AC4FE;color:#141a30;font-family:var(--f-display);font-weight:900;font-style:italic;font-size:7.4cqw;transform:rotate(-12deg)}
+.ad-4 small{display:block;font-family:var(--f-mono);font-style:normal;font-weight:700;font-size:3.6cqw;letter-spacing:.14em;margin-top:1cqw}
+.etiqueta{position:absolute;left:61%;top:5%;width:30%;transform-origin:30% 0;transform:rotate(-14deg);z-index:2}
+.etiqueta::before{content:"";position:absolute;left:24%;bottom:96%;width:2px;height:11cqw;background:#2e1c14;transform:rotate(30deg);transform-origin:bottom}
+.etiqueta .tag{display:block;background:#FEFAE2;color:#141a30;border-radius:2cqw 2cqw 3cqw 3cqw;padding:7cqw 2cqw 3cqw;text-align:center;font-family:var(--f-mono);box-shadow:0 3px 6px rgba(0,0,0,.35);position:relative;
+  clip-path:polygon(22% 0,78% 0,100% 14%,100% 100%,0 100%,0 14%)}
+.etiqueta .tag::before{content:"";position:absolute;left:50%;top:2.6cqw;width:3cqw;height:3cqw;border-radius:50%;background:#2e1c14;transform:translateX(-50%)}
+.etiqueta b{display:block;font-family:var(--f-display);font-weight:900;font-size:9cqw;line-height:1}
+.etiqueta small{display:block;font-size:2.8cqw;letter-spacing:.1em;margin-top:1.4cqw;line-height:1.2;overflow-wrap:anywhere}
+.etiqueta.balanca{animation:balanca 1.6s cubic-bezier(.3,.6,.3,1)}
+@keyframes balanca{0%{transform:rotate(-14deg)}15%{transform:rotate(16deg)}35%{transform:rotate(-24deg)}55%{transform:rotate(-4deg)}75%{transform:rotate(-17deg)}100%{transform:rotate(-14deg)}}
 
 /* faixas infinitas */
 .faixas{display:grid;gap:14px;overflow:hidden}
@@ -284,19 +344,31 @@ footer .insone-f b{font-family:var(--f-mono)}
 .vidro-s{padding-block:clamp(70px,10vw,140px)}
 .vidro-s .pergunta{margin:28px 0 0;font-family:var(--f-display);font-style:italic;font-weight:600;font-size:clamp(22px,2.6vw,34px);line-height:1.25;max-width:34ch}
 .nome-vidro{margin:clamp(40px,6vw,80px) 0 0;font-size:clamp(34px,4.4vw,60px);line-height:1}
-.atras-vidro{position:relative;display:block;width:max-content;max-width:100%;margin-top:10px}
-.atras-vidro em{display:block;font-size:clamp(88px,17vw,250px);line-height:.85;letter-spacing:-.04em;color:var(--accent);padding:.04em .08em .1em}
-.vidro{all:unset;cursor:pointer;position:absolute;inset:-6% -5%;display:block;border-radius:6px}
-.vidro:focus-visible{outline:2px dashed var(--accent);outline-offset:6px}
-.caco{position:absolute;inset:0;background:linear-gradient(125deg,rgba(255,255,255,.26),rgba(200,220,255,.08) 40%,rgba(255,255,255,.16) 70%,rgba(200,220,255,.06));
-  -webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35);
-  transition:transform 1.5s cubic-bezier(.45,0,.85,.55),opacity 1.5s ease-in}
-.trinca{position:absolute;inset:0;width:100%;height:100%;z-index:2;fill:none;stroke:rgba(255,255,255,.85);stroke-width:.35;vector-effect:non-scaling-stroke;opacity:0;transition:opacity .15s}
-.trinca line,.trinca path{stroke-width:1.4}
-.vidro.trincado .trinca{opacity:1}
-.vidro.quebrado{pointer-events:none}
-.vidro.quebrado .trinca{opacity:0;transition-delay:.1s}
-.vidro.quebrado .caco{transform:translate(var(--dx),calc(var(--dy) + 260px)) rotate(var(--r));opacity:0}
+.palco-medo{position:relative;display:grid;justify-items:start;margin-top:8px}
+.medo{all:unset;cursor:pointer;position:relative;display:block;-webkit-tap-highlight-color:transparent;max-width:100%}
+.medo:focus-visible{outline:2px dashed var(--accent);outline-offset:8px;border-radius:10px}
+.medo-txt{display:block;white-space:nowrap;font-family:var(--f-display);font-weight:900;font-style:italic;font-variation-settings:"SOFT" 100,"opsz" 144;
+  font-size:clamp(100px,19vw,270px);line-height:.86;letter-spacing:-.03em;padding:.03em .12em .13em .03em;
+  color:transparent;-webkit-text-stroke:1.5px rgba(222,236,255,.9);
+  background:linear-gradient(100deg,transparent 38%,rgba(255,255,255,.85) 46%,rgba(255,255,255,.12) 51%,transparent 58%) 150% 0/260% 100% no-repeat,
+    linear-gradient(165deg,rgba(166,216,255,.42),rgba(118,144,212,.12) 52%,rgba(166,216,255,.3));
+  -webkit-background-clip:text;background-clip:text}
+.medo>.medo-txt{filter:drop-shadow(0 0 24px rgba(138,196,254,.35));animation:reflexo 5.5s ease-in-out infinite,treme 7s infinite}
+.medo:hover>.medo-txt{-webkit-text-stroke-color:#fff}
+@keyframes reflexo{0%,35%{background-position:150% 0,0 0}75%,100%{background-position:-60% 0,0 0}}
+@keyframes treme{0%,84%,100%{transform:none}86%{transform:translate(-2px,1px) rotate(-.5deg)}88%{transform:translate(2px,-1px) rotate(.5deg)}90%{transform:translate(-1px,0)}92%{transform:translate(1px,1px)}}
+.cacos{position:absolute;inset:0;pointer-events:none}
+.cacos .medo-txt{position:absolute;left:0;top:0;width:100%;background:none;-webkit-background-clip:border-box;background-clip:border-box;color:rgba(190,220,255,.24)}
+.impacto{position:absolute;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,255,255,.95) 0 3%,rgba(166,216,255,.55) 12%,rgba(166,216,255,0) 60%);animation:impacto .55s ease-out forwards}
+@keyframes impacto{from{transform:scale(.2);opacity:1}to{transform:scale(1.4);opacity:0}}
+.medo.quebrado{cursor:default}
+.medo.quebrado>.medo-txt{visibility:hidden}
+.alem-medo{position:absolute;left:var(--cx,40%);top:50%;width:clamp(150px,24vw,320px);transform:translate(-50%,-50%) scale(.6);opacity:0;pointer-events:none;
+  transition:opacity 1.6s ease .9s,transform 1.8s cubic-bezier(.2,1.2,.3,1) .9s}
+.vidro-s.livre .alem-medo{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.alem-medo .est{filter:drop-shadow(0 0 10px rgba(255,255,255,.7)) drop-shadow(0 0 30px rgba(138,196,254,.6));animation:cintila 2.6s ease-in-out infinite}
+.alem-medo .est-2{animation-delay:.5s}.alem-medo .est-3{animation-delay:1s}
 .dica-vidro{margin:22px 0 0;font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);transition:opacity .4s}
 .depois-vidro{margin-top:46px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:22px 60px;max-width:900px;margin-left:auto;opacity:.35;transition:opacity 1.2s ease}
 .depois-vidro p{margin:0;font-size:17px;max-width:46ch}
@@ -452,18 +524,44 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 .visor-pe .frase{font-family:var(--f-display);font-style:italic;text-transform:none;letter-spacing:0;font-size:20px;font-weight:400;max-width:60ch}
 
 @media (max-width:900px){
+  .painel{--cw:clamp(10px,calc((100cqw - 12px - 29px) / 21),17px);--fg-gap:1.5px;padding:14px 10px 14px}
+  .painel::before{left:22%;right:22%}
+  .painel .cab-p .bi{display:none}
+  .painel table,.painel tbody{display:block}
+  .painel thead{display:block}
+  .painel thead tr,.painel tr.voo{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:12px;align-items:center}
+  .painel tr.voo{padding:6px 0 7px;border-bottom:1px solid #1a1d23}
+  .painel tr.voo:last-child{border-bottom:0}
+  .painel th,.painel td{padding:0}
+  .painel thead th:nth-child(2),.painel thead th:nth-child(n+4),.painel .c-voo,.painel .c-tec,.painel .c-port,.painel .st{display:none}
+  .painel thead th:first-child{width:calc(var(--cw) * 5 + var(--fg-gap) * 4)}
+  .painel td.sub{display:flex;justify-content:space-between;gap:10px;grid-column:1/-1;margin-top:6px;font-size:10px;letter-spacing:.12em;color:#8d93a0}
+  .saguao{grid-template-columns:1fr;margin-top:46px}
+  .mala{order:2;max-width:180px;margin:-10px auto 30px}
   .tres-col{grid-template-columns:1fr}
   .insone{display:none}
   .tec-bloco,.tec-bloco.inv{grid-template-columns:1fr}
   .tec-bloco.inv .tec-txt{order:0}
   .tec-bloco.inv .fone{margin:0 auto}
-  .aeroporto{grid-template-columns:1fr}
-  .embarque{position:static}
   .quem .grade,.acordar{grid-template-columns:1fr}
 }
 @media (max-width:640px){
+  .embarque{--canhoto:0px;grid-template-columns:1fr;
+    -webkit-mask:radial-gradient(circle 12px at 0 calc(100% - 118px),#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% calc(100% - 118px),#0000 96%,#000) right/51% 100% no-repeat;
+    mask:radial-gradient(circle 12px at 0 calc(100% - 118px),#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% calc(100% - 118px),#0000 96%,#000) right/51% 100% no-repeat}
+  .e-faixa{padding:11px 14px;font-size:10px}
+  .e-corpo{grid-template-columns:1fr}
+  .e-foto{min-height:0;aspect-ratio:16/9}
+  .e-info{padding:16px}
+  .dados{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .e-canhoto{height:118px;grid-template-rows:none;grid-template-columns:auto minmax(0,1fr);border-left:0;border-top:2px dashed rgba(20,26,48,.28)}
+  .e-canhoto .e-faixa{display:none}
+  .c-dados{grid-template-columns:auto auto;padding:16px;gap:8px 16px;align-content:center}
+  .c-dados>div:first-child{grid-row:span 2}
+  .codigo{margin:18px 16px 18px 0;min-height:0}
 }
 @media (max-width:560px){
+  .medo-txt{font-size:29vw}
   .perguntas summary{grid-template-columns:52px minmax(0,1fr) 24px}
   .perguntas .r{margin-left:0}
   .idioma .longo{display:none}
@@ -528,12 +626,12 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
     <div class="miolo">
       <div class="rotulo">00:30 · <span lang="pt">o vidro</span><span lang="en">the glass</span></div>
       <p class="pergunta"><span lang="pt">Você já se sentiu preso, imaginando como seria a vida se tivesse agido, falado, mudado, ido atrás do que realmente faz sentido para você? É como se existisse um vidro entre você e tudo o que queria viver.</span><span lang="en">Have you ever felt stuck, imagining what life would be like if you had acted, spoken up, changed, gone after what truly makes sense to you? It's as if there were a pane of glass between you and everything you wanted to live.</span></p>
-      <h2 class="nome-vidro"><span lang="pt">Esse vidro tem nome:</span><span lang="en">That glass has a name:</span>
-        <span class="atras-vidro"><em><span lang="pt">medo.</span><span lang="en">fear.</span></em>
-          <button type="button" class="vidro" id="vidro-medo" aria-label="Quebrar o vidro"><svg class="trinca" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="52" y1="48" x2="0" y2="0"/><line x1="52" y1="48" x2="38" y2="0"/><line x1="52" y1="48" x2="100" y2="0"/><line x1="52" y1="48" x2="100" y2="42"/><line x1="52" y1="48" x2="100" y2="100"/><line x1="52" y1="48" x2="61" y2="100"/><line x1="52" y1="48" x2="0" y2="100"/><line x1="52" y1="48" x2="0" y2="57"/><path d="M52 48 L44 40 L40 30 M52 48 L63 55 L72 52 M52 48 L49 62 L54 71"/></svg><span class="caco" style="clip-path:polygon(52% 48%,0% 0%,38% 0%);--dx:-60px;--dy:-90px;--r:-14deg;transition-delay:0ms"></span><span class="caco" style="clip-path:polygon(52% 48%,38% 0%,100% 0%);--dx:10px;--dy:-110px;--r:9deg;transition-delay:40ms"></span><span class="caco" style="clip-path:polygon(52% 48%,100% 0%,100% 42%);--dx:90px;--dy:-70px;--r:18deg;transition-delay:80ms"></span><span class="caco" style="clip-path:polygon(52% 48%,100% 42%,100% 100%);--dx:110px;--dy:20px;--r:-11deg;transition-delay:120ms"></span><span class="caco" style="clip-path:polygon(52% 48%,100% 100%,61% 100%);--dx:70px;--dy:120px;--r:15deg;transition-delay:160ms"></span><span class="caco" style="clip-path:polygon(52% 48%,61% 100%,0% 100%);--dx:-10px;--dy:130px;--r:-8deg;transition-delay:200ms"></span><span class="caco" style="clip-path:polygon(52% 48%,0% 100%,0% 57%);--dx:-90px;--dy:90px;--r:12deg;transition-delay:240ms"></span><span class="caco" style="clip-path:polygon(52% 48%,0% 57%,0% 0%);--dx:-110px;--dy:-10px;--r:-16deg;transition-delay:280ms"></span></button>
-        </span>
-      </h2>
-      <p class="dica-vidro" id="dica-vidro"><span lang="pt">toque no vidro pra quebrar</span><span lang="en">tap the glass to break it</span></p>
+      <h2 class="nome-vidro"><span lang="pt">Esse vidro tem nome:</span><span lang="en">That glass has a name:</span></h2>
+      <div class="palco-medo" id="palco-medo">
+        <span class="estrelas-logo alem-medo" style="aspect-ratio:334/137" aria-hidden="true"><img class="est est-1" src="assets/marca/estrela-1.png" alt="" style="left:0.00%;top:43.07%;width:19.46%"><img class="est est-2" src="assets/marca/estrela-2.png" alt="" style="left:19.46%;top:0.00%;width:41.62%"><img class="est est-3" src="assets/marca/estrela-3.png" alt="" style="left:67.37%;top:16.79%;width:32.63%"></span>
+        <button type="button" class="medo" id="vidro-medo"><em class="medo-txt"><span lang="pt">medo.</span><span lang="en">fear.</span></em><span class="cacos" aria-hidden="true"></span></button>
+      </div>
+      <p class="dica-vidro" id="dica-vidro"><span lang="pt">toque no medo pra quebrar</span><span lang="en">tap the fear to break it</span></p>
       <div class="depois-vidro">
         <p lang="pt">Nós, da Dreamz, já nos sentimos exatamente assim. Em alguns momentos, ainda nos sentimos.</p>
         <p lang="en">We at Dreamz have felt exactly like that. Sometimes, we still do.</p>
@@ -620,37 +718,57 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
   </section>
 
   <section class="faixa secao-obra" id="partidas" data-cena-pt="partidas" data-cena-en="departures">
+    <div class="saguao-fundo" aria-hidden="true"><div class="aviao " style="--y:15%;--w:clamp(96px,11vw,160px);--d:24s;--atraso:-7s;--sobe:-190px;--xc:62vw"><div class="giro"><svg viewBox="0 0 160 50" aria-hidden="true"><path class="av-c" d="M26 22 L9 2 H20 L50 22 Z"/><path class="av-s" d="M25 28 L7 34 H15 L40 29 Z"/><path class="av-c" d="M13 27 C13 23 20 21 32 21 H128 C144 21 155 25 158 29 C155 32 146 34 130 34 H34 C21 34 14 31 13 27 Z"/><path class="av-s" d="M90 29 L60 45 H70 L106 30 Z"/><rect class="av-s" x="76" y="33" width="24" height="8" rx="4"/><g class="av-j"><circle cx="46" cy="25.5" r="1.3"/><circle cx="52" cy="25.5" r="1.3"/><circle cx="58" cy="25.5" r="1.3"/><circle cx="64" cy="25.5" r="1.3"/><circle cx="70" cy="25.5" r="1.3"/><circle cx="76" cy="25.5" r="1.3"/><circle cx="82" cy="25.5" r="1.3"/><circle cx="88" cy="25.5" r="1.3"/><circle cx="94" cy="25.5" r="1.3"/><circle cx="100" cy="25.5" r="1.3"/><circle cx="106" cy="25.5" r="1.3"/><circle cx="112" cy="25.5" r="1.3"/><circle cx="118" cy="25.5" r="1.3"/><circle cx="124" cy="25.5" r="1.3"/><circle cx="130" cy="25.5" r="1.3"/><path d="M142 24.2 L149 24.6 L152.5 27.4 L143 27.4 Z"/></g><circle class="luz-v" cx="61" cy="44.5" r="2" color="#ff6a5c"/><circle class="luz-b" cx="98" cy="20.6" r="1.7" color="#ff6a5c"/><circle class="luz-s" cx="10" cy="3" r="2.1" color="#ffffff"/></svg></div></div><div class="aviao volta" style="--y:3%;--w:clamp(44px,4vw,60px);--o:.45;--d:52s;--atraso:-30s;--sobe:24px;--r:0deg;--rastro:120px;--xc:20vw"><div class="giro"><svg viewBox="0 0 160 50" aria-hidden="true"><path class="av-c" d="M26 22 L9 2 H20 L50 22 Z"/><path class="av-s" d="M25 28 L7 34 H15 L40 29 Z"/><path class="av-c" d="M13 27 C13 23 20 21 32 21 H128 C144 21 155 25 158 29 C155 32 146 34 130 34 H34 C21 34 14 31 13 27 Z"/><path class="av-s" d="M90 29 L60 45 H70 L106 30 Z"/><rect class="av-s" x="76" y="33" width="24" height="8" rx="4"/><g class="av-j"><circle cx="46" cy="25.5" r="1.3"/><circle cx="52" cy="25.5" r="1.3"/><circle cx="58" cy="25.5" r="1.3"/><circle cx="64" cy="25.5" r="1.3"/><circle cx="70" cy="25.5" r="1.3"/><circle cx="76" cy="25.5" r="1.3"/><circle cx="82" cy="25.5" r="1.3"/><circle cx="88" cy="25.5" r="1.3"/><circle cx="94" cy="25.5" r="1.3"/><circle cx="100" cy="25.5" r="1.3"/><circle cx="106" cy="25.5" r="1.3"/><circle cx="112" cy="25.5" r="1.3"/><circle cx="118" cy="25.5" r="1.3"/><circle cx="124" cy="25.5" r="1.3"/><circle cx="130" cy="25.5" r="1.3"/><path d="M142 24.2 L149 24.6 L152.5 27.4 L143 27.4 Z"/></g><circle class="luz-v" cx="61" cy="44.5" r="2" color="#ff6a5c"/><circle class="luz-b" cx="98" cy="20.6" r="1.7" color="#ff6a5c"/><circle class="luz-s" cx="10" cy="3" r="2.1" color="#ffffff"/></svg></div></div><div class="aviao " style="--y:47%;--w:clamp(80px,8vw,124px);--o:.8;--d:30s;--atraso:-19s;--sobe:-260px;--xc:4vw"><div class="giro"><svg viewBox="0 0 160 50" aria-hidden="true"><path class="av-c" d="M26 22 L9 2 H20 L50 22 Z"/><path class="av-s" d="M25 28 L7 34 H15 L40 29 Z"/><path class="av-c" d="M13 27 C13 23 20 21 32 21 H128 C144 21 155 25 158 29 C155 32 146 34 130 34 H34 C21 34 14 31 13 27 Z"/><path class="av-s" d="M90 29 L60 45 H70 L106 30 Z"/><rect class="av-s" x="76" y="33" width="24" height="8" rx="4"/><g class="av-j"><circle cx="46" cy="25.5" r="1.3"/><circle cx="52" cy="25.5" r="1.3"/><circle cx="58" cy="25.5" r="1.3"/><circle cx="64" cy="25.5" r="1.3"/><circle cx="70" cy="25.5" r="1.3"/><circle cx="76" cy="25.5" r="1.3"/><circle cx="82" cy="25.5" r="1.3"/><circle cx="88" cy="25.5" r="1.3"/><circle cx="94" cy="25.5" r="1.3"/><circle cx="100" cy="25.5" r="1.3"/><circle cx="106" cy="25.5" r="1.3"/><circle cx="112" cy="25.5" r="1.3"/><circle cx="118" cy="25.5" r="1.3"/><circle cx="124" cy="25.5" r="1.3"/><circle cx="130" cy="25.5" r="1.3"/><path d="M142 24.2 L149 24.6 L152.5 27.4 L143 27.4 Z"/></g><circle class="luz-v" cx="61" cy="44.5" r="2" color="#ff6a5c"/><circle class="luz-b" cx="98" cy="20.6" r="1.7" color="#ff6a5c"/><circle class="luz-s" cx="10" cy="3" r="2.1" color="#ffffff"/></svg></div></div><div class="aviao " style="--y:78%;--w:clamp(70px,7vw,104px);--o:.7;--d:27s;--atraso:-3s;--sobe:-210px;--r:-12deg;--xc:84vw"><div class="giro"><svg viewBox="0 0 160 50" aria-hidden="true"><path class="av-c" d="M26 22 L9 2 H20 L50 22 Z"/><path class="av-s" d="M25 28 L7 34 H15 L40 29 Z"/><path class="av-c" d="M13 27 C13 23 20 21 32 21 H128 C144 21 155 25 158 29 C155 32 146 34 130 34 H34 C21 34 14 31 13 27 Z"/><path class="av-s" d="M90 29 L60 45 H70 L106 30 Z"/><rect class="av-s" x="76" y="33" width="24" height="8" rx="4"/><g class="av-j"><circle cx="46" cy="25.5" r="1.3"/><circle cx="52" cy="25.5" r="1.3"/><circle cx="58" cy="25.5" r="1.3"/><circle cx="64" cy="25.5" r="1.3"/><circle cx="70" cy="25.5" r="1.3"/><circle cx="76" cy="25.5" r="1.3"/><circle cx="82" cy="25.5" r="1.3"/><circle cx="88" cy="25.5" r="1.3"/><circle cx="94" cy="25.5" r="1.3"/><circle cx="100" cy="25.5" r="1.3"/><circle cx="106" cy="25.5" r="1.3"/><circle cx="112" cy="25.5" r="1.3"/><circle cx="118" cy="25.5" r="1.3"/><circle cx="124" cy="25.5" r="1.3"/><circle cx="130" cy="25.5" r="1.3"/><path d="M142 24.2 L149 24.6 L152.5 27.4 L143 27.4 Z"/></g><circle class="luz-v" cx="61" cy="44.5" r="2" color="#ff6a5c"/><circle class="luz-b" cx="98" cy="20.6" r="1.7" color="#ff6a5c"/><circle class="luz-s" cx="10" cy="3" r="2.1" color="#ffffff"/></svg></div></div><div class="pista"><i></i></div></div>
     <div class="miolo">
       <div class="cab">
         <div>
           <div class="rotulo">02:45 · <span lang="pt">partidas</span><span lang="en">departures</span></div>
           <h2><span lang="pt">Partidas para o <em>sonho</em></span><span lang="en">Departures to the <em>dream</em></span></h2>
         </div>
-        <p lang="pt">O aeroporto de madrugada. Cada voo leva a um projeto. Escolha um voo pra ver o cartão de embarque.</p>
-        <p lang="en">The airport at dawn. Every flight goes to a project. Pick a flight to see its boarding pass.</p>
+        <p lang="pt">O aeroporto de madrugada. Cada voo leva a um projeto. Escolha um voo e o seu cartão de embarque sai na hora.</p>
+        <p lang="en">The airport at dawn. Every flight goes to a project. Pick a flight and your boarding pass prints right away.</p>
       </div>
-      <div class="aeroporto">
-        <div class="painel">
-          <div class="cab-p"><span>✈ PARTIDAS · DEPARTURES</span><span>dreamz intl.</span></div>
-          <table><thead><tr><th><span lang="pt">HORA</span><span lang="en">TIME</span></th><th><span lang="pt">DESTINO</span><span lang="en">DESTINATION</span></th><th><span lang="pt">TÉCNICA</span><span lang="en">TECHNIQUE</span></th><th><span lang="pt">PORTÃO</span><span lang="en">GATE</span></th><th>STATUS</th></tr></thead><tbody id="voos"></tbody></table>
+      <div class="painel">
+        <div class="cab-p"><span>✈ <span lang="pt">PARTIDAS</span><span lang="en">DEPARTURES</span><span class="bi"> · <span lang="pt">DEPARTURES</span><span lang="en">PARTIDAS</span></span></span><span>dreamz intl.</span></div>
+        <div class="aviso" aria-hidden="true"><span id="aviso"></span></div>
+        <table><thead><tr><th><span lang="pt">HORA</span><span lang="en">TIME</span></th><th><span lang="pt">VOO</span><span lang="en">FLIGHT</span></th><th><span lang="pt">DESTINO</span><span lang="en">DESTINATION</span></th><th><span lang="pt">TÉCNICA</span><span lang="en">TECHNIQUE</span></th><th><span lang="pt">PORTÃO</span><span lang="en">GATE</span></th><th>STATUS</th></tr></thead><tbody id="voos"></tbody></table>
+      </div>
+      <div class="saguao">
+        <div class="mala" aria-hidden="true">
+          <svg viewBox="0 0 220 290">
+            <defs>
+              <linearGradient id="mala-couro" x1="0" x2="1"><stop offset="0" stop-color="#55362a"/><stop offset=".16" stop-color="#7f5442"/><stop offset=".62" stop-color="#704838"/><stop offset="1" stop-color="#4a2d22"/></linearGradient>
+              <linearGradient id="mala-brilho" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".3" stop-color="#fff" stop-opacity="0"/></linearGradient>
+              <linearGradient id="mala-metal" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f6ebc8"/><stop offset="1" stop-color="#b39a6c"/></linearGradient>
+              <path id="mala-canto" d="M0 34 V22 Q0 0 22 0 H34 V11 H24 Q11 11 11 24 V34 Z"/>
+            </defs>
+            <path d="M82 52 V34 Q82 20 96 20 H124 Q138 20 138 34 V52" fill="none" stroke="#2e1c14" stroke-width="11" stroke-linecap="round"/>
+            <path d="M82 52 V34 Q82 20 96 20 H124 Q138 20 138 34 V52" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3" stroke-linecap="round" transform="translate(-2 -2)"/>
+            <rect x="72" y="46" width="20" height="12" rx="3" fill="url(#mala-metal)"/><rect x="128" y="46" width="20" height="12" rx="3" fill="url(#mala-metal)"/>
+            <rect x="8" y="54" width="204" height="226" rx="20" fill="url(#mala-couro)"/>
+            <rect x="8" y="54" width="204" height="226" rx="20" fill="url(#mala-brilho)"/>
+            <rect x="16" y="62" width="188" height="210" rx="14" fill="none" stroke="#FEFAE2" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <rect x="8" y="88" width="204" height="7" fill="#3c251b"/>
+            <rect x="36" y="80" width="22" height="22" rx="4" fill="url(#mala-metal)"/><rect x="42" y="88" width="10" height="5" rx="1.5" fill="#6b5634"/>
+            <rect x="162" y="80" width="22" height="22" rx="4" fill="url(#mala-metal)"/><rect x="168" y="88" width="10" height="5" rx="1.5" fill="#6b5634"/>
+            <use href="#mala-canto" x="8" y="54" fill="url(#mala-metal)"/>
+            <use href="#mala-canto" transform="translate(212 54) scale(-1 1)" fill="url(#mala-metal)"/>
+            <use href="#mala-canto" transform="translate(8 280) scale(1 -1)" fill="url(#mala-metal)"/>
+            <use href="#mala-canto" transform="translate(212 280) scale(-1 -1)" fill="url(#mala-metal)"/>
+            <rect x="30" y="278" width="24" height="8" rx="3" fill="#2e1c14"/><rect x="166" y="278" width="24" height="8" rx="3" fill="#2e1c14"/>
+          </svg>
+          <span class="adesivo ad-1"><span class="simbolo"></span></span>
+          <span class="adesivo ad-2"></span>
+          <span class="adesivo ad-3"><span>LO$ING<br>$LEEP</span></span>
+          <span class="adesivo ad-4"><span>sonho<small>✈ dreamz</small></span></span>
+          <span class="etiqueta" id="etiqueta"><span class="tag"><b id="tag-cod">LAM</b><small id="tag-nome">Linhas Amarelas</small></span></span>
         </div>
-        <aside class="embarque" id="embarque"></aside>
-      </div>
-    </div>
-  </section>
-
-  <section class="faixa secao-obra" id="taro" data-cena-pt="sono REM" data-cena-en="REM sleep">
-    <div class="miolo">
-      <div class="cab">
-        <div>
-          <div class="rotulo">03:30 · <span lang="pt">tarô</span><span lang="en">tarot</span></div>
-          <h2><span lang="pt">O tarô dos <em>sonhos</em></span><span lang="en">The dream <em>tarot</em></span></h2>
+        <div class="balcao" id="balcao">
+          <div class="fenda-txt"><i class="led"></i><span class="ok"><span lang="pt">cartão pronto · boa viagem</span><span lang="en">pass ready · have a nice trip</span></span><span class="imp"><span lang="pt">imprimindo seu cartão…</span><span lang="en">printing your pass…</span></span></div>
+          <div class="fenda" aria-hidden="true"></div>
+          <div class="saida"><div class="embarque" id="embarque" aria-live="polite"></div></div>
         </div>
-        <p lang="pt">Treze cartas viradas pra baixo. Escolha uma pra descobrir o sonho, e toque de novo na carta aberta pra ver as peças.</p>
-        <p lang="en">Thirteen cards face down. Pick one to reveal the dream, then tap the open card again to see every piece.</p>
       </div>
-      <div class="mesa-t" id="mesa-t"></div>
-      <div class="acoes-t"><button type="button" class="btn-l" id="embaralha"><span lang="pt">embaralhar</span><span lang="en">shuffle</span></button><button type="button" class="btn-l" id="vira-todas"><span lang="pt">virar todas</span><span lang="en">turn them all</span></button></div>
     </div>
   </section>
 
@@ -854,35 +972,70 @@ posts.sort((a,b)=>((a[0]*7+a[1]*3)%11)-((b[0]*7+b[1]*3)%11));
 rolo.innerHTML=posts.concat(posts).map(([k,i])=>`<button type="button" data-k="${k}" aria-label="${OBRAS[k].t}" style="background-image:url(${img(OBRAS[k],i)})"></button>`).join("");
 rolo.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) abrirObra(+b.dataset.k); });
 
-/* ---------- acervo 1: partidas ---------- */
+/* ---------- acervo 1: partidas (saguão do aeroporto) ---------- */
 const ST={pt:["EMBARCANDO","NO HORÁRIO","SONHANDO","ÚLTIMA CHAMADA"],en:["BOARDING","ON TIME","DREAMING","FINAL CALL"]};
-const tb=document.getElementById("voos"), emb=document.getElementById("embarque"); let vooSel=2;
+const tb=document.getElementById("voos"), emb=document.getElementById("embarque"), balcao=document.getElementById("balcao"), etiqueta=document.getElementById("etiqueta"); let vooSel=2;
+const semAcento=t=>t.normalize("NFD").replace(/[̀-ͯ]/g,"");
+const codAero=o=>{ const p=semAcento(o.t).toUpperCase().replace(/[^A-Z ]/g,"").split(" ").filter(w=>w.length>1); return p.length>1?p[0][0]+p[p.length-1].slice(0,2):p[0].slice(0,3); };
+const vooCod=o=>"DZ"+(+o.h.replace(":",""));
+const tecTxt=o=>o.tipo==="id"?(lang==="pt"?"ID VISUAL":"IDENTITY"):"SOCIAL";
+const portao=k=>String(k+1).padStart(2,"0");
 const celulas=(txt,n)=>{ const t=txt.toUpperCase().padEnd(n," ").slice(0,n); return `<span class="flap" data-alvo="${t}">${[...t].map(c=>`<i>${c===" "?"&nbsp;":c}</i>`).join("")}</span>`; };
-function montaPainel(){ tb.innerHTML=OBRAS.map((o,k)=>`<tr class="voo${k===vooSel?" sel":""}" tabindex="0" data-k="${k}"><td>${celulas(o.h,5)}</td><td>${celulas(o.t.replace("Ativos Judiciais","AT. JUD."),16)}</td><td>${celulas(o.tipo==="id"?"ID VISUAL":"SOCIAL",9)}</td><td>${celulas(String(k+1).padStart(2,"0"),2)}</td><td>${celulas(ST[lang][k%4],14)}</td></tr>`).join(""); }
+function montaPainel(){ tb.innerHTML=OBRAS.map((o,k)=>{ const st=k%4, tec=tecTxt(o);
+  return `<tr class="voo${k===vooSel?" sel":""}" tabindex="0" data-k="${k}" data-st="${st}"><td class="c-hora">${celulas(o.h,5)}</td><td class="c-voo">${celulas(vooCod(o),5)}</td><td class="c-dest">${celulas(o.t.replace("Ativos Judiciais","AT. JUD."),16)}</td><td class="c-tec">${celulas(tec,9)}</td><td class="c-port">${celulas(portao(k),2)}</td><td class="st">${celulas(ST[lang][st],14)}</td><td class="sub"><span>${vooCod(o)} · ${lang==="pt"?"PORTÃO":"GATE"} ${portao(k)}</span><b>${ST[lang][st]}</b></td></tr>`; }).join("");
+  const fim=OBRAS.length-1, a=OBRAS[fim];
+  document.getElementById("aviso").textContent=lang==="pt"
+    ? `ATENÇÃO, PASSAGEIROS DO VOO ${vooCod(a)} COM DESTINO A ${a.t.toUpperCase()}: ÚLTIMA CHAMADA NO PORTÃO ${portao(fim)} · PERDER O SONO PELOS SEUS SONHOS É MELHOR DO QUE APENAS SONHAR COM ELES · BOA VIAGEM ·`
+    : `ATTENTION, PASSENGERS ON FLIGHT ${vooCod(a)} TO ${a.t.toUpperCase()}: FINAL CALL AT GATE ${portao(fim)} · LOSING SLEEP FOR YOUR DREAMZ IS BETTER THAN DREAMING ABOUT THEM · HAVE A NICE TRIP ·`; }
 const LETRAS="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:.";
-function embaralhaPainel(){ if(calmo) return; tb.querySelectorAll(".flap").forEach(f=>{ const alvo=f.dataset.alvo;
-  [...f.children].forEach((el,i)=>{ let n=3+Math.floor(Math.random()*6); const tick=()=>{ if(n--<=0){ el.innerHTML=alvo[i]===" "?"&nbsp;":alvo[i]; return; }
-    el.textContent=LETRAS[Math.floor(Math.random()*LETRAS.length)]; el.classList.remove("vira"); void el.offsetWidth; el.classList.add("vira"); setTimeout(tick,45); }; setTimeout(tick,i*12); }); }); }
-function cartao(k){ vooSel=k; const o=OBRAS[k]; tb.querySelectorAll("tr").forEach(r=>r.classList.toggle("sel",+r.dataset.k===k));
-  emb.innerHTML=`<div class="faixa-e"><span class="simbolo"></span><span><span lang="pt">CARTÃO DE EMBARQUE</span><span lang="en">BOARDING PASS</span></span></div>
-   <div class="corpo-e"><div class="destino"><small><span lang="pt">DESTINO</span><span lang="en">DESTINATION</span></small><b>${o.t}</b></div><div><small><span lang="pt">PARTIDA</span><span lang="en">DEPARTS</span></small><b>${o.h}</b></div><div><small><span lang="pt">PORTÃO</span><span lang="en">GATE</span></small><b>${String(k+1).padStart(2,"0")}</b></div>
-   <div><small><span lang="pt">CLASSE</span><span lang="en">CLASS</span></small><b>${o.tipo==="id"?"ID VISUAL":"SOCIAL"}</b></div><div><small><span lang="pt">BAGAGEM</span><span lang="en">BAGGAGE</span></small><b>${o.pecas} <span lang="pt">PEÇAS</span><span lang="en">PIECES</span></b></div></div>
-   <img src="${img(o,1)}" alt="${o.t}"><div class="codigo" aria-hidden="true"></div><button type="button" id="embarcar"><span lang="pt">EMBARCAR NO SONHO →</span><span lang="en">BOARD THE DREAM →</span></button>`;
-  document.getElementById("embarcar").addEventListener("click",()=>abrirObra(k)); }
-tb.addEventListener("click",e=>{ const r=e.target.closest("tr.voo"); if(r) cartao(+r.dataset.k); });
-tb.addEventListener("keydown",e=>{ const r=e.target.closest("tr.voo"); if(r&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); cartao(+r.dataset.k); } });
+function embaralhaPainel(){ if(calmo) return; const cel=[];
+  tb.querySelectorAll(".flap").forEach(f=>{ if(!f.offsetParent) return; const alvo=f.dataset.alvo;
+    [...f.children].forEach((el,i)=>cel.push({el,alvo:alvo[i],n:3+Math.floor(Math.random()*6),ini:i*28})); });
+  const t0=performance.now(); let ult=0, restam=cel.length;
+  const passo=t=>{ if(t-ult>=55){ ult=t; const dt=t-t0;
+      for(const c of cel){ if(c.n<0||dt<c.ini) continue;
+        if(c.n--===0){ c.el.innerHTML=c.alvo===" "?"&nbsp;":c.alvo; restam--; continue; }
+        c.el.textContent=LETRAS[Math.random()*LETRAS.length|0]; if(c.el.animate) c.el.animate([{transform:"scaleY(.2)"},{transform:"none"}],{duration:70}); } }
+    if(restam>0) requestAnimationFrame(passo); };
+  requestAnimationFrame(passo); }
+function somImpressora(){ if(!actx||actx.state!=="running") return; const t=actx.currentTime, dur=1.1, n=actx.createBuffer(1,actx.sampleRate*dur,actx.sampleRate), d=n.getChannelData(0);
+  for(let i=0;i<d.length;i++){ const s=i/actx.sampleRate; d[i]=(Math.random()*2-1)*(.5+.5*Math.sign(Math.sin(s*2*Math.PI*38)))*(s<.15||s>dur-.1?.4:1); }
+  const src=actx.createBufferSource(); src.buffer=n; const bp=actx.createBiquadFilter(); bp.type="bandpass"; bp.frequency.value=1800; bp.Q.value=.9; const g=actx.createGain(); g.gain.value=.12; src.connect(bp).connect(g).connect(mestre); src.start(t+.05); }
+function chamadaAeroporto(){ if(!actx||actx.state!=="running") return; const t=actx.currentTime;
+  [[659.3,0],[523.3,.42],[587.3,.84],[392,1.26]].forEach(([f,dt])=>{ const o=actx.createOscillator(), o2=actx.createOscillator(), g=actx.createGain(); o.type="sine"; o2.type="sine"; o.frequency.value=f; o2.frequency.value=f*2;
+    const g2=actx.createGain(); g2.gain.value=.18; o2.connect(g2).connect(g); o.connect(g).connect(mestre);
+    g.gain.setValueAtTime(0,t+dt); g.gain.linearRampToValueAtTime(.16,t+dt+.02); g.gain.exponentialRampToValueAtTime(.001,t+dt+1.3); o.start(t+dt); o2.start(t+dt); o.stop(t+dt+1.4); o2.stop(t+dt+1.4); }); }
+function cartao(k,imprimir){ vooSel=k; const o=OBRAS[k], c=codAero(o), tec=tecTxt(o), assento=(k%9+1)+"ABCDEF"[k%6];
+  tb.querySelectorAll("tr").forEach(r=>r.classList.toggle("sel",+r.dataset.k===k));
+  emb.innerHTML=`<div class="e-main">
+    <div class="e-faixa"><span class="e-marca"><span class="simbolo"></span>DREAMZ GALLERY</span><span><span lang="pt">CARTÃO DE EMBARQUE</span><span lang="en">BOARDING PASS</span></span></div>
+    <div class="e-corpo"><div class="e-foto"><img src="${img(o,1)}" alt="${o.t}"></div>
+      <div class="e-info">
+        <div class="rota"><span>ZZZ</span><span class="seta">✈</span><span>${c}</span></div>
+        <div class="rota-nomes"><span><span lang="pt">sua cama</span><span lang="en">your bed</span></span><span>${o.t}</span></div>
+        <div class="dados">
+          <div><small><span lang="pt">PASSAGEIRO</span><span lang="en">PASSENGER</span></small><b><span lang="pt">VOCÊ</span><span lang="en">YOU</span></b></div>
+          <div><small><span lang="pt">VOO</span><span lang="en">FLIGHT</span></small><b>${vooCod(o)}</b></div>
+          <div><small><span lang="pt">PARTIDA</span><span lang="en">DEPARTS</span></small><b>${o.h}</b></div>
+          <div><small><span lang="pt">PORTÃO</span><span lang="en">GATE</span></small><b>${portao(k)}</b></div>
+          <div><small><span lang="pt">CLASSE</span><span lang="en">CLASS</span></small><b>${tec}</b></div>
+          <div><small><span lang="pt">BAGAGEM</span><span lang="en">BAGGAGE</span></small><b>${o.pecas} <span lang="pt">PEÇAS</span><span lang="en">PIECES</span></b></div>
+        </div>
+        <button type="button" id="embarcar"><span lang="pt">EMBARCAR NO SONHO →</span><span lang="en">BOARD THE DREAM →</span></button>
+      </div></div></div>
+    <div class="e-canhoto"><div class="e-faixa">DREAMZ</div>
+      <div class="c-dados"><div><small><span lang="pt">PARA</span><span lang="en">TO</span></small><b class="c-cod">${c}</b></div><div><small><span lang="pt">PORTÃO</span><span lang="en">GATE</span></small><b>${portao(k)}</b></div><div><small><span lang="pt">ASSENTO</span><span lang="en">SEAT</span></small><b>${assento}</b></div></div>
+      <div class="codigo" aria-hidden="true"></div></div>`;
+  document.getElementById("embarcar").addEventListener("click",()=>abrirObra(k));
+  document.getElementById("tag-cod").textContent=c; document.getElementById("tag-nome").textContent=o.t;
+  if(imprimir&&!calmo){ balcao.classList.add("imprimindo"); emb.classList.remove("imprime"); void emb.offsetWidth; emb.classList.add("imprime"); somImpressora();
+    etiqueta.classList.remove("balanca"); void etiqueta.offsetWidth; etiqueta.classList.add("balanca");
+    clearTimeout(cartao.t); cartao.t=setTimeout(()=>balcao.classList.remove("imprimindo"),1250); }
+  if(imprimir){ const r=balcao.getBoundingClientRect(); if(r.top>innerHeight*.62||r.bottom<80) balcao.scrollIntoView({behavior:calmo?"auto":"smooth",block:innerWidth<900?"start":"center"}); } }
+tb.addEventListener("click",e=>{ const r=e.target.closest("tr.voo"); if(r) cartao(+r.dataset.k,true); });
+tb.addEventListener("keydown",e=>{ const r=e.target.closest("tr.voo"); if(r&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); cartao(+r.dataset.k,true); } });
 montaPainel(); cartao(vooSel);
-if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ embaralhaPainel(); io.disconnect(); } },{threshold:.3}); io.observe(tb); }
-
-/* ---------- acervo 3: tarô ---------- */
-const ROM=["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII"];
-const mesa=document.getElementById("mesa-t"); let ordem=OBRAS.map((_,k)=>k);
-function poeCartas(){ mesa.innerHTML=ordem.map(k=>{ const o=OBRAS[k]; return `<button type="button" class="carta" data-k="${k}" aria-label="${lang==="pt"?"Carta virada. Toque pra revelar.":"Face-down card. Tap to reveal."}">
-  <span class="face verso"><span class="simbolo"></span></span><span class="face frente"><span class="rom">${ROM[k]}</span><span class="arte" style="background-image:url(${img(o,1)})"></span><span class="nome-t">${o.t}</span></span></button>`; }).join(""); }
-poeCartas();
-mesa.addEventListener("click",e=>{ const c=e.target.closest(".carta"); if(!c) return; if(c.classList.contains("virada")) abrirObra(+c.dataset.k); else { c.classList.add("virada"); c.setAttribute("aria-label",OBRAS[+c.dataset.k].t); } });
-document.getElementById("embaralha").addEventListener("click",()=>{ ordem.sort(()=>Math.random()-.5); poeCartas(); });
-document.getElementById("vira-todas").addEventListener("click",()=>mesa.querySelectorAll(".carta").forEach((c,i)=>setTimeout(()=>c.classList.add("virada"),calmo?0:i*70)));
+if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ embaralhaPainel(); chamadaAeroporto(); io.disconnect(); } },{threshold:.3}); io.observe(tb); }
 
 /* ---------- acervo 4: faixas infinitas ---------- */
 const fxs=document.getElementById("faixas"), dobra=a=>a.concat(a), idx=OBRAS.map((_,k)=>k);
@@ -891,14 +1044,35 @@ const linhaNomes=(l,cls,d)=>`<div class="esteira nomes ${cls}" style="--dur:${d}
 fxs.innerHTML=linhaNomes(idx,"",70)+linhaFotos(idx.slice().reverse(),"volta",55)+linhaNomes(idx.slice(6).concat(idx.slice(0,6)),"volta",80)+linhaFotos(idx.slice(4).concat(idx.slice(0,4)),"",65);
 fxs.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) abrirObra(+b.dataset.k); });
 
-/* ---------- o vidro: tocar quebra ---------- */
-const vidroBtn=document.getElementById("vidro-medo"), vidroSec=document.getElementById("vidro");
-function quebraVidro(){ if(vidroBtn.classList.contains("quebrado")) return;
-  vidroBtn.classList.add("trincado");
-  if(actx&&actx.state==="running"){ const t=actx.currentTime, n=actx.createBuffer(1,actx.sampleRate*.6,actx.sampleRate), d=n.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,3);
-    const src=actx.createBufferSource(); src.buffer=n; const hp=actx.createBiquadFilter(); hp.type="highpass"; hp.frequency.value=2500; const g=actx.createGain(); g.gain.value=.5; src.connect(hp).connect(g).connect(mestre); src.start(t+.25); }
-  setTimeout(()=>{ vidroBtn.classList.add("quebrado"); vidroSec.classList.add("livre"); vidroBtn.setAttribute("aria-hidden","true"); vidroBtn.tabIndex=-1; },calmo?0:380); }
-vidroBtn.addEventListener("click",quebraVidro);
+/* ---------- o vidro: a palavra "medo." é o vidro; tocar estilhaça ---------- */
+const medo=document.getElementById("vidro-medo"), vidroSec=document.getElementById("vidro"), palcoMedo=document.getElementById("palco-medo");
+function somVidro(){ if(!actx||actx.state!=="running") return; const t=actx.currentTime, sr=actx.sampleRate;
+  const n=actx.createBuffer(1,sr*.5,sr), d=n.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,5);
+  const src=actx.createBufferSource(); src.buffer=n; const hp=actx.createBiquadFilter(); hp.type="highpass"; hp.frequency.value=1800; const g=actx.createGain(); g.gain.value=.45; src.connect(hp).connect(g).connect(mestre); src.start(t);
+  for(let i=0;i<14;i++){ const o=actx.createOscillator(), gg=actx.createGain(), s=t+.04+Math.random()*.9; o.type="sine"; o.frequency.value=2600+Math.random()*4200;
+    gg.gain.setValueAtTime(0,s); gg.gain.linearRampToValueAtTime(.05+Math.random()*.05,s+.004); gg.gain.exponentialRampToValueAtTime(.0005,s+.08+Math.random()*.2); o.connect(gg).connect(mestre); o.start(s); o.stop(s+.35); } }
+function quebraMedo(ev){ if(medo.classList.contains("quebrado")) return;
+  const txt=medo.querySelector(".medo-txt"), cacos=medo.querySelector(".cacos"), r=medo.getBoundingClientRect(), W=r.width, H=r.height;
+  let cx=W*.45, cy=H*.55; if(ev&&ev.clientX){ cx=Math.min(W,Math.max(0,ev.clientX-r.left)); cy=Math.min(H,Math.max(0,ev.clientY-r.top)); }
+  palcoMedo.style.setProperty("--cx",(r.left-palcoMedo.getBoundingClientRect().left+cx)+"px");
+  medo.classList.add("quebrado"); vidroSec.classList.add("livre"); somVidro();
+  if(calmo) return;
+  const n=10+Math.floor(Math.random()*3), a0=Math.random()*Math.PI*2, ang=[];
+  for(let i=0;i<n;i++) ang.push(a0+i*2*Math.PI/n+(Math.random()-.5)*(Math.PI/n)*.7);
+  const base=Math.min(W,H), r1=ang.map(()=>base*(.22+Math.random()*.18)), r2=ang.map(()=>base*(.7+Math.random()*.5)), R=Math.max(W,H)*3;
+  const P=(a,d)=>`${((cx+Math.cos(a)*d)/W*100).toFixed(2)}% ${((cy+Math.sin(a)*d)/H*100).toFixed(2)}%`;
+  const pecas=[];
+  for(let i=0;i<n;i++){ const j=(i+1)%n, a1=ang[i], a2=j?ang[j]:ang[0]+Math.PI*2, m=(a1+a2)/2;
+    pecas.push({pol:[`${(cx/W*100).toFixed(2)}% ${(cy/H*100).toFixed(2)}%`,P(a1,r1[i]),P(a2,r1[j])],m,d:base*.15});
+    pecas.push({pol:[P(a1,r1[i]),P(a1,r2[i]),P(a2,r2[j]),P(a2,r1[j])],m,d:base*.5});
+    pecas.push({pol:[P(a1,r2[i]),P(a1,R),P(a2,R),P(a2,r2[j])],m,d:base*1.2}); }
+  const imp=document.createElement("span"); imp.className="impacto"; imp.style.left=cx+"px"; imp.style.top=cy+"px"; cacos.append(imp);
+  pecas.forEach(p=>{ const c=txt.cloneNode(true); c.style.clipPath=`polygon(${p.pol.join(",")})`; c.style.color=`rgba(200,226,255,${(.1+Math.random()*.32).toFixed(2)})`; cacos.append(c);
+    const k=1.5+Math.random()*2.5, sx=Math.cos(p.m)*k, sy=Math.sin(p.m)*k, vx=Math.cos(p.m)*(40+Math.random()*120)+(Math.random()-.5)*60, cai=420+Math.random()*380, rot=(Math.random()-.5)*160, atraso=420+p.d*.9+Math.random()*120;
+    c.animate([{transform:"none"},{transform:`translate(${sx}px,${sy}px)`}],{duration:90,fill:"forwards"});
+    c.animate([{transform:`translate(${sx}px,${sy}px)`,opacity:1},{transform:`translate(${sx+vx}px,${sy+cai}px) rotate(${rot}deg)`,opacity:0}],{duration:1150+Math.random()*650,delay:atraso,easing:"cubic-bezier(.5,0,.95,.6)",fill:"forwards"}); });
+  setTimeout(()=>{ cacos.innerHTML=""; },3400); }
+medo.addEventListener("click",quebraMedo);
 
 /* ---------- sites: o navegador mostra este próprio site ---------- */
 document.getElementById("navegador").addEventListener("click",()=>scrollTo({top:0,behavior:calmo?"auto":"smooth"}));
@@ -915,7 +1089,7 @@ if(matchMedia("(pointer:fine)").matches){
   document.body.append(nuv,pto);
   let mx=-100,my=-100,nx=-100,ny=-100,ativo=false,ultN=0;
   addEventListener("pointermove",e=>{ if(e.pointerType!=="mouse") return; mx=e.clientX; my=e.clientY; if(!ativo){ nx=mx; ny=my; ativo=true; nuv.classList.add("on"); pto.classList.add("on"); }
-    nuv.classList.toggle("sobre",!!e.target.closest("a,button,summary,[role=button],[role=slider],.carta,.lamina,.rolo button,tr.voo,.esteira button,input,select,textarea,.cena-logo"));
+    nuv.classList.toggle("sobre",!!e.target.closest("a,button,summary,[role=button],[role=slider],.lamina,.rolo button,tr.voo,.esteira button,input,select,textarea,.cena-logo"));
     pto.style.transform=`translate(${mx}px,${my}px)`; },{passive:true});
   document.addEventListener("pointerleave",()=>{ ativo=false; nuv.classList.remove("on"); pto.classList.remove("on"); });
   addEventListener("blur",()=>{ ativo=false; nuv.classList.remove("on"); pto.classList.remove("on"); });
