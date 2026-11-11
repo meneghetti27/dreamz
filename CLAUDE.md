@@ -13,6 +13,8 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
 - Idiomas: PT principal + EN (botão "acordado · PT / dreaming · EN"). Todo texto novo precisa das duas versões (`<span lang="pt">` / `<span lang="en">`).
 - Fontes: o dono quer **fonte gorda** nos títulos → **Fraunces 900** (SOFT 100, opsz 144; itálico nas palavras de destaque) + **Manrope** no texto/rótulos.
   Reprovadas: Marcellus, Instrument Serif/Sans, IBM Plex Mono ("muito feias"), Cormorant Garamond (fina demais).
+- Entrada: embaixo de "galeria de design conceitual" ficam **3 estrelinhas brancas** (as do olho do menino) cintilando sobre "role pra sonhar" (o "z z z" foi tirado).
+- Topo: **só o símbolo do menino** (sem a palavra DREAMZ) + relógio LCD + botão de idioma.
 - Abertura: pálpebras abrindo **devagar** (~6 s), com piscadas e a visão **embaçada** clareando, como alguém acordando de verdade.
 - Relógio = **mini visor LCD** (7 segmentos, contorno fino em cápsula, "AL") **ao lado do logo DREAMZ no topo**; a hora anda com a rolagem
   e pisca às 06:00. Reprovados: despertador analógico de sinos, despertador Y2K grande no canto (verde-limão e depois verde escuro: "feio").
