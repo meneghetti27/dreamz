@@ -40,7 +40,7 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
 - **Acervo no site (aprovado)**: 2 atos, PT/EN, abrem o visor com as peças:
   02:45 **partidas para o sonho** = saguão de aeroporto em **cena pequena e compacta** (igual no celular e no computador, tudo em `cqw`,
   largura máx. 560 px): aviõezinhos passando atrás (luzes piscando e rastro) e luzes de pista embaixo; **painel = retângulo pequeno** pendurado,
-  com 5 voos por página (HORA + código do destino tipo LAM/EVI + bolinha de status, nome embaixo) que **vira de página sozinho** a cada 7 s
+  com 5 voos por página (HORA + código do destino tipo LAM/EVI + **aviãozinho verde** = no horário/embarcando/sonhando ou **vermelho piscando** = atrasado; nome + status embaixo; as bolinhas foram trocadas a pedido do dono) que **vira de página sozinho** a cada 7 s
   (setas ‹ › e 1/3), letreiro de aviso correndo; **cartão de embarque em pé ao lado** que sai imprimindo da fenda ao tocar num voo
   (ZZZ ✈ código, voo, partida, portão, bagagem, canhoto com código de barras); **mala de couro com adesivos meio por cima, no canto**,
   **em pé no chão** no canto de baixo, sobrepondo só a pontinha do cartão (o dono: "a mala voando? bota no chão"), com etiqueta que balança.
