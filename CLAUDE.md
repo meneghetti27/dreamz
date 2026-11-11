@@ -8,7 +8,7 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   que gera `dist/` (página completa + assets) e faça commit do `dist/` junto. `vercel.json` publica a pasta `dist/` sem build.
 - Conceito aprovado: **"perdendo o sono"**. O site é uma noite: relógio vai de **23:47 → 06:00** conforme a rolagem e o fundo vai do preto
   ao marinho, lavanda, azul-céu e creme do amanhecer. Seções: 23:47 entrada · 00:00 manifesto · 00:30 o vidro · 01:00 o que fazemos ·
-  02:45 partidas · 04:15 faixas · 05:00 a logo (o menino) · 05:15 no que a gente acredita · 05:30 FAQ · 06:00 orçamento.
+  04:15 faixas · 05:00 a logo (o menino) · 05:15 no que a gente acredita · 05:30 FAQ · 06:00 orçamento.
 - **Texto oficial** (enviado pelo dono): `TEXTO-OFICIAL.md`. Usar essas palavras no site; traduções EN feitas pelo Claude.
   Nome: **Dreamz Gallery**. Frase: "Arte para quem sonha acordado." Autor da logo/marca: **Enzo Maldonado (@maldonaenz)**.
 - Idiomas: PT principal + EN (botão "acordado · PT / dreaming · EN"). Todo texto novo precisa das duas versões (`<span lang="pt">` / `<span lang="en">`).
@@ -17,10 +17,10 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
 - Entrada: "por @maldonaenz" (link do Instagram, o dono pediu crédito ao autor) acima do título "Arte para quem sonha acordado."; embaixo,
   **as 3 estrelas exatas do logo** (recortadas do arquivo: `assets/marca/estrela-1/2/3.png`, brancas) cintilando sobre "role pra sonhar".
   O "z z z" foi tirado. Estrelas desenhadas à mão foram recusadas: "tem que ser as estrelas que tem no logo".
-- **00:30 O vidro**: texto "Você já se sentiu preso…" + "Esse vidro tem nome:" e a palavra **"medo." é o próprio vidro** (letras de vidro: contorno claro,
-  preenchimento translúcido, reflexo passando e um tremidinho de vez em quando). Tocar estilhaça a palavra a partir do ponto do toque (cacos caem,
-  som de vidro + tilintar) e no lugar aparecem as **3 estrelas do logo** brilhando; o resto do texto acende.
-  Reprovado: placa de vidro cinza com trincas por cima de "medo." desfocado ("horrível").
+- **00:30 O vidro**: texto "Você já se sentiu preso…" + "Esse vidro tem nome:" e a palavra **"medo."** gigante, **cheia, na tipografia dos títulos**
+  (Fraunces 900 itálico, cor de destaque, brilho passando e um tremidinho de vez em quando). Tocar trinca e estilhaça a palavra a partir do ponto do toque
+  (cacos caem, som de vidro + tilintar) e no lugar aparecem as **3 estrelas do logo** brilhando; o resto do texto acende.
+  Reprovados: placa de vidro cinza com trincas por cima de "medo." desfocado ("horrível"); letras de vidro só com contorno ("muito feia").
 - **01:00 O que fazemos**: lista dos 6 serviços oficiais (criação de marca, identidade visual, sites, redes sociais, mídia off, estampas/roupas) +
   blocos i Identidade visual · ii Redes sociais · **iii Sites** (pedido do dono: navegador mostrando este próprio site rolando, `assets/tecnicas/site-dreamz.webp`;
   se o site mudar muito, refazer esse print).
@@ -37,18 +37,11 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   i. Identidade visual = pilha de 4 pranchas da Bross Motors (`assets/tecnicas/`) que se abre em grade;
   ii. Redes sociais = celular com feed rolando sozinho com posts reais dos 9 clientes de social; iii. Sites (acima). Reprovado: placas com borda e pílulas ("ruim").
 - Chat do orçamento: opções = criação de marca, identidade visual, site, redes sociais, mídia off, estampas/roupas, outra coisa.
-- **Acervo no site (aprovado)**: 2 atos, PT/EN, abrem o visor com as peças:
-  02:45 **partidas para o sonho** = saguão de aeroporto em **cena pequena e compacta** (igual no celular e no computador, tudo em `cqw`,
-  largura máx. 560 px): aviõezinhos passando atrás (luzes piscando e rastro) e luzes de pista embaixo; **painel = retângulo pequeno** pendurado,
-  com 5 voos por página (HORA + código do destino tipo LAM/EVI; embaixo o nome + status, "atrasado" em vermelho). Sem ícone de status:
-  bolinhas piscando e depois aviõezinhos verdes/vermelhos foram feitos e **removidos** ("não ficou tri"). Painel, cartão e mala com a base na mesma linha;
-  luzes de pista numa fileira só; sem linha de chão nem corte reto de brilho no fim da seção ("divisória feia") que **vira de página sozinho** a cada 7 s
-  (setas ‹ › e 1/3), letreiro de aviso correndo; **cartão de embarque em pé ao lado** que sai imprimindo da fenda ao tocar num voo
-  (ZZZ ✈ código, voo, partida, portão, bagagem, canhoto com código de barras); **mala de couro com adesivos meio por cima, no canto**,
-  **em pé no chão** no canto de baixo, sobrepondo só a pontinha do cartão (o dono: "a mala voando? bota no chão"), com etiqueta que balança.
-  O cartão tem **textura de papel** (grão + fibras via SVG feTurbulence, borda envelhecida, foto com grão de impressão). Som: "dim-dom" de aeroporto e barulhinho de impressora.
-  Reprovados: painel gigante com todas as colunas e cartão/mala embaixo ("muito feio"); no celular tudo empilhado ou em 3 colunas altas. · 04:15 **sonhos em looping** (faixas infinitas de nomes vazados e fotos).
-  Saíram do site: **tarô dos sonhos** (dono: "pode tirar"), índice gigante "13 sonhos" ("ruim"), TV da madrugada, diário de sonhos. Reprovados: grade de cards, túnel de sonhos.
+- **Acervo no site**: só 04:15 **sonhos em looping** (faixas infinitas de nomes vazados e fotos; abre o visor com as peças).
+  **Partidas para o sonho (aeroporto) foi removida inteira** ("tá feio, tira"): painel split-flap, cartão de embarque, mala, aviõezinhos e pista.
+  Antes disso passou por: painel gigante com colunas (feio no celular), cena compacta com painel em páginas + cartão de papel + mala no chão,
+  bolinhas e aviõezinhos de status (reprovados). O código está no histórico do git (commit d7b33b2) se um dia voltar.
+  Saíram do site também: **tarô dos sonhos** ("pode tirar"), índice gigante "13 sonhos" ("ruim"), TV da madrugada, diário de sonhos. Reprovados: grade de cards, túnel de sonhos.
 - **Laboratório do acervo**: https://claude.ai/artifact/FxTWhcN8vGXG2nhasKxgr8 (`acervo-lab.html`, só PT, para comparar): 6 versões em abas —
   1 sonho que desembaça (tela cheia, blur↔foco na rolagem) · 2 cartela de remédio dreamz® + bula · 3 lambe-lambe na parede com flash ·
   4 quarto escuro (varal, fotos revelam no hover) · 5 bolhas de sabão iridescentes que estouram · 6 máquina de cápsulas (gashapon).
