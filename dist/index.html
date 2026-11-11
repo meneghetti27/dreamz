@@ -209,7 +209,11 @@ em{font-style:italic}
 @keyframes aviso{to{transform:translateX(-100%)}}
 .painel table{border-collapse:separate;border-spacing:0 5px;width:100%;font-family:var(--f-mono)}
 .painel th{text-align:left;font-size:10px;font-weight:400;letter-spacing:.16em;color:#8d93a0;padding:0 6px}
-.painel th.sub,.painel td.sub{display:none}
+.painel th.sub,.painel td.sub,.painel td.c-cod,.painel td.c-luz{display:none}
+.c-luz i{display:block;width:7px;height:7px;margin-left:auto;border-radius:50%;background:#f3f1e9;box-shadow:0 0 6px currentColor}
+tr.voo[data-st="0"] .c-luz i{background:#8AC4FE;color:#8AC4FE}
+tr.voo[data-st="2"] .c-luz i{background:#b9c6f2;color:#b9c6f2}
+tr.voo[data-st="3"] .c-luz i{background:#ff9d7a;color:#ff9d7a;animation:chamada 1.1s steps(1) infinite}
 .painel tr.voo{cursor:pointer}
 .painel tr.voo:focus-visible{outline:2px solid #f5d36b}
 .painel td{padding:0 6px;white-space:nowrap}
@@ -399,18 +403,6 @@ footer .insone-f b{font-family:var(--f-mono)}
 .sub-logo{margin:0;font-size:clamp(28px,3vw,40px);line-height:1}
 .quem .grade .sub-logo + p{margin-top:16px}
 .tit-logo{margin:18px 0 clamp(30px,4vw,50px)!important}
-.tres{margin-top:clamp(60px,9vw,110px);text-align:center}
-.tres-intro{margin:16px auto 0!important;max-width:48ch!important;color:var(--muted)}
-.na-historia{width:min(560px,92%);margin:clamp(30px,5vw,50px) auto 0}
-.na-historia .est{transition:transform .4s cubic-bezier(.3,1.6,.5,1),filter .4s}
-.na-historia .est.acesa{transform:scale(1.18);filter:drop-shadow(0 0 22px rgba(255,255,255,.95)) drop-shadow(0 0 40px rgba(166,216,255,.8))}
-.tres-col{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:30px;text-align:left}
-.col-est{padding:18px 0 0;border-top:1px solid var(--line);transition:border-color .3s}
-.col-est b{font-family:var(--f-display);font-weight:900;font-size:clamp(26px,2.6vw,34px)}
-.col-est p{margin:8px 0 0!important;font-size:15.5px!important;color:var(--muted)}
-.col-est:hover{border-top-color:var(--fg)}
-.fecho-tres{margin:clamp(36px,5vw,60px) auto 0!important;max-width:40ch!important;font-family:var(--f-display);font-weight:600;font-style:italic;font-size:clamp(20px,2.2vw,28px)!important;line-height:1.25}
-.fecho-tres em{font-style:normal;font-weight:900;color:var(--accent)}
 
 /* 05:15 — missão, visão e valores */
 .crenca{padding-block:clamp(70px,10vw,130px)}
@@ -527,41 +519,62 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 .visor-pe .frase{font-family:var(--f-display);font-style:italic;text-transform:none;letter-spacing:0;font-size:20px;font-weight:400;max-width:60ch}
 
 @media (max-width:900px){
-  .painel{--cw:clamp(10px,calc((100cqw - 12px - 29px) / 21),17px);--fg-gap:1.5px;padding:14px 10px 14px}
-  .painel::before{left:22%;right:22%}
-  .painel .cab-p .bi{display:none}
-  .painel table,.painel tbody{display:block}
-  .painel thead{display:block}
-  .painel thead tr,.painel tr.voo{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:12px;align-items:center}
-  .painel tr.voo{padding:6px 0 7px;border-bottom:1px solid #1a1d23}
+  .aeroporto{display:grid;grid-template-columns:minmax(0,44fr) minmax(0,37fr) minmax(0,19fr);gap:8px;align-items:end}
+  .saguao{display:contents}
+  .painel{order:1;align-self:start;--cw:clamp(9px,calc((100cqw - 12px - 10.5px - 9px) / 8),17px);--fg-gap:1.5px;padding:10px 8px;border-radius:10px}
+  .painel::before{left:20%;right:20%}
+  .painel .cab-p{font-size:9px;letter-spacing:.1em;margin-bottom:7px}
+  .painel .cab-p .bi,.painel .cab-p>span:last-child{display:none}
+  .aviso{padding:4px 0;margin-bottom:6px;border-radius:4px}
+  .aviso span{font-size:8px;letter-spacing:.12em}
+  .painel table,.painel tbody,.painel thead{display:block}
+  .painel thead tr,.painel tr.voo{display:grid;grid-template-columns:auto auto minmax(0,1fr);column-gap:6px;align-items:center}
+  .painel tr.voo{padding:3px 0 4px;border-bottom:1px solid #1a1d23}
+  .flap i{height:calc(var(--cw) * 1.38)}
   .painel tr.voo:last-child{border-bottom:0}
   .painel th,.painel td{padding:0}
-  .painel thead th:nth-child(2),.painel thead th:nth-child(n+4),.painel .c-voo,.painel .c-tec,.painel .c-port,.painel .st{display:none}
+  .painel th{font-size:7px;letter-spacing:.12em}
+  .painel thead th:nth-child(2),.painel thead th:nth-child(n+4),.painel .c-voo,.painel .c-dest,.painel .c-tec,.painel .c-port,.painel .st{display:none}
   .painel thead th:first-child{width:calc(var(--cw) * 5 + var(--fg-gap) * 4)}
-  .painel td.sub{display:flex;justify-content:space-between;gap:10px;grid-column:1/-1;margin-top:6px;font-size:10px;letter-spacing:.12em;color:#8d93a0}
-  .saguao{grid-template-columns:1fr;margin-top:46px}
-  .mala{order:2;max-width:180px;margin:-10px auto 30px}
-  .tres-col{grid-template-columns:1fr}
+  .painel td.c-cod,.painel td.c-luz{display:block}
+  .painel td.sub{display:block;grid-column:1/-1;margin-top:2px;font-size:8px;line-height:1.2;letter-spacing:.06em;color:#8d93a0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .balcao{order:2;scroll-margin-top:84px;position:sticky;bottom:6px;z-index:1}
+  .fenda-txt{font-size:0;gap:0;margin:0 0 6px 2px}
+  .fenda{height:10px;border-radius:6px}
+  .saida{margin:-5px -10px 0;padding:0 10px 34px}
+  .embarque{--canhoto:0px;grid-template-columns:minmax(0,1fr);border-radius:10px;
+    -webkit-mask:radial-gradient(circle 7px at 0 calc(100% - 50px),#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% calc(100% - 50px),#0000 96%,#000) right/51% 100% no-repeat;
+    mask:radial-gradient(circle 7px at 0 calc(100% - 50px),#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% calc(100% - 50px),#0000 96%,#000) right/51% 100% no-repeat}
+  .e-faixa{padding:6px 7px;min-height:0;font-size:6.5px;letter-spacing:.1em;gap:4px;white-space:normal;text-align:right;line-height:1.25}
+  .e-marca{font-size:0;gap:0}
+  .e-marca .simbolo{width:15px;height:13px}
+  .e-corpo{grid-template-columns:minmax(0,1fr)}
+  .e-foto{min-height:0;aspect-ratio:4/3}
+  .e-info{padding:8px 8px 9px;gap:7px}
+  .rota{font-size:clamp(14px,4.7vw,26px);gap:3px}
+  .rota .seta{gap:2px}
+  .rota-nomes{font-size:6px;letter-spacing:.06em;margin-top:-4px;gap:6px}
+  .rota-nomes>span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .dados{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .dados>div:nth-child(1),.dados>div:nth-child(5){display:none}
+  .embarque small{font-size:6px;letter-spacing:.1em;margin-bottom:1px}
+  .embarque b{font-size:9.5px}
+  .e-info button{padding:7px 4px;border-radius:6px;font-size:7px;letter-spacing:.08em;line-height:1.3}
+  .e-canhoto{height:50px;grid-template-rows:none;grid-template-columns:auto minmax(0,1fr);border-left:0;border-top:2px dashed rgba(20,26,48,.28)}
+  .e-canhoto .e-faixa{display:none}
+  .c-dados{padding:0 6px 0 8px;align-content:center}
+  .c-dados>div:not(:first-child){display:none}
+  .c-cod{font-size:17px!important}
+  .codigo{margin:10px 8px 10px 0;min-height:0}
+  .mala{order:3;max-width:none;width:100%;margin:0 0 34px;position:sticky;bottom:40px;filter:drop-shadow(0 12px 12px rgba(0,0,0,.55))}
+  .etiqueta{width:44%;left:50%}
+  .etiqueta b{font-size:13cqw}
+  .etiqueta small{display:none}
   .insone{display:none}
   .tec-bloco,.tec-bloco.inv{grid-template-columns:1fr}
   .tec-bloco.inv .tec-txt{order:0}
   .tec-bloco.inv .fone{margin:0 auto}
   .quem .grade,.acordar{grid-template-columns:1fr}
-}
-@media (max-width:640px){
-  .embarque{--canhoto:0px;grid-template-columns:1fr;
-    -webkit-mask:radial-gradient(circle 12px at 0 calc(100% - 118px),#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% calc(100% - 118px),#0000 96%,#000) right/51% 100% no-repeat;
-    mask:radial-gradient(circle 12px at 0 calc(100% - 118px),#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% calc(100% - 118px),#0000 96%,#000) right/51% 100% no-repeat}
-  .e-faixa{padding:11px 14px;font-size:10px}
-  .e-corpo{grid-template-columns:1fr}
-  .e-foto{min-height:0;aspect-ratio:16/9}
-  .e-info{padding:16px}
-  .dados{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .e-canhoto{height:118px;grid-template-rows:none;grid-template-columns:auto minmax(0,1fr);border-left:0;border-top:2px dashed rgba(20,26,48,.28)}
-  .e-canhoto .e-faixa{display:none}
-  .c-dados{grid-template-columns:auto auto;padding:16px;gap:8px 16px;align-content:center}
-  .c-dados>div:first-child{grid-row:span 2}
-  .codigo{margin:18px 16px 18px 0;min-height:0}
 }
 @media (max-width:560px){
   .medo-txt{font-size:29vw}
@@ -737,6 +750,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
         <p lang="pt">O aeroporto de madrugada. Cada voo leva a um projeto. Escolha um voo e o seu cartão de embarque sai na hora.</p>
         <p lang="en">The airport at dawn. Every flight goes to a project. Pick a flight and your boarding pass prints right away.</p>
       </div>
+      <div class="aeroporto">
       <div class="painel">
         <div class="cab-p"><span>✈ <span lang="pt">PARTIDAS</span><span lang="en">DEPARTURES</span><span class="bi"> · <span lang="pt">DEPARTURES</span><span lang="en">PARTIDAS</span></span></span><span>dreamz intl.</span></div>
         <div class="aviso" aria-hidden="true"><span id="aviso"></span></div>
@@ -778,6 +792,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
           <div class="saida"><div class="embarque" id="embarque" aria-live="polite"></div></div>
         </div>
       </div>
+      </div>
     </div>
   </section>
 
@@ -810,17 +825,6 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
             <a class="pilula" href="https://instagram.com/dreamzgalllery" target="_blank" rel="noopener">@dreamzgalllery ↗</a>
           </div>
         </div>
-      </div>
-      <div class="tres">
-        <h3 class="sub-logo"><span lang="pt">As três estrelas</span><span lang="en">The three stars</span></h3>
-        <p class="tres-intro"><span lang="pt">As três estrelas da logo carregam o lado mais espiritual da Dreamz. Elas representam corpo, mente e alma, e o equilíbrio entre os três.</span><span lang="en">The three stars in the logo carry the most spiritual side of Dreamz. They stand for body, mind and soul, and the balance between the three.</span></p>
-        <span class="estrelas-logo na-historia" style="aspect-ratio:334/137" aria-hidden="true"><img class="est est-1" src="assets/marca/estrela-1.png" alt="" style="left:0.00%;top:43.07%;width:19.46%"><img class="est est-2" src="assets/marca/estrela-2.png" alt="" style="left:19.46%;top:0.00%;width:41.62%"><img class="est est-3" src="assets/marca/estrela-3.png" alt="" style="left:67.37%;top:16.79%;width:32.63%"></span>
-        <div class="tres-col">
-          <div class="col-est" data-e="1"><b><span lang="pt">Corpo</span><span lang="en">Body</span></b><p><span lang="pt">É o que sustenta a jornada. Sem cuidar dele, nenhuma ideia se mantém de pé por muito tempo.</span><span lang="en">It carries the journey. Without caring for it, no idea stays standing for long.</span></p></div>
-          <div class="col-est" data-e="2"><b><span lang="pt">Mente</span><span lang="en">Mind</span></b><p><span lang="pt">É onde nascem as ideias, mas também onde moram as dúvidas. É nela que o medo costuma falar mais alto, e é nela que decidimos agir mesmo assim.</span><span lang="en">It's where ideas are born, but also where doubts live. It's where fear usually speaks loudest, and where we decide to act anyway.</span></p></div>
-          <div class="col-est" data-e="3"><b><span lang="pt">Alma</span><span lang="en">Soul</span></b><p><span lang="pt">É o propósito. É o que dá sentido ao que criamos e explica por que vale a pena perder o sono.</span><span lang="en">It's the purpose. It gives meaning to what we create and explains why losing sleep is worth it.</span></p></div>
-        </div>
-        <p class="fecho-tres"><span lang="pt">Quando os três caminham juntos, o sonho deixa de ser fuga ou obsessão e vira direção. Perder o sono pelos seus sonhos não é se perder de si. <em>É se entregar por inteiro ao que importa.</em></span><span lang="en">When the three walk together, the dream stops being an escape or an obsession and becomes a direction. Losing sleep for your dreams isn't losing yourself. <em>It's giving yourself fully to what matters.</em></span></p>
       </div>
     </div>
   </section>
@@ -991,7 +995,7 @@ const tecTxt=o=>o.tipo==="id"?(lang==="pt"?"ID VISUAL":"IDENTITY"):"SOCIAL";
 const portao=k=>String(k+1).padStart(2,"0");
 const celulas=(txt,n)=>{ const t=txt.toUpperCase().padEnd(n," ").slice(0,n); return `<span class="flap" data-alvo="${t}">${[...t].map(c=>`<i>${c===" "?"&nbsp;":c}</i>`).join("")}</span>`; };
 function montaPainel(){ tb.innerHTML=OBRAS.map((o,k)=>{ const st=k%4, tec=tecTxt(o);
-  return `<tr class="voo${k===vooSel?" sel":""}" tabindex="0" data-k="${k}" data-st="${st}"><td class="c-hora">${celulas(o.h,5)}</td><td class="c-voo">${celulas(vooCod(o),5)}</td><td class="c-dest">${celulas(o.t.replace("Ativos Judiciais","AT. JUD."),16)}</td><td class="c-tec">${celulas(tec,9)}</td><td class="c-port">${celulas(portao(k),2)}</td><td class="st">${celulas(ST[lang][st],14)}</td><td class="sub"><span>${vooCod(o)} · ${lang==="pt"?"PORTÃO":"GATE"} ${portao(k)}</span><b>${ST[lang][st]}</b></td></tr>`; }).join("");
+  return `<tr class="voo${k===vooSel?" sel":""}" tabindex="0" data-k="${k}" data-st="${st}"><td class="c-hora">${celulas(o.h,5)}</td><td class="c-voo">${celulas(vooCod(o),5)}</td><td class="c-dest">${celulas(o.t.replace("Ativos Judiciais","AT. JUD."),16)}</td><td class="c-tec">${celulas(tec,9)}</td><td class="c-port">${celulas(portao(k),2)}</td><td class="st">${celulas(ST[lang][st],14)}</td><td class="c-cod">${celulas(codAero(o),3)}</td><td class="c-luz" title="${ST[lang][st]}"><i></i></td><td class="sub">${o.t}</td></tr>`; }).join("");
   const fim=OBRAS.length-1, a=OBRAS[fim];
   document.getElementById("aviso").textContent=lang==="pt"
     ? `ATENÇÃO, PASSAGEIROS DO VOO ${vooCod(a)} COM DESTINO A ${a.t.toUpperCase()}: ÚLTIMA CHAMADA NO PORTÃO ${portao(fim)} · PERDER O SONO PELOS SEUS SONHOS É MELHOR DO QUE APENAS SONHAR COM ELES · BOA VIAGEM ·`
@@ -1040,7 +1044,7 @@ function cartao(k,imprimir){ vooSel=k; const o=OBRAS[k], c=codAero(o), tec=tecTx
   if(imprimir&&!calmo){ balcao.classList.add("imprimindo"); emb.classList.remove("imprime"); void emb.offsetWidth; emb.classList.add("imprime"); somImpressora();
     etiqueta.classList.remove("balanca"); void etiqueta.offsetWidth; etiqueta.classList.add("balanca");
     clearTimeout(cartao.t); cartao.t=setTimeout(()=>balcao.classList.remove("imprimindo"),1250); }
-  if(imprimir){ const r=balcao.getBoundingClientRect(); if(r.top>innerHeight*.62||r.bottom<80) balcao.scrollIntoView({behavior:calmo?"auto":"smooth",block:innerWidth<900?"start":"center"}); } }
+  if(imprimir){ const r=balcao.getBoundingClientRect(); if(r.top>innerHeight*.75||r.bottom<80) balcao.scrollIntoView({behavior:calmo?"auto":"smooth",block:"center"}); } }
 tb.addEventListener("click",e=>{ const r=e.target.closest("tr.voo"); if(r) cartao(+r.dataset.k,true); });
 tb.addEventListener("keydown",e=>{ const r=e.target.closest("tr.voo"); if(r&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); cartao(+r.dataset.k,true); } });
 montaPainel(); cartao(vooSel);
@@ -1085,10 +1089,6 @@ medo.addEventListener("click",quebraMedo);
 
 /* ---------- sites: o navegador mostra este próprio site ---------- */
 document.getElementById("navegador").addEventListener("click",()=>scrollTo({top:0,behavior:calmo?"auto":"smooth"}));
-
-/* ---------- as três estrelas: corpo, mente e alma ---------- */
-document.querySelectorAll(".col-est").forEach(c=>{ const est=document.querySelector(`.na-historia .est-${c.dataset.e}`);
-  c.addEventListener("pointerenter",()=>est.classList.add("acesa")); c.addEventListener("pointerleave",()=>est.classList.remove("acesa")); });
 
 /* ---------- cursor: nuvenzinha ---------- */
 if(matchMedia("(pointer:fine)").matches){

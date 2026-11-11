@@ -8,7 +8,7 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   que gera `dist/` (página completa + assets) e faça commit do `dist/` junto. `vercel.json` publica a pasta `dist/` sem build.
 - Conceito aprovado: **"perdendo o sono"**. O site é uma noite: relógio vai de **23:47 → 06:00** conforme a rolagem e o fundo vai do preto
   ao marinho, lavanda, azul-céu e creme do amanhecer. Seções: 23:47 entrada · 00:00 manifesto · 00:30 o vidro · 01:00 o que fazemos ·
-  02:45 partidas · 04:15 faixas · 05:00 a logo (menino + três estrelas) · 05:15 no que a gente acredita · 05:30 FAQ · 06:00 orçamento.
+  02:45 partidas · 04:15 faixas · 05:00 a logo (o menino) · 05:15 no que a gente acredita · 05:30 FAQ · 06:00 orçamento.
 - **Texto oficial** (enviado pelo dono): `TEXTO-OFICIAL.md`. Usar essas palavras no site; traduções EN feitas pelo Claude.
   Nome: **Dreamz Gallery**. Frase: "Arte para quem sonha acordado." Autor da logo/marca: **Enzo Maldonado (@maldonaenz)**.
 - Idiomas: PT principal + EN (botão "acordado · PT / dreaming · EN"). Todo texto novo precisa das duas versões (`<span lang="pt">` / `<span lang="en">`).
@@ -24,8 +24,8 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
 - **01:00 O que fazemos**: lista dos 6 serviços oficiais (criação de marca, identidade visual, sites, redes sociais, mídia off, estampas/roupas) +
   blocos i Identidade visual · ii Redes sociais · **iii Sites** (pedido do dono: navegador mostrando este próprio site rolando, `assets/tecnicas/site-dreamz.webp`;
   se o site mudar muito, refazer esse print).
-- **05:00 A logo conta nossa história**: o menino (O Pequeno Príncipe reinterpretado) + as três estrelas = corpo, mente e alma (passar o mouse acende a estrela).
-  Ordem assumida da esquerda pra direita: pequena = corpo, grande = mente, direita = alma (**confirmar com o dono**).
+- **05:00 A logo conta nossa história**: só o menino (O Pequeno Príncipe reinterpretado) + crédito @maldonaenz.
+  A parte "As três estrelas" (corpo, mente e alma, com as estrelas grandes e 3 colunas) foi feita e **removida** a pedido do dono.
 - **05:15 No que a gente acredita**: missão, visão e os 6 valores oficiais.
 - Topo: **só o símbolo do menino** (sem a palavra DREAMZ) + relógio LCD + botão de idioma.
 - Abertura: pálpebras abrindo **devagar** (~6 s), com piscadas e a visão **embaçada** clareando, como alguém acordando de verdade.
@@ -42,8 +42,9 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   painel split-flap pendurado (HORA · VOO · DESTINO · TÉCNICA · PORTÃO · STATUS) com letreiro de aviso correndo, e ao escolher um voo
   o **cartão de embarque sai imprimindo** de uma fenda (ZZZ ✈ código do destino, canhoto com código de barras) + **mala de couro com adesivos**
   e etiqueta que balança com o destino. Som: "dim-dom" de aeroporto ao chegar na seção e barulhinho de impressora.
-  **No celular** o painel mostra só HORA + DESTINO e embaixo de cada voo uma linha com voo/portão/status; o cartão fica em pé e a mala vai embaixo.
-  (Antes o painel cortava colunas no celular: "não parece coisa de avião".) · 04:15 **sonhos em looping** (faixas infinitas de nomes vazados e fotos).
+  **No celular: painel, cartão e mala menores, um do lado do outro** (colunas 44/37/19). Painel = HORA + código do destino (BMO, LAM…) + bolinha
+  de status, nome do projeto embaixo; cartão em miniatura em pé; cartão e mala ficam grudados no pé da tela enquanto se rola o painel.
+  Reprovado no celular: tudo empilhado em largura cheia; painel cortando colunas ("não parece coisa de avião"). · 04:15 **sonhos em looping** (faixas infinitas de nomes vazados e fotos).
   Saíram do site: **tarô dos sonhos** (dono: "pode tirar"), índice gigante "13 sonhos" ("ruim"), TV da madrugada, diário de sonhos. Reprovados: grade de cards, túnel de sonhos.
 - **Laboratório do acervo**: https://claude.ai/artifact/FxTWhcN8vGXG2nhasKxgr8 (`acervo-lab.html`, só PT, para comparar): 6 versões em abas —
   1 sonho que desembaça (tela cheia, blur↔foco na rolagem) · 2 cartela de remédio dreamz® + bula · 3 lambe-lambe na parede com flash ·
