@@ -38,13 +38,14 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   ii. Redes sociais = celular com feed rolando sozinho com posts reais dos 9 clientes de social; iii. Sites (acima). Reprovado: placas com borda e pílulas ("ruim").
 - Chat do orçamento: opções = criação de marca, identidade visual, site, redes sociais, mídia off, estampas/roupas, outra coisa.
 - **Acervo no site (aprovado)**: 2 atos, PT/EN, abrem o visor com as peças:
-  02:45 **partidas para o sonho** = saguão de aeroporto: aviõezinhos passando atrás (com luzes piscando e rastro), luzes de pista embaixo,
-  painel split-flap pendurado (HORA · VOO · DESTINO · TÉCNICA · PORTÃO · STATUS) com letreiro de aviso correndo, e ao escolher um voo
-  o **cartão de embarque sai imprimindo** de uma fenda (ZZZ ✈ código do destino, canhoto com código de barras) + **mala de couro com adesivos**
-  e etiqueta que balança com o destino. Som: "dim-dom" de aeroporto ao chegar na seção e barulhinho de impressora.
-  **No celular: painel, cartão e mala menores, um do lado do outro** (colunas 44/37/19). Painel = HORA + código do destino (BMO, LAM…) + bolinha
-  de status, nome do projeto embaixo; cartão em miniatura em pé; cartão e mala ficam grudados no pé da tela enquanto se rola o painel.
-  Reprovado no celular: tudo empilhado em largura cheia; painel cortando colunas ("não parece coisa de avião"). · 04:15 **sonhos em looping** (faixas infinitas de nomes vazados e fotos).
+  02:45 **partidas para o sonho** = saguão de aeroporto em **cena pequena e compacta** (igual no celular e no computador, tudo em `cqw`,
+  largura máx. 560 px): aviõezinhos passando atrás (luzes piscando e rastro) e luzes de pista embaixo; **painel = retângulo pequeno** pendurado,
+  com 5 voos por página (HORA + código do destino tipo LAM/EVI + bolinha de status, nome embaixo) que **vira de página sozinho** a cada 7 s
+  (setas ‹ › e 1/3), letreiro de aviso correndo; **cartão de embarque em pé ao lado** que sai imprimindo da fenda ao tocar num voo
+  (ZZZ ✈ código, voo, partida, portão, bagagem, canhoto com código de barras); **mala de couro com adesivos meio por cima, no canto**,
+  **em pé no chão** no canto de baixo, sobrepondo só a pontinha do cartão (o dono: "a mala voando? bota no chão"), com etiqueta que balança.
+  O cartão tem **textura de papel** (grão + fibras via SVG feTurbulence, borda envelhecida, foto com grão de impressão). Som: "dim-dom" de aeroporto e barulhinho de impressora.
+  Reprovados: painel gigante com todas as colunas e cartão/mala embaixo ("muito feio"); no celular tudo empilhado ou em 3 colunas altas. · 04:15 **sonhos em looping** (faixas infinitas de nomes vazados e fotos).
   Saíram do site: **tarô dos sonhos** (dono: "pode tirar"), índice gigante "13 sonhos" ("ruim"), TV da madrugada, diário de sonhos. Reprovados: grade de cards, túnel de sonhos.
 - **Laboratório do acervo**: https://claude.ai/artifact/FxTWhcN8vGXG2nhasKxgr8 (`acervo-lab.html`, só PT, para comparar): 6 versões em abas —
   1 sonho que desembaça (tela cheia, blur↔foco na rolagem) · 2 cartela de remédio dreamz® + bula · 3 lambe-lambe na parede com flash ·

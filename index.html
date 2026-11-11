@@ -198,73 +198,75 @@ em{font-style:italic}
 .pista i{position:absolute;left:0;top:-5px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle,#fff 0 2px,rgba(255,255,255,.45) 3px,transparent 9px);animation:coelho 3s linear infinite}
 @keyframes coelho{from{transform:translateX(-4vw)}55%,to{transform:translateX(104vw)}}
 
-.painel{--cw:clamp(11px,calc((100cqw - 72px - 90px) / 51),17px);--fg-gap:2px;container-type:inline-size;position:relative;background:#0b0c0f;border-radius:14px;padding:16px 18px 20px;box-shadow:inset 0 0 0 2px #22252c,0 30px 60px -25px rgba(0,0,0,.9);color:#f3f1e9}
-.painel::before{content:"";position:absolute;bottom:100%;left:14%;right:14%;height:44px;background:linear-gradient(90deg,#22252c 0 4px,transparent 4px calc(100% - 4px),#22252c 0)}
-.painel .cab-p{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--f-mono);font-size:13px;letter-spacing:.14em;color:#f5d36b;margin-bottom:10px}
-.aviso{overflow:hidden;border-radius:6px;background:#15130b;box-shadow:inset 0 0 0 1px #2c2814;margin-bottom:10px;padding:6px 0}
-.aviso span{display:inline-block;white-space:nowrap;padding-left:100%;font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:#f5d36b;text-shadow:0 0 6px rgba(245,211,107,.6);animation:aviso 38s linear infinite}
+.aeroporto{position:relative;container-type:inline-size;max-width:560px;margin:0 auto}
+.cena-a{position:relative;display:grid;grid-template-columns:minmax(0,52fr) minmax(0,36fr);gap:3cqw;align-items:end;padding:9cqw 9cqw 0 0}
+.cena-a::after{content:"";position:absolute;left:-6cqw;right:-6cqw;bottom:6.6cqw;height:1px;background:linear-gradient(90deg,transparent,rgba(254,250,226,.14) 30%,rgba(254,250,226,.14) 70%,transparent);pointer-events:none}
+.painel{--cw:4.6cqw;--fg-gap:.4cqw;position:relative;background:#0b0c0f;border-radius:2.6cqw;padding:2.4cqw 2.4cqw 1.6cqw;margin-bottom:7cqw;box-shadow:inset 0 0 0 .4cqw #22252c,0 4cqw 8cqw -3cqw rgba(0,0,0,.9);color:#f3f1e9;font-family:var(--f-mono)}
+.painel::before{content:"";position:absolute;bottom:100%;left:16%;right:16%;height:9cqw;background:linear-gradient(90deg,#22252c 0 .8cqw,transparent .8cqw calc(100% - .8cqw),#22252c 0)}
+.cab-p{display:flex;justify-content:space-between;align-items:center;gap:2cqw;font-size:max(8px,2.3cqw);letter-spacing:.12em;color:#f5d36b;margin-bottom:1.6cqw}
+.pager{display:flex;align-items:center;gap:1.2cqw;color:#8d93a0;font-size:max(8px,2cqw);letter-spacing:.06em}
+.pager button{all:unset;cursor:pointer;display:grid;place-items:center;width:max(18px,4.4cqw);height:max(18px,4.4cqw);border-radius:50%;background:#1d2026;color:#f3f1e9;font-size:max(9px,2.2cqw)}
+.pager button:hover{background:#2a2e36}
+.pager button:focus-visible{outline:2px solid #f5d36b}
+.aviso{overflow:hidden;border-radius:1cqw;background:#15130b;box-shadow:inset 0 0 0 1px #2c2814;margin-bottom:1.6cqw;padding:.9cqw 0}
+.aviso span{display:inline-block;white-space:nowrap;padding-left:100%;font-size:max(7px,1.9cqw);letter-spacing:.14em;color:#f5d36b;text-shadow:0 0 6px rgba(245,211,107,.6);animation:aviso 38s linear infinite}
 @keyframes aviso{to{transform:translateX(-100%)}}
-.painel table{border-collapse:separate;border-spacing:0 5px;width:100%;font-family:var(--f-mono)}
-.painel th{text-align:left;font-size:10px;font-weight:400;letter-spacing:.16em;color:#8d93a0;padding:0 6px}
-.painel th.sub,.painel td.sub,.painel td.c-cod,.painel td.c-luz{display:none}
-.c-luz i{display:block;width:7px;height:7px;margin-left:auto;border-radius:50%;background:#f3f1e9;box-shadow:0 0 6px currentColor}
+.painel table,.painel thead,.painel tbody{display:block;width:100%}
+.painel table{border-collapse:collapse}
+.painel tr{display:grid;grid-template-columns:auto auto minmax(0,1fr);column-gap:1.6cqw;align-items:center}
+.painel thead tr{grid-template-columns:calc(var(--cw) * 5 + var(--fg-gap) * 4) 1fr}
+.painel th{text-align:left;font-size:max(6.5px,1.6cqw);font-weight:400;letter-spacing:.14em;color:#8d93a0;padding:0 0 1cqw}
+.painel td{padding:0}
+.painel tbody tr{padding:1cqw 0 1.1cqw;border-top:1px solid #1a1d23}
+.painel tr.voo{cursor:pointer}
+.painel tr.voo:focus-visible{outline:2px solid #f5d36b;outline-offset:2px}
+.flap{display:inline-flex;gap:var(--fg-gap)}
+.flap i{font-style:normal;display:inline-grid;place-items:center;width:var(--cw);height:calc(var(--cw) * 1.36);border-radius:.6cqw;font-size:calc(var(--cw) * .86);font-weight:700;color:#f3f1e9;background:linear-gradient(#24272e 0 49%,#0b0c0f 49% 51%,#1d2026 51%);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.c-luz i{display:block;width:1.8cqw;height:1.8cqw;min-width:6px;min-height:6px;margin-left:auto;border-radius:50%;background:#f3f1e9;color:#f3f1e9;box-shadow:0 0 1.4cqw currentColor}
 tr.voo[data-st="0"] .c-luz i{background:#8AC4FE;color:#8AC4FE}
 tr.voo[data-st="2"] .c-luz i{background:#b9c6f2;color:#b9c6f2}
 tr.voo[data-st="3"] .c-luz i{background:#ff9d7a;color:#ff9d7a;animation:chamada 1.1s steps(1) infinite}
-.painel tr.voo{cursor:pointer}
-.painel tr.voo:focus-visible{outline:2px solid #f5d36b}
-.painel td{padding:0 6px;white-space:nowrap}
-.flap{display:inline-flex;gap:var(--fg-gap)}
-.flap i{font-style:normal;display:inline-grid;place-items:center;width:var(--cw);height:calc(var(--cw) * 1.53);border-radius:3px;font-size:calc(var(--cw) * .88);font-weight:700;color:#f3f1e9;background:linear-gradient(#24272e 0 49%,#0b0c0f 49% 51%,#1d2026 51%);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
-tr.voo[data-st="0"] .st .flap i,tr.voo[data-st="0"] .sub b{color:#8AC4FE}
-tr.voo[data-st="2"] .st .flap i,tr.voo[data-st="2"] .sub b{color:#b9c6f2}
-tr.voo[data-st="3"] .st .flap i,tr.voo[data-st="3"] .sub b{color:#ff9d7a}
-tr.voo[data-st="3"] .st .flap,tr.voo[data-st="3"] .sub b{animation:chamada 1.1s steps(1) infinite}
 @keyframes chamada{50%{opacity:.3}}
+.painel td.nome{grid-column:1/-1;margin-top:.6cqw;font-size:max(7.5px,2.2cqw);letter-spacing:.05em;color:#8d93a0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 tr.voo:hover .flap i{color:#fff2bd}
-tr.voo.sel .flap i{color:#f5d36b}
+tr.voo.sel .flap i,tr.voo.sel td.nome{color:#f5d36b}
 
-.saguao{display:grid;grid-template-columns:minmax(0,230px) minmax(0,1fr);gap:clamp(28px,4vw,60px);align-items:end;margin-top:64px}
-.balcao{min-width:0;scroll-margin-top:84px}
-.fenda-txt{display:flex;align-items:center;gap:9px;font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;color:var(--muted);margin:0 0 9px 6px}
-.fenda-txt .led{width:7px;height:7px;border-radius:50%;background:#5fd08e;box-shadow:0 0 8px #5fd08e;flex:none}
-.fenda-txt .imp{display:none}
-.balcao.imprimindo .fenda-txt .imp{display:inline}
-.balcao.imprimindo .fenda-txt .ok{display:none}
-.balcao.imprimindo .led{background:#f5d36b;box-shadow:0 0 8px #f5d36b;animation:chamada .22s steps(1) infinite}
-.fenda{position:relative;z-index:2;height:16px;border-radius:10px;background:#07080b;box-shadow:inset 0 5px 7px rgba(0,0,0,.95),0 0 0 2px #22252c,0 1px 0 3px rgba(255,255,255,.04)}
-.saida{overflow:hidden;margin:-8px -26px 0;padding:0 26px 50px}
-.embarque{--canhoto:176px;display:grid;grid-template-columns:minmax(0,1fr) var(--canhoto);background:#FEFAE2;color:#141a30;border-radius:16px;overflow:hidden;
-  box-shadow:0 30px 60px -25px rgba(0,0,0,.9);
-  -webkit-mask:radial-gradient(circle 12px at calc(100% - var(--canhoto)) 0,#0000 96%,#000) top/100% 51% no-repeat,radial-gradient(circle 12px at calc(100% - var(--canhoto)) 100%,#0000 96%,#000) bottom/100% 51% no-repeat;
-  mask:radial-gradient(circle 12px at calc(100% - var(--canhoto)) 0,#0000 96%,#000) top/100% 51% no-repeat,radial-gradient(circle 12px at calc(100% - var(--canhoto)) 100%,#0000 96%,#000) bottom/100% 51% no-repeat}
+.balcao{position:relative;min-width:0}
+.fenda{position:relative;z-index:2;height:2.8cqw;border-radius:1.6cqw;background:#07080b;box-shadow:inset 0 .8cqw 1.2cqw rgba(0,0,0,.95),0 0 0 .4cqw #22252c}
+.fenda .led{position:absolute;left:2cqw;top:50%;width:1.2cqw;height:1.2cqw;min-width:5px;min-height:5px;transform:translateY(-50%);border-radius:50%;background:#5fd08e;box-shadow:0 0 1.4cqw #5fd08e}
+.balcao.imprimindo .led{background:#f5d36b;box-shadow:0 0 1.4cqw #f5d36b;animation:chamada .22s steps(1) infinite}
+.saida{overflow:hidden;margin:-1.4cqw -3cqw 0;padding:0 3cqw 7cqw}
+.embarque{--grao:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .33 0 0 0 0 .2 .9 0 0 0 -.32'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");position:relative;background-color:#FBF4DA;background-image:var(--grao),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .22' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .4 0 0 0 0 .25 .9 0 0 0 -.5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"),radial-gradient(ellipse 90% 70% at 45% 40%,rgba(255,253,240,.65),rgba(255,253,240,0) 70%),linear-gradient(170deg,#FEFAE6,#F3E8C6);color:#141a30;border-radius:2cqw;overflow:hidden;box-shadow:inset 0 0 2.6cqw rgba(150,118,62,.22),0 4cqw 7cqw -3cqw rgba(0,0,0,.9);font-family:var(--f-mono);
+  -webkit-mask:radial-gradient(circle 1.5cqw at 0 calc(100% - 10cqw),#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 1.5cqw at 100% calc(100% - 10cqw),#0000 96%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 1.5cqw at 0 calc(100% - 10cqw),#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 1.5cqw at 100% calc(100% - 10cqw),#0000 96%,#000) right/51% 100% no-repeat}
 .embarque.imprime{animation:imprime 1.25s cubic-bezier(.35,.1,.25,1) both}
 @keyframes imprime{from{transform:translateY(-102%)}12%{transform:translateY(-88%)}20%{transform:translateY(-86%)}45%{transform:translateY(-40%)}52%{transform:translateY(-37%)}to{transform:none}}
-.embarque small{display:block;font-size:9px;letter-spacing:.16em;color:#6b7390;margin-bottom:3px}
-.embarque b{font-size:14px;font-weight:700}
-.e-faixa{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:46px;box-sizing:border-box;background:#141a30;color:#FEFAE2;padding:12px 18px;font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;white-space:nowrap}
-.e-marca{display:flex;align-items:center;gap:10px}
-.e-marca .simbolo{width:24px;height:21px}
-.e-corpo{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}
-.e-foto{position:relative;min-height:250px;background:#d8d2bd}
-.e-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.e-info{padding:18px 20px 20px;display:grid;gap:14px;align-content:start;font-family:var(--f-mono)}
-.rota{display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--f-display);font-weight:900;font-variation-settings:"SOFT" 100,"opsz" 144;font-size:clamp(34px,3.4vw,46px);line-height:.9;letter-spacing:-.01em}
-.rota .seta{flex:1;display:flex;align-items:center;gap:8px;font-size:.42em;color:#7690D4}
-.rota .seta::before,.rota .seta::after{content:"";flex:1;border-top:2px dotted rgba(118,144,212,.6)}
-.rota-nomes{display:flex;justify-content:space-between;gap:10px;font-size:10px;letter-spacing:.14em;color:#6b7390;margin-top:-8px;text-transform:uppercase}
-.dados{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 14px}
-.e-info button{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;text-align:center;background:#141a30;color:#FEFAE2;padding:13px;border-radius:10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;transition:background .2s}
+.e-faixa{display:flex;align-items:center;gap:1.2cqw;background:var(--grao) #141a30;background-blend-mode:soft-light;color:#FEFAE2;padding:1.3cqw 1.8cqw;font-size:max(6px,1.7cqw);letter-spacing:.1em;white-space:nowrap}
+.e-faixa .simbolo{width:3.4cqw;height:3cqw;flex:none}
+.e-foto{position:relative;aspect-ratio:16/10;background:#d8d2bd}
+.e-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.88) contrast(.96)}
+.e-foto::after{content:"";position:absolute;inset:0;background:var(--grao),rgba(243,232,198,.12);mix-blend-mode:multiply;opacity:.9}
+.embarque::after{content:"";position:absolute;left:0;right:0;top:46%;height:1px;background:linear-gradient(90deg,rgba(120,95,50,0),rgba(120,95,50,.16) 20%,rgba(255,255,255,.5) 21%,rgba(120,95,50,.12) 60%,rgba(120,95,50,0));pointer-events:none}
+.e-info{padding:1.8cqw 2cqw 2cqw;display:grid;gap:1.4cqw}
+.rota{display:flex;align-items:center;gap:1cqw;font-family:var(--f-display);font-weight:900;font-variation-settings:"SOFT" 100,"opsz" 144;font-size:5.4cqw;line-height:.9}
+.rota .seta{flex:1;display:flex;align-items:center;gap:.6cqw;font-size:.45em;color:#7690D4}
+.rota .seta::before,.rota .seta::after{content:"";flex:1;border-top:.4cqw dotted rgba(118,144,212,.7)}
+.rota-nomes{display:flex;justify-content:space-between;gap:1.4cqw;font-size:max(5.5px,1.55cqw);letter-spacing:.06em;color:#6b7390;text-transform:uppercase;margin-top:-.4cqw}
+.rota-nomes>span{white-space:nowrap}
+.rota-nomes>span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.dados{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1cqw 1.4cqw}
+.embarque small{display:block;font-size:max(5.5px,1.45cqw);letter-spacing:.12em;color:#6b7390;margin-bottom:.3cqw}
+.embarque b{font-size:max(8.5px,2.5cqw);font-weight:700;white-space:nowrap}
+.e-info button{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;text-align:center;background:#141a30;color:#FEFAE2;padding:1.5cqw 1cqw;border-radius:1.2cqw;font-size:max(6.5px,1.75cqw);letter-spacing:.1em;line-height:1.25;transition:background .2s}
 .e-info button:hover{background:#283456}
 .e-info button:focus-visible{outline:2px solid #8AC4FE;outline-offset:2px}
-.e-canhoto{display:grid;grid-template-rows:auto 1fr auto;border-left:2px dashed rgba(20,26,48,.28);font-family:var(--f-mono);min-width:0}
-.e-canhoto .e-faixa{justify-content:center}
-.c-dados{padding:16px 16px 0;display:grid;gap:10px;align-content:start}
-.c-cod{font-family:var(--f-display);font-weight:900;font-size:34px!important;line-height:1}
-.codigo{min-height:58px;margin:12px 16px 16px;background:repeating-linear-gradient(90deg,#141a30 0 2px,transparent 2px 4px,#141a30 4px 5px,transparent 5px 8px,#141a30 8px 11px,transparent 11px 12px)}
+.e-canhoto{height:10cqw;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:2cqw;padding:0 2cqw;border-top:.4cqw dashed rgba(20,26,48,.3)}
+.c-cod{font-family:var(--f-display);font-weight:900;font-size:5cqw!important;line-height:1}
+.codigo{height:6cqw;background:repeating-linear-gradient(90deg,#141a30 0 2px,transparent 2px 4px,#141a30 4px 5px,transparent 5px 8px,#141a30 8px 11px,transparent 11px 12px)}
 
 /* a mala */
-.mala{position:relative;width:100%;max-width:230px;justify-self:center;aspect-ratio:220/290;container-type:inline-size;filter:drop-shadow(0 26px 24px rgba(0,0,0,.55));margin-bottom:50px}
+.mala{position:absolute;right:-4.2cqw;bottom:5.6cqw;width:17cqw;aspect-ratio:220/290;transform:rotate(-3deg);transform-origin:50% 100%;z-index:3;container-type:inline-size;filter:drop-shadow(-.6cqw .4cqw .8cqw rgba(0,0,0,.45));pointer-events:none}
+.mala::before{content:"";position:absolute;left:-6%;right:-10%;bottom:-5%;height:10%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.6),rgba(0,0,0,0));z-index:-1}
 .mala>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .adesivo{position:absolute;display:grid;place-items:center;text-align:center;line-height:1;box-shadow:0 2px 3px rgba(0,0,0,.25)}
 .ad-1{left:12%;top:33%;width:34%;aspect-ratio:1;border-radius:50%;background:#141a30;box-shadow:inset 0 0 0 2.5cqw #141a30,inset 0 0 0 3.2cqw #FEFAE2,0 2px 3px rgba(0,0,0,.3);transform:rotate(-10deg)}
@@ -516,57 +518,6 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 .visor-pe .frase{font-family:var(--f-display);font-style:italic;text-transform:none;letter-spacing:0;font-size:20px;font-weight:400;max-width:60ch}
 
 @media (max-width:900px){
-  .aeroporto{display:grid;grid-template-columns:minmax(0,44fr) minmax(0,37fr) minmax(0,19fr);gap:8px;align-items:end}
-  .saguao{display:contents}
-  .painel{order:1;align-self:start;--cw:clamp(9px,calc((100cqw - 12px - 10.5px - 9px) / 8),17px);--fg-gap:1.5px;padding:10px 8px;border-radius:10px}
-  .painel::before{left:20%;right:20%}
-  .painel .cab-p{font-size:9px;letter-spacing:.1em;margin-bottom:7px}
-  .painel .cab-p .bi,.painel .cab-p>span:last-child{display:none}
-  .aviso{padding:4px 0;margin-bottom:6px;border-radius:4px}
-  .aviso span{font-size:8px;letter-spacing:.12em}
-  .painel table,.painel tbody,.painel thead{display:block}
-  .painel thead tr,.painel tr.voo{display:grid;grid-template-columns:auto auto minmax(0,1fr);column-gap:6px;align-items:center}
-  .painel tr.voo{padding:3px 0 4px;border-bottom:1px solid #1a1d23}
-  .flap i{height:calc(var(--cw) * 1.38)}
-  .painel tr.voo:last-child{border-bottom:0}
-  .painel th,.painel td{padding:0}
-  .painel th{font-size:7px;letter-spacing:.12em}
-  .painel thead th:nth-child(2),.painel thead th:nth-child(n+4),.painel .c-voo,.painel .c-dest,.painel .c-tec,.painel .c-port,.painel .st{display:none}
-  .painel thead th:first-child{width:calc(var(--cw) * 5 + var(--fg-gap) * 4)}
-  .painel td.c-cod,.painel td.c-luz{display:block}
-  .painel td.sub{display:block;grid-column:1/-1;margin-top:2px;font-size:8px;line-height:1.2;letter-spacing:.06em;color:#8d93a0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .balcao{order:2;scroll-margin-top:84px;position:sticky;bottom:6px;z-index:1}
-  .fenda-txt{font-size:0;gap:0;margin:0 0 6px 2px}
-  .fenda{height:10px;border-radius:6px}
-  .saida{margin:-5px -10px 0;padding:0 10px 34px}
-  .embarque{--canhoto:0px;grid-template-columns:minmax(0,1fr);border-radius:10px;
-    -webkit-mask:radial-gradient(circle 7px at 0 calc(100% - 50px),#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% calc(100% - 50px),#0000 96%,#000) right/51% 100% no-repeat;
-    mask:radial-gradient(circle 7px at 0 calc(100% - 50px),#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% calc(100% - 50px),#0000 96%,#000) right/51% 100% no-repeat}
-  .e-faixa{padding:6px 7px;min-height:0;font-size:6.5px;letter-spacing:.1em;gap:4px;white-space:normal;text-align:right;line-height:1.25}
-  .e-marca{font-size:0;gap:0}
-  .e-marca .simbolo{width:15px;height:13px}
-  .e-corpo{grid-template-columns:minmax(0,1fr)}
-  .e-foto{min-height:0;aspect-ratio:4/3}
-  .e-info{padding:8px 8px 9px;gap:7px}
-  .rota{font-size:clamp(14px,4.7vw,26px);gap:3px}
-  .rota .seta{gap:2px}
-  .rota-nomes{font-size:6px;letter-spacing:.06em;margin-top:-4px;gap:6px}
-  .rota-nomes>span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .dados{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
-  .dados>div:nth-child(1),.dados>div:nth-child(5){display:none}
-  .embarque small{font-size:6px;letter-spacing:.1em;margin-bottom:1px}
-  .embarque b{font-size:9.5px}
-  .e-info button{padding:7px 4px;border-radius:6px;font-size:7px;letter-spacing:.08em;line-height:1.3}
-  .e-canhoto{height:50px;grid-template-rows:none;grid-template-columns:auto minmax(0,1fr);border-left:0;border-top:2px dashed rgba(20,26,48,.28)}
-  .e-canhoto .e-faixa{display:none}
-  .c-dados{padding:0 6px 0 8px;align-content:center}
-  .c-dados>div:not(:first-child){display:none}
-  .c-cod{font-size:17px!important}
-  .codigo{margin:10px 8px 10px 0;min-height:0}
-  .mala{order:3;max-width:none;width:100%;margin:0 0 34px;position:sticky;bottom:40px;filter:drop-shadow(0 12px 12px rgba(0,0,0,.55))}
-  .etiqueta{width:44%;left:50%}
-  .etiqueta b{font-size:13cqw}
-  .etiqueta small{display:none}
   .insone{display:none}
   .tec-bloco,.tec-bloco.inv{grid-template-columns:1fr}
   .tec-bloco.inv .tec-txt{order:0}
@@ -742,13 +693,17 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
         <p lang="en">The airport at dawn. Every flight goes to a project. Pick a flight and your boarding pass prints right away.</p>
       </div>
       <div class="aeroporto">
-      <div class="painel">
-        <div class="cab-p"><span>✈ <span lang="pt">PARTIDAS</span><span lang="en">DEPARTURES</span><span class="bi"> · <span lang="pt">DEPARTURES</span><span lang="en">PARTIDAS</span></span></span><span>dreamz intl.</span></div>
-        <div class="aviso" aria-hidden="true"><span id="aviso"></span></div>
-        <table><thead><tr><th><span lang="pt">HORA</span><span lang="en">TIME</span></th><th><span lang="pt">VOO</span><span lang="en">FLIGHT</span></th><th><span lang="pt">DESTINO</span><span lang="en">DESTINATION</span></th><th><span lang="pt">TÉCNICA</span><span lang="en">TECHNIQUE</span></th><th><span lang="pt">PORTÃO</span><span lang="en">GATE</span></th><th>STATUS</th></tr></thead><tbody id="voos"></tbody></table>
-      </div>
-      <div class="saguao">
-        <div class="mala" aria-hidden="true">
+        <div class="cena-a">
+          <div class="painel">
+            <div class="cab-p"><span>✈ <span lang="pt">PARTIDAS</span><span lang="en">DEPARTURES</span></span><span class="pager"><button type="button" id="pag-ant" aria-label="Página anterior">‹</button><span id="pag-txt">1/3</span><button type="button" id="pag-prox" aria-label="Próxima página">›</button></span></div>
+            <div class="aviso" aria-hidden="true"><span id="aviso"></span></div>
+            <table><thead><tr><th><span lang="pt">HORA</span><span lang="en">TIME</span></th><th><span lang="pt">DESTINO</span><span lang="en">DESTINATION</span></th></tr></thead><tbody id="voos"></tbody></table>
+          </div>
+          <div class="balcao" id="balcao">
+            <div class="fenda" aria-hidden="true"><i class="led"></i></div>
+            <div class="saida"><div class="embarque" id="embarque" aria-live="polite"></div></div>
+          </div>
+          <div class="mala" aria-hidden="true">
           <svg viewBox="0 0 220 290">
             <defs>
               <linearGradient id="mala-couro" x1="0" x2="1"><stop offset="0" stop-color="#55362a"/><stop offset=".16" stop-color="#7f5442"/><stop offset=".62" stop-color="#704838"/><stop offset="1" stop-color="#4a2d22"/></linearGradient>
@@ -777,12 +732,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
           <span class="adesivo ad-4"><span>sonho<small>✈ dreamz</small></span></span>
           <span class="etiqueta" id="etiqueta"><span class="tag"><b id="tag-cod">LAM</b><small id="tag-nome">Linhas Amarelas</small></span></span>
         </div>
-        <div class="balcao" id="balcao">
-          <div class="fenda-txt"><i class="led"></i><span class="ok"><span lang="pt">cartão pronto · boa viagem</span><span lang="en">pass ready · have a nice trip</span></span><span class="imp"><span lang="pt">imprimindo seu cartão…</span><span lang="en">printing your pass…</span></span></div>
-          <div class="fenda" aria-hidden="true"></div>
-          <div class="saida"><div class="embarque" id="embarque" aria-live="polite"></div></div>
         </div>
-      </div>
       </div>
     </div>
   </section>
@@ -976,21 +926,29 @@ posts.sort((a,b)=>((a[0]*7+a[1]*3)%11)-((b[0]*7+b[1]*3)%11));
 rolo.innerHTML=posts.concat(posts).map(([k,i])=>`<button type="button" data-k="${k}" aria-label="${OBRAS[k].t}" style="background-image:url(${img(OBRAS[k],i)})"></button>`).join("");
 rolo.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) abrirObra(+b.dataset.k); });
 
-/* ---------- acervo 1: partidas (saguão do aeroporto) ---------- */
+/* ---------- acervo 1: partidas (saguão do aeroporto, painel em páginas) ---------- */
 const ST={pt:["EMBARCANDO","NO HORÁRIO","SONHANDO","ÚLTIMA CHAMADA"],en:["BOARDING","ON TIME","DREAMING","FINAL CALL"]};
 const tb=document.getElementById("voos"), emb=document.getElementById("embarque"), balcao=document.getElementById("balcao"), etiqueta=document.getElementById("etiqueta"); let vooSel=2;
+const POR_PAG=5, N_PAG=Math.ceil(OBRAS.length/POR_PAG); let pag=0, pausaAte=0, painelVisivel=false;
 const semAcento=t=>t.normalize("NFD").replace(/[̀-ͯ]/g,"");
 const codAero=o=>{ const p=semAcento(o.t).toUpperCase().replace(/[^A-Z ]/g,"").split(" ").filter(w=>w.length>1); return p.length>1?p[0][0]+p[p.length-1].slice(0,2):p[0].slice(0,3); };
 const vooCod=o=>"DZ"+(+o.h.replace(":",""));
 const tecTxt=o=>o.tipo==="id"?(lang==="pt"?"ID VISUAL":"IDENTITY"):"SOCIAL";
 const portao=k=>String(k+1).padStart(2,"0");
 const celulas=(txt,n)=>{ const t=txt.toUpperCase().padEnd(n," ").slice(0,n); return `<span class="flap" data-alvo="${t}">${[...t].map(c=>`<i>${c===" "?"&nbsp;":c}</i>`).join("")}</span>`; };
-function montaPainel(){ tb.innerHTML=OBRAS.map((o,k)=>{ const st=k%4, tec=tecTxt(o);
-  return `<tr class="voo${k===vooSel?" sel":""}" tabindex="0" data-k="${k}" data-st="${st}"><td class="c-hora">${celulas(o.h,5)}</td><td class="c-voo">${celulas(vooCod(o),5)}</td><td class="c-dest">${celulas(o.t.replace("Ativos Judiciais","AT. JUD."),16)}</td><td class="c-tec">${celulas(tec,9)}</td><td class="c-port">${celulas(portao(k),2)}</td><td class="st">${celulas(ST[lang][st],14)}</td><td class="c-cod">${celulas(codAero(o),3)}</td><td class="c-luz" title="${ST[lang][st]}"><i></i></td><td class="sub">${o.t}</td></tr>`; }).join("");
+function montaPainel(){ let h=""; for(let i=0;i<POR_PAG;i++){ const k=pag*POR_PAG+i, o=OBRAS[k];
+    if(!o){ h+=`<tr aria-hidden="true"><td>${celulas("",5)}</td><td>${celulas("",3)}</td><td></td><td class="nome">&nbsp;</td></tr>`; continue; }
+    const st=k%4; h+=`<tr class="voo${k===vooSel?" sel":""}" tabindex="0" data-k="${k}" data-st="${st}"><td>${celulas(o.h,5)}</td><td>${celulas(codAero(o),3)}</td><td class="c-luz" title="${ST[lang][st]}"><i></i></td><td class="nome">${o.t} · ${ST[lang][st].toLowerCase()}</td></tr>`; }
+  tb.innerHTML=h; document.getElementById("pag-txt").textContent=`${pag+1}/${N_PAG}`;
   const fim=OBRAS.length-1, a=OBRAS[fim];
   document.getElementById("aviso").textContent=lang==="pt"
     ? `ATENÇÃO, PASSAGEIROS DO VOO ${vooCod(a)} COM DESTINO A ${a.t.toUpperCase()}: ÚLTIMA CHAMADA NO PORTÃO ${portao(fim)} · PERDER O SONO PELOS SEUS SONHOS É MELHOR DO QUE APENAS SONHAR COM ELES · BOA VIAGEM ·`
     : `ATTENTION, PASSENGERS ON FLIGHT ${vooCod(a)} TO ${a.t.toUpperCase()}: FINAL CALL AT GATE ${portao(fim)} · LOSING SLEEP FOR YOUR DREAMZ IS BETTER THAN DREAMING ABOUT THEM · HAVE A NICE TRIP ·`; }
+function vaiPag(d,manual){ pag=(pag+d+N_PAG)%N_PAG; montaPainel(); embaralhaPainel(); if(manual) pausaAte=Date.now()+20000; }
+document.getElementById("pag-ant").addEventListener("click",()=>vaiPag(-1,true));
+document.getElementById("pag-prox").addEventListener("click",()=>vaiPag(1,true));
+document.querySelector(".painel").addEventListener("pointerenter",()=>{ pausaAte=Math.max(pausaAte,Date.now()+8000); });
+setInterval(()=>{ if(!calmo&&painelVisivel&&!document.hidden&&Date.now()>pausaAte) vaiPag(1); },7000);
 const LETRAS="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:.";
 function embaralhaPainel(){ if(calmo) return; const cel=[];
   tb.querySelectorAll(".flap").forEach(f=>{ if(!f.offsetParent) return; const alvo=f.dataset.alvo;
@@ -1009,37 +967,32 @@ function chamadaAeroporto(){ if(!actx||actx.state!=="running") return; const t=a
   [[659.3,0],[523.3,.42],[587.3,.84],[392,1.26]].forEach(([f,dt])=>{ const o=actx.createOscillator(), o2=actx.createOscillator(), g=actx.createGain(); o.type="sine"; o2.type="sine"; o.frequency.value=f; o2.frequency.value=f*2;
     const g2=actx.createGain(); g2.gain.value=.18; o2.connect(g2).connect(g); o.connect(g).connect(mestre);
     g.gain.setValueAtTime(0,t+dt); g.gain.linearRampToValueAtTime(.16,t+dt+.02); g.gain.exponentialRampToValueAtTime(.001,t+dt+1.3); o.start(t+dt); o2.start(t+dt); o.stop(t+dt+1.4); o2.stop(t+dt+1.4); }); }
-function cartao(k,imprimir){ vooSel=k; const o=OBRAS[k], c=codAero(o), tec=tecTxt(o), assento=(k%9+1)+"ABCDEF"[k%6];
-  tb.querySelectorAll("tr").forEach(r=>r.classList.toggle("sel",+r.dataset.k===k));
-  emb.innerHTML=`<div class="e-main">
-    <div class="e-faixa"><span class="e-marca"><span class="simbolo"></span>DREAMZ GALLERY</span><span><span lang="pt">CARTÃO DE EMBARQUE</span><span lang="en">BOARDING PASS</span></span></div>
-    <div class="e-corpo"><div class="e-foto"><img src="${img(o,1)}" alt="${o.t}"></div>
-      <div class="e-info">
-        <div class="rota"><span>ZZZ</span><span class="seta">✈</span><span>${c}</span></div>
-        <div class="rota-nomes"><span><span lang="pt">sua cama</span><span lang="en">your bed</span></span><span>${o.t}</span></div>
-        <div class="dados">
-          <div><small><span lang="pt">PASSAGEIRO</span><span lang="en">PASSENGER</span></small><b><span lang="pt">VOCÊ</span><span lang="en">YOU</span></b></div>
-          <div><small><span lang="pt">VOO</span><span lang="en">FLIGHT</span></small><b>${vooCod(o)}</b></div>
-          <div><small><span lang="pt">PARTIDA</span><span lang="en">DEPARTS</span></small><b>${o.h}</b></div>
-          <div><small><span lang="pt">PORTÃO</span><span lang="en">GATE</span></small><b>${portao(k)}</b></div>
-          <div><small><span lang="pt">CLASSE</span><span lang="en">CLASS</span></small><b>${tec}</b></div>
-          <div><small><span lang="pt">BAGAGEM</span><span lang="en">BAGGAGE</span></small><b>${o.pecas} <span lang="pt">PEÇAS</span><span lang="en">PIECES</span></b></div>
-        </div>
-        <button type="button" id="embarcar"><span lang="pt">EMBARCAR NO SONHO →</span><span lang="en">BOARD THE DREAM →</span></button>
-      </div></div></div>
-    <div class="e-canhoto"><div class="e-faixa">DREAMZ</div>
-      <div class="c-dados"><div><small><span lang="pt">PARA</span><span lang="en">TO</span></small><b class="c-cod">${c}</b></div><div><small><span lang="pt">PORTÃO</span><span lang="en">GATE</span></small><b>${portao(k)}</b></div><div><small><span lang="pt">ASSENTO</span><span lang="en">SEAT</span></small><b>${assento}</b></div></div>
-      <div class="codigo" aria-hidden="true"></div></div>`;
+function cartao(k,imprimir){ vooSel=k; const o=OBRAS[k], c=codAero(o);
+  tb.querySelectorAll("tr.voo").forEach(r=>r.classList.toggle("sel",+r.dataset.k===k));
+  emb.innerHTML=`<div class="e-faixa"><span class="simbolo"></span><span><span lang="pt">CARTÃO DE EMBARQUE</span><span lang="en">BOARDING PASS</span></span></div>
+    <div class="e-foto"><img src="${img(o,1)}" alt="${o.t}"></div>
+    <div class="e-info">
+      <div class="rota"><span>ZZZ</span><span class="seta">✈</span><span>${c}</span></div>
+      <div class="rota-nomes"><span><span lang="pt">sua cama</span><span lang="en">your bed</span></span><span>${o.t}</span></div>
+      <div class="dados">
+        <div><small><span lang="pt">VOO</span><span lang="en">FLIGHT</span></small><b>${vooCod(o)}</b></div>
+        <div><small><span lang="pt">PARTIDA</span><span lang="en">DEPARTS</span></small><b>${o.h}</b></div>
+        <div><small><span lang="pt">PORTÃO</span><span lang="en">GATE</span></small><b>${portao(k)}</b></div>
+        <div><small><span lang="pt">BAGAGEM</span><span lang="en">BAGGAGE</span></small><b>${o.pecas} <span lang="pt">PEÇAS</span><span lang="en">PCS</span></b></div>
+      </div>
+      <button type="button" id="embarcar"><span lang="pt">EMBARCAR NO SONHO →</span><span lang="en">BOARD THE DREAM →</span></button>
+    </div>
+    <div class="e-canhoto"><b class="c-cod">${c}</b><div class="codigo" aria-hidden="true"></div></div>`;
   document.getElementById("embarcar").addEventListener("click",()=>abrirObra(k));
   document.getElementById("tag-cod").textContent=c; document.getElementById("tag-nome").textContent=o.t;
-  if(imprimir&&!calmo){ balcao.classList.add("imprimindo"); emb.classList.remove("imprime"); void emb.offsetWidth; emb.classList.add("imprime"); somImpressora();
+  if(imprimir){ pausaAte=Date.now()+20000; if(!calmo){ balcao.classList.add("imprimindo"); emb.classList.remove("imprime"); void emb.offsetWidth; emb.classList.add("imprime"); somImpressora();
     etiqueta.classList.remove("balanca"); void etiqueta.offsetWidth; etiqueta.classList.add("balanca");
-    clearTimeout(cartao.t); cartao.t=setTimeout(()=>balcao.classList.remove("imprimindo"),1250); }
-  if(imprimir){ const r=balcao.getBoundingClientRect(); if(r.top>innerHeight*.75||r.bottom<80) balcao.scrollIntoView({behavior:calmo?"auto":"smooth",block:"center"}); } }
+    clearTimeout(cartao.t); cartao.t=setTimeout(()=>balcao.classList.remove("imprimindo"),1250); } } }
 tb.addEventListener("click",e=>{ const r=e.target.closest("tr.voo"); if(r) cartao(+r.dataset.k,true); });
 tb.addEventListener("keydown",e=>{ const r=e.target.closest("tr.voo"); if(r&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); cartao(+r.dataset.k,true); } });
 montaPainel(); cartao(vooSel);
-if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ embaralhaPainel(); chamadaAeroporto(); io.disconnect(); } },{threshold:.3}); io.observe(tb); }
+if("IntersectionObserver" in window){ let primeira=true; new IntersectionObserver(es=>{ painelVisivel=es.some(e=>e.isIntersecting);
+    if(painelVisivel&&primeira){ primeira=false; embaralhaPainel(); chamadaAeroporto(); } },{threshold:.3}).observe(tb); }
 
 /* ---------- acervo 4: faixas infinitas ---------- */
 const fxs=document.getElementById("faixas"), dobra=a=>a.concat(a), idx=OBRAS.map((_,k)=>k);
