@@ -79,3 +79,19 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
 - WhatsApp: **+55 17 99108-9367** (constante `WHATSAPP = "5517991089367"` no script).
 - Imagens do acervo: `assets/obras/<projeto>/NN.webp` (01 = capa, 02 = aparece no hover). Originais no Drive "PROJETOS DREAMZ 2026".
 - Ideias guardadas: mesa de luz com peças arrastáveis.
+
+## Mudanças de 18/11/2026 (pedido do dono, substituem as anotações acima onde conflitam)
+- 00:00 manifesto: saíram a frase "Lo$ing $leep…" e a tradução; ficam só os dois parágrafos.
+- 00:30 o vidro: a frase **sem cifrões** "Losing sleep for your Dreamz is better than dreaming about them." grande, acima de "Você já se sentiu preso…".
+  O parágrafo depois do "medo." tem cor normal (não fica apagado esperando quebrar).
+- 01:00 o que fazemos: saíram a frase "A Dreamz é feita para quem cria…" e a lista de 6 serviços. Agora 5 projetos simples:
+  i. Criação de marca (exemplo: a própria dreamz, cartão com logo e paleta) · ii. Identidade visual (Bross Motors) · iii. Sites (este site) ·
+  iv. Posts para redes sociais (nome de cada cliente de social + artes embaixo, abre o visor) · v. Estampas e roupas (`#estampas`, fotos ainda não chegaram).
+  O celular com feed rolando saiu.
+- 04:15 sonhos em looping: **removida**.
+- 05:00: entrou de volta **"As três estrelas"** (corpo, mente e alma), texto do dono, depois de "O menino".
+- 05:15: missão e visão grandes, com linha em cima; valores com título próprio e nomes grandes.
+- Fonte dos títulos: **Veneza** (`assets/fonts/veneza.woff2`, convertida de VenezaDEMO). É DEMO, só uso pessoal, e não tem acentos, números nem ?!"():
+  esses caem na Fraunces. Trocar quando o dono comprar a versão completa.
+- Som: **sem efeitos** (chuva, grilos, passarinhos, vidro, trovão e plim foram tirados; `actx` fica nulo). Música de fundo `assets/musica.mp3` (faixa "#3"),
+  loop baixinho a partir do 1º toque, botão de mudo (barrinhas) no topo, lembra a escolha em localStorage.
