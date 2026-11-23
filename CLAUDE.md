@@ -100,5 +100,7 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
 - 00:30: embaixo da frase grande, a tradução em PT (menor, itálico, só no modo PT).
 - PMX: tirado o 1º card (branco com moedas); agora 4 artes. Boi Delivery: entraram as 2 artes que faltavam do carrossel "Post 3" (05, 06).
 - Música não tocava porque o artifact estava numa versão antiga (sem `musica.mp3`): republicado com todos os assets.
-- Pendente: seção v. Estampas e roupas com as camisetas/bonés da Dreamz e da Bross Motors (BMC), em 3D "diferente" (pedido do dono).
-  As imagens foram coladas no chat; pedir como arquivo ou no Drive.
+- **v. Estampas e roupas = provador 3D**: as peças recortadas (`assets/estampas/<id>f|b|l.webp`, fundo removido por flood-fill da cor do canto)
+  num anel em CSS 3D que gira sozinho e com o dedo; frente de um lado, costas do outro (peças sem costas ganharam costas lisas na cor do tecido).
+  Abas "dreamz · coleção" (4 camisetas) e "Bross Motors · uniformes" (6 camisetas, 3 polos, 3 bonés). Toque abre o visor com frente/costas (boné: frente/lado/costas).
+  Originais no Drive do dono (pasta compartilhada de roupas, imagens do WhatsApp). Dados em `ROUPAS` no script.
