@@ -1049,7 +1049,7 @@ function ajustaSom(){ if(!actx) return; const t=actx.currentTime, p=P;
 const musica=new Audio("assets/musica.mp3?v=3"); musica.loop=true; musica.volume=0; musica.preload="auto";
 const botaoSom=document.getElementById("botao-som");
 let mudo=false; try{ mudo=localStorage.getItem("dreamz-mudo")==="1"; }catch(e){}
-function fadeMusica(alvo){ const ini=musica.volume, t0=performance.now(); (function passo(t){ const k=Math.min(1,(t-t0)/1800); musica.volume=ini+(alvo-ini)*k; if(k<1) requestAnimationFrame(passo); else if(alvo===0) musica.pause(); })(t0); }
+function fadeMusica(alvo){ const ini=musica.volume, t0=performance.now(); (function passo(t){ const k=Math.max(0,Math.min(1,(t-t0)/1800)); try{ musica.volume=Math.max(0,Math.min(1,ini+(alvo-ini)*k)); }catch(e){} if(k<1) requestAnimationFrame(passo); else if(alvo===0) musica.pause(); })(t0); }
 function tocaMusica(){ if(mudo) return; musica.play().then(()=>{ fadeMusica(.45); botaoSom.hidden=false; }).catch(()=>{}); }
 function atualizaBotao(){ botaoSom.classList.toggle("mudo",mudo); botaoSom.setAttribute("aria-label",mudo?(lang==="pt"?"Ligar a música":"Turn music on"):(lang==="pt"?"Desligar a música":"Turn music off")); }
 musica.addEventListener("error",()=>{ botaoSom.hidden=true; });
