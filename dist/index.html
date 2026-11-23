@@ -1058,51 +1058,57 @@ function ajustaSom(){ if(!actx) return; const t=actx.currentTime, p=P;
   gGrilo.gain.setTargetAtTime(p<0.72?0.55:Math.max(0,0.55*(1-(p-0.72)/0.15)),t,0.8);
   gPassaro.gain.setTargetAtTime(Math.max(0,Math.min(1,(p-0.74)/0.18)),t,0.8); }
 /* efeitos sintéticos desligados a pedido: actx fica nulo, então chuva, grilos, vidro, trovão e plim não tocam */
-/* ---------- música de fundo: começa no primeiro gesto, em loop, com botão de mudo ----------
-   Dentro do artifact o carregamento direto de áudio pode ser bloqueado. Ordem de tentativa:
-   1) <audio> com o arquivo  2) baixa com fetch e toca por blob:  3) Web Audio (decodifica o arquivo baixado). */
-const MUSICA_URL="assets/musica.mp3?v=4";
+/* ---------- música de fundo ----------
+   - Um único <audio> criado já no carregamento. No 1º toque chamamos play() NA HORA (o iPhone exige isso dentro do toque).
+   - Só desiste do caminho se der erro de verdade (nada de tempo-limite: no celular o arquivo demora a carregar).
+   - Plano B: arquivo baixado com fetch já no carregamento → toca por blob: no mesmo <audio> (que o toque já destravou).
+   - Plano C: Web Audio (contexto criado e destravado dentro do toque, 22 kHz para não estourar a memória do iPhone). */
+const MUSICA_URL="assets/musica.mp3?v=5";
 const botaoSom=document.getElementById("botao-som");
-let mudo=false; try{ mudo=localStorage.getItem("dreamz-mudo")==="1"; }catch(e){}
-let modo=0, tocando=false, tentando=false, audioEl=null, wa=null, waGain=null, waFonte=null, waBuf=null, bytesP=null;
 const VOL=.45;
-function baixa(){ if(!bytesP) bytesP=fetch(MUSICA_URL).then(r=>{ if(!r.ok) throw new Error("http "+r.status); return r.arrayBuffer(); }); return bytesP; }
-function fadeEl(alvo,fim){ if(!audioEl) return; const ini=audioEl.volume, t0=performance.now(); (function passo(t){ const k=Math.max(0,Math.min(1,(t-t0)/1800)); try{ audioEl.volume=Math.max(0,Math.min(1,ini+(alvo-ini)*k)); }catch(e){} if(k<1) requestAnimationFrame(passo); else if(fim) fim(); })(t0); }
-function testaEl(src){ return new Promise((ok,falha)=>{ const a=new Audio(); a.loop=true; a.preload="auto"; a.volume=0; let feito=false;
-    const erro=()=>{ if(!feito){ feito=true; try{ a.pause(); a.removeAttribute("src"); a.load(); }catch(e){} falha(); } };
-    a.addEventListener("error",erro,{once:true}); a.src=src;
-    a.play().then(()=>{ const t0=a.currentTime; setTimeout(()=>{ if(feito) return; if(a.currentTime>t0||!a.paused&&a.readyState>=2){ feito=true; ok(a); } else erro(); },2500); }).catch(erro); }); }
-function garanteWA(){ if(wa) return; const AC=window.AudioContext||window.webkitAudioContext; if(!AC) return; wa=new AC(); waGain=wa.createGain(); waGain.gain.value=0; waGain.connect(wa.destination);
-  try{ const b=wa.createBuffer(1,1,22050), s=wa.createBufferSource(); s.buffer=b; s.connect(wa.destination); s.start(0); }catch(e){} }
-async function viaWA(){ garanteWA(); if(!wa) throw 0; if(wa.state!=="running") await wa.resume();
-  if(!waBuf){ const bytes=(await baixa()).slice(0); waBuf=await new Promise((ok,f)=>{ const pr=wa.decodeAudioData(bytes,ok,f); if(pr&&pr.then) pr.then(ok,f); }); }
-  if(waFonte){ try{ waFonte.stop(); }catch(e){} } waFonte=wa.createBufferSource(); waFonte.buffer=waBuf; waFonte.loop=true; waFonte.connect(waGain); waFonte.start(0);
-  waGain.gain.cancelScheduledValues(wa.currentTime); waGain.gain.setTargetAtTime(VOL,wa.currentTime,.6); }
-async function tocaMusica(){ if(mudo||tocando||tentando) return; tentando=true; garanteWA(); if(wa&&wa.state!=="running") wa.resume().catch(()=>{});
-  try{
-    if(modo===3){ await viaWA(); }
-    else if(audioEl){ await audioEl.play(); fadeEl(VOL); }
-    else{
-      try{ audioEl=await testaEl(MUSICA_URL); modo=1; }
-      catch(e1){ try{ const blob=new Blob([await baixa()],{type:"audio/mpeg"}); audioEl=await testaEl(URL.createObjectURL(blob)); modo=2; }
-        catch(e2){ modo=3; await viaWA(); } }
-      if(audioEl) fadeEl(VOL);
-    }
-    tocando=true; GESTOS.forEach(ev=>removeEventListener(ev,primeiro,true));
-  }catch(e){ console.warn("música não tocou",e); }
-  tentando=false; atualizaBotao(); }
-function paraMusica(){ tocando=false;
-  if(audioEl) fadeEl(0,()=>{ if(!tocando) audioEl.pause(); });
+let mudo=false; try{ mudo=localStorage.getItem("dreamz-mudo")==="1"; }catch(e){}
+let tocando=false, caminho="direto", wa=null, waGain=null, waFonte=null, waBuf=null, blobURL=null;
+const audioEl=new Audio(); audioEl.loop=true; audioEl.preload="auto"; audioEl.setAttribute("playsinline",""); audioEl.src=MUSICA_URL;
+const bytesP=fetch(MUSICA_URL).then(r=>{ if(!r.ok) throw new Error("http "+r.status); return r.arrayBuffer(); });
+bytesP.then(b=>{ blobURL=URL.createObjectURL(new Blob([b],{type:"audio/mpeg"})); }).catch(()=>{});
+function fadeEl(alvo,fim){ const ini=audioEl.volume, t0=performance.now(); (function passo(t){ const k=Math.max(0,Math.min(1,(t-t0)/1800)); try{ audioEl.volume=Math.max(0,Math.min(1,ini+(alvo-ini)*k)); }catch(e){} if(k<1) requestAnimationFrame(passo); else if(fim) fim(); })(t0); }
+function comecou(){ if(tocando) return; tocando=true; GESTOS.forEach(ev=>removeEventListener(ev,primeiro,true)); atualizaBotao(); }
+audioEl.addEventListener("playing",()=>{ if(caminho!=="wa"&&!mudo) comecou(); });
+audioEl.addEventListener("error",()=>{ if(caminho==="direto"){ caminho="blob"; if(querTocar) tentaBlob(); } else if(caminho==="blob"){ caminho="wa"; if(querTocar) viaWA(); } });
+let querTocar=false;
+function destravaWA(){ if(wa) return; const AC=window.AudioContext||window.webkitAudioContext; if(!AC) return;
+  try{ wa=new AC({sampleRate:22050}); }catch(e){ try{ wa=new AC(); }catch(e2){ return; } }
+  waGain=wa.createGain(); waGain.gain.value=0; waGain.connect(wa.destination);
+  try{ const b=wa.createBuffer(1,1,wa.sampleRate), s=wa.createBufferSource(); s.buffer=b; s.connect(wa.destination); s.start(0); }catch(e){}
+  if(wa.state!=="running") wa.resume().catch(()=>{}); }
+function tentaBlob(){ const vai=()=>{ if(audioEl.src!==blobURL) audioEl.src=blobURL; try{ audioEl.volume=0; }catch(e){} audioEl.play().then(()=>fadeEl(VOL)).catch(()=>{ caminho="wa"; viaWA(); }); };
+  if(blobURL) vai(); else bytesP.then(()=>{ if(blobURL) vai(); else { caminho="wa"; viaWA(); } }, ()=>{ caminho="wa"; viaWA(); }); }
+async function viaWA(){ try{ destravaWA(); if(!wa) return; if(wa.state!=="running") await wa.resume();
+    if(!waBuf){ const bytes=(await bytesP).slice(0); waBuf=await new Promise((ok,f)=>{ const pr=wa.decodeAudioData(bytes,ok,f); if(pr&&pr.then) pr.then(ok,f); }); }
+    if(mudo) return; if(waFonte){ try{ waFonte.stop(); }catch(e){} }
+    waFonte=wa.createBufferSource(); waFonte.buffer=waBuf; waFonte.loop=true; waFonte.connect(waGain); waFonte.start(0);
+    waGain.gain.cancelScheduledValues(wa.currentTime); waGain.gain.setTargetAtTime(VOL,wa.currentTime,.6); comecou();
+  }catch(e){ console.warn("música: Web Audio falhou",e); } }
+/* chamado DENTRO do toque: nada de await antes do play() */
+function tocaMusica(){ if(mudo) return; querTocar=true; destravaWA();
+  if(caminho==="wa"){ viaWA(); return; }
+  if(caminho==="blob"){ tentaBlob(); return; }
+  try{ audioEl.volume=0; }catch(e){}
+  const p=audioEl.play();
+  if(p&&p.then) p.then(()=>fadeEl(VOL)).catch(err=>{ if(err&&err.name==="NotAllowedError") return; if(caminho==="direto"){ caminho="blob"; tentaBlob(); } });
+  else fadeEl(VOL); }
+function paraMusica(){ querTocar=false; tocando=false;
+  fadeEl(0,()=>{ if(!tocando) audioEl.pause(); });
   if(wa&&waGain){ waGain.gain.setTargetAtTime(0,wa.currentTime,.4); setTimeout(()=>{ if(!tocando&&waFonte){ try{ waFonte.stop(); }catch(e){} waFonte=null; } },1500); }
   atualizaBotao(); }
-function atualizaBotao(){ botaoSom.classList.toggle("mudo",mudo||!tocando); botaoSom.setAttribute("aria-label",(mudo||!tocando)?(lang==="pt"?"Ligar a música":"Turn music on"):(lang==="pt"?"Desligar a música":"Turn music off")); }
+function atualizaBotao(){ botaoSom.classList.toggle("mudo",!tocando); botaoSom.setAttribute("aria-label",!tocando?(lang==="pt"?"Ligar a música":"Turn music on"):(lang==="pt"?"Desligar a música":"Turn music off")); }
 botaoSom.addEventListener("click",e=>{ e.stopPropagation();
-  if(tocando){ mudo=true; paraMusica(); } else { mudo=false; tocaMusica(); }
+  if(tocando||querTocar&&!audioEl.paused){ mudo=true; paraMusica(); } else { mudo=false; tocaMusica(); }
   try{ localStorage.setItem("dreamz-mudo",mudo?"1":"0"); }catch(err){} });
 atualizaBotao();
-/* o navegador só libera som num gesto "completo" (clique/fim do toque/tecla): tenta em cada um até conseguir */
-const GESTOS=["click","touchend","pointerup","keydown"];
-const primeiro=e=>{ if(mudo||tocando||(e&&e.target&&e.target.closest&&e.target.closest("#botao-som"))) return; tocaMusica(); };
+/* qualquer toque/clique/tecla também liga (no celular, rolar não conta como toque) */
+const GESTOS=["click","touchend","keydown"];
+const primeiro=e=>{ if(mudo||tocando||(e&&e.target&&e.target.closest&&e.target.closest("#botao-som,#porta"))) return; tocaMusica(); };
 GESTOS.forEach(ev=>addEventListener(ev,primeiro,{capture:true,passive:true}));
 botaoSom.hidden=false;
 
@@ -1110,18 +1116,20 @@ botaoSom.hidden=false;
 const porta=document.getElementById("porta");
 function reiniciaAcordar(){ if(calmo) return; document.querySelectorAll(".palpebra").forEach(el=>{ el.style.animation="none"; void el.offsetWidth; el.style.animation=""; });
   document.body.classList.remove("acordando"); void document.body.offsetWidth; document.body.classList.add("acordando"); setTimeout(()=>document.body.classList.remove("acordando"),7400); }
-function abrePorta(){ if(tocando) return; porta.hidden=false; root.classList.add("esperando"); try{ porta.focus({preventScroll:true}); }catch(e){} }
+function abrePorta(){ if(tocando) return; porta.hidden=false; root.classList.add("esperando"); }
 porta.addEventListener("click",e=>{ e.stopPropagation(); mudo=false; try{ localStorage.setItem("dreamz-mudo","0"); }catch(err){} tocaMusica();
   root.classList.remove("esperando"); reiniciaAcordar(); porta.classList.add("saindo"); setTimeout(()=>{ porta.hidden=true; porta.classList.remove("saindo"); },1300); });
-(function tentaAutoplay(){ if(mudo) return;
-  const a=new Audio(MUSICA_URL); a.loop=true; a.volume=0;
-  const p=a.play(); if(!p||!p.then){ abrePorta(); return; }
-  p.then(()=>{ audioEl=a; modo=1; tocando=true; fadeEl(VOL); GESTOS.forEach(ev=>removeEventListener(ev,primeiro,true)); atualizaBotao(); })
-   .catch(()=>{ try{ a.removeAttribute("src"); a.load(); }catch(e){} abrePorta(); });
-})();
+if(mudo){ /* a pessoa desligou o som da última vez: não insiste */ }
+else{
+  try{ audioEl.volume=0; }catch(e){}
+  const p=audioEl.play();
+  if(p&&p.then) p.then(()=>{ querTocar=true; fadeEl(VOL); }).catch(()=>{ audioEl.pause(); abrePorta(); });
+  else abrePorta();
+  setTimeout(()=>{ if(!tocando&&audioEl.paused) abrePorta(); },1200);
+}
 document.addEventListener("visibilitychange",()=>{ if(!tocando) return;
-  if(document.hidden){ if(audioEl) audioEl.pause(); if(wa) wa.suspend().catch(()=>{}); }
-  else { if(audioEl) audioEl.play().catch(()=>{}); if(wa) wa.resume().catch(()=>{}); } });
+  if(document.hidden){ audioEl.pause(); if(wa) wa.suspend().catch(()=>{}); }
+  else { if(caminho!=="wa") audioEl.play().catch(()=>{}); if(wa) wa.resume().catch(()=>{}); } });
 
 /* ---------- easter egg: 3 cliques no menino e ele acorda ---------- */
 let cliquesM=[];

@@ -94,9 +94,10 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
 - Fonte dos títulos: **Veneza** (`assets/fonts/veneza.woff2`, convertida de VenezaDEMO). É DEMO, só uso pessoal, e não tem acentos, números nem ?!"():
   esses caem na Fraunces. Trocar quando o dono comprar a versão completa.
 - **Abre tocando (23/11, pedido do dono)**: navegador não deixa som sem toque. O site tenta autoplay; se barrar, mostra a **porta** (tela preta com as 3 estrelas + "toque pra sonhar / com som ♪"). O toque liga a música e reinicia a animação das pálpebras. No celular rolar NÃO conta como toque.
+- **ERRO QUE JÁ CUSTOU CARO (23/11)**: NUNCA usar tempo-limite para decidir que o áudio "falhou" (no celular o arquivo demora a carregar e a música era cancelada). Só desistir de um caminho com evento `error` ou `play()` rejeitado. O `play()` tem que ser chamado direto dentro do toque, sem `await` antes. Testar com iPhone emulado + rede lenta (route com atraso de 5 s) + CSP.
 - **IMPORTANTE (23/11): dentro do artifact o áudio direto pode ser BLOQUEADO (só imagens passam). A música tenta 3 caminhos: <audio> normal → fetch + blob: → Web Audio (decodeAudioData). Testar sempre simulando CSP `media-src 'none'`, não só no servidor local.**
 - **Bug corrigido em 23/11: o fade in dava volume negativo no 1º quadro, o navegador dava erro e a música tocava MUDA (volume 0). Agora o volume é limitado entre 0 e 1.**
-- **Música atual = arquivo enviado pelo dono em 23/11 (11 MB, substituiu a "#3" antiga). URL com `?v=4` para furar cache; ao trocar a música, subir o número.**
+- **Música atual = arquivo enviado pelo dono em 23/11 (11 MB, substituiu a "#3" antiga). Reencodada em 128 kbps (7,4 MB) para carregar rápido no celular. URL com `?v=5` para furar cache; ao trocar a música, subir o número.**
 - Som: **sem efeitos** (chuva, grilos, passarinhos, vidro, trovão e plim foram tirados; `actx` fica nulo). Música de fundo `assets/musica.mp3` (faixa "#3"),
   loop baixinho a partir do 1º toque, botão de mudo (barrinhas) no topo, lembra a escolha em localStorage.
 
