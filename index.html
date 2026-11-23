@@ -319,29 +319,18 @@ footer .insone-f b{font-family:var(--f-mono)}
 .cl-artes button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media (max-width:700px){.cl-artes{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .estampas-b{margin-top:clamp(70px,10vw,130px)}
-/* v. estampas: provador 3D, as peças num anel flutuando no céu (frente de um lado, costas do outro) */
-.closet{position:relative;margin-top:clamp(20px,3vw,40px)}
-.closet-abas{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;position:relative;z-index:3}
-.closet-abas button{all:unset;cursor:pointer;padding:9px 16px;border-radius:99px;border:1px solid var(--line);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);transition:background .3s,color .3s,border-color .3s}
-.closet-abas button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-.closet-abas button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.palco3d{position:relative;height:clamp(340px,50vw,600px);perspective:1400px;perspective-origin:50% 30%;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;overflow:hidden;margin-inline:calc(-1 * var(--gutter))}
-.palco3d.arrastando{cursor:grabbing}
-.palco3d::before{content:"";position:absolute;left:50%;top:52%;width:min(560px,80%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
-  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 34%,transparent),transparent 70%);filter:blur(30px);opacity:.55;pointer-events:none}
-.chao3d{position:absolute;left:50%;bottom:6%;width:min(900px,96%);height:90px;transform:translateX(-50%);border-radius:50%;
-  background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);pointer-events:none}
-.anel{position:absolute;left:50%;top:46%;width:0;height:0;transform-style:preserve-3d}
-.peca{all:unset;position:absolute;left:0;top:0;width:var(--w);height:var(--w);margin:calc(var(--w) / -2) 0 0 calc(var(--w) / -2);transform-style:preserve-3d;cursor:pointer}
-.peca .flutua{position:absolute;inset:0;transform-style:preserve-3d;animation:flutua3d 5.5s ease-in-out infinite;animation-delay:var(--d)}
-@keyframes flutua3d{0%,100%{transform:translateY(0) rotateZ(-1.5deg)}50%{transform:translateY(-16px) rotateZ(1.5deg)}}
-.peca img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;backface-visibility:hidden;-webkit-backface-visibility:hidden;
-  filter:drop-shadow(0 18px 22px rgba(0,0,0,.45));-webkit-box-reflect:below 6px linear-gradient(transparent 68%,rgba(255,255,255,.16));transition:filter .3s}
-.peca .costas{transform:rotateY(180deg)}
-.peca:hover img,.peca:focus-visible img{filter:drop-shadow(0 18px 22px rgba(0,0,0,.45)) drop-shadow(0 0 22px color-mix(in srgb,var(--accent) 70%,transparent))}
-.peca:focus-visible{outline:none}
-.closet-leg{margin:4px 0 0;text-align:center;font-family:var(--f-display);font-style:italic;font-size:clamp(22px,2.4vw,30px);min-height:1.3em}
-.closet-dica{margin:8px 0 0;text-align:center;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+/* v. estampas: cartas que viram (frente → costas no hover/toque) — escolhida no laboratório roupas-lab.html */
+.cartas-r{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,170px),1fr));gap:14px;margin-top:clamp(24px,3vw,40px)}
+.carta-r{all:unset;display:block;cursor:pointer;aspect-ratio:3/4;perspective:900px;-webkit-tap-highlight-color:transparent}
+.carta-r .gira{display:block;position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,1.2,.5,1)}
+@media (hover:hover){.carta-r:hover .gira{transform:rotateY(180deg)}}
+.carta-r:focus-visible .gira,.carta-r.virada .gira{transform:rotateY(180deg)}
+.carta-r:focus-visible{outline:none}
+.carta-r .face{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:linear-gradient(160deg,#1a2347,#0b1022);box-shadow:inset 0 0 0 1px var(--line);display:grid;grid-template-rows:1fr auto;padding:10px}
+.carta-r .face img{width:100%;height:100%;object-fit:contain;min-height:0;filter:drop-shadow(0 10px 14px rgba(0,0,0,.45))}
+.carta-r .face small{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(254,250,226,.7);text-align:center;padding-top:6px;line-height:1.35}
+.carta-r .face.c{transform:rotateY(180deg);background:linear-gradient(160deg,#283456,#141a30)}
+.carta-r:focus-visible .face{box-shadow:inset 0 0 0 2px var(--accent)}
 /* três estrelas */
 .estrelas-t{margin-top:44px!important}
 .tres-est{width:120px;margin:18px 0 0}
@@ -635,18 +624,10 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
         <div class="tec-txt">
           <span class="tec-n">v.</span>
           <h3><span lang="pt">Estampas e <em>roupas</em></span><span lang="en">Prints and <em>apparel</em></span></h3>
-          <p lang="pt">Camisetas, uniformes e coleções personalizadas, pra marca sair da tela e ir pra rua. Gire o provador: de um lado a frente, do outro as costas.</p>
-          <p lang="en">Custom t-shirts, uniforms and collections, so the brand leaves the screen and hits the street. Spin the fitting room: fronts on one side, backs on the other.</p>
+          <p lang="pt">Camisetas, uniformes e coleções personalizadas, pra marca sair da tela e ir pra rua. Passe o mouse ou toque na carta: ela vira e mostra as costas.</p>
+          <p lang="en">Custom t-shirts, uniforms and collections, so the brand leaves the screen and hits the street. Hover or tap a card: it flips to show the back.</p>
         </div>
-        <div class="closet">
-          <div class="closet-abas" role="group" aria-label="Coleções">
-            <button type="button" data-col="dreamz" aria-pressed="true"><span lang="pt">dreamz · coleção</span><span lang="en">dreamz · collection</span></button>
-            <button type="button" data-col="bmc" aria-pressed="false"><span lang="pt">Bross Motors · uniformes</span><span lang="en">Bross Motors · uniforms</span></button>
-          </div>
-          <div class="palco3d" id="palco3d"><div class="chao3d" aria-hidden="true"></div><div class="anel" id="anel"></div></div>
-          <p class="closet-leg" id="closet-leg" aria-live="polite"></p>
-          <p class="closet-dica"><span lang="pt">arraste pra girar · toque pra ver de perto</span><span lang="en">drag to spin · tap to look closer</span></p>
-        </div>
+        <div class="cartas-r" id="cartas-r"></div>
       </article>
     </div>
   </section>
@@ -924,52 +905,24 @@ function sonhoLucido(){ if(calmo) return; root.classList.remove("lucido"); void 
 addEventListener("keydown",e=>{ if((e.key==="l"||e.key==="L")&&!e.target.closest("input,textarea,select")&&!e.ctrlKey&&!e.metaKey&&!e.altKey) sonhoLucido(); });
 desp.addEventListener("click",()=>{ const t=performance.now(); toquesRel=toquesRel.filter(x=>t-x<1800); toquesRel.push(t); if(toquesRel.length>=5){ toquesRel=[]; sonhoLucido(); } });
 
-/* ---------- v. estampas: provador 3D em anel ---------- */
-const ROUPAS={
-  dreamz:{w:300,pt:"Coleção Dreamz: as frases e as estrelas da marca viraram roupa.",en:"Dreamz collection: the brand's phrases and stars turned into clothes.",
-    pecas:[{s:"d1",pt:"Menino cromado",en:"Chrome boy"},{s:"d2",pt:"I'm not broken",en:"I'm not broken"},{s:"d3",pt:"Losing $leep",en:"Losing $leep"},{s:"d4",pt:"DRZ",en:"DRZ"}]},
-  bmc:{w:210,pt:"Uniformes da Bross Motors: camisetas, polos e bonés na identidade que criamos.",en:"Bross Motors uniforms: tees, polos and caps in the identity we created.",
-    pecas:[{s:"b9",pt:"Camiseta preta",en:"Black tee"},{s:"b1",pt:"Camiseta off-white",en:"Off-white tee"},{s:"c3",pt:"Boné laranja",en:"Orange cap",bone:1},{s:"b5",pt:"Camiseta azul",en:"Blue tee"},
-      {s:"b6",pt:"Polo preta",en:"Black polo"},{s:"c1",pt:"Boné preto",en:"Black cap",bone:1},{s:"b2",pt:"Camiseta off-white",en:"Off-white tee"},{s:"b8",pt:"Polo azul",en:"Blue polo"},
-      {s:"c2",pt:"Boné azul",en:"Blue cap",bone:1},{s:"b3",pt:"Camiseta preta",en:"Black tee"},{s:"b7",pt:"Polo off-white",en:"Off-white polo"},{s:"b4",pt:"Camiseta azul",en:"Blue tee"}]}
-};
-const palco3d=document.getElementById("palco3d"), anel=document.getElementById("anel"), legC=document.getElementById("closet-leg");
-let colAtual="dreamz", angulo=0, velo=-0.12, raio=300, passoA=90, arrasto=null, ultimoX=0, moveu=0, girando=false;
-function roupaSrc(s,lado){ return `assets/estampas/${s}${lado}.webp`; }
-function montaCloset(){
-  const C=ROUPAS[colAtual], n=C.pecas.length, larg=palco3d.clientWidth;
-  const w=Math.round(Math.min(C.w, larg*(n>6?0.36:0.46)));
-  passoA=360/n; raio=Math.max(w*0.85, (n*w*1.08)/(2*Math.PI));
-  palco3d.style.height=Math.round(Math.max(w*2.1, Math.min(600, larg*0.5)))+"px";
-  anel.innerHTML=C.pecas.map((p,i)=>`<button type="button" class="peca" data-i="${i}" style="--w:${p.bone?Math.round(w*.78):w}px;--d:${(-i*0.7).toFixed(1)}s;transform:rotateY(${i*passoA}deg) translateZ(${raio}px)" aria-label="${p[lang]}"><span class="flutua"><img class="frente" src="${roupaSrc(p.s,"f")}" alt="" draggable="false" loading="lazy"><img class="costas" src="${roupaSrc(p.s,"b")}" alt="" draggable="false" loading="lazy"></span></button>`).join("");
-}
-function desenhaCloset(){
-  anel.style.transform=`translateZ(${-raio}px) rotateX(-6deg) rotateY(${angulo}deg)`;
-  const C=ROUPAS[colAtual], n=C.pecas.length, i=((Math.round(-angulo/passoA)%n)+n)%n, p=C.pecas[i];
-  const frente=((((-angulo-i*passoA)%360)+540)%360-180);
-  const txt=p[lang]; if(legC.dataset.t!==txt+colAtual){ legC.dataset.t=txt+colAtual; legC.textContent=txt; }
-}
-function loopCloset(){
-  if(!girando) return;
-  if(!arrasto){ angulo+=velo; if(Math.abs(velo)>0.12) velo*=0.96; else velo=velo<0?-0.12:0.12; }
-  desenhaCloset(); requestAnimationFrame(loopCloset);
-}
-palco3d.addEventListener("pointerdown",e=>{ arrasto={x:e.clientX,a:angulo}; ultimoX=e.clientX; moveu=0; palco3d.classList.add("arrastando"); palco3d.setPointerCapture(e.pointerId); });
-palco3d.addEventListener("pointermove",e=>{ if(!arrasto) return; const dx=e.clientX-ultimoX; ultimoX=e.clientX; moveu+=Math.abs(dx); angulo+=dx*0.35; velo=dx*0.35; if(calmo) desenhaCloset(); });
-const soltaCloset=()=>{ if(!arrasto) return; arrasto=null; palco3d.classList.remove("arrastando"); velo=Math.max(-8,Math.min(8,velo)); };
-palco3d.addEventListener("pointerup",soltaCloset); palco3d.addEventListener("pointercancel",soltaCloset);
-anel.addEventListener("click",e=>{ const b=e.target.closest(".peca"); if(!b||moveu>8) return; abrirRoupa(+b.dataset.i); });
-document.querySelectorAll(".closet-abas button").forEach(b=>b.addEventListener("click",()=>{ colAtual=b.dataset.col; document.querySelectorAll(".closet-abas button").forEach(x=>x.setAttribute("aria-pressed",x===b)); angulo=0; velo=-4; montaCloset(); desenhaCloset(); }));
-addEventListener("resize",()=>{ montaCloset(); desenhaCloset(); });
-montaCloset(); desenhaCloset();
-if("IntersectionObserver" in window){ new IntersectionObserver(es=>{ const v=es.some(e=>e.isIntersecting); if(v&&!girando&&!calmo){ girando=true; requestAnimationFrame(loopCloset); } if(!v) girando=false; },{rootMargin:"100px"}).observe(palco3d); }
+/* ---------- v. estampas: cartas que viram ---------- */
+const ROUPAS=[
+  {s:"d1",pt:"Menino cromado",en:"Chrome boy",c:"dreamz"},{s:"d2",pt:"I'm not broken",en:"I'm not broken",c:"dreamz"},{s:"d3",pt:"Losing $leep",en:"Losing $leep",c:"dreamz"},{s:"d4",pt:"DRZ",en:"DRZ",c:"dreamz"},
+  {s:"b9",pt:"Camiseta preta",en:"Black tee",c:"bmc"},{s:"b1",pt:"Camiseta off-white",en:"Off-white tee",c:"bmc"},{s:"b5",pt:"Camiseta azul",en:"Blue tee",c:"bmc"},
+  {s:"b6",pt:"Polo preta",en:"Black polo",c:"bmc"},{s:"b7",pt:"Polo off-white",en:"Off-white polo",c:"bmc"},{s:"b8",pt:"Polo azul",en:"Blue polo",c:"bmc"},
+  {s:"c3",pt:"Boné laranja",en:"Orange cap",c:"bmc",bone:1},{s:"c1",pt:"Boné preto",en:"Black cap",c:"bmc",bone:1},{s:"c2",pt:"Boné azul",en:"Blue cap",c:"bmc",bone:1},
+  {s:"b2",pt:"Camiseta off-white",en:"Off-white tee",c:"bmc"},{s:"b3",pt:"Camiseta preta",en:"Black tee",c:"bmc"},{s:"b4",pt:"Camiseta azul",en:"Blue tee",c:"bmc"}];
+const COL={dreamz:"dreamz",bmc:"Bross Motors"};
+const roupaSrc=(s,l)=>`assets/estampas/${s}${l}.webp`;
+const cartasR=document.getElementById("cartas-r");
+cartasR.innerHTML=ROUPAS.map((p,i)=>`<button type="button" class="carta-r" data-i="${i}"><span class="gira"><span class="face"><img src="${roupaSrc(p.s,"f")}" alt="" loading="lazy"><small><span lang="pt">${p.pt}</span><span lang="en">${p.en}</span><br>${COL[p.c]}</small></span><span class="face c"><img src="${roupaSrc(p.s,p.bone?"l":"b")}" alt="" loading="lazy"><small>${p.bone?'<span lang="pt">lateral</span><span lang="en">side</span>':'<span lang="pt">costas</span><span lang="en">back</span>'}</small></span></span><span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"><span lang="pt">${p.pt}, ${COL[p.c]}</span><span lang="en">${p.en}, ${COL[p.c]}</span></span></button>`).join("");
+cartasR.addEventListener("click",e=>{ const b=e.target.closest(".carta-r"); if(!b) return; if(b.classList.contains("virada")||matchMedia("(hover:hover)").matches){ abrirRoupa(+b.dataset.i); } b.classList.toggle("virada"); });
 function abrirRoupa(i){
-  const C=ROUPAS[colAtual], p=C.pecas[i];
-  document.getElementById("visor-num").textContent=colAtual==="dreamz"?"dreamz":"Bross Motors";
+  const p=ROUPAS[i];
+  document.getElementById("visor-num").textContent=COL[p.c];
   document.getElementById("visor-titulo").textContent=p[lang];
-  document.getElementById("visor-frase").innerHTML=`<span lang="pt">${C.pt}</span><span lang="en">${C.en}</span>`;
-  const lados=p.bone?["f","l","b"]:["f","b"];
-  trilho.innerHTML=lados.map(l=>`<img src="${roupaSrc(p.s,l)}" alt="${p[lang]}" loading="lazy">`).join("");
+  document.getElementById("visor-frase").innerHTML=p.c==="dreamz"?'<span lang="pt">Coleção Dreamz: as frases e as estrelas da marca viraram roupa.</span><span lang="en">Dreamz collection: the brand\'s phrases and stars turned into clothes.</span>':'<span lang="pt">Uniformes da Bross Motors na identidade que criamos.</span><span lang="en">Bross Motors uniforms in the identity we created.</span>';
+  trilho.innerHTML=(p.bone?["f","l","b"]:["f","b"]).map(l=>`<img src="${roupaSrc(p.s,l)}" alt="${p[lang]}" loading="lazy">`).join("");
   trilho.scrollLeft=0; visor.showModal?visor.showModal():visor.setAttribute("open",""); document.getElementById("fechar").focus();
 }
 
