@@ -100,6 +100,8 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
 - 00:30: embaixo da frase grande, a tradução em PT (menor, itálico, só no modo PT).
 - PMX: tirado o 1º card (branco com moedas); agora 4 artes. Boi Delivery: entraram as 2 artes que faltavam do carrossel "Post 3" (05, 06).
 - Música não tocava porque o artifact estava numa versão antiga (sem `musica.mp3`): republicado com todos os assets.
+  Depois: a música passou a ligar em clique/fim do toque/tecla (iPhone não libera som no touchstart/pointerdown) e tenta de novo a cada gesto até tocar;
+  o botão de som (barrinhas) fica sempre visível e liga a música se ela ainda não começou.
 - **v. Estampas e roupas = "cartas que viram"** (escolhida no laboratório https://claude.ai/artifact/QCFwRxfpjcGHWtb8ATC7zg, `roupas-lab.html`):
   grade de cartões com as peças recortadas (`assets/estampas/<id>f|b|l.webp`); hover/toque vira a carta e mostra as costas (boné: lateral);
   2º toque (ou clique no desktop) abre o visor com frente/costas. 4 peças dreamz + 12 Bross Motors. Dados em `ROUPAS` no script.

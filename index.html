@@ -1044,10 +1044,13 @@ function fadeMusica(alvo){ const ini=musica.volume, t0=performance.now(); (funct
 function tocaMusica(){ if(mudo) return; musica.play().then(()=>{ fadeMusica(.45); botaoSom.hidden=false; }).catch(()=>{}); }
 function atualizaBotao(){ botaoSom.classList.toggle("mudo",mudo); botaoSom.setAttribute("aria-label",mudo?(lang==="pt"?"Ligar a música":"Turn music on"):(lang==="pt"?"Desligar a música":"Turn music off")); }
 musica.addEventListener("error",()=>{ botaoSom.hidden=true; });
-botaoSom.addEventListener("click",e=>{ e.stopPropagation(); mudo=!mudo; try{ localStorage.setItem("dreamz-mudo",mudo?"1":"0"); }catch(err){} atualizaBotao(); if(mudo) fadeMusica(0); else tocaMusica(); });
+botaoSom.addEventListener("click",e=>{ e.stopPropagation(); if(!mudo&&musica.paused){ tocaMusica(); return; } mudo=!mudo; try{ localStorage.setItem("dreamz-mudo",mudo?"1":"0"); }catch(err){} atualizaBotao(); if(mudo) fadeMusica(0); else tocaMusica(); });
 atualizaBotao();
-const primeiro=()=>{ tocaMusica(); ["pointerdown","keydown","touchstart","scroll"].forEach(ev=>removeEventListener(ev,primeiro)); };
-["pointerdown","keydown","touchstart"].forEach(ev=>addEventListener(ev,primeiro,{passive:true}));
+/* o navegador só libera som num gesto "completo" (clique/fim do toque/tecla): tenta em cada um até conseguir */
+const GESTOS=["click","touchend","pointerup","keydown"];
+const primeiro=e=>{ if(mudo||!musica.paused||(e&&e.target&&e.target.closest&&e.target.closest("#botao-som"))) return; musica.play().then(()=>{ fadeMusica(.45); botaoSom.hidden=false; GESTOS.forEach(ev=>removeEventListener(ev,primeiro,true)); }).catch(()=>{}); };
+GESTOS.forEach(ev=>addEventListener(ev,primeiro,{capture:true,passive:true}));
+botaoSom.hidden=false;
 document.addEventListener("visibilitychange",()=>{ if(document.hidden){ if(!musica.paused) musica.pause(); } else if(!mudo&&musica.currentTime>0) musica.play().catch(()=>{}); });
 
 /* ---------- easter egg: 3 cliques no menino e ele acorda ---------- */
