@@ -95,3 +95,10 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
   esses caem na Fraunces. Trocar quando o dono comprar a versão completa.
 - Som: **sem efeitos** (chuva, grilos, passarinhos, vidro, trovão e plim foram tirados; `actx` fica nulo). Música de fundo `assets/musica.mp3` (faixa "#3"),
   loop baixinho a partir do 1º toque, botão de mudo (barrinhas) no topo, lembra a escolha em localStorage.
+
+## Mudanças de 23/11/2026
+- 00:30: embaixo da frase grande, a tradução em PT (menor, itálico, só no modo PT).
+- PMX: tirado o 1º card (branco com moedas); agora 4 artes. Boi Delivery: entraram as 2 artes que faltavam do carrossel "Post 3" (05, 06).
+- Música não tocava porque o artifact estava numa versão antiga (sem `musica.mp3`): republicado com todos os assets.
+- Pendente: seção v. Estampas e roupas com as camisetas/bonés da Dreamz e da Bross Motors (BMC), em 3D "diferente" (pedido do dono).
+  As imagens foram coladas no chat; pedir como arquivo ou no Drive.

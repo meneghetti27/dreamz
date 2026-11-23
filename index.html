@@ -252,6 +252,7 @@ footer .insone-f b{font-family:var(--f-mono)}
 /* 00:30 — o vidro (medo) */
 .frase-dreamz{margin:30px 0 0;font-family:var(--f-display);font-weight:900;font-variation-settings:"SOFT" 100,"opsz" 144;font-size:clamp(36px,6.2vw,92px);line-height:.98;letter-spacing:-.025em;text-wrap:balance}
 .frase-dreamz em{font-style:italic;color:var(--accent)}
+.frase-dreamz-pt{margin:16px 0 0;font-family:var(--f-body);font-size:clamp(16px,1.6vw,21px);font-style:italic;opacity:.72;max-width:40ch}
 .vidro-s{padding-block:clamp(70px,10vw,140px)}
 .vidro-s .pergunta{margin:28px 0 0;font-family:var(--f-display);font-style:italic;font-weight:600;font-size:clamp(22px,2.6vw,34px);line-height:1.25;max-width:34ch}
 .nome-vidro{margin:clamp(40px,6vw,80px) 0 0;font-size:clamp(34px,4.4vw,60px);line-height:1}
@@ -522,6 +523,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
     <div class="miolo">
       <div class="rotulo">00:30 · <span lang="pt">o vidro</span><span lang="en">the glass</span></div>
       <blockquote class="frase-dreamz">Losing sleep for your Dreamz is <em>better</em> than dreaming about them.</blockquote>
+      <p class="frase-dreamz-pt" lang="pt">“Perder o sono pelos seus sonhos é melhor do que sonhar com eles.”</p>
       <p class="pergunta"><span lang="pt">Você já se sentiu preso, imaginando como seria a vida se tivesse agido, falado, mudado, ido atrás do que realmente faz sentido para você? É como se existisse um vidro entre você e tudo o que queria viver.</span><span lang="en">Have you ever felt stuck, imagining what life would be like if you had acted, spoken up, changed, gone after what truly makes sense to you? It's as if there were a pane of glass between you and everything you wanted to live.</span></p>
       <h2 class="nome-vidro"><span lang="pt">Esse vidro tem nome:</span><span lang="en">That glass has a name:</span></h2>
       <div class="palco-medo" id="palco-medo">
@@ -763,13 +765,13 @@ const OBRAS = [
    pt:"Uma engenharia elétrica que queria mostrar o que ninguém vê dentro do painel.", en:"An electrical engineering firm that wanted to show what no one sees inside the panel."},
   {s:"aluggo", t:"Aluggo", tipo:"social", h:"04:02", pecas:16, n:5, w:880, hgt:1100,
    pt:"Motos pra quem quer chegar antes no amanhã.", en:"Motorbikes for people who want to get to tomorrow first."},
-  {s:"boi-delivery", t:"Boi Delivery", tipo:"social", h:"04:11", pecas:6, n:4, w:880, hgt:1100,
+  {s:"boi-delivery", t:"Boi Delivery", tipo:"social", h:"04:11", pecas:6, n:6, w:880, hgt:1100,
    pt:"Um delivery de carne com um mascote que chega antes da fome.", en:"A meat delivery with a mascot that arrives before you're hungry."},
   {s:"spada-abdalla", t:"Spada e Abdalla", tipo:"social", h:"04:19", pecas:18, n:5, w:880, hgt:1100,
    pt:"Uma clínica que ensina a prestar atenção nos sinais do corpo.", en:"A clinic that teaches people to pay attention to their body's signals."},
   {s:"marchiori", t:"Marchiori", tipo:"social", h:"04:24", pecas:12, n:5, w:880, hgt:1100,
    pt:"Um escritório que explica a lei antes que ela vire problema.", en:"A law firm that explains the law before it turns into a problem."},
-  {s:"pmx", t:"PMX Ativos Judiciais", tipo:"social", h:"04:30", pecas:17, n:5, w:880, hgt:1100,
+  {s:"pmx", t:"PMX Ativos Judiciais", tipo:"social", h:"04:30", pecas:16, n:4, w:880, hgt:1100,
    pt:"Uma empresa que transforma a espera de um processo em dinheiro hoje.", en:"A company that turns waiting on a lawsuit into money today."},
 ];
 const TIPO={id:{pt:"Identidade visual",en:"Visual identity"},social:{pt:"Social media",en:"Social media"}};
