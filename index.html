@@ -1037,7 +1037,7 @@ function ajustaSom(){ if(!actx) return; const t=actx.currentTime, p=P;
   gPassaro.gain.setTargetAtTime(Math.max(0,Math.min(1,(p-0.74)/0.18)),t,0.8); }
 /* efeitos sintéticos desligados a pedido: actx fica nulo, então chuva, grilos, vidro, trovão e plim não tocam */
 /* ---------- música de fundo: começa no primeiro toque, em loop, com botão de mudo ---------- */
-const musica=new Audio("assets/musica.mp3"); musica.loop=true; musica.volume=0; musica.preload="auto";
+const musica=new Audio("assets/musica.mp3?v=3"); musica.loop=true; musica.volume=0; musica.preload="auto";
 const botaoSom=document.getElementById("botao-som");
 let mudo=false; try{ mudo=localStorage.getItem("dreamz-mudo")==="1"; }catch(e){}
 function fadeMusica(alvo){ const ini=musica.volume, t0=performance.now(); (function passo(t){ const k=Math.min(1,(t-t0)/1800); musica.volume=ini+(alvo-ini)*k; if(k<1) requestAnimationFrame(passo); else if(alvo===0) musica.pause(); })(t0); }

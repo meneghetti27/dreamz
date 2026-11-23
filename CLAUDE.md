@@ -93,6 +93,7 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
 - 05:15: missão e visão grandes, com linha em cima; valores com título próprio e nomes grandes.
 - Fonte dos títulos: **Veneza** (`assets/fonts/veneza.woff2`, convertida de VenezaDEMO). É DEMO, só uso pessoal, e não tem acentos, números nem ?!"():
   esses caem na Fraunces. Trocar quando o dono comprar a versão completa.
+- **Música atual = arquivo enviado pelo dono em 23/11 (11 MB, substituiu a "#3" antiga). URL com `?v=3` para furar cache; ao trocar a música, subir o número.**
 - Som: **sem efeitos** (chuva, grilos, passarinhos, vidro, trovão e plim foram tirados; `actx` fica nulo). Música de fundo `assets/musica.mp3` (faixa "#3"),
   loop baixinho a partir do 1º toque, botão de mudo (barrinhas) no topo, lembra a escolha em localStorage.
 
