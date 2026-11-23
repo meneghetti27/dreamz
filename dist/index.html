@@ -38,6 +38,18 @@ html[data-lang="pt"] [lang="en"], html[data-lang="en"] [lang="pt"]{display:none!
 body.trocando main, body.trocando .topo{filter:blur(6px);opacity:.5}
 main,.topo{transition:filter .35s ease,opacity .35s ease}
 
+/* porta de entrada: o navegador só libera som depois de um toque, então o site abre pedindo um toque (some sozinha se o autoplay for liberado) */
+.porta{all:unset;position:fixed;inset:0;z-index:92;background:#000;color:#FEFAE2;display:grid;place-items:center;align-content:center;gap:22px;text-align:center;cursor:pointer;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);transition:opacity 1.2s ease;-webkit-tap-highlight-color:transparent}
+.porta[hidden]{display:none}
+.porta.saindo{opacity:0;pointer-events:none}
+.porta .estrelas-logo{width:120px;margin:0 auto;animation:zz 2.4s ease-in-out infinite}
+.porta .est{filter:brightness(0) invert(1) drop-shadow(0 0 8px rgba(255,255,255,.6)) drop-shadow(0 0 22px rgba(138,196,254,.5));animation:cintila 2.4s ease-in-out infinite}.porta .est-2{animation-delay:.4s}.porta .est-3{animation-delay:.8s}
+.porta b{font-family:var(--f-display);font-style:italic;font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.1;word-spacing:.14em}
+.porta small{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:rgba(254,250,226,.6)}
+.porta:focus-visible{outline:none}
+.esperando .palpebra,.esperando .acordando #ceu,.esperando .acordando main,.esperando .acordando .topo,.esperando .acordando .despertador{animation-play-state:paused!important}
+
 /* ---------- acordando: pálpebras + visão embaçada ---------- */
 .palpebra{position:fixed;left:-10vw;right:-10vw;height:62vh;background:#000;z-index:90;pointer-events:none;
   animation:6.2s cubic-bezier(.45,0,.25,1) .2s both}
@@ -491,6 +503,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.6)}
 
 
 
+<button type="button" class="porta" id="porta" hidden><span class="estrelas-logo" style="aspect-ratio:334/137" aria-hidden="true"><img class="est est-1" src="assets/marca/estrela-1.png" alt="" style="left:0.00%;top:43.07%;width:19.46%"><img class="est est-2" src="assets/marca/estrela-2.png" alt="" style="left:19.46%;top:0.00%;width:41.62%"><img class="est est-3" src="assets/marca/estrela-3.png" alt="" style="left:67.37%;top:16.79%;width:32.63%"></span><b><span lang="pt">toque pra sonhar</span><span lang="en">tap to dream</span></b><small><span lang="pt">com som ♪</span><span lang="en">sound on ♪</span></small></button>
 <div class="palpebra cima" aria-hidden="true"></div>
 <div class="palpebra baixo" aria-hidden="true"></div>
 <canvas id="ceu" aria-hidden="true"></canvas>
@@ -1092,6 +1105,20 @@ const GESTOS=["click","touchend","pointerup","keydown"];
 const primeiro=e=>{ if(mudo||tocando||(e&&e.target&&e.target.closest&&e.target.closest("#botao-som"))) return; tocaMusica(); };
 GESTOS.forEach(ev=>addEventListener(ev,primeiro,{capture:true,passive:true}));
 botaoSom.hidden=false;
+
+/* ---------- abre tocando: tenta autoplay; se o navegador barrar, mostra a porta "toque pra sonhar" ---------- */
+const porta=document.getElementById("porta");
+function reiniciaAcordar(){ if(calmo) return; document.querySelectorAll(".palpebra").forEach(el=>{ el.style.animation="none"; void el.offsetWidth; el.style.animation=""; });
+  document.body.classList.remove("acordando"); void document.body.offsetWidth; document.body.classList.add("acordando"); setTimeout(()=>document.body.classList.remove("acordando"),7400); }
+function abrePorta(){ if(tocando) return; porta.hidden=false; root.classList.add("esperando"); try{ porta.focus({preventScroll:true}); }catch(e){} }
+porta.addEventListener("click",e=>{ e.stopPropagation(); mudo=false; try{ localStorage.setItem("dreamz-mudo","0"); }catch(err){} tocaMusica();
+  root.classList.remove("esperando"); reiniciaAcordar(); porta.classList.add("saindo"); setTimeout(()=>{ porta.hidden=true; porta.classList.remove("saindo"); },1300); });
+(function tentaAutoplay(){ if(mudo) return;
+  const a=new Audio(MUSICA_URL); a.loop=true; a.volume=0;
+  const p=a.play(); if(!p||!p.then){ abrePorta(); return; }
+  p.then(()=>{ audioEl=a; modo=1; tocando=true; fadeEl(VOL); GESTOS.forEach(ev=>removeEventListener(ev,primeiro,true)); atualizaBotao(); })
+   .catch(()=>{ try{ a.removeAttribute("src"); a.load(); }catch(e){} abrePorta(); });
+})();
 document.addEventListener("visibilitychange",()=>{ if(!tocando) return;
   if(document.hidden){ if(audioEl) audioEl.pause(); if(wa) wa.suspend().catch(()=>{}); }
   else { if(audioEl) audioEl.play().catch(()=>{}); if(wa) wa.resume().catch(()=>{}); } });

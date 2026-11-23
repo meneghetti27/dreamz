@@ -93,6 +93,7 @@ Leia `BRIEFING.md` (marca, paleta, portfólio, contato) antes de criar qualquer 
 - 05:15: missão e visão grandes, com linha em cima; valores com título próprio e nomes grandes.
 - Fonte dos títulos: **Veneza** (`assets/fonts/veneza.woff2`, convertida de VenezaDEMO). É DEMO, só uso pessoal, e não tem acentos, números nem ?!"():
   esses caem na Fraunces. Trocar quando o dono comprar a versão completa.
+- **Abre tocando (23/11, pedido do dono)**: navegador não deixa som sem toque. O site tenta autoplay; se barrar, mostra a **porta** (tela preta com as 3 estrelas + "toque pra sonhar / com som ♪"). O toque liga a música e reinicia a animação das pálpebras. No celular rolar NÃO conta como toque.
 - **IMPORTANTE (23/11): dentro do artifact o áudio direto pode ser BLOQUEADO (só imagens passam). A música tenta 3 caminhos: <audio> normal → fetch + blob: → Web Audio (decodeAudioData). Testar sempre simulando CSP `media-src 'none'`, não só no servidor local.**
 - **Bug corrigido em 23/11: o fade in dava volume negativo no 1º quadro, o navegador dava erro e a música tocava MUDA (volume 0). Agora o volume é limitado entre 0 e 1.**
 - **Música atual = arquivo enviado pelo dono em 23/11 (11 MB, substituiu a "#3" antiga). URL com `?v=4` para furar cache; ao trocar a música, subir o número.**
